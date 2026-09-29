@@ -21,11 +21,17 @@ object PdfGenerator {
         val page = document.startPage(pageInfo)
         val canvas = page.canvas
 
-        // Load Virgil custom Typeface or fallback to cursive/sans-serif
-        val virgilTypeface = try {
-            ResourcesCompat.getFont(context, R.font.virgil) ?: Typeface.create(Typeface.SANS_SERIF, Typeface.NORMAL)
+        // Load Google's Poppins custom Typeface
+        val poppinsTypeface = try {
+            ResourcesCompat.getFont(context, R.font.poppins_regular) ?: Typeface.create(Typeface.SANS_SERIF, Typeface.NORMAL)
         } catch (e: Exception) {
             Typeface.create(Typeface.SANS_SERIF, Typeface.NORMAL)
+        }
+
+        val poppinsSemiBold = try {
+            ResourcesCompat.getFont(context, R.font.poppins_semibold) ?: Typeface.create(Typeface.SANS_SERIF, Typeface.BOLD)
+        } catch (e: Exception) {
+            Typeface.create(Typeface.SANS_SERIF, Typeface.BOLD)
         }
 
         val totalAmount = data.totalAmount
@@ -40,7 +46,7 @@ object PdfGenerator {
 
         val blackPaint = Paint().apply {
             color = Color.BLACK
-            typeface = virgilTypeface
+            typeface = poppinsTypeface
             isAntiAlias = true
         }
 
@@ -81,7 +87,7 @@ object PdfGenerator {
 
         val whiteText = Paint().apply {
             color = Color.WHITE
-            typeface = virgilTypeface
+            typeface = poppinsSemiBold
             textSize = 10f
             isFakeBoldText = true
             isAntiAlias = true
@@ -102,7 +108,7 @@ object PdfGenerator {
 
         val badgeText = Paint().apply {
             color = Color.BLACK
-            typeface = virgilTypeface
+            typeface = poppinsSemiBold
             textSize = 9.5f
             isFakeBoldText = true
             isAntiAlias = true

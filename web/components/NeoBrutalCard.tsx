@@ -31,15 +31,24 @@ export const NeoBrutalCard: React.FC<NeoBrutalCardProps> = ({
     >
       {(title || badge || headerAction) && (
         <div className="flex items-center justify-between gap-2 pb-3 mb-3 border-b-2 border-black/80">
+          {/* Left Title: Written normally */}
+          <div>
+            {title && (
+              <h3 className="text-base sm:text-lg font-semibold tracking-tight text-neutral-950">
+                {title}
+              </h3>
+            )}
+          </div>
+
+          {/* Top Right: Badges (Recipient / Sender) & Actions */}
           <div className="flex items-center gap-2">
             {badge && (
-              <span className="px-2 py-0.5 text-xs font-black uppercase tracking-wider bg-black text-white rounded">
+              <span className="px-2.5 py-0.5 text-xs font-black uppercase tracking-wider bg-black text-white rounded shadow-sm">
                 {badge}
               </span>
             )}
-            {title && <h3 className="text-base sm:text-lg font-bold tracking-tight">{title}</h3>}
+            {headerAction && <div>{headerAction}</div>}
           </div>
-          {headerAction && <div>{headerAction}</div>}
         </div>
       )}
       {children}

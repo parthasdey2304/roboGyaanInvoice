@@ -22,6 +22,7 @@ import com.robogyaan.invoice.ui.neoBrutal
 import com.robogyaan.invoice.ui.neoBrutalClickable
 import com.robogyaan.invoice.ui.theme.NeoBlack
 import com.robogyaan.invoice.ui.theme.NeoYellow
+import com.robogyaan.invoice.ui.theme.PoppinsFontFamily
 import com.robogyaan.invoice.ui.theme.VirgilFontFamily
 
 @Composable
@@ -56,6 +57,20 @@ fun NeoBrutalCard(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
+                // Left: Title written normally
+                if (title != null) {
+                    Text(
+                        text = title,
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        color = NeoBlack,
+                        fontFamily = VirgilFontFamily
+                    )
+                } else {
+                    Spacer(modifier = Modifier.width(1.dp))
+                }
+
+                // Top Right: Badge (Recipient / Sender) & Actions
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
@@ -64,28 +79,19 @@ fun NeoBrutalCard(
                         Box(
                             modifier = Modifier
                                 .background(Color.Black, RoundedCornerShape(4.dp))
-                                .padding(horizontal = 6.dp, vertical = 2.dp)
+                                .padding(horizontal = 7.dp, vertical = 2.5.dp)
                         ) {
                             Text(
                                 text = badge.uppercase(),
                                 color = Color.White,
                                 fontSize = 10.sp,
-                                fontWeight = FontWeight.Black,
+                                fontWeight = FontWeight.Bold,
                                 fontFamily = VirgilFontFamily
                             )
                         }
                     }
-                    if (title != null) {
-                        Text(
-                            text = title,
-                            fontSize = 16.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = NeoBlack,
-                            fontFamily = VirgilFontFamily
-                        )
-                    }
+                    headerAction?.invoke()
                 }
-                headerAction?.invoke()
             }
         }
         content()
@@ -141,7 +147,7 @@ fun NeoBrutalTextField(
         Text(
             text = label.uppercase(),
             fontSize = 11.sp,
-            fontWeight = FontWeight.Black,
+            fontWeight = FontWeight.SemiBold,
             color = NeoBlack,
             fontFamily = VirgilFontFamily,
             modifier = Modifier.padding(bottom = 3.dp)
@@ -161,7 +167,8 @@ fun NeoBrutalTextField(
                     text = placeholder,
                     color = Color.Gray,
                     fontSize = 13.sp,
-                    fontFamily = VirgilFontFamily
+                    fontWeight = FontWeight.Normal,
+                    fontFamily = PoppinsFontFamily
                 )
             }
             BasicTextField(
@@ -170,9 +177,9 @@ fun NeoBrutalTextField(
                 singleLine = true,
                 cursorBrush = SolidColor(Color.Black),
                 textStyle = TextStyle(
-                    fontFamily = VirgilFontFamily,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 14.sp,
+                    fontFamily = PoppinsFontFamily,
+                    fontWeight = FontWeight.Medium,
+                    fontSize = 13.sp,
                     color = NeoBlack
                 ),
                 keyboardOptions = KeyboardOptions(keyboardType = keyboardType),

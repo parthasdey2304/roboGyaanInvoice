@@ -25,9 +25,9 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(
         <div
           ref={ref}
           id="invoice-sheet"
-          className="print-invoice-sheet bg-white text-black font-sans relative shadow-[0_10px_35px_rgba(0,0,0,0.15)] border-2 border-black box-border w-full max-w-[760px] aspect-[1/1.414] min-h-[960px] p-6 sm:p-8 flex flex-col justify-between"
+          className="print-invoice-sheet bg-white text-black font-sans relative shadow-[0_10px_35px_rgba(0,0,0,0.15)] border-2 border-black box-border w-full max-w-[760px] h-auto min-h-fit md:min-h-[960px] md:aspect-[1/1.414] p-4 sm:p-8 flex flex-col justify-between"
           style={{
-            fontFamily: 'var(--font-virgil), Comic Sans MS, cursive, sans-serif',
+            fontFamily: 'var(--font-poppins), Poppins, sans-serif',
           }}
         >
           {/* TOP HEADER SECTION */}
@@ -154,7 +154,7 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(
               </div>
 
               {/* Table Rows Body */}
-              <div className="min-h-[220px] relative z-10 flex flex-col">
+              <div className="min-h-[260px] relative z-10 flex flex-col">
                 {data.items.map((item, index) => {
                   const lineTotal =
                     (Number(item.amountPerHead) || 0) * (Number(item.studentCount) || 0);
@@ -182,8 +182,13 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(
                   );
                 })}
 
-                {/* Empty Filler Space for Authentic Layout */}
-                <div className="flex-1 min-h-[80px]" />
+                {/* Empty Filler Space with continuous vertical borders running all the way down */}
+                <div className="flex-1 grid grid-cols-12 min-h-[60px] sm:min-h-[120px]">
+                  <div className="col-span-5 border-r-[2px] border-black h-full" />
+                  <div className="col-span-3 border-r-[2px] border-black h-full" />
+                  <div className="col-span-2 border-r-[2px] border-black h-full" />
+                  <div className="col-span-2 h-full" />
+                </div>
               </div>
 
               {/* Table Footer Subtotal Row */}
@@ -214,22 +219,22 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(
           </div>
 
           {/* SIGNATURE FOOTER */}
-          <div className="grid grid-cols-2 gap-8 pt-8 mt-6">
+          <div className="grid grid-cols-2 gap-4 sm:gap-8 pt-4 sm:pt-8 mt-4 sm:mt-6 pb-2">
             {/* Customer Signature Box */}
             <div className="flex flex-col items-center justify-end">
-              <div className="h-14 sm:h-16 w-full flex items-center justify-center">
+              <div className="h-10 sm:h-14 w-full flex items-center justify-center">
                 {/* Physical ink signature area */}
               </div>
-              <div className="border-[2px] border-black px-6 py-1 text-xs sm:text-sm font-bold text-center w-full max-w-[240px]">
+              <div className="border-[2px] border-black px-2 sm:px-6 py-1 text-[11px] sm:text-sm font-bold text-center w-full max-w-[200px] sm:max-w-[240px]">
                 {data.customerSignatureLabel || 'Customer Signature'}
               </div>
             </div>
 
             {/* Authorised Signatory Box */}
             <div className="flex flex-col items-center justify-end relative">
-              <div className="h-14 sm:h-16 w-full relative flex items-center justify-center -mb-2">
+              <div className="h-10 sm:h-14 w-full relative flex items-center justify-center -mb-2">
                 {data.signatureImage && (
-                  <div className="relative w-44 h-16 pointer-events-none">
+                  <div className="relative w-28 sm:w-44 h-10 sm:h-14 pointer-events-none">
                     <Image
                       src={data.signatureImage}
                       alt="Authorised Signature"
@@ -240,7 +245,7 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(
                   </div>
                 )}
               </div>
-              <div className="border-[2px] border-black px-6 py-1 text-xs sm:text-sm font-bold text-center w-full max-w-[240px] z-10 bg-white">
+              <div className="border-[2px] border-black px-2 sm:px-6 py-1 text-[11px] sm:text-sm font-bold text-center w-full max-w-[200px] sm:max-w-[240px] z-10 bg-white">
                 Authorised Signatory
               </div>
             </div>

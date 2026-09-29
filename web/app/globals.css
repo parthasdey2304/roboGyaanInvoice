@@ -3,13 +3,14 @@
 @font-face {
   font-family: 'Virgil';
   src: url('/fonts/Virgil.woff2') format('woff2');
-  font-weight: 400;
+  font-weight: 400 700;
   font-style: normal;
   font-display: swap;
 }
 
 @theme {
-  --font-virgil: 'Virgil', 'Comic Sans MS', cursive, sans-serif;
+  --font-virgil: var(--font-virgil), 'Virgil', 'Comic Sans MS', cursive, sans-serif;
+  --font-poppins: var(--font-poppins), 'Poppins', sans-serif;
   --color-neo-yellow: #FFE600;
   --color-neo-yellow-hover: #FFDD00;
   --color-neo-orange: #FFA500;
@@ -32,6 +33,7 @@ body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-virgil);
+  font-weight: 600; /* Increased Virgil text weight to semi-bold across UI */
   -webkit-font-smoothing: antialiased;
 }
 
@@ -65,7 +67,7 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
+  font-weight: 600;
   border: 2px solid #000000;
   box-shadow: 4px 4px 0px #000000;
   border-radius: 8px;
@@ -85,16 +87,26 @@ body {
   box-shadow: 1px 1px 0px #000000;
 }
 
+/* Input text and placeholder in Google Poppins font */
 .neo-input {
   border: 2px solid #000000;
   box-shadow: 3px 3px 0px #000000;
   border-radius: 6px;
   padding: 0.5rem 0.75rem;
   background-color: #FFFFFF;
-  font-family: inherit;
+  font-family: var(--font-poppins), 'Poppins', sans-serif !important;
+  font-weight: 500;
+  font-size: 0.875rem;
   width: 100%;
   outline: none;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.neo-input::placeholder {
+  font-family: var(--font-poppins), 'Poppins', sans-serif !important;
+  font-weight: 400;
+  color: #6B7280;
+  opacity: 0.85;
 }
 
 .neo-input:focus {
@@ -102,7 +114,7 @@ body {
   box-shadow: 4px 4px 0px #FFE600;
 }
 
-/* Print Specific Rules for Pixel-Perfect A4 Export */
+/* Print Specific Rules for Pixel-Perfect A4 Export with Poppins Font */
 @media print {
   @page {
     size: A4 portrait;
@@ -115,6 +127,7 @@ body {
     margin: 0 !important;
     padding: 0 !important;
     background: #FFFFFF !important;
+    font-family: var(--font-poppins), 'Poppins', sans-serif !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
@@ -134,5 +147,6 @@ body {
     box-shadow: none !important;
     border: none !important;
     background: #FFFFFF !important;
+    font-family: var(--font-poppins), 'Poppins', sans-serif !important;
   }
 }

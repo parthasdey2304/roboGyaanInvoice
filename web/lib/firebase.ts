@@ -6,6 +6,7 @@ import {
   getDocs, 
   deleteDoc, 
   updateDoc, 
+  setDoc,
   doc, 
   query, 
   orderBy, 
@@ -209,3 +210,87 @@ function getLocalHistory(): InvoiceHistoryEntry[] {
     return [];
   }
 }
+
+export const AUTOSAVE_DRAFT_ID = "autosave_working_draft";
+const AUTOSAVE_LOCAL_KEY = "robogyaan_invoice_autosave_draft";
+
+/**
+ * Auto-save invoice to Firestore.
+ * Always updates the existing document for activeId, or the dedicated 'autosave_working_draft' doc.
+ * Never creates duplicate documents.
+ */
+export async function autoSaveInvoice(
+  invoiceData: InvoiceData,
+  activeId?: string | null
+): Promise<string> {
+  const targetId = activeId || AUTOSAVE_DRAFT_ID;
+  const totalAmount = invoiceData.items.reduce(
+    (sum, item) => sum + (Number(item.amountPerHead) || 0) * (Number(item.studentCount) || 0),
+    0
+  );
+
+  const payload: Record<string, any> = {
+    invoiceNo: invoiceData.invoiceNo,
+    clientName: invoiceData.billedTo.name || "Client",
+    totalAmount,
+    invoiceData,
+    updatedAt: new Date().toISOString(),
+    serverTime: serverTimestamp(),
+  };
+
+  if (!activeId || activeId === AUTOSAVE_DRAFT_ID) {
+    payload.promptDescription = "Auto-saved Working Draft";
+  }
+
+  try {
+    const docRef = doc(db, COLLECTION_NAME, targetId);
+    await setDoc(docRef, payload, { merge: true });
+  } catch (err) {
+    console.warn("Firestore autosave fallback to local storage:", err);
+  }
+
+  if (typeof window !== "undefined") {
+    try {
+      localStorage.setItem(AUTOSAVE_LOCAL_KEY, JSON.stringify(invoiceData));
+      const existing = getLocalHistory();
+      const idx = existing.findIndex((item) => item.id === targetId);
+      if (idx >= 0) {
+        existing[idx] = {
+          ...existing[idx],
+          ...payload,
+          id: targetId,
+          createdAt: existing[idx].createdAt || new Date().toISOString(),
+        };
+      } else {
+        existing.unshift({
+          id: targetId,
+          promptDescription: payload.promptDescription || "Auto-saved Working Draft",
+          invoiceNo: invoiceData.invoiceNo,
+          clientName: invoiceData.billedTo.name || "Client",
+          totalAmount,
+          invoiceData,
+          createdAt: new Date().toISOString(),
+        });
+      }
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(existing.slice(0, 50)));
+    } catch (e) {
+      console.error("Local storage error:", e);
+    }
+  }
+
+  return targetId;
+}
+
+/**
+ * Retrieve cached or autosaved draft
+ */
+export function getAutosavedDraft(): InvoiceData | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const raw = localStorage.getItem(AUTOSAVE_LOCAL_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+

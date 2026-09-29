@@ -230,6 +230,70 @@ object FirebaseFirestoreService {
         return@withContext true
     }
 
+    suspend fun autosaveDraft(
+        context: Context,
+        invoiceData: InvoiceData,
+        activeId: String? = null
+    ): String = withContext(Dispatchers.IO) {
+        val targetId = if (!activeId.isNullOrBlank()) activeId else "autosave_working_draft"
+        try {
+            val url = URL("$BASE_URL/$targetId?key=$API_KEY")
+            val conn = (url.openConnection() as HttpURLConnection).apply {
+                requestMethod = "PATCH"
+                doOutput = true
+                setRequestProperty("Content-Type", "application/json; charset=UTF-8")
+                connectTimeout = 8000
+                readTimeout = 8000
+            }
+
+            val fields = JSONObject().apply {
+                if (activeId == null || activeId == "autosave_working_draft") {
+                    put("promptDescription", JSONObject().put("stringValue", "Auto-saved Working Draft"))
+                }
+                put("invoiceNo", JSONObject().put("stringValue", invoiceData.invoiceNo))
+                put("clientName", JSONObject().put("stringValue", invoiceData.billedTo.name))
+                put("totalAmount", JSONObject().put("doubleValue", invoiceData.totalAmount))
+                put("updatedAt", JSONObject().put("stringValue", java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss", java.util.Locale.getDefault()).format(java.util.Date())))
+                put("invoiceData", JSONObject().put("mapValue", JSONObject().put("fields", serializeInvoiceToFirestoreFields(invoiceData))))
+            }
+            val body = JSONObject().put("fields", fields)
+
+            val writer = OutputStreamWriter(conn.outputStream)
+            writer.write(body.toString())
+            writer.flush()
+            writer.close()
+
+            conn.responseCode
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        // Update local cache without duplicating
+        val cached = getCachedHistory(context).toMutableList()
+        val index = cached.indexOfFirst { it.id == targetId }
+        val updatedItem = InvoiceHistoryItem(
+            id = targetId,
+            promptDescription = if (activeId == null || activeId == "autosave_working_draft") {
+                "Auto-saved Working Draft"
+            } else {
+                cached.getOrNull(index)?.promptDescription ?: "Saved Invoice"
+            },
+            invoiceNo = invoiceData.invoiceNo,
+            clientName = invoiceData.billedTo.name,
+            totalAmount = invoiceData.totalAmount,
+            invoiceData = invoiceData,
+            createdAt = java.text.SimpleDateFormat("dd MMM, hh:mm a", java.util.Locale.getDefault()).format(java.util.Date())
+        )
+        if (index != -1) {
+            cached[index] = updatedItem
+        } else {
+            cached.add(0, updatedItem)
+        }
+        cacheHistory(context, cached)
+
+        return@withContext targetId
+    }
+
     private fun serializeInvoiceToFirestoreFields(data: InvoiceData): JSONObject {
         val root = JSONObject()
         root.put("invoiceNo", JSONObject().put("stringValue", data.invoiceNo))
@@ -351,7 +415,7 @@ object FirebaseFirestoreService {
         }
     }
 
-    private fun getCachedHistory(context: Context): List<InvoiceHistoryItem> {
+    fun getCachedHistory(context: Context): List<InvoiceHistoryItem> {
         val list = mutableListOf<InvoiceHistoryItem>()
         try {
             val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)

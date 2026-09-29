@@ -219,8 +219,8 @@ fun InvoicePreviewScreen(
                         .padding(vertical = 4.dp, horizontal = 2.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text("Invoice No.", color = Color.White, fontSize = 9.sp, fontFamily = PoppinsFontFamily)
-                    Text(invoiceData.invoiceNo, color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Bold, fontFamily = PoppinsFontFamily, maxLines = 1)
+                    Text("Invoice No.", color = Color.White, fontSize = 9.sp, fontWeight = FontWeight.Bold, fontFamily = PoppinsFontFamily)
+                    Text(invoiceData.invoiceNo, color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Black, fontFamily = PoppinsFontFamily, maxLines = 1)
                 }
 
                 // Issue Date
@@ -231,8 +231,8 @@ fun InvoicePreviewScreen(
                         .padding(vertical = 4.dp, horizontal = 2.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text("Issue Date:", color = Color.White, fontSize = 9.sp, fontFamily = PoppinsFontFamily)
-                    Text(invoiceData.issueDate, color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Bold, fontFamily = PoppinsFontFamily)
+                    Text("Issue Date:", color = Color.White, fontSize = 9.sp, fontWeight = FontWeight.Bold, fontFamily = PoppinsFontFamily)
+                    Text(invoiceData.issueDate, color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Black, fontFamily = PoppinsFontFamily)
                 }
 
                 // Due Date
@@ -243,8 +243,8 @@ fun InvoicePreviewScreen(
                         .padding(vertical = 4.dp, horizontal = 2.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text("Due Date:", color = Color.White, fontSize = 9.sp, fontFamily = PoppinsFontFamily)
-                    Text(invoiceData.dueDate, color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Bold, fontFamily = PoppinsFontFamily)
+                    Text("Due Date:", color = Color.White, fontSize = 9.sp, fontWeight = FontWeight.Bold, fontFamily = PoppinsFontFamily)
+                    Text(invoiceData.dueDate, color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Black, fontFamily = PoppinsFontFamily)
                 }
 
                 // Total Due
@@ -255,8 +255,8 @@ fun InvoicePreviewScreen(
                         .padding(vertical = 4.dp, horizontal = 2.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text("Total Due :", color = Color.White, fontSize = 9.sp, fontFamily = PoppinsFontFamily)
-                    Text("₹ ${NumberToWordsIndian.formatINR(totalAmount)}/-", color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Bold, fontFamily = PoppinsFontFamily)
+                    Text("Total Due :", color = Color.White, fontSize = 9.sp, fontWeight = FontWeight.Bold, fontFamily = PoppinsFontFamily)
+                    Text("₹ ${NumberToWordsIndian.formatINR(totalAmount)}/-", color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Black, fontFamily = PoppinsFontFamily)
                 }
             }
 
@@ -288,13 +288,13 @@ fun InvoicePreviewScreen(
                             .fillMaxWidth()
                             .height(IntrinsicSize.Min)
                     ) {
-                        Text("Item", modifier = Modifier.weight(2f).padding(vertical = 6.dp, horizontal = 4.dp), fontSize = 10.sp, fontWeight = FontWeight.Bold, fontFamily = PoppinsFontFamily, textAlign = TextAlign.Center)
+                        Text("Item", modifier = Modifier.weight(2f).padding(vertical = 6.dp, horizontal = 4.dp), fontSize = 10.sp, fontWeight = FontWeight.Black, fontFamily = PoppinsFontFamily, textAlign = TextAlign.Center)
                         Box(modifier = Modifier.width(1.5.dp).fillMaxHeight().background(Color.Black))
-                        Text("Amount/\nStudent head", modifier = Modifier.weight(1.3f).padding(vertical = 4.dp, horizontal = 2.dp), fontSize = 9.sp, fontWeight = FontWeight.Bold, fontFamily = PoppinsFontFamily, textAlign = TextAlign.Center)
+                        Text("Amount/\nStudent head", modifier = Modifier.weight(1.3f).padding(vertical = 4.dp, horizontal = 2.dp), fontSize = 9.sp, fontWeight = FontWeight.Black, fontFamily = PoppinsFontFamily, textAlign = TextAlign.Center)
                         Box(modifier = Modifier.width(1.5.dp).fillMaxHeight().background(Color.Black))
-                        Text("No. of\nStudents", modifier = Modifier.weight(1.1f).padding(vertical = 4.dp, horizontal = 2.dp), fontSize = 9.sp, fontWeight = FontWeight.Bold, fontFamily = PoppinsFontFamily, textAlign = TextAlign.Center)
+                        Text("No. of\nStudents", modifier = Modifier.weight(1.1f).padding(vertical = 4.dp, horizontal = 2.dp), fontSize = 9.sp, fontWeight = FontWeight.Black, fontFamily = PoppinsFontFamily, textAlign = TextAlign.Center)
                         Box(modifier = Modifier.width(1.5.dp).fillMaxHeight().background(Color.Black))
-                        Text("Total Amount", modifier = Modifier.weight(1.4f).padding(vertical = 6.dp, horizontal = 4.dp), fontSize = 10.sp, fontWeight = FontWeight.Bold, fontFamily = PoppinsFontFamily, textAlign = TextAlign.Center)
+                        Text("Total Amount", modifier = Modifier.weight(1.4f).padding(vertical = 6.dp, horizontal = 4.dp), fontSize = 10.sp, fontWeight = FontWeight.Black, fontFamily = PoppinsFontFamily, textAlign = TextAlign.Center)
                     }
 
                     Box(modifier = Modifier.fillMaxWidth().height(1.5.dp).background(Color.Black))
@@ -343,7 +343,7 @@ fun InvoicePreviewScreen(
                         Text(
                             text = "Total Amount : ₹${NumberToWordsIndian.formatINR(totalAmount)}",
                             fontSize = 11.sp,
-                            fontWeight = FontWeight.Bold,
+                            fontWeight = FontWeight.Black,
                             fontFamily = PoppinsFontFamily
                         )
                     }
@@ -362,7 +362,7 @@ fun InvoicePreviewScreen(
                 Text(
                     text = "Amount (In words) : $amountInWords",
                     fontSize = 10.sp,
-                    fontWeight = FontWeight.Bold,
+                    fontWeight = FontWeight.Black,
                     fontFamily = PoppinsFontFamily
                 )
             }
@@ -378,7 +378,7 @@ fun InvoicePreviewScreen(
                 Text(
                     text = "Payment Method : ${invoiceData.paymentMethod.displayName}",
                     fontSize = 10.sp,
-                    fontWeight = FontWeight.Bold,
+                    fontWeight = FontWeight.Black,
                     fontFamily = PoppinsFontFamily
                 )
             }
@@ -407,7 +407,7 @@ fun InvoicePreviewScreen(
                         Text(
                             text = invoiceData.customerSignatureLabel,
                             fontSize = 10.sp,
-                            fontWeight = FontWeight.Bold,
+                            fontWeight = FontWeight.Black,
                             fontFamily = PoppinsFontFamily
                         )
                     }
@@ -436,7 +436,7 @@ fun InvoicePreviewScreen(
                         Text(
                             text = "Authorised Signatory",
                             fontSize = 10.sp,
-                            fontWeight = FontWeight.Bold,
+                            fontWeight = FontWeight.Black,
                             fontFamily = PoppinsFontFamily
                         )
                     }

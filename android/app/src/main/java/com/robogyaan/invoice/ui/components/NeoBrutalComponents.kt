@@ -54,7 +54,7 @@ fun NeoBrutalCard(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = 10.dp),
-                verticalAlignment = Alignment.CenterVertically,
+                verticalAlignment = Alignment.Top,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 // Left: Title written normally
@@ -62,18 +62,21 @@ fun NeoBrutalCard(
                     Text(
                         text = title,
                         fontSize = 16.sp,
-                        fontWeight = FontWeight.SemiBold,
+                        fontWeight = FontWeight.Black,
                         color = NeoBlack,
-                        fontFamily = VirgilFontFamily
+                        fontFamily = VirgilFontFamily,
+                        lineHeight = 20.sp,
+                        modifier = Modifier.weight(1f, fill = false)
                     )
                 } else {
                     Spacer(modifier = Modifier.width(1.dp))
                 }
 
-                // Top Right: Badge (Recipient / Sender) & Actions
+                // Top Right: Badge (Recipient / Sender) & Actions sitting a little upper
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    modifier = Modifier.offset(y = (-3).dp)
                 ) {
                     if (badge != null) {
                         Box(
@@ -147,7 +150,7 @@ fun NeoBrutalTextField(
         Text(
             text = label.uppercase(),
             fontSize = 11.sp,
-            fontWeight = FontWeight.SemiBold,
+            fontWeight = FontWeight.Black,
             color = NeoBlack,
             fontFamily = VirgilFontFamily,
             modifier = Modifier.padding(bottom = 3.dp)

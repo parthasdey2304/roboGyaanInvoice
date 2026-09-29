@@ -2,12 +2,15 @@ package com.robogyaan.invoice.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -18,6 +21,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import com.robogyaan.invoice.ui.neoBrutal
 import com.robogyaan.invoice.ui.neoBrutalClickable
 import com.robogyaan.invoice.ui.theme.NeoBlack
@@ -191,3 +196,152 @@ fun NeoBrutalTextField(
         }
     }
 }
+
+@Composable
+fun NeoBrutalAlertDialog(
+    isOpen: Boolean,
+    onDismiss: () -> Unit,
+    onConfirm: () -> Unit,
+    title: String,
+    message: String,
+    confirmText: String = "Confirm",
+    cancelText: String = "Cancel",
+    isDanger: Boolean = false
+) {
+    if (!isOpen) return
+
+    Dialog(
+        onDismissRequest = onDismiss,
+        properties = DialogProperties(
+            usePlatformDefaultWidth = false,
+            dismissOnBackPress = true,
+            dismissOnClickOutside = true
+        )
+    ) {
+        // Fullscreen light-white translucent overlay covering the entire screen
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.White.copy(alpha = 0.78f))
+                .clickable(
+                    interactionSource = remember { MutableInteractionSource() },
+                    indication = null
+                ) { onDismiss() },
+            contentAlignment = Alignment.Center
+        ) {
+            // Centered Neo-Brutalist Alert Card
+            Box(
+                modifier = Modifier
+                    .padding(horizontal = 24.dp)
+                    .fillMaxWidth(0.92f)
+                    .clickable(
+                        interactionSource = remember { MutableInteractionSource() },
+                        indication = null
+                    ) { /* Absorb clicks on dialog surface */ }
+                    .neoBrutal(
+                        backgroundColor = Color(0xFFFDFBF7),
+                        borderColor = Color.Black,
+                        borderWidth = 3.dp,
+                        shadowOffset = 6.dp,
+                        cornerRadius = 12.dp
+                    )
+            ) {
+                Column {
+                    // Header Bar (Yellow or Red)
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(
+                                if (isDanger) Color(0xFFFF4D4D) else NeoYellow,
+                                RoundedCornerShape(topStart = 9.dp, topEnd = 9.dp)
+                            )
+                            .padding(horizontal = 16.dp, vertical = 12.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = title.uppercase(),
+                            fontFamily = VirgilFontFamily,
+                            fontWeight = FontWeight.Black,
+                            fontSize = 15.sp,
+                            color = Color.Black
+                        )
+                        Box(
+                            modifier = Modifier
+                                .size(24.dp)
+                                .background(Color.White, RoundedCornerShape(4.dp))
+                                .border(1.5.dp, Color.Black, RoundedCornerShape(4.dp))
+                                .clickable { onDismiss() },
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Text(
+                                text = "✕",
+                                fontWeight = FontWeight.Black,
+                                fontSize = 12.sp,
+                                color = Color.Black
+                            )
+                        }
+                    }
+
+                    // Divider
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(2.5.dp)
+                            .background(Color.Black)
+                    )
+
+                    // Message Body in Virgil Font
+                    Text(
+                        text = message,
+                        fontFamily = VirgilFontFamily,
+                        fontWeight = FontWeight.Bold,
+                        fontSize = 15.sp,
+                        color = Color.Black,
+                        lineHeight = 22.sp,
+                        modifier = Modifier.padding(20.dp)
+                    )
+
+                    // Divider
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(2.5.dp)
+                            .background(Color.Black)
+                    )
+
+                    // Actions Row with Neo-Brutalist Buttons
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(
+                                Color(0xFFF5F5F5),
+                                RoundedCornerShape(bottomStart = 9.dp, bottomEnd = 9.dp)
+                            )
+                            .padding(horizontal = 16.dp, vertical = 12.dp),
+                        horizontalArrangement = Arrangement.End,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        NeoBrutalButton(
+                            text = cancelText,
+                            onClick = onDismiss,
+                            backgroundColor = Color.White,
+                            contentColor = Color.Black
+                        )
+                        Spacer(modifier = Modifier.width(10.dp))
+                        NeoBrutalButton(
+                            text = confirmText,
+                            onClick = {
+                                onConfirm()
+                                onDismiss()
+                            },
+                            backgroundColor = if (isDanger) Color(0xFFFF4D4D) else NeoYellow,
+                            contentColor = Color.Black
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
+

@@ -34,6 +34,7 @@ import com.robogyaan.invoice.ui.components.AuthPreferences
 import com.robogyaan.invoice.ui.components.HistorySidebarSheet
 import com.robogyaan.invoice.ui.components.InvoiceEditorScreen
 import com.robogyaan.invoice.ui.components.LoginScreen
+import com.robogyaan.invoice.ui.components.NeoBrutalAlertDialog
 import com.robogyaan.invoice.ui.components.NeoBrutalButton
 import com.robogyaan.invoice.ui.neoBrutal
 import com.robogyaan.invoice.ui.preview.InvoicePreviewScreen
@@ -89,6 +90,7 @@ fun MainScreen(
     var activeInvoiceId by remember { mutableStateOf<String?>(null) }
     var autosaveStatus by remember { mutableStateOf("idle") }
     var isFirstLaunch by remember { mutableStateOf(true) }
+    var showLogoutDialog by remember { mutableStateOf(false) }
 
     // Restore cached autosave draft on launch if available and currently on default
     LaunchedEffect(Unit) {
@@ -421,7 +423,7 @@ fun MainScreen(
                                     shadowOffset = 2.dp,
                                     cornerRadius = 6.dp
                                 )
-                                .clickable { onLogout() }
+                                .clickable { showLogoutDialog = true }
                                 .padding(8.dp),
                             contentAlignment = Alignment.Center
                         ) {
@@ -481,6 +483,18 @@ fun MainScreen(
                     activeInvoiceId = id
                 },
                 activeInvoiceId = activeInvoiceId
+            )
+
+            // NEO-BRUTALIST LOGOUT ALERT DIALOG
+            NeoBrutalAlertDialog(
+                isOpen = showLogoutDialog,
+                onDismiss = { showLogoutDialog = false },
+                onConfirm = onLogout,
+                title = "Log Out Session",
+                message = "Are you sure you want to log out of the admin session?",
+                confirmText = "Log Out",
+                cancelText = "Stay Logged In",
+                isDanger = true
             )
         }
     }

@@ -54,6 +54,7 @@ fun HistorySidebarSheet(
     var isLoading by remember { mutableStateOf(true) }
     var isSaving by remember { mutableStateOf(false) }
     var updatingId by remember { mutableStateOf<String?>(null) }
+    var deleteTargetId by remember { mutableStateOf<String?>(null) }
 
     fun refreshHistory() {
         coroutineScope.launch {
@@ -466,11 +467,7 @@ fun HistorySidebarSheet(
                                                 cornerRadius = 6.dp
                                             )
                                             .clickable {
-                                                coroutineScope.launch {
-                                                    FirebaseFirestoreService.deletePrompt(context, item.id)
-                                                    refreshHistory()
-                                                    Toast.makeText(context, "Deleted from history", Toast.LENGTH_SHORT).show()
-                                                }
+                                                deleteTargetId = item.id
                                             }
                                             .padding(horizontal = 10.dp, vertical = 7.dp),
                                         contentAlignment = Alignment.Center
@@ -490,4 +487,25 @@ fun HistorySidebarSheet(
             }
         }
     }
+
+    // NEO-BRUTALIST DELETE CONFIRMATION DIALOG
+    NeoBrutalAlertDialog(
+        isOpen = deleteTargetId != null,
+        onDismiss = { deleteTargetId = null },
+        onConfirm = {
+            val target = deleteTargetId
+            if (target != null) {
+                coroutineScope.launch {
+                    FirebaseFirestoreService.deletePrompt(context, target)
+                    refreshHistory()
+                    Toast.makeText(context, "Deleted from history", Toast.LENGTH_SHORT).show()
+                }
+            }
+        },
+        title = "Delete Prompt",
+        message = "Are you sure you want to permanently delete this invoice prompt from Firebase Firestore? This action cannot be undone.",
+        confirmText = "Delete Forever",
+        cancelText = "Cancel",
+        isDanger = true
+    )
 }

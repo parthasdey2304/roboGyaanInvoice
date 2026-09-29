@@ -6,6 +6,7 @@ import { defaultInvoiceData } from '../lib/defaultInvoice';
 import { InvoiceEditor } from '../components/InvoiceEditor';
 import { InvoicePreview } from '../components/InvoicePreview';
 import { NeoBrutalButton } from '../components/NeoBrutalButton';
+import { NeoBrutalModal } from '../components/NeoBrutalModal';
 import { HistorySidebar } from '../components/HistorySidebar';
 import { AuthGate } from '../components/AuthGate';
 import { autoSaveInvoice, getAutosavedDraft, AUTOSAVE_DRAFT_ID } from '../lib/firebase';
@@ -17,6 +18,20 @@ export default function InvoicePage() {
   const [invoiceData, setInvoiceData] = useState<InvoiceData>(defaultInvoiceData);
   const [activeInvoiceId, setActiveInvoiceId] = useState<string | null>(null);
   const [autosaveStatus, setAutosaveStatus] = useState<'idle' | 'saving' | 'saved'>('idle');
+  const [modalConfig, setModalConfig] = useState<{
+    isOpen: boolean;
+    title: string;
+    message: string;
+    confirmText?: string;
+    cancelText?: string;
+    variant?: 'danger' | 'warning' | 'info';
+    type?: 'confirm' | 'alert';
+    onConfirm?: () => void;
+  }>({
+    isOpen: false,
+    title: '',
+    message: '',
+  });
   const [activeTab, setActiveTab] = useState<'split' | 'editor' | 'preview'>('split');
   const [isExporting, setIsExporting] = useState(false);
   const [exportSuccess, setExportSuccess] = useState(false);
@@ -88,14 +103,23 @@ export default function InvoicePage() {
   }, []);
 
   const handleReset = () => {
-    if (confirm('Reset all fields to the default Robogyaan template values?')) {
-      setInvoiceData(defaultInvoiceData);
-      setActiveInvoiceId(null);
-      if (typeof window !== 'undefined') {
-        localStorage.removeItem('robogyaan_invoice_autosave_draft');
-      }
-      autoSaveInvoice(defaultInvoiceData, AUTOSAVE_DRAFT_ID);
-    }
+    setModalConfig({
+      isOpen: true,
+      title: 'Reset Template',
+      message: 'Reset all fields to the default Robogyaan template values? Any unsaved edits will be cleared.',
+      confirmText: 'Yes, Reset',
+      cancelText: 'Cancel',
+      variant: 'warning',
+      type: 'confirm',
+      onConfirm: () => {
+        setInvoiceData(defaultInvoiceData);
+        setActiveInvoiceId(null);
+        if (typeof window !== 'undefined') {
+          localStorage.removeItem('robogyaan_invoice_autosave_draft');
+        }
+        autoSaveInvoice(defaultInvoiceData, AUTOSAVE_DRAFT_ID);
+      },
+    });
   };
 
   const handlePrint = () => {
@@ -289,7 +313,18 @@ export default function InvoicePage() {
                   {/* Admin Logout Button */}
                   <button
                     type="button"
-                    onClick={onLogout}
+                    onClick={() => {
+                      setModalConfig({
+                        isOpen: true,
+                        title: 'Log Out Session',
+                        message: `Are you sure you want to log out of the admin session (${user.email})?`,
+                        confirmText: 'Yes, Log Out',
+                        cancelText: 'Stay Logged In',
+                        variant: 'danger',
+                        type: 'confirm',
+                        onConfirm: onLogout,
+                      });
+                    }}
                     title={`Logged in as ${user.email}. Click to Logout`}
                     className="p-2 bg-white text-black font-black border-2 border-black rounded-lg shadow-[2px_2px_0px_#000] hover:bg-red-50 hover:text-red-700 transition active:translate-x-[1px] active:translate-y-[1px] flex items-center gap-1 text-xs"
                   >
@@ -427,6 +462,19 @@ export default function InvoicePage() {
               setActiveInvoiceId(loadedId || null);
             }}
             activeInvoiceId={activeInvoiceId}
+          />
+
+          {/* NEO-BRUTALIST MODAL / ALERT DIALOG */}
+          <NeoBrutalModal
+            isOpen={modalConfig.isOpen}
+            onClose={() => setModalConfig((prev) => ({ ...prev, isOpen: false }))}
+            onConfirm={modalConfig.onConfirm}
+            title={modalConfig.title}
+            message={modalConfig.message}
+            confirmText={modalConfig.confirmText}
+            cancelText={modalConfig.cancelText}
+            variant={modalConfig.variant}
+            type={modalConfig.type}
           />
         </main>
       )}

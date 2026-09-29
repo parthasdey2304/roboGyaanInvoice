@@ -30,18 +30,18 @@ export const NeoBrutalCard: React.FC<NeoBrutalCardProps> = ({
       className={`border-[2.5px] border-black rounded-lg shadow-[4px_4px_0px_0px_#000000] p-4 sm:p-5 transition-all ${bgColors[variant]} ${className}`}
     >
       {(title || badge || headerAction) && (
-        <div className="flex items-center justify-between gap-2 pb-3 mb-3 border-b-2 border-black/80">
+        <div className="flex items-start justify-between gap-2 pb-3 mb-3 border-b-2 border-black/80">
           {/* Left Title: Written normally */}
           <div>
             {title && (
-              <h3 className="text-base sm:text-lg font-semibold tracking-tight text-neutral-950">
+              <h3 className="text-base sm:text-lg font-black tracking-tight text-black whitespace-pre-line leading-snug">
                 {title}
               </h3>
             )}
           </div>
 
-          {/* Top Right: Badges (Recipient / Sender) & Actions */}
-          <div className="flex items-center gap-2">
+          {/* Top Right: Badges (Recipient / Sender) & Actions sitting higher */}
+          <div className="flex items-center gap-2 shrink-0 -mt-1 sm:-mt-1.5">
             {badge && (
               <span className="px-2.5 py-0.5 text-xs font-black uppercase tracking-wider bg-black text-white rounded shadow-sm">
                 {badge}

@@ -86,86 +86,89 @@ export default function InvoicePage() {
               </div>
             </div>
 
-            {/* Mobile View Toggles on Top Right (< md) */}
+            {/* Mobile View Toggles on Top Right (< md): ONLY ICONS VISIBLE ON PHONE SCREEN */}
             <div className="flex md:hidden items-center gap-1 bg-white p-1 rounded-lg border-2 border-black shadow-[2px_2px_0px_#000] shrink-0">
               <button
                 type="button"
                 onClick={() => setActiveTab('editor')}
-                className={`px-2 py-1 text-[11px] font-black uppercase tracking-wider rounded flex items-center gap-1 transition-all ${
+                className={`p-1.5 rounded transition-all ${
                   activeTab === 'editor'
                     ? 'bg-black text-[#FFE600] shadow-[1px_1px_0px_#000]'
                     : 'text-black hover:bg-neutral-100'
                 }`}
+                title="Editor Mode"
+                aria-label="Editor Mode"
               >
-                <Edit3 className="w-3 h-3" />
-                <span>Editor</span>
+                <Edit3 className="w-4 h-4" />
               </button>
               <button
                 type="button"
                 onClick={() => setActiveTab('split')}
-                className={`px-2 py-1 text-[11px] font-black uppercase tracking-wider rounded flex items-center gap-1 transition-all ${
+                className={`p-1.5 rounded transition-all ${
                   activeTab === 'split'
                     ? 'bg-black text-[#FFE600] shadow-[1px_1px_0px_#000]'
                     : 'text-black hover:bg-neutral-100'
                 }`}
+                title="Split Mode"
+                aria-label="Split Mode"
               >
-                <Columns className="w-3 h-3" />
-                <span>Split</span>
+                <Columns className="w-4 h-4" />
               </button>
               <button
                 type="button"
                 onClick={() => setActiveTab('preview')}
-                className={`px-2 py-1 text-[11px] font-black uppercase tracking-wider rounded flex items-center gap-1 transition-all ${
+                className={`p-1.5 rounded transition-all ${
                   activeTab === 'preview'
                     ? 'bg-black text-[#FFE600] shadow-[1px_1px_0px_#000]'
                     : 'text-black hover:bg-neutral-100'
                 }`}
+                title="Preview Mode"
+                aria-label="Preview Mode"
               >
-                <Eye className="w-3 h-3" />
-                <span>Preview</span>
+                <Eye className="w-4 h-4" />
               </button>
             </div>
           </div>
 
           {/* Desktop Right Side: Tabs + Action Buttons */}
           <div className="flex items-center justify-end gap-2.5 flex-wrap w-full md:w-auto">
-            {/* Desktop Tabs on Top Right */}
+            {/* Desktop Tabs on Top Right: BOTH ICONS AND TEXT VISIBLE AS PER IMAGE 1 */}
             <div className="hidden md:flex items-center gap-1 bg-white p-1 rounded-lg border-2 border-black shadow-[2px_2px_0px_#000]">
               <button
                 type="button"
                 onClick={() => setActiveTab('editor')}
-                className={`px-2.5 py-1 text-xs font-black uppercase tracking-wider rounded flex items-center gap-1.5 transition-all ${
+                className={`px-3 py-1.5 text-xs font-black uppercase tracking-wider rounded flex items-center gap-1.5 transition-all ${
                   activeTab === 'editor'
                     ? 'bg-black text-[#FFE600] shadow-[1px_1px_0px_#000]'
                     : 'text-black hover:bg-neutral-100'
                 }`}
               >
                 <Edit3 className="w-3.5 h-3.5" />
-                <span>Editor</span>
+                <span className="font-virgil font-black">EDITOR</span>
               </button>
               <button
                 type="button"
                 onClick={() => setActiveTab('split')}
-                className={`px-2.5 py-1 text-xs font-black uppercase tracking-wider rounded flex items-center gap-1.5 transition-all ${
+                className={`px-3 py-1.5 text-xs font-black uppercase tracking-wider rounded flex items-center gap-1.5 transition-all ${
                   activeTab === 'split'
                     ? 'bg-black text-[#FFE600] shadow-[1px_1px_0px_#000]'
                     : 'text-black hover:bg-neutral-100'
                 }`}
               >
                 <Columns className="w-3.5 h-3.5" />
-                <span>Split</span>
+                <span className="font-virgil font-black">SPLIT</span>
               </button>
               <button
                 type="button"
                 onClick={() => setActiveTab('preview')}
-                className={`px-2.5 py-1 text-xs font-black uppercase tracking-wider rounded flex items-center gap-1.5 transition-all ${
+                className={`px-3 py-1.5 text-xs font-black uppercase tracking-wider rounded flex items-center gap-1.5 transition-all ${
                   activeTab === 'preview'
                     ? 'bg-black text-[#FFE600] shadow-[1px_1px_0px_#000]'
                     : 'text-black hover:bg-neutral-100'
                 }`}
               >
                 <Eye className="w-3.5 h-3.5" />
-                <span>Preview</span>
+                <span className="font-virgil font-black">PREVIEW</span>
               </button>
             </div>
 

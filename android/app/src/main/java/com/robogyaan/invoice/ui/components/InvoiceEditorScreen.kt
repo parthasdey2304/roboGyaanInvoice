@@ -100,7 +100,7 @@ fun InvoiceEditorScreen(
         // 2. BILLED TO (CLIENT)
         item {
             NeoBrutalCard(
-                title = "BILL To (Client)",
+                title = "Billed To\n(Client)",
                 badge = "Recipient",
                 backgroundColor = Color.White
             ) {
@@ -143,7 +143,7 @@ fun InvoiceEditorScreen(
         // 3. FROM (SENDER)
         item {
             NeoBrutalCard(
-                title = "From (Robogyaan)",
+                title = "From\n(Robogyaan)",
                 badge = "Sender",
                 backgroundColor = Color.White
             ) {
@@ -251,32 +251,33 @@ fun InvoiceEditorScreen(
 
                                 Spacer(modifier = Modifier.height(6.dp))
 
-                                NeoBrutalTextField(
-                                    value = item.description,
-                                    onValueChange = {
-                                        viewModel.updateItem(item.id, it, item.amountPerHead, item.studentCount)
-                                    },
-                                    label = "Program / Item Description",
-                                    placeholder = "Robogyaan ECA Programme"
-                                )
-
-                                Spacer(modifier = Modifier.height(6.dp))
-
                                 Row(
                                     modifier = Modifier.fillMaxWidth(),
-                                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                                    horizontalArrangement = Arrangement.spacedBy(6.dp),
+                                    verticalAlignment = Alignment.Bottom
                                 ) {
+                                    NeoBrutalTextField(
+                                        value = item.description,
+                                        onValueChange = {
+                                            viewModel.updateItem(item.id, it, item.amountPerHead, item.studentCount)
+                                        },
+                                        label = "Description / Program Name",
+                                        placeholder = "Robogyaan ECA Program",
+                                        modifier = Modifier.weight(2.0f)
+                                    )
+
                                     NeoBrutalTextField(
                                         value = if (item.amountPerHead == 0.0) "" else item.amountPerHead.toString(),
                                         onValueChange = {
                                             val rate = it.toDoubleOrNull() ?: 0.0
                                             viewModel.updateItem(item.id, item.description, rate, item.studentCount)
                                         },
-                                        label = "Rate / Student (₹)",
-                                        placeholder = "200.00",
+                                        label = "Rate (₹)",
+                                        placeholder = "200",
                                         keyboardType = KeyboardType.Decimal,
-                                        modifier = Modifier.weight(1f)
+                                        modifier = Modifier.weight(1.0f)
                                     )
+
                                     NeoBrutalTextField(
                                         value = if (item.studentCount == 0) "" else item.studentCount.toString(),
                                         onValueChange = {
@@ -286,7 +287,7 @@ fun InvoiceEditorScreen(
                                         label = "No. Students",
                                         placeholder = "136",
                                         keyboardType = KeyboardType.Number,
-                                        modifier = Modifier.weight(1f)
+                                        modifier = Modifier.weight(0.9f)
                                     )
                                 }
                             }

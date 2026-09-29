@@ -278,11 +278,13 @@ private fun InvoiceSheetCard(
                             .padding(horizontal = 10.dp, vertical = 2.dp)
                     ) {
                         Text(
-                            text = "BILL To :",
+                            text = "BILL To:",
                             fontSize = 11.sp,
                             fontWeight = FontWeight.Bold,
                             fontFamily = PoppinsFontFamily,
-                            color = Color.Black
+                            color = Color.Black,
+                            maxLines = 1,
+                            softWrap = false
                         )
                     }
                     Spacer(modifier = Modifier.height(4.dp))
@@ -317,11 +319,13 @@ private fun InvoiceSheetCard(
                             .padding(horizontal = 10.dp, vertical = 2.dp)
                     ) {
                         Text(
-                            text = "From :",
+                            text = "From:",
                             fontSize = 11.sp,
                             fontWeight = FontWeight.Bold,
                             fontFamily = PoppinsFontFamily,
-                            color = Color.Black
+                            color = Color.Black,
+                            maxLines = 1,
+                            softWrap = false
                         )
                     }
                     Spacer(modifier = Modifier.height(4.dp))
@@ -403,44 +407,74 @@ private fun InvoiceSheetCard(
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.Top
             ) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
+                // Left Logo + Brand
+                Column(horizontalAlignment = Alignment.Start) {
                     Image(
                         painter = painterResource(id = R.drawable.ic_robogyaan_logo),
                         contentDescription = "Robogyaan Logo",
-                        modifier = Modifier.height(32.dp),
+                        modifier = Modifier.height(44.dp),
                         contentScale = ContentScale.Fit
                     )
+                }
+
+                // Right Geometric Blocks (matching Page 1 and user's sketch)
+                Column(
+                    horizontalAlignment = Alignment.End,
+                    modifier = Modifier.width(190.dp)
+                ) {
                     Box(
                         modifier = Modifier
-                            .background(Color.Black, RoundedCornerShape(4.dp))
-                            .padding(horizontal = 6.dp, vertical = 2.dp)
+                            .fillMaxWidth()
+                            .background(Color.Black, RoundedCornerShape(topStart = 16.dp))
+                            .padding(horizontal = 10.dp, vertical = 5.dp)
+                    ) {
+                        Text(
+                            text = "Invoice No. : ${invoiceData.invoiceNo}",
+                            color = Color.White,
+                            fontSize = 11.sp,
+                            fontWeight = FontWeight.Bold,
+                            fontFamily = PoppinsFontFamily,
+                            textAlign = TextAlign.End,
+                            modifier = Modifier.fillMaxWidth(),
+                            maxLines = 1,
+                            softWrap = false
+                        )
+                    }
+
+                    Spacer(modifier = Modifier.height(3.dp))
+
+                    Box(
+                        modifier = Modifier
+                            .width(160.dp)
+                            .background(NeoOrange, RoundedCornerShape(topStart = 12.dp))
+                            .padding(horizontal = 8.dp, vertical = 3.dp)
                     ) {
                         Text(
                             text = "PAGE ${pageSlice.pageNumber} OF ${pageSlice.totalPages}",
-                            color = NeoYellow,
-                            fontSize = 9.sp,
-                            fontWeight = FontWeight.Black,
-                            fontFamily = PoppinsFontFamily
+                            color = Color.Black,
+                            fontSize = 10.sp,
+                            fontWeight = FontWeight.Bold,
+                            fontFamily = PoppinsFontFamily,
+                            textAlign = TextAlign.End,
+                            modifier = Modifier.fillMaxWidth(),
+                            maxLines = 1,
+                            softWrap = false
                         )
                     }
-                }
 
-                Box(
-                    modifier = Modifier
-                        .background(Color.Black, RoundedCornerShape(4.dp))
-                        .padding(horizontal = 8.dp, vertical = 4.dp)
-                ) {
+                    Spacer(modifier = Modifier.height(2.dp))
+
                     Text(
-                        text = "Invoice #${invoiceData.invoiceNo}",
-                        color = Color.White,
+                        text = invoiceData.billedTo.name,
+                        color = Color.DarkGray,
                         fontSize = 10.sp,
                         fontWeight = FontWeight.Bold,
-                        fontFamily = PoppinsFontFamily
+                        fontFamily = PoppinsFontFamily,
+                        textAlign = TextAlign.End,
+                        modifier = Modifier.fillMaxWidth(),
+                        maxLines = 1
                     )
                 }
             }

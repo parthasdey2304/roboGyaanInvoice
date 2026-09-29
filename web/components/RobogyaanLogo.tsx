@@ -13,11 +13,14 @@ export const RobogyaanLogo: React.FC<RobogyaanLogoProps> = ({
     return (
       <div
         className={`pointer-events-none select-none flex flex-col items-center justify-center ${className}`}
-        style={{ transform: 'rotate(-25deg)', opacity: 0.12 }}
+        style={{
+          transform: 'rotate(-20deg)',
+          opacity: 0.12,
+        }}
       >
         <svg
           viewBox="0 0 160 160"
-          className="w-44 h-44 text-black fill-current"
+          className="w-24 h-24 sm:w-28 sm:h-28 text-black fill-current shrink-0"
           xmlns="http://www.w3.org/2000/svg"
         >
           {/* Robogyaan Network Nodes Emblem */}
@@ -44,10 +47,10 @@ export const RobogyaanLogo: React.FC<RobogyaanLogoProps> = ({
           <circle cx="70" cy="115" r="4" fill="#FFF" />
         </svg>
 
-        <div className="text-3xl font-black tracking-[0.25em] text-black mt-1">
+        <div className="text-xl sm:text-2xl font-black tracking-[0.2em] text-black mt-1 whitespace-nowrap">
           ROBOGYAAN
         </div>
-        <div className="text-[10px] font-bold tracking-[0.2em] text-black uppercase mt-0.5">
+        <div className="text-[7.5px] sm:text-[9px] font-bold tracking-[0.16em] text-black uppercase mt-0.5 whitespace-nowrap">
           IGNITING CURIOSITY, BUILDING FUTURE
         </div>
       </div>

@@ -1,16 +1,16 @@
 # RoboGyaan Invoice Generation Suite
 
-[![Vercel Deployment](https://img.shields.io/badge/Vercel-Live_Web_App-000000?style=for-the-badge&logo=vercel)](https://robogyaan-invoice.vercel.app)
-[![Android APK Release](https://img.shields.io/badge/Android_APK-v1.0.0_Download-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/parthasdey2304/roboGyaanInvoice/releases/download/v1.0.0/robogyaan-invoice-v1.0.0.apk)
-[![GitHub Release](https://img.shields.io/badge/GitHub-Release_Notes-181717?style=for-the-badge&logo=github)](https://github.com/parthasdey2304/roboGyaanInvoice/releases/tag/v1.0.0)
+[![Vercel Deployment](https://img.shields.io/badge/Vercel-Live_Web_App-000000?style=for-the-badge&logo=vercel)](https://invoice.robogyaan.in)
+[![Android APK Release](https://img.shields.io/badge/Android_APK-v1.3.2_Download-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/parthasdey2304/roboGyaanInvoice/releases/download/v1.3.2/robogyaan-invoice-v1.3.2.apk)
+[![GitHub Release](https://img.shields.io/badge/GitHub-v1.3.2_Release-181717?style=for-the-badge&logo=github)](https://github.com/parthasdey2304/roboGyaanInvoice/releases/tag/v1.3.2)
 
 A dual-platform invoice generation system for **RoboGyaan**:
-1. **Next.js 14+ (App Router)** web application with real-time live preview, responsive split-screen layout, and high-fidelity PDF export / print engine.
-2. **Native Android Application** written in Kotlin using **Jetpack Compose (Material 3)**, reactive `StateFlow` ViewModel, and native vector A4 PDF generation via `android.graphics.pdf.PdfDocument`.
+1. **Next.js 16+ (App Router)** web application with real-time live preview, responsive split-screen layout, high-fidelity PDF export / print engine, real-time Firebase Firestore autosave, and Argon2id authentication.
+2. **Native Android Application** written in Kotlin using **Jetpack Compose (Material 3)**, reactive `StateFlow` ViewModel, Firestore cloud synchronization with real-time autosave, and native vector A4 PDF generation via `android.graphics.pdf.PdfDocument`.
 
-- 🌐 **Live Web Application:** [https://robogyaan-invoice.vercel.app](https://robogyaan-invoice.vercel.app)
-- 📱 **Android APK Download:** [robogyaan-invoice-v1.0.0.apk](https://github.com/parthasdey2304/roboGyaanInvoice/releases/download/v1.0.0/robogyaan-invoice-v1.0.0.apk)
-- 📦 **GitHub Release Notes:** [v1.0.0 Release](https://github.com/parthasdey2304/roboGyaanInvoice/releases/tag/v1.0.0)
+- 🌐 **Live Web Application:** [https://invoice.robogyaan.in](https://invoice.robogyaan.in)
+- 📱 **Android APK Download:** [robogyaan-invoice-v1.3.2.apk](https://github.com/parthasdey2304/roboGyaanInvoice/releases/download/v1.3.2/robogyaan-invoice-v1.3.2.apk)
+- 📦 **GitHub Release Notes:** [v1.3.2 Release](https://github.com/parthasdey2304/roboGyaanInvoice/releases/tag/v1.3.2)
 
 Both platforms strictly adhere to a **Neo-Brutalist** design language with the hand-drawn **Virgil / Excalidraw** aesthetic, high-contrast black borders with asymmetric hard drop shadows, a vibrant yellow primary palette, and an exact replica of the official RoboGyaan invoice structure.
 
@@ -69,9 +69,10 @@ Pure utility function in both TypeScript (`web/lib/numberToWordsIndian.ts`) and 
 ## 💻 Part 1: Next.js Web Application (`web/`)
 
 ### Tech Stack
-- Next.js 14+ (App Router), TypeScript, Tailwind CSS v4, Lucide React.
+- Next.js 16+ (App Router), TypeScript, Tailwind CSS v4, Lucide React, Firebase Firestore, Argon2id.
 - Font: `next/font/local` importing `Virgil.woff2`.
 - Export: Client-side PDF generation via `html2canvas` + `jspdf` at 2.5x high-res scale, plus `@media print` single-page A4 CSS.
+- Autosave: Debounced single-copy sync with Firebase Firestore and local offline fallback.
 
 ### Project Structure
 ```
@@ -79,8 +80,10 @@ web/
 ├── app/
 │   ├── globals.css         # Tailwind v4 styles, Neo-Brutalist utility classes & A4 print CSS
 │   ├── layout.tsx          # Root layout importing Virgil local font
-│   └── page.tsx            # Main page with split screen, tab switcher, PDF download & print
+│   └── page.tsx            # Main page with split screen, tab switcher, autosave indicator, PDF download & print
 ├── components/
+│   ├── AuthGate.tsx        # Argon2id client-side password authentication screen
+│   ├── HistorySidebar.tsx  # Firestore prompt history panel with edit/delete/load actions
 │   ├── InvoiceEditor.tsx   # Neo-Brutalist input forms with item add/delete & payment chips
 │   ├── InvoicePreview.tsx  # Live dynamic A4 invoice sheet matching reference
 │   ├── NeoBrutalButton.tsx # Tactile button component with micro-interaction translation
@@ -88,6 +91,7 @@ web/
 │   └── RobogyaanLogo.tsx   # Scalable vector logo and table watermark
 ├── lib/
 │   ├── defaultInvoice.ts   # Reference invoice initial state
+│   ├── firebase.ts         # Firebase Firestore initialization, queries, and autosave
 │   ├── numberToWordsIndian.ts # Indian currency number-to-words algorithm
 │   └── types.ts            # TypeScript data models
 └── public/
@@ -110,6 +114,7 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ### Tech Stack
 - Kotlin, Jetpack Compose (Material 3), AndroidX Lifecycle ViewModel, StateFlow.
+- Firebase Firestore REST cloud synchronization with debounced autosave draft engine.
 - Native `android.graphics.pdf.PdfDocument` API for vector A4 PDF generation.
 - Custom Neo-Brutalist Modifier in Compose:
 ```kotlin

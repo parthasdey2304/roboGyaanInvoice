@@ -18,3 +18,6 @@ local.properties
 
 # Scratch
 *.log
+*.apk
+.vercel
+.env*

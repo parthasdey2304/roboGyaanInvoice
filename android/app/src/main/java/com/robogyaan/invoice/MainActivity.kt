@@ -8,6 +8,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -15,6 +16,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.PictureAsPdf
 import androidx.compose.material.icons.filled.Share
+import androidx.compose.material.icons.filled.VerticalSplit
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -106,55 +108,185 @@ fun MainScreen(invoiceViewModel: InvoiceViewModel) {
                         shadowOffset = 3.dp,
                         cornerRadius = 0.dp
                     )
-                    .padding(horizontal = 16.dp, vertical = 10.dp)
+                    .padding(horizontal = 12.dp, vertical = 8.dp)
             ) {
+                // Top Row: Heading on Top Left, Editor/Split/Preview on Top Right
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    // Logo + App Title
+                    // Logo + App Title (TOP LEFT)
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(10.dp)
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
                         Box(
                             modifier = Modifier
-                                .size(36.dp)
-                                .background(Color.Black, RoundedCornerShape(8.dp)),
+                                .size(34.dp)
+                                .background(Color.Black, RoundedCornerShape(6.dp)),
                             contentAlignment = Alignment.Center
                         ) {
                             Text(
                                 text = "RG",
                                 color = NeoYellow,
                                 fontWeight = FontWeight.Black,
-                                fontSize = 16.sp,
+                                fontSize = 15.sp,
                                 fontFamily = VirgilFontFamily
                             )
                         }
 
                         Column {
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(4.dp)
+                            ) {
+                                Text(
+                                    text = "ROBOGYAAN",
+                                    fontWeight = FontWeight.Black,
+                                    fontSize = 15.sp,
+                                    color = Color.Black,
+                                    fontFamily = VirgilFontFamily,
+                                    lineHeight = 15.sp
+                                )
+                                Box(
+                                    modifier = Modifier
+                                        .background(Color.Black, RoundedCornerShape(3.dp))
+                                        .padding(horizontal = 4.dp, vertical = 1.dp)
+                                ) {
+                                    Text(
+                                        text = "INVOICE",
+                                        color = Color.White,
+                                        fontWeight = FontWeight.Black,
+                                        fontSize = 8.sp,
+                                        fontFamily = VirgilFontFamily
+                                    )
+                                }
+                            }
                             Text(
-                                text = "ROBOGYAAN",
-                                fontWeight = FontWeight.Black,
-                                fontSize = 18.sp,
-                                color = Color.Black,
-                                fontFamily = VirgilFontFamily,
-                                lineHeight = 18.sp
-                            )
-                            Text(
-                                text = "INVOICE GENERATOR",
+                                text = "NEO-BRUTALIST LIVE ENGINE",
                                 fontWeight = FontWeight.Bold,
-                                fontSize = 10.sp,
+                                fontSize = 8.sp,
                                 color = Color.Black.copy(alpha = 0.8f),
                                 fontFamily = VirgilFontFamily
                             )
                         }
                     }
 
-                    // PDF Export & Share Button
+                    // TOP RIGHT: EDITOR, SPLIT, PREVIEW segmented control
+                    Row(
+                        modifier = Modifier
+                            .background(Color.White, RoundedCornerShape(8.dp))
+                            .border(2.dp, Color.Black, RoundedCornerShape(8.dp))
+                            .padding(2.dp),
+                        horizontalArrangement = Arrangement.spacedBy(2.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        // Tab 0: Editor
+                        Box(
+                            modifier = Modifier
+                                .background(
+                                    if (selectedTab == 0) Color.Black else Color.Transparent,
+                                    RoundedCornerShape(6.dp)
+                                )
+                                .clickable { selectedTab = 0 }
+                                .padding(horizontal = 6.dp, vertical = 4.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(3.dp)
+                            ) {
+                                Icon(
+                                    Icons.Default.Edit,
+                                    contentDescription = "Editor Tab",
+                                    tint = if (selectedTab == 0) NeoYellow else Color.Black,
+                                    modifier = Modifier.size(11.dp)
+                                )
+                                Text(
+                                    text = "Editor",
+                                    fontSize = 10.sp,
+                                    fontWeight = FontWeight.Black,
+                                    fontFamily = VirgilFontFamily,
+                                    color = if (selectedTab == 0) Color.White else Color.Black
+                                )
+                            }
+                        }
+
+                        // Tab 1: Split
+                        Box(
+                            modifier = Modifier
+                                .background(
+                                    if (selectedTab == 1) Color.Black else Color.Transparent,
+                                    RoundedCornerShape(6.dp)
+                                )
+                                .clickable { selectedTab = 1 }
+                                .padding(horizontal = 6.dp, vertical = 4.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(3.dp)
+                            ) {
+                                Icon(
+                                    Icons.Default.VerticalSplit,
+                                    contentDescription = "Split Tab",
+                                    tint = if (selectedTab == 1) NeoYellow else Color.Black,
+                                    modifier = Modifier.size(11.dp)
+                                )
+                                Text(
+                                    text = "Split",
+                                    fontSize = 10.sp,
+                                    fontWeight = FontWeight.Black,
+                                    fontFamily = VirgilFontFamily,
+                                    color = if (selectedTab == 1) Color.White else Color.Black
+                                )
+                            }
+                        }
+
+                        // Tab 2: Preview
+                        Box(
+                            modifier = Modifier
+                                .background(
+                                    if (selectedTab == 2) Color.Black else Color.Transparent,
+                                    RoundedCornerShape(6.dp)
+                                )
+                                .clickable { selectedTab = 2 }
+                                .padding(horizontal = 6.dp, vertical = 4.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(3.dp)
+                            ) {
+                                Icon(
+                                    Icons.Default.Visibility,
+                                    contentDescription = "Preview Tab",
+                                    tint = if (selectedTab == 2) NeoYellow else Color.Black,
+                                    modifier = Modifier.size(11.dp)
+                                )
+                                Text(
+                                    text = "Preview",
+                                    fontSize = 10.sp,
+                                    fontWeight = FontWeight.Black,
+                                    fontFamily = VirgilFontFamily,
+                                    color = if (selectedTab == 2) Color.White else Color.Black
+                                )
+                            }
+                        }
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(6.dp))
+
+                // Bottom Action Bar: PDF Export & Share Button
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.End,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
                     NeoBrutalButton(
-                        text = if (isGeneratingPdf) "Exporting..." else "PDF",
+                        text = if (isGeneratingPdf) "Exporting..." else "Export & Share PDF",
                         onClick = { exportAndSharePdf() },
                         enabled = !isGeneratingPdf,
                         backgroundColor = Color.Black,
@@ -164,82 +296,10 @@ fun MainScreen(invoiceViewModel: InvoiceViewModel) {
                                 Icons.Default.Share,
                                 contentDescription = "Share PDF",
                                 tint = NeoYellow,
-                                modifier = Modifier.size(16.dp)
+                                modifier = Modifier.size(14.dp)
                             )
                         }
                     )
-                }
-
-                Spacer(modifier = Modifier.height(8.dp))
-
-                // Tab Switcher (Editor vs Preview)
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
-                ) {
-                    Box(
-                        modifier = Modifier
-                            .weight(1f)
-                            .neoBrutal(
-                                backgroundColor = if (selectedTab == 0) Color.Black else Color.White,
-                                shadowOffset = if (selectedTab == 0) 2.dp else 1.dp,
-                                cornerRadius = 6.dp
-                            )
-                            .clickable { selectedTab = 0 }
-                            .padding(vertical = 6.dp),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.spacedBy(6.dp)
-                        ) {
-                            Icon(
-                                Icons.Default.Edit,
-                                contentDescription = "Editor Tab",
-                                tint = if (selectedTab == 0) NeoYellow else Color.Black,
-                                modifier = Modifier.size(14.dp)
-                            )
-                            Text(
-                                text = "EDITOR FORM",
-                                fontSize = 11.sp,
-                                fontWeight = FontWeight.Black,
-                                fontFamily = VirgilFontFamily,
-                                color = if (selectedTab == 0) Color.White else Color.Black
-                            )
-                        }
-                    }
-
-                    Box(
-                        modifier = Modifier
-                            .weight(1f)
-                            .neoBrutal(
-                                backgroundColor = if (selectedTab == 1) Color.Black else Color.White,
-                                shadowOffset = if (selectedTab == 1) 2.dp else 1.dp,
-                                cornerRadius = 6.dp
-                            )
-                            .clickable { selectedTab = 1 }
-                            .padding(vertical = 6.dp),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.spacedBy(6.dp)
-                        ) {
-                            Icon(
-                                Icons.Default.Visibility,
-                                contentDescription = "Preview Tab",
-                                tint = if (selectedTab == 1) NeoYellow else Color.Black,
-                                modifier = Modifier.size(14.dp)
-                            )
-                            Text(
-                                text = "A4 PREVIEW",
-                                fontSize = 11.sp,
-                                fontWeight = FontWeight.Black,
-                                fontFamily = VirgilFontFamily,
-                                color = if (selectedTab == 1) Color.White else Color.Black
-                            )
-                        }
-                    }
                 }
             }
         }
@@ -254,7 +314,26 @@ fun MainScreen(invoiceViewModel: InvoiceViewModel) {
                     invoiceData = invoiceData,
                     viewModel = invoiceViewModel
                 )
-                1 -> InvoicePreviewScreen(
+                1 -> Column(modifier = Modifier.fillMaxSize()) {
+                    Box(modifier = Modifier.weight(1f)) {
+                        InvoiceEditorScreen(
+                            invoiceData = invoiceData,
+                            viewModel = invoiceViewModel
+                        )
+                    }
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(3.dp)
+                            .background(Color.Black)
+                    )
+                    Box(modifier = Modifier.weight(1f)) {
+                        InvoicePreviewScreen(
+                            invoiceData = invoiceData
+                        )
+                    }
+                }
+                2 -> InvoicePreviewScreen(
                     invoiceData = invoiceData
                 )
             }

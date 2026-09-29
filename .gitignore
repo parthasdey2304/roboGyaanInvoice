@@ -21,3 +21,4 @@ local.properties
 *.apk
 .vercel
 .env*
+!.env.example

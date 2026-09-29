@@ -173,7 +173,7 @@ fun MainScreen(invoiceViewModel: InvoiceViewModel) {
                         }
                     }
 
-                    // TOP RIGHT: EDITOR, SPLIT, PREVIEW segmented control
+                    // TOP RIGHT: EDITOR, SPLIT, PREVIEW segmented control (ONLY ICONS ON PHONE SCREEN)
                     Row(
                         modifier = Modifier
                             .background(Color.White, RoundedCornerShape(8.dp))
@@ -182,7 +182,7 @@ fun MainScreen(invoiceViewModel: InvoiceViewModel) {
                         horizontalArrangement = Arrangement.spacedBy(2.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        // Tab 0: Editor
+                        // Tab 0: Editor (Icon Only)
                         Box(
                             modifier = Modifier
                                 .background(
@@ -190,30 +190,18 @@ fun MainScreen(invoiceViewModel: InvoiceViewModel) {
                                     RoundedCornerShape(6.dp)
                                 )
                                 .clickable { selectedTab = 0 }
-                                .padding(horizontal = 6.dp, vertical = 4.dp),
+                                .padding(horizontal = 8.dp, vertical = 6.dp),
                             contentAlignment = Alignment.Center
                         ) {
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.spacedBy(3.dp)
-                            ) {
-                                Icon(
-                                    Icons.Default.Edit,
-                                    contentDescription = "Editor Tab",
-                                    tint = if (selectedTab == 0) NeoYellow else Color.Black,
-                                    modifier = Modifier.size(11.dp)
-                                )
-                                Text(
-                                    text = "Editor",
-                                    fontSize = 10.sp,
-                                    fontWeight = FontWeight.Black,
-                                    fontFamily = VirgilFontFamily,
-                                    color = if (selectedTab == 0) Color.White else Color.Black
-                                )
-                            }
+                            Icon(
+                                Icons.Default.Edit,
+                                contentDescription = "Editor Tab",
+                                tint = if (selectedTab == 0) NeoYellow else Color.Black,
+                                modifier = Modifier.size(16.dp)
+                            )
                         }
 
-                        // Tab 1: Split
+                        // Tab 1: Split (Icon Only)
                         Box(
                             modifier = Modifier
                                 .background(
@@ -221,30 +209,18 @@ fun MainScreen(invoiceViewModel: InvoiceViewModel) {
                                     RoundedCornerShape(6.dp)
                                 )
                                 .clickable { selectedTab = 1 }
-                                .padding(horizontal = 6.dp, vertical = 4.dp),
+                                .padding(horizontal = 8.dp, vertical = 6.dp),
                             contentAlignment = Alignment.Center
                         ) {
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.spacedBy(3.dp)
-                            ) {
-                                Icon(
-                                    Icons.Default.VerticalSplit,
-                                    contentDescription = "Split Tab",
-                                    tint = if (selectedTab == 1) NeoYellow else Color.Black,
-                                    modifier = Modifier.size(11.dp)
-                                )
-                                Text(
-                                    text = "Split",
-                                    fontSize = 10.sp,
-                                    fontWeight = FontWeight.Black,
-                                    fontFamily = VirgilFontFamily,
-                                    color = if (selectedTab == 1) Color.White else Color.Black
-                                )
-                            }
+                            Icon(
+                                Icons.Default.VerticalSplit,
+                                contentDescription = "Split Tab",
+                                tint = if (selectedTab == 1) NeoYellow else Color.Black,
+                                modifier = Modifier.size(16.dp)
+                            )
                         }
 
-                        // Tab 2: Preview
+                        // Tab 2: Preview (Icon Only)
                         Box(
                             modifier = Modifier
                                 .background(
@@ -252,27 +228,15 @@ fun MainScreen(invoiceViewModel: InvoiceViewModel) {
                                     RoundedCornerShape(6.dp)
                                 )
                                 .clickable { selectedTab = 2 }
-                                .padding(horizontal = 6.dp, vertical = 4.dp),
+                                .padding(horizontal = 8.dp, vertical = 6.dp),
                             contentAlignment = Alignment.Center
                         ) {
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.spacedBy(3.dp)
-                            ) {
-                                Icon(
-                                    Icons.Default.Visibility,
-                                    contentDescription = "Preview Tab",
-                                    tint = if (selectedTab == 2) NeoYellow else Color.Black,
-                                    modifier = Modifier.size(11.dp)
-                                )
-                                Text(
-                                    text = "Preview",
-                                    fontSize = 10.sp,
-                                    fontWeight = FontWeight.Black,
-                                    fontFamily = VirgilFontFamily,
-                                    color = if (selectedTab == 2) Color.White else Color.Black
-                                )
-                            }
+                            Icon(
+                                Icons.Default.Visibility,
+                                contentDescription = "Preview Tab",
+                                tint = if (selectedTab == 2) NeoYellow else Color.Black,
+                                modifier = Modifier.size(16.dp)
+                            )
                         }
                     }
                 }

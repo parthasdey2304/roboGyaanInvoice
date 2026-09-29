@@ -97,7 +97,7 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(
             <div className="grid grid-cols-4 gap-2 my-5 text-center">
               {/* Box 1: Invoice No */}
               <div className="bg-[#FFB800] text-white p-2 rounded-sm border border-neutral-300/40 shadow-sm flex flex-col justify-center">
-                <span className="text-[10px] sm:text-xs font-semibold opacity-90 block leading-tight">
+                <span className="text-[10px] sm:text-xs font-black opacity-95 block leading-tight uppercase tracking-wider">
                   Invoice No.
                 </span>
                 <span className="text-xs sm:text-sm font-extrabold truncate">
@@ -107,7 +107,7 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(
 
               {/* Box 2: Issue Date */}
               <div className="bg-[#FFB800] text-white p-2 rounded-sm border border-neutral-300/40 shadow-sm flex flex-col justify-center">
-                <span className="text-[10px] sm:text-xs font-semibold opacity-90 block leading-tight">
+                <span className="text-[10px] sm:text-xs font-black opacity-95 block leading-tight uppercase tracking-wider">
                   Issue Date:
                 </span>
                 <span className="text-xs sm:text-sm font-extrabold">{data.issueDate}</span>
@@ -115,7 +115,7 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(
 
               {/* Box 3: Due Date */}
               <div className="bg-[#FFB800] text-white p-2 rounded-sm border border-neutral-300/40 shadow-sm flex flex-col justify-center">
-                <span className="text-[10px] sm:text-xs font-semibold opacity-90 block leading-tight">
+                <span className="text-[10px] sm:text-xs font-black opacity-95 block leading-tight uppercase tracking-wider">
                   Due Date:
                 </span>
                 <span className="text-xs sm:text-sm font-extrabold">{data.dueDate}</span>
@@ -123,7 +123,7 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(
 
               {/* Box 4: Total Due */}
               <div className="bg-[#505050] text-white p-2 rounded-sm border border-black shadow-sm flex flex-col justify-center">
-                <span className="text-[10px] sm:text-xs font-medium opacity-90 block leading-tight">
+                <span className="text-[10px] sm:text-xs font-black opacity-95 block leading-tight uppercase tracking-wider">
                   Total Due :
                 </span>
                 <span className="text-xs sm:text-sm font-extrabold">
@@ -142,7 +142,7 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(
               )}
 
               {/* Table Header */}
-              <div className="grid grid-cols-12 border-b-[2px] border-black bg-white/90 text-xs sm:text-sm font-bold text-center z-10 relative">
+              <div className="grid grid-cols-12 border-b-[2px] border-black bg-white/90 text-xs sm:text-sm font-black uppercase tracking-wider text-center z-10 relative">
                 <div className="col-span-5 p-2 border-r-[2px] border-black text-center">Item</div>
                 <div className="col-span-3 p-2 border-r-[2px] border-black leading-tight text-center">
                   Amount/ <br /> Student head
@@ -194,8 +194,8 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(
               {/* Table Footer Subtotal Row */}
               <div className="border-t-[2px] border-black flex justify-end z-10 relative bg-white">
                 <div className="border-l-[2px] border-black px-4 py-2 text-xs sm:text-sm font-bold flex items-center gap-2">
-                  <span>Total Amount :</span>
-                  <span className="text-sm sm:text-base font-extrabold">
+                  <span className="font-black">Total Amount :</span>
+                  <span className="text-sm sm:text-base font-black">
                     ₹{formatINR(totalAmount)}
                   </span>
                 </div>
@@ -206,14 +206,14 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(
             <div className="space-y-2 mt-3">
               {/* Amount in words */}
               <div className="border-[2px] border-black px-3 py-1.5 text-xs sm:text-sm font-bold flex items-center gap-2 bg-white">
-                <span className="shrink-0">Amount (In words) :</span>
+                <span className="shrink-0 font-black">Amount (In words) :</span>
                 <span className="font-extrabold">{amountInWords}</span>
               </div>
 
               {/* Payment Method */}
               <div className="border-[2px] border-black px-3 py-1.5 text-xs sm:text-sm font-bold flex items-center gap-2 bg-white">
-                <span className="shrink-0">Payment Method :</span>
-                <span className="font-extrabold uppercase">{data.paymentMethod}</span>
+                <span className="shrink-0 font-black">Payment Method :</span>
+                <span className="font-black uppercase">{data.paymentMethod}</span>
               </div>
             </div>
           </div>
@@ -225,7 +225,7 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(
               <div className="h-10 sm:h-14 w-full flex items-center justify-center">
                 {/* Physical ink signature area */}
               </div>
-              <div className="border-[2px] border-black px-2 sm:px-6 py-1 text-[11px] sm:text-sm font-bold text-center w-full max-w-[200px] sm:max-w-[240px]">
+              <div className="border-[2px] border-black px-2 sm:px-6 py-1 text-[11px] sm:text-sm font-black text-center w-full max-w-[200px] sm:max-w-[240px]">
                 {data.customerSignatureLabel || 'Customer Signature'}
               </div>
             </div>
@@ -245,7 +245,7 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(
                   </div>
                 )}
               </div>
-              <div className="border-[2px] border-black px-2 sm:px-6 py-1 text-[11px] sm:text-sm font-bold text-center w-full max-w-[200px] sm:max-w-[240px] z-10 bg-white">
+              <div className="border-[2px] border-black px-2 sm:px-6 py-1 text-[11px] sm:text-sm font-black text-center w-full max-w-[200px] sm:max-w-[240px] z-10 bg-white">
                 Authorised Signatory
               </div>
             </div>

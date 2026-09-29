@@ -159,7 +159,7 @@ export const InvoiceEditor: React.FC<InvoiceEditorProps> = ({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Recipient */}
         <NeoBrutalCard
-          title="Billed To (Client)"
+          title={`Billed To\n(Client)`}
           badge="Recipient"
           variant="white"
         >
@@ -205,7 +205,7 @@ export const InvoiceEditor: React.FC<InvoiceEditorProps> = ({
 
         {/* Sender */}
         <NeoBrutalCard
-          title="From (Robogyaan)"
+          title={`From\n(Robogyaan)`}
           badge="Sender"
           variant="white"
         >
@@ -299,9 +299,9 @@ export const InvoiceEditor: React.FC<InvoiceEditorProps> = ({
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-12 gap-3">
-                  <div className="sm:col-span-6">
-                    <label className="block text-xs font-bold mb-1">
+                <div className="grid grid-cols-12 gap-2 sm:gap-3 items-end">
+                  <div className="col-span-6">
+                    <label className="block text-[11px] sm:text-xs font-bold mb-1 truncate" title="Description / Program Name">
                       Description / Program Name
                     </label>
                     <input
@@ -311,12 +311,12 @@ export const InvoiceEditor: React.FC<InvoiceEditorProps> = ({
                         handleItemChange(index, 'description', e.target.value)
                       }
                       className="neo-input"
-                      placeholder="e.g. Robogyaan ECA Programme (Premium)"
+                      placeholder="e.g. Robogyaan ECA Program"
                     />
                   </div>
 
-                  <div className="sm:col-span-3">
-                    <label className="block text-xs font-bold mb-1">
+                  <div className="col-span-3">
+                    <label className="block text-[11px] sm:text-xs font-bold mb-1 truncate" title="Amount / Student Head (₹)">
                       Amount / Student Head (₹)
                     </label>
                     <input
@@ -335,8 +335,8 @@ export const InvoiceEditor: React.FC<InvoiceEditorProps> = ({
                     />
                   </div>
 
-                  <div className="sm:col-span-3">
-                    <label className="block text-xs font-bold mb-1">
+                  <div className="col-span-3">
+                    <label className="block text-[11px] sm:text-xs font-bold mb-1 truncate" title="No. of Students">
                       No. of Students
                     </label>
                     <input

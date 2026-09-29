@@ -32,7 +32,7 @@ Both Web and Android implementations strictly follow the Neo-Brutalist design la
 
 ## 4. Security & Authentication Standards
 - **Admin Email:** `invoiceadmin@robogyaan.in`
-- **Admin Password:** `InvoiceManagerRoboGyaan_Suman_Bhaiya`
+- **Admin Password:** [CONFIDENTIAL - Stored in Secure Environment / Vercel Secrets]
 - **Zero Plaintext Transmission:** Passwords MUST be hashed client-side before network transmission using **Argon2id** (`salt: robogyaan_invoice_auth_salt_2026`, iterations: 3, memory: 4096KB, parallelism: 1, 32-byte hex hash).
 - **Session Management:** Secure HTTP-only cookies on Web (`robogyaan_auth_session`) and persistent encrypted preferences on Android.
 

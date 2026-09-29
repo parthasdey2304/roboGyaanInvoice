@@ -44,9 +44,18 @@ object AuthPreferences {
     private const val KEY_USER_EMAIL = "admin_user_email"
 
     const val ADMIN_EMAIL = "invoiceadmin@robogyaan.in"
-    const val ADMIN_PASSWORD = "InvoiceManagerRoboGyaan_Suman_Bhaiya"
+    private const val ADMIN_PASSWORD_HASH = "a150434881ba89e49862cfc7dd98f7cd8b8419088bfc6d9c15e655ee658d1e59"
 
-    fun isLoggedIn(context: Context): Boolean {
+    fun hashPassword(input: String): String {
+        val digest = java.security.MessageDigest.getInstance("SHA-256")
+        val bytes = digest.digest(input.toByteArray(Charsets.UTF_8))
+        return bytes.joinToString("") { "%02x".format(it) }
+    }
+
+    fun verifyCredentials(inputEmail: String, inputPass: String): Boolean {
+        return inputEmail.trim().equals(ADMIN_EMAIL, ignoreCase = true) &&
+                hashPassword(inputPass) == ADMIN_PASSWORD_HASH
+    }
         val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         return prefs.getBoolean(KEY_IS_LOGGED_IN, false)
     }
@@ -80,10 +89,8 @@ fun LoginScreen(
         isAuthenticating = true
         errorMessage = null
 
-        // Verify credentials with Argon2 / secure admin check
-        if (email.trim().equals(AuthPreferences.ADMIN_EMAIL, ignoreCase = true) &&
-            password == AuthPreferences.ADMIN_PASSWORD
-        ) {
+        // Verify credentials with secure hash check
+        if (AuthPreferences.verifyCredentials(email, password)) {
             AuthPreferences.setLoggedIn(context, true, email.trim())
             Toast.makeText(context, "Authenticated successfully as Admin", Toast.LENGTH_SHORT).show()
             onLoginSuccess()

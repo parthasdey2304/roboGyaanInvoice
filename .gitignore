@@ -21,4 +21,5 @@ local.properties
 *.apk
 .vercel
 .env*
-!.env.example
+*.env
+release_notes*.md

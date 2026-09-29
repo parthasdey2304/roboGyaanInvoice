@@ -97,6 +97,10 @@ class InvoiceViewModel : ViewModel() {
         }
     }
 
+    fun setInvoiceData(data: InvoiceData) {
+        _invoiceState.value = data
+    }
+
     fun resetToDefaults() {
         _invoiceState.value = defaultData
     }

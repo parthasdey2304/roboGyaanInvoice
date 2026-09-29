@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.PictureAsPdf
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.VerticalSplit
@@ -29,7 +30,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.FileProvider
 import com.robogyaan.invoice.ui.InvoiceViewModel
+import com.robogyaan.invoice.ui.components.AuthPreferences
+import com.robogyaan.invoice.ui.components.HistorySidebarSheet
 import com.robogyaan.invoice.ui.components.InvoiceEditorScreen
+import com.robogyaan.invoice.ui.components.LoginScreen
 import com.robogyaan.invoice.ui.components.NeoBrutalButton
 import com.robogyaan.invoice.ui.neoBrutal
 import com.robogyaan.invoice.ui.preview.InvoicePreviewScreen
@@ -51,7 +55,20 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             RoboGyaanInvoiceTheme {
-                MainScreen(invoiceViewModel = invoiceViewModel)
+                val context = LocalContext.current
+                var isLoggedIn by remember { mutableStateOf(AuthPreferences.isLoggedIn(context)) }
+
+                if (!isLoggedIn) {
+                    LoginScreen(onLoginSuccess = { isLoggedIn = true })
+                } else {
+                    MainScreen(
+                        invoiceViewModel = invoiceViewModel,
+                        onLogout = {
+                            AuthPreferences.setLoggedIn(context, false)
+                            isLoggedIn = false
+                        }
+                    )
+                }
             }
         }
     }
@@ -59,12 +76,17 @@ class MainActivity : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(invoiceViewModel: InvoiceViewModel) {
+fun MainScreen(
+    invoiceViewModel: InvoiceViewModel,
+    onLogout: () -> Unit
+) {
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
     val invoiceData by invoiceViewModel.invoiceState.collectAsState()
     var selectedTab by remember { mutableIntStateOf(0) }
     var isGeneratingPdf by remember { mutableStateOf(false) }
+    var isHistoryOpen by remember { mutableStateOf(false) }
+    var activeInvoiceId by remember { mutableStateOf<String?>(null) }
 
     fun exportAndSharePdf() {
         coroutineScope.launch {
@@ -241,29 +263,117 @@ fun MainScreen(invoiceViewModel: InvoiceViewModel) {
                     }
                 }
 
-                Spacer(modifier = Modifier.height(6.dp))
+                Spacer(modifier = Modifier.height(8.dp))
 
-                // Bottom Action Bar: PDF Export & Share Button
+                // Action Bar Below Navbar: 3-DASH BUTTON ON TOP LEFT BELOW NAVBAR & PDF Export + Logout on Right
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.End,
+                    horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    NeoBrutalButton(
-                        text = if (isGeneratingPdf) "Exporting..." else "Export & Share PDF",
-                        onClick = { exportAndSharePdf() },
-                        enabled = !isGeneratingPdf,
-                        backgroundColor = Color.Black,
-                        contentColor = Color.White,
-                        icon = {
+                    // 3-DASH PROMPT HISTORY BUTTON ON LEFT TOP BELOW NAVBAR
+                    Box(
+                        modifier = Modifier
+                            .neoBrutal(
+                                backgroundColor = Color.White,
+                                shadowOffset = 2.5.dp,
+                                cornerRadius = 6.dp
+                            )
+                            .clickable { isHistoryOpen = true }
+                            .padding(horizontal = 10.dp, vertical = 6.dp)
+                    ) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(6.dp)
+                        ) {
+                            // 3 horizontal dashes icon
+                            Column(
+                                verticalArrangement = Arrangement.spacedBy(2.5.dp),
+                                modifier = Modifier.width(14.dp)
+                            ) {
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .height(2.dp)
+                                        .background(Color.Black, RoundedCornerShape(1.dp))
+                                )
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .height(2.dp)
+                                        .background(Color.Black, RoundedCornerShape(1.dp))
+                                )
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .height(2.dp)
+                                        .background(Color.Black, RoundedCornerShape(1.dp))
+                                )
+                            }
+                            Text(
+                                text = "Prompt History",
+                                fontFamily = VirgilFontFamily,
+                                fontWeight = FontWeight.Black,
+                                fontSize = 11.sp,
+                                color = NeoBlack
+                            )
+                            Box(
+                                modifier = Modifier
+                                    .background(Color.Black, RoundedCornerShape(3.dp))
+                                    .padding(horizontal = 4.dp, vertical = 1.dp)
+                            ) {
+                                Text(
+                                    text = "Firestore",
+                                    color = NeoYellow,
+                                    fontFamily = VirgilFontFamily,
+                                    fontWeight = FontWeight.Black,
+                                    fontSize = 8.sp
+                                )
+                            }
+                        }
+                    }
+
+                    // Right Actions: Export PDF & Logout
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(6.dp)
+                    ) {
+                        NeoBrutalButton(
+                            text = if (isGeneratingPdf) "Exporting..." else "Export PDF",
+                            onClick = { exportAndSharePdf() },
+                            enabled = !isGeneratingPdf,
+                            backgroundColor = Color.Black,
+                            contentColor = Color.White,
+                            icon = {
+                                Icon(
+                                    Icons.Default.Share,
+                                    contentDescription = "Share PDF",
+                                    tint = NeoYellow,
+                                    modifier = Modifier.size(13.dp)
+                                )
+                            }
+                        )
+
+                        // Logout button
+                        Box(
+                            modifier = Modifier
+                                .neoBrutal(
+                                    backgroundColor = Color.White,
+                                    shadowOffset = 2.dp,
+                                    cornerRadius = 6.dp
+                                )
+                                .clickable { onLogout() }
+                                .padding(8.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
                             Icon(
-                                Icons.Default.Share,
-                                contentDescription = "Share PDF",
-                                tint = NeoYellow,
-                                modifier = Modifier.size(14.dp)
+                                Icons.Default.ExitToApp,
+                                contentDescription = "Logout",
+                                tint = Color.Black,
+                                modifier = Modifier.size(16.dp)
                             )
                         }
-                    )
+                    }
                 }
             }
         }
@@ -301,6 +411,18 @@ fun MainScreen(invoiceViewModel: InvoiceViewModel) {
                     invoiceData = invoiceData
                 )
             }
+
+            // FIRESTORE PROMPT HISTORY SIDEBAR SHEET
+            HistorySidebarSheet(
+                isOpen = isHistoryOpen,
+                onClose = { isHistoryOpen = false },
+                currentInvoice = invoiceData,
+                onLoadInvoice = { loaded, id ->
+                    invoiceViewModel.setInvoiceData(loaded)
+                    activeInvoiceId = id
+                },
+                activeInvoiceId = activeInvoiceId
+            )
         }
     }
 }

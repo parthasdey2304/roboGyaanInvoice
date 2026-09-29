@@ -8,8 +8,10 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Divider
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
@@ -23,10 +25,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.robogyaan.invoice.R
 import com.robogyaan.invoice.data.InvoiceData
+import com.robogyaan.invoice.data.InvoicePageSlice
+import com.robogyaan.invoice.data.paginateInvoiceItems
 import com.robogyaan.invoice.ui.neoBrutal
+import com.robogyaan.invoice.ui.neoBrutalClickable
 import com.robogyaan.invoice.ui.theme.NeoBlack
 import com.robogyaan.invoice.ui.theme.NeoOrange
+import com.robogyaan.invoice.ui.theme.NeoYellow
 import com.robogyaan.invoice.ui.theme.PoppinsFontFamily
+import com.robogyaan.invoice.ui.theme.VirgilFontFamily
 import com.robogyaan.invoice.util.NumberToWordsIndian
 
 @Composable
@@ -37,27 +44,165 @@ fun InvoicePreviewScreen(
     val scrollState = rememberScrollState()
     val totalAmount = invoiceData.totalAmount
     val amountInWords = NumberToWordsIndian.convert(totalAmount)
+    val pages = remember(invoiceData.items) { paginateInvoiceItems(invoiceData.items) }
 
-    Box(
+    // -1 represents "All Pages"
+    var selectedPageIndex by remember { mutableStateOf(-1) }
+    var dropdownExpanded by remember { mutableStateOf(false) }
+
+    if (selectedPageIndex >= pages.size) {
+        selectedPageIndex = -1
+    }
+
+    val displayPages = if (selectedPageIndex == -1) pages else listOf(pages[selectedPageIndex])
+
+    Column(
         modifier = modifier
             .fillMaxSize()
             .background(Color(0xFFE5E7EB))
-            .padding(12.dp),
-        contentAlignment = Alignment.TopCenter
+            .padding(horizontal = 12.dp, vertical = 8.dp)
     ) {
-        // A4 Sheet container
-        Column(
+        // TOP CONTROL BAR: TITLE + PAGE SELECTOR
+        Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .verticalScroll(scrollState)
-                .neoBrutal(
-                    backgroundColor = Color.White,
-                    shadowOffset = 6.dp,
-                    cornerRadius = 4.dp
-                )
-                .padding(16.dp)
+                .padding(bottom = 8.dp, top = 2.dp),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            // 1. TOP HEADER SECTION
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    text = "Live A4 Preview",
+                    fontSize = 15.sp,
+                    fontWeight = FontWeight.Black,
+                    fontFamily = VirgilFontFamily,
+                    color = NeoBlack
+                )
+                Spacer(modifier = Modifier.width(6.dp))
+                Box(
+                    modifier = Modifier
+                        .size(8.dp)
+                        .background(Color(0xFF10B981), RoundedCornerShape(4.dp))
+                )
+            }
+
+            // Dropdown Selector Button
+            Box {
+                Row(
+                    modifier = Modifier
+                        .neoBrutalClickable(
+                            backgroundColor = Color.White,
+                            borderWidth = 1.5.dp,
+                            defaultShadowOffset = 2.dp,
+                            cornerRadius = 6.dp,
+                            onClick = { dropdownExpanded = true }
+                        )
+                        .padding(horizontal = 10.dp, vertical = 4.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    val label = if (selectedPageIndex == -1) {
+                        "All Pages (${pages.size})"
+                    } else {
+                        "Page ${selectedPageIndex + 1} of ${pages.size}"
+                    }
+                    Text(
+                        text = label,
+                        fontSize = 11.sp,
+                        fontWeight = FontWeight.Bold,
+                        fontFamily = PoppinsFontFamily,
+                        color = Color.Black
+                    )
+                    Spacer(modifier = Modifier.width(4.dp))
+                    Text(
+                        text = "▼",
+                        fontSize = 9.sp,
+                        fontWeight = FontWeight.Black,
+                        color = Color.Black
+                    )
+                }
+
+                DropdownMenu(
+                    expanded = dropdownExpanded,
+                    onDismissRequest = { dropdownExpanded = false },
+                    modifier = Modifier
+                        .background(Color.White)
+                        .border(1.5.dp, Color.Black, RoundedCornerShape(6.dp))
+                ) {
+                    DropdownMenuItem(
+                        text = {
+                            Text(
+                                "All Pages (${pages.size})",
+                                fontWeight = if (selectedPageIndex == -1) FontWeight.Black else FontWeight.Normal,
+                                fontFamily = PoppinsFontFamily,
+                                fontSize = 12.sp
+                            )
+                        },
+                        onClick = {
+                            selectedPageIndex = -1
+                            dropdownExpanded = false
+                        }
+                    )
+                    pages.forEachIndexed { idx, _ ->
+                        DropdownMenuItem(
+                            text = {
+                                Text(
+                                    "Page ${idx + 1} of ${pages.size}",
+                                    fontWeight = if (selectedPageIndex == idx) FontWeight.Black else FontWeight.Normal,
+                                    fontFamily = PoppinsFontFamily,
+                                    fontSize = 12.sp
+                                )
+                            },
+                            onClick = {
+                                selectedPageIndex = idx
+                                dropdownExpanded = false
+                            }
+                        )
+                    }
+                }
+            }
+        }
+
+        // SCROLLABLE CONTAINER OF A4 SHEETS
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(scrollState),
+            verticalArrangement = Arrangement.spacedBy(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            displayPages.forEach { pageSlice ->
+                InvoiceSheetCard(
+                    pageSlice = pageSlice,
+                    invoiceData = invoiceData,
+                    totalAmount = totalAmount,
+                    amountInWords = amountInWords
+                )
+            }
+            Spacer(modifier = Modifier.height(16.dp))
+        }
+    }
+}
+
+@Composable
+private fun InvoiceSheetCard(
+    pageSlice: InvoicePageSlice,
+    invoiceData: InvoiceData,
+    totalAmount: Double,
+    amountInWords: String
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .neoBrutal(
+                backgroundColor = Color.White,
+                shadowOffset = 6.dp,
+                cornerRadius = 4.dp
+            )
+            .padding(16.dp)
+    ) {
+        // 1. TOP HEADER SECTION
+        if (pageSlice.isFirstPage) {
+            // Full First-Page Header
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -78,7 +223,6 @@ fun InvoicePreviewScreen(
                     horizontalAlignment = Alignment.End,
                     modifier = Modifier.width(190.dp)
                 ) {
-                    // Black Polygon Header
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -98,7 +242,6 @@ fun InvoicePreviewScreen(
 
                     Spacer(modifier = Modifier.height(3.dp))
 
-                    // Orange Registration Badge
                     Box(
                         modifier = Modifier
                             .width(160.dp)
@@ -122,7 +265,7 @@ fun InvoicePreviewScreen(
             Divider(color = Color(0xFFD1D5DB), thickness = 1.dp)
             Spacer(modifier = Modifier.height(10.dp))
 
-            // 2. SENDER & RECIPIENT (BILL TO / FROM)
+            // Sender & Recipient (BILL TO / FROM)
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
@@ -206,12 +349,11 @@ fun InvoicePreviewScreen(
 
             Spacer(modifier = Modifier.height(14.dp))
 
-            // 3. META SUMMARY BAR (4 Columns)
+            // Meta Summary Bar (4 Columns)
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(4.dp)
             ) {
-                // Invoice No
                 Column(
                     modifier = Modifier
                         .weight(1f)
@@ -223,7 +365,6 @@ fun InvoicePreviewScreen(
                     Text(invoiceData.invoiceNo, color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Black, fontFamily = PoppinsFontFamily, maxLines = 1)
                 }
 
-                // Issue Date
                 Column(
                     modifier = Modifier
                         .weight(1f)
@@ -235,7 +376,6 @@ fun InvoicePreviewScreen(
                     Text(invoiceData.issueDate, color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Black, fontFamily = PoppinsFontFamily)
                 }
 
-                // Due Date
                 Column(
                     modifier = Modifier
                         .weight(1f)
@@ -247,7 +387,6 @@ fun InvoicePreviewScreen(
                     Text(invoiceData.dueDate, color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Black, fontFamily = PoppinsFontFamily)
                 }
 
-                // Total Due
                 Column(
                     modifier = Modifier
                         .weight(1f)
@@ -259,80 +398,156 @@ fun InvoicePreviewScreen(
                     Text("₹ ${NumberToWordsIndian.formatINR(totalAmount)}/-", color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Black, fontFamily = PoppinsFontFamily)
                 }
             }
-
-            Spacer(modifier = Modifier.height(14.dp))
-
-            // 4. ITEMIZED BILLING TABLE
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .border(2.dp, Color.Black)
+        } else {
+            // Continuation Page Header
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                // Optional Watermark in background
-                if (invoiceData.showWatermark) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
                     Image(
-                        painter = painterResource(id = R.drawable.ic_robogyaan_symbol),
-                        contentDescription = "Watermark",
-                        modifier = Modifier
-                            .size(140.dp)
-                            .align(Alignment.Center)
-                            .rotate(-25f)
-                            .graphicsLayer(alpha = 0.1f)
+                        painter = painterResource(id = R.drawable.ic_robogyaan_logo),
+                        contentDescription = "Robogyaan Logo",
+                        modifier = Modifier.height(32.dp),
+                        contentScale = ContentScale.Fit
                     )
+                    Box(
+                        modifier = Modifier
+                            .background(Color.Black, RoundedCornerShape(4.dp))
+                            .padding(horizontal = 6.dp, vertical = 2.dp)
+                    ) {
+                        Text(
+                            text = "PAGE ${pageSlice.pageNumber} OF ${pageSlice.totalPages}",
+                            color = NeoYellow,
+                            fontSize = 9.sp,
+                            fontWeight = FontWeight.Black,
+                            fontFamily = PoppinsFontFamily
+                        )
+                    }
                 }
 
-                Column(modifier = Modifier.fillMaxWidth()) {
-                    // Header with vertical dividers
+                Box(
+                    modifier = Modifier
+                        .background(Color.Black, RoundedCornerShape(4.dp))
+                        .padding(horizontal = 8.dp, vertical = 4.dp)
+                ) {
+                    Text(
+                        text = "Invoice #${invoiceData.invoiceNo}",
+                        color = Color.White,
+                        fontSize = 10.sp,
+                        fontWeight = FontWeight.Bold,
+                        fontFamily = PoppinsFontFamily
+                    )
+                }
+            }
+
+            Spacer(modifier = Modifier.height(8.dp))
+            Divider(color = Color(0xFFD1D5DB), thickness = 1.dp)
+        }
+
+        Spacer(modifier = Modifier.height(14.dp))
+
+        // 2. ITEMIZED BILLING TABLE
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .border(2.dp, Color.Black)
+        ) {
+            // Watermark
+            if (invoiceData.showWatermark) {
+                Image(
+                    painter = painterResource(id = R.drawable.ic_robogyaan_symbol),
+                    contentDescription = "Watermark",
+                    modifier = Modifier
+                        .size(130.dp)
+                        .align(Alignment.Center)
+                        .rotate(-25f)
+                        .graphicsLayer(alpha = 0.08f)
+                )
+            }
+
+            Column(modifier = Modifier.fillMaxWidth()) {
+                // Header row
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(IntrinsicSize.Min)
+                ) {
+                    Text("Item", modifier = Modifier.weight(2f).padding(vertical = 6.dp, horizontal = 4.dp), fontSize = 10.sp, fontWeight = FontWeight.Black, fontFamily = PoppinsFontFamily, textAlign = TextAlign.Center)
+                    Box(modifier = Modifier.width(1.5.dp).fillMaxHeight().background(Color.Black))
+                    Text("Amount/\nStudent head", modifier = Modifier.weight(1.3f).padding(vertical = 4.dp, horizontal = 2.dp), fontSize = 9.sp, fontWeight = FontWeight.Black, fontFamily = PoppinsFontFamily, textAlign = TextAlign.Center)
+                    Box(modifier = Modifier.width(1.5.dp).fillMaxHeight().background(Color.Black))
+                    Text("No. of\nStudents", modifier = Modifier.weight(1.1f).padding(vertical = 4.dp, horizontal = 2.dp), fontSize = 9.sp, fontWeight = FontWeight.Black, fontFamily = PoppinsFontFamily, textAlign = TextAlign.Center)
+                    Box(modifier = Modifier.width(1.5.dp).fillMaxHeight().background(Color.Black))
+                    Text("Total Amount", modifier = Modifier.weight(1.4f).padding(vertical = 6.dp, horizontal = 4.dp), fontSize = 10.sp, fontWeight = FontWeight.Black, fontFamily = PoppinsFontFamily, textAlign = TextAlign.Center)
+                }
+
+                Box(modifier = Modifier.fillMaxWidth().height(1.5.dp).background(Color.Black))
+
+                // Page-specific Item Rows
+                pageSlice.items.forEachIndexed { idx, item ->
+                    val absoluteIndex = pageSlice.itemStartIndex + idx + 1
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(IntrinsicSize.Min)
                     ) {
-                        Text("Item", modifier = Modifier.weight(2f).padding(vertical = 6.dp, horizontal = 4.dp), fontSize = 10.sp, fontWeight = FontWeight.Black, fontFamily = PoppinsFontFamily, textAlign = TextAlign.Center)
+                        Text(
+                            text = "$absoluteIndex. ${item.description}",
+                            modifier = Modifier.weight(2f).padding(6.dp),
+                            fontSize = 10.sp,
+                            fontFamily = PoppinsFontFamily
+                        )
                         Box(modifier = Modifier.width(1.5.dp).fillMaxHeight().background(Color.Black))
-                        Text("Amount/\nStudent head", modifier = Modifier.weight(1.3f).padding(vertical = 4.dp, horizontal = 2.dp), fontSize = 9.sp, fontWeight = FontWeight.Black, fontFamily = PoppinsFontFamily, textAlign = TextAlign.Center)
+                        Text(
+                            text = "₹${NumberToWordsIndian.formatINR(item.amountPerHead)}",
+                            modifier = Modifier.weight(1.3f).padding(6.dp),
+                            fontSize = 10.sp,
+                            fontFamily = PoppinsFontFamily,
+                            textAlign = TextAlign.Center
+                        )
                         Box(modifier = Modifier.width(1.5.dp).fillMaxHeight().background(Color.Black))
-                        Text("No. of\nStudents", modifier = Modifier.weight(1.1f).padding(vertical = 4.dp, horizontal = 2.dp), fontSize = 9.sp, fontWeight = FontWeight.Black, fontFamily = PoppinsFontFamily, textAlign = TextAlign.Center)
+                        Text(
+                            text = "${item.studentCount}",
+                            modifier = Modifier.weight(1.1f).padding(6.dp),
+                            fontSize = 10.sp,
+                            fontFamily = PoppinsFontFamily,
+                            textAlign = TextAlign.Center
+                        )
                         Box(modifier = Modifier.width(1.5.dp).fillMaxHeight().background(Color.Black))
-                        Text("Total Amount", modifier = Modifier.weight(1.4f).padding(vertical = 6.dp, horizontal = 4.dp), fontSize = 10.sp, fontWeight = FontWeight.Black, fontFamily = PoppinsFontFamily, textAlign = TextAlign.Center)
+                        Text(
+                            text = "₹${NumberToWordsIndian.formatINR(item.totalAmount)}",
+                            modifier = Modifier.weight(1.4f).padding(6.dp),
+                            fontSize = 10.sp,
+                            fontWeight = FontWeight.Bold,
+                            fontFamily = PoppinsFontFamily,
+                            textAlign = TextAlign.End
+                        )
                     }
+                }
 
-                    Box(modifier = Modifier.fillMaxWidth().height(1.5.dp).background(Color.Black))
+                // Filler space with vertical dividers
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(60.dp)
+                ) {
+                    Box(modifier = Modifier.weight(2f).fillMaxHeight())
+                    Box(modifier = Modifier.width(1.5.dp).fillMaxHeight().background(Color.Black))
+                    Box(modifier = Modifier.weight(1.3f).fillMaxHeight())
+                    Box(modifier = Modifier.width(1.5.dp).fillMaxHeight().background(Color.Black))
+                    Box(modifier = Modifier.weight(1.1f).fillMaxHeight())
+                    Box(modifier = Modifier.width(1.5.dp).fillMaxHeight().background(Color.Black))
+                    Box(modifier = Modifier.weight(1.4f).fillMaxHeight())
+                }
 
-                    // Rows with vertical dividers
-                    invoiceData.items.forEachIndexed { idx, item ->
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(IntrinsicSize.Min)
-                        ) {
-                            Text("${idx + 1}. ${item.description}", modifier = Modifier.weight(2f).padding(6.dp), fontSize = 10.sp, fontFamily = PoppinsFontFamily)
-                            Box(modifier = Modifier.width(1.5.dp).fillMaxHeight().background(Color.Black))
-                            Text("₹${NumberToWordsIndian.formatINR(item.amountPerHead)}", modifier = Modifier.weight(1.3f).padding(6.dp), fontSize = 10.sp, fontFamily = PoppinsFontFamily, textAlign = TextAlign.Center)
-                            Box(modifier = Modifier.width(1.5.dp).fillMaxHeight().background(Color.Black))
-                            Text("${item.studentCount}", modifier = Modifier.weight(1.1f).padding(6.dp), fontSize = 10.sp, fontFamily = PoppinsFontFamily, textAlign = TextAlign.Center)
-                            Box(modifier = Modifier.width(1.5.dp).fillMaxHeight().background(Color.Black))
-                            Text("₹${NumberToWordsIndian.formatINR(item.totalAmount)}", modifier = Modifier.weight(1.4f).padding(6.dp), fontSize = 10.sp, fontWeight = FontWeight.Bold, fontFamily = PoppinsFontFamily, textAlign = TextAlign.End)
-                        }
-                    }
-
-                    // Empty Filler Space with continuous vertical lines running all the way down
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(100.dp)
-                    ) {
-                        Box(modifier = Modifier.weight(2f).fillMaxHeight())
-                        Box(modifier = Modifier.width(1.5.dp).fillMaxHeight().background(Color.Black))
-                        Box(modifier = Modifier.weight(1.3f).fillMaxHeight())
-                        Box(modifier = Modifier.width(1.5.dp).fillMaxHeight().background(Color.Black))
-                        Box(modifier = Modifier.weight(1.1f).fillMaxHeight())
-                        Box(modifier = Modifier.width(1.5.dp).fillMaxHeight().background(Color.Black))
-                        Box(modifier = Modifier.weight(1.4f).fillMaxHeight())
-                    }
-
-                    // Table Footer Subtotal
-                    Box(modifier = Modifier.fillMaxWidth().height(1.5.dp).background(Color.Black))
+                // Table Footer
+                Box(modifier = Modifier.fillMaxWidth().height(1.5.dp).background(Color.Black))
+                if (pageSlice.showSummaryAndSignatures) {
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -347,12 +562,38 @@ fun InvoicePreviewScreen(
                             fontFamily = PoppinsFontFamily
                         )
                     }
+                } else {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .background(Color(0xFFF9FAFB))
+                            .padding(vertical = 4.dp, horizontal = 8.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = "Items continued on next page...",
+                            fontSize = 9.sp,
+                            fontWeight = FontWeight.Medium,
+                            fontFamily = PoppinsFontFamily,
+                            color = Color.DarkGray
+                        )
+                        Text(
+                            text = "Continued on Page ${pageSlice.pageNumber + 1} →",
+                            fontSize = 9.sp,
+                            fontWeight = FontWeight.Black,
+                            fontFamily = PoppinsFontFamily,
+                            color = Color.Black
+                        )
+                    }
                 }
             }
+        }
 
+        // 3. PAYMENT & LEGAL DETAILS (on final page)
+        if (pageSlice.showSummaryAndSignatures) {
             Spacer(modifier = Modifier.height(10.dp))
 
-            // 5. PAYMENT & LEGAL DETAILS
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -383,9 +624,9 @@ fun InvoicePreviewScreen(
                 )
             }
 
-            Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(20.dp))
 
-            // 6. SIGNATURE FOOTER
+            // 4. SIGNATURE FOOTER
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -413,7 +654,7 @@ fun InvoicePreviewScreen(
                     }
                 }
 
-                // Authorised Signatory with Signature Image
+                // Authorised Signatory
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier.weight(1f)
@@ -442,8 +683,38 @@ fun InvoicePreviewScreen(
                     }
                 }
             }
+        }
 
-            Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(10.dp))
+
+        // 5. BOTTOM PAGE FOOTER
+        Divider(color = Color(0xFFE5E7EB), thickness = 1.dp)
+        Spacer(modifier = Modifier.height(4.dp))
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = "RoboGyaan Invoice Suite • ${invoiceData.invoiceNo}",
+                fontSize = 9.sp,
+                fontWeight = FontWeight.Bold,
+                fontFamily = PoppinsFontFamily,
+                color = Color.Gray
+            )
+            Box(
+                modifier = Modifier
+                    .background(Color.Black, RoundedCornerShape(3.dp))
+                    .padding(horizontal = 6.dp, vertical = 2.dp)
+            ) {
+                Text(
+                    text = "PAGE ${pageSlice.pageNumber} OF ${pageSlice.totalPages}",
+                    fontSize = 8.sp,
+                    fontWeight = FontWeight.Black,
+                    fontFamily = PoppinsFontFamily,
+                    color = Color.White
+                )
+            }
         }
     }
 }

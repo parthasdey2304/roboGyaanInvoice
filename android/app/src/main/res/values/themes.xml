@@ -1,0 +1,7 @@
+<resources>
+    <style name="Theme.RoboGyaanInvoice" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:statusBarColor">#FFE600</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">#1E1E1E</item>
+    </style>
+</resources>

@@ -1,0 +1,7 @@
+<resources>
+    <color name="neo_yellow">#FFE600</color>
+    <color name="neo_black">#1E1E1E</color>
+    <color name="neo_orange">#FFA500</color>
+    <color name="neo_surface">#FFFFFF</color>
+    <color name="neo_gray">#F3F4F6</color>
+</resources>

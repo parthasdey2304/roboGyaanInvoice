@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { InvoiceData } from '../lib/types';
 import { defaultInvoiceData } from '../lib/defaultInvoice';
 import { InvoiceEditor } from '../components/InvoiceEditor';
@@ -8,6 +8,7 @@ import { InvoicePreview } from '../components/InvoicePreview';
 import { NeoBrutalButton } from '../components/NeoBrutalButton';
 import { HistorySidebar } from '../components/HistorySidebar';
 import { AuthGate } from '../components/AuthGate';
+import { autoSaveInvoice, getAutosavedDraft, AUTOSAVE_DRAFT_ID } from '../lib/firebase';
 import { Download, Printer, RotateCcw, Eye, Edit3, Columns, CheckCircle2, LogOut, ShieldCheck } from 'lucide-react';
 import { toPng } from 'html-to-image';
 import jsPDF from 'jspdf';
@@ -15,16 +16,85 @@ import jsPDF from 'jspdf';
 export default function InvoicePage() {
   const [invoiceData, setInvoiceData] = useState<InvoiceData>(defaultInvoiceData);
   const [activeInvoiceId, setActiveInvoiceId] = useState<string | null>(null);
+  const [autosaveStatus, setAutosaveStatus] = useState<'idle' | 'saving' | 'saved'>('idle');
   const [activeTab, setActiveTab] = useState<'split' | 'editor' | 'preview'>('split');
   const [isExporting, setIsExporting] = useState(false);
   const [exportSuccess, setExportSuccess] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const previewRef = useRef<HTMLDivElement>(null);
 
+  const isFirstRender = useRef(true);
+  const saveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const invoiceDataRef = useRef(invoiceData);
+  const activeInvoiceIdRef = useRef(activeInvoiceId);
+
+  invoiceDataRef.current = invoiceData;
+  activeInvoiceIdRef.current = activeInvoiceId;
+
+  // Restore autosaved draft on mount if available
+  useEffect(() => {
+    const draft = getAutosavedDraft();
+    if (draft && !activeInvoiceId) {
+      setInvoiceData(draft);
+      setActiveInvoiceId(AUTOSAVE_DRAFT_ID);
+    }
+  }, []);
+
+  // Debounced Autosave: any change is saved to Firestore without duplicate copies
+  useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
+
+    setAutosaveStatus('saving');
+
+    if (saveTimeoutRef.current) {
+      clearTimeout(saveTimeoutRef.current);
+    }
+
+    saveTimeoutRef.current = setTimeout(async () => {
+      try {
+        const savedId = await autoSaveInvoice(invoiceData, activeInvoiceId);
+        if (!activeInvoiceId) {
+          setActiveInvoiceId(savedId);
+        }
+        setAutosaveStatus('saved');
+        setTimeout(() => {
+          setAutosaveStatus((current) => (current === 'saved' ? 'idle' : current));
+        }, 2000);
+      } catch (err) {
+        console.error('Autosave error:', err);
+        setAutosaveStatus('idle');
+      }
+    }, 1000);
+
+    return () => {
+      if (saveTimeoutRef.current) {
+        clearTimeout(saveTimeoutRef.current);
+      }
+    };
+  }, [invoiceData, activeInvoiceId]);
+
+  // Flush pending changes before the tab closes or navigates away
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      autoSaveInvoice(invoiceDataRef.current, activeInvoiceIdRef.current);
+    };
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
+
   const handleReset = () => {
     if (confirm('Reset all fields to the default Robogyaan template values?')) {
       setInvoiceData(defaultInvoiceData);
       setActiveInvoiceId(null);
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('robogyaan_invoice_autosave_draft');
+      }
+      autoSaveInvoice(defaultInvoiceData, AUTOSAVE_DRAFT_ID);
     }
   };
 
@@ -259,6 +329,20 @@ export default function InvoicePage() {
                   <span>Editing Loaded Invoice:</span>
                   <span className="font-black underline">{invoiceData.invoiceNo}</span>
                 </div>
+              )}
+            </div>
+
+            {/* GREEN SAVING INDICATOR AS ANNOTATED BY USER IN MEDIA */}
+            <div className="flex items-center justify-center min-h-[28px] px-2">
+              {autosaveStatus === 'saving' && (
+                <span className="font-virgil font-black text-[#16a34a] text-base sm:text-lg tracking-wider animate-pulse flex items-center gap-1">
+                  Saving....
+                </span>
+              )}
+              {autosaveStatus === 'saved' && (
+                <span className="font-virgil font-black text-[#16a34a]/85 text-xs sm:text-sm tracking-wider flex items-center gap-1">
+                  ✓ Saved
+                </span>
               )}
             </div>
 

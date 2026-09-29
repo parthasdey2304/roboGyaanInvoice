@@ -87,6 +87,41 @@ fun MainScreen(
     var isGeneratingPdf by remember { mutableStateOf(false) }
     var isHistoryOpen by remember { mutableStateOf(false) }
     var activeInvoiceId by remember { mutableStateOf<String?>(null) }
+    var autosaveStatus by remember { mutableStateOf("idle") }
+    var isFirstLaunch by remember { mutableStateOf(true) }
+
+    // Restore cached autosave draft on launch if available and currently on default
+    LaunchedEffect(Unit) {
+        val cached = com.robogyaan.invoice.data.FirebaseFirestoreService.getCachedHistory(context)
+        val draft = cached.find { it.id == "autosave_working_draft" }
+        if (draft != null && invoiceData.invoiceNo == "RG/2024-25/084") {
+            invoiceViewModel.setInvoiceData(draft.invoiceData)
+            activeInvoiceId = "autosave_working_draft"
+        }
+    }
+
+    // Debounced Autosave to Firestore without creating duplicate copies
+    LaunchedEffect(invoiceData) {
+        if (isFirstLaunch) {
+            isFirstLaunch = false
+            return@LaunchedEffect
+        }
+        autosaveStatus = "saving"
+        kotlinx.coroutines.delay(1000)
+        val savedId = com.robogyaan.invoice.data.FirebaseFirestoreService.autosaveDraft(
+            context = context,
+            invoiceData = invoiceData,
+            activeId = activeInvoiceId
+        )
+        if (activeInvoiceId == null) {
+            activeInvoiceId = savedId
+        }
+        autosaveStatus = "saved"
+        kotlinx.coroutines.delay(2000)
+        if (autosaveStatus == "saved") {
+            autosaveStatus = "idle"
+        }
+    }
 
     fun exportAndSharePdf() {
         coroutineScope.launch {
@@ -330,6 +365,30 @@ fun MainScreen(
                                     fontSize = 8.sp
                                 )
                             }
+                        }
+                    }
+
+                    // Green Autosave Indicator in Virgil Font
+                    Box(
+                        modifier = Modifier.padding(horizontal = 4.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        if (autosaveStatus == "saving") {
+                            Text(
+                                text = "Saving....",
+                                color = Color(0xFF16A34A),
+                                fontFamily = VirgilFontFamily,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 12.sp
+                            )
+                        } else if (autosaveStatus == "saved") {
+                            Text(
+                                text = "✓ Saved",
+                                color = Color(0xFF16A34A).copy(alpha = 0.85f),
+                                fontFamily = VirgilFontFamily,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 10.sp
+                            )
                         }
                     }
 

@@ -56,6 +56,8 @@ object AuthPreferences {
         return inputEmail.trim().equals(ADMIN_EMAIL, ignoreCase = true) &&
                 hashPassword(inputPass) == ADMIN_PASSWORD_HASH
     }
+
+    fun isLoggedIn(context: Context): Boolean {
         val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
         return prefs.getBoolean(KEY_IS_LOGGED_IN, false)
     }

@@ -16,10 +16,11 @@ local.properties
 *.iml
 .DS_Store
 
-# Scratch
+# Scratch & Secrets
 *.log
 *.apk
 .vercel
 .env*
+!.env.example
 *.env
 release_notes*.md

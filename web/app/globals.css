@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Virgil';
+  src: url('/fonts/Virgil.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-virgil: 'Virgil', 'Comic Sans MS', cursive, sans-serif;
+  --color-neo-yellow: #FFE600;
+  --color-neo-yellow-hover: #FFDD00;
+  --color-neo-orange: #FFA500;
+  --color-neo-black: #1E1E1E;
+  --color-neo-dark: #121212;
+  --color-neo-surface: #FFFFFF;
+  --color-neo-gray: #F3F4F6;
+  --color-neo-badge-gray: #E2E8F0;
+  --shadow-neo: 4px 4px 0px #000000;
+  --shadow-neo-sm: 2px 2px 0px #000000;
+  --shadow-neo-lg: 6px 6px 0px #000000;
+}
+
+:root {
+  --background: #FFFDF0;
+  --foreground: #1E1E1E;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-virgil);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Neo-Brutalist Component Helpers */
+.neo-card {
+  border: 2px solid #000000;
+  box-shadow: 4px 4px 0px #000000;
+  border-radius: 8px;
+  background-color: #FFFFFF;
+  transition: all 0.15s ease-in-out;
+}
+
+.neo-card-yellow {
+  border: 2px solid #000000;
+  box-shadow: 4px 4px 0px #000000;
+  border-radius: 8px;
+  background-color: #FFE600;
+  transition: all 0.15s ease-in-out;
+}
+
+.neo-card-dark {
+  border: 2px solid #000000;
+  box-shadow: 4px 4px 0px #000000;
+  border-radius: 8px;
+  background-color: #1E1E1E;
+  color: #FFFFFF;
+  transition: all 0.15s ease-in-out;
+}
+
+.neo-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  border: 2px solid #000000;
+  box-shadow: 4px 4px 0px #000000;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+.neo-btn:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0px #000000;
+}
+
+.neo-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px #000000;
+}
+
+.neo-input {
+  border: 2px solid #000000;
+  box-shadow: 3px 3px 0px #000000;
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  background-color: #FFFFFF;
+  font-family: inherit;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.neo-input:focus {
+  border-color: #000000;
+  box-shadow: 4px 4px 0px #FFE600;
+}
+
+/* Print Specific Rules for Pixel-Perfect A4 Export */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  html, body {
+    width: 210mm;
+    height: 297mm;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #FFFFFF !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-invoice-sheet {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 210mm !important;
+    min-height: 297mm !important;
+    margin: 0 !important;
+    padding: 12mm 14mm !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: #FFFFFF !important;
+  }
+}

@@ -36,6 +36,9 @@ export default function InvoicePage() {
   const [isExporting, setIsExporting] = useState(false);
   const [exportSuccess, setExportSuccess] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [previewPage, setPreviewPage] = useState<number | 'all'>('all');
+  const [totalPages, setTotalPages] = useState<number>(1);
+  const [isPdfExporting, setIsPdfExporting] = useState<boolean>(false);
   const previewRef = useRef<HTMLDivElement>(null);
 
   const isFirstRender = useRef(true);
@@ -130,17 +133,18 @@ export default function InvoicePage() {
     if (!previewRef.current) return;
     try {
       setIsExporting(true);
-      const invoiceElement = previewRef.current;
+      setIsPdfExporting(true);
 
-      // Render high-res image at 2.5x scale using native browser vector engine
-      const dataUrl = await toPng(invoiceElement, {
-        quality: 0.98,
-        pixelRatio: 2.5,
-        backgroundColor: '#FFFFFF',
-        cacheBust: true,
-      });
+      // Give React time to ensure all pages are in DOM for capture
+      await new Promise((resolve) => setTimeout(resolve, 150));
 
-      // A4 dimensions in mm: 210 x 297
+      const container = previewRef.current;
+      const pageElements = container.querySelectorAll<HTMLElement>('.print-invoice-page');
+
+      if (!pageElements || pageElements.length === 0) {
+        throw new Error('No invoice pages found to export');
+      }
+
       const pdf = new jsPDF({
         orientation: 'portrait',
         unit: 'mm',
@@ -148,9 +152,31 @@ export default function InvoicePage() {
       });
 
       const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = (invoiceElement.offsetHeight * pdfWidth) / invoiceElement.offsetWidth;
+      const pdfHeight = pdf.internal.pageSize.getHeight();
 
-      pdf.addImage(dataUrl, 'PNG', 0, 0, pdfWidth, Math.min(pdfHeight, 297));
+      for (let i = 0; i < pageElements.length; i++) {
+        const pageEl = pageElements[i];
+
+        // Temporarily ensure element is displayed during capture
+        const prevDisplay = pageEl.style.display;
+        pageEl.style.display = 'flex';
+
+        const dataUrl = await toPng(pageEl, {
+          quality: 0.98,
+          pixelRatio: 2.5,
+          backgroundColor: '#FFFFFF',
+          cacheBust: true,
+        });
+
+        pageEl.style.display = prevDisplay;
+
+        if (i > 0) {
+          pdf.addPage('a4', 'portrait');
+        }
+
+        pdf.addImage(dataUrl, 'PNG', 0, 0, pdfWidth, pdfHeight);
+      }
+
       pdf.save(`Invoice_${invoiceData.invoiceNo.replace(/[^a-zA-Z0-9_-]/g, '_')}.pdf`);
 
       setExportSuccess(true);
@@ -159,6 +185,7 @@ export default function InvoicePage() {
       console.error('PDF generation error, opening print dialog:', err);
       window.print();
     } finally {
+      setIsPdfExporting(false);
       setIsExporting(false);
     }
   };
@@ -427,20 +454,54 @@ export default function InvoicePage() {
                       : 'max-w-4xl mx-auto w-full'
                   }`}
                 >
-                  <div className="no-print flex items-center justify-between mb-4">
+                  <div className="no-print flex items-center justify-between mb-4 flex-wrap gap-3">
                     <div>
                       <h2 className="text-xl font-black text-black flex items-center gap-2">
                         Live A4 Preview
                         <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse inline-block" />
                       </h2>
                       <p className="text-xs text-neutral-600 font-medium">
-                        Strict Robogyaan template with Virgil font and high-res vector rendering.
+                        Multi-page A4 layout &bull; Dynamic page breaks with authentic Robogyaan fidelity.
                       </p>
+                    </div>
+
+                    {/* Page Selector Dropdown */}
+                    <div className="flex items-center gap-2 bg-white border-2 border-black rounded-lg px-3 py-1 shadow-[2px_2px_0px_#000000]">
+                      <label htmlFor="preview-page-select" className="text-xs font-black uppercase text-black shrink-0">
+                        Page:
+                      </label>
+                      <select
+                        id="preview-page-select"
+                        value={previewPage}
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          setPreviewPage(val === 'all' ? 'all' : parseInt(val, 10));
+                        }}
+                        className="bg-transparent text-xs font-black text-black py-0.5 pr-2 focus:outline-none cursor-pointer"
+                      >
+                        <option value="all">All Pages ({totalPages})</option>
+                        {Array.from({ length: totalPages }, (_, i) => (
+                          <option key={i} value={i}>
+                            Page {i + 1} of {totalPages}
+                          </option>
+                        ))}
+                      </select>
                     </div>
                   </div>
 
                   <div className="lg:sticky lg:top-24 overflow-x-auto pb-8">
-                    <InvoicePreview ref={previewRef} data={invoiceData} />
+                    <InvoicePreview
+                      ref={previewRef}
+                      data={invoiceData}
+                      selectedPage={isPdfExporting ? 'all' : previewPage}
+                      onTotalPagesChange={(count) => {
+                        setTotalPages(count);
+                        if (typeof previewPage === 'number' && previewPage >= count) {
+                          setPreviewPage('all');
+                        }
+                      }}
+                      forceShowAllForExport={isPdfExporting}
+                    />
                   </div>
                 </div>
               )}

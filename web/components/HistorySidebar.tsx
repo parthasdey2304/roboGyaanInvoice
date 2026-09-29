@@ -10,6 +10,7 @@ import {
   deleteInvoiceHistoryEntry 
 } from '../lib/firebase';
 import { formatINR } from '../lib/numberToWordsIndian';
+import { NeoBrutalModal } from './NeoBrutalModal';
 import { 
   X, 
   Cloud, 
@@ -47,6 +48,7 @@ export const HistorySidebar: React.FC<HistorySidebarProps> = ({
   const [promptText, setPromptText] = useState('');
   const [showSavePrompt, setShowSavePrompt] = useState(false);
   const [saveSuccessMessage, setSaveSuccessMessage] = useState<string | null>(null);
+  const [deleteCandidateId, setDeleteCandidateId] = useState<string | null>(null);
 
   // In-line editing state for a history item
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -127,12 +129,20 @@ export const HistorySidebar: React.FC<HistorySidebarProps> = ({
     }
   };
 
-  const handleDelete = async (id?: string) => {
-    if (!id) return;
-    if (confirm('Delete this invoice prompt from Firebase Firestore?')) {
-      await deleteInvoiceHistoryEntry(id);
-      setHistory((prev) => prev.filter((item) => item.id !== id));
+  const handleDeleteClick = (id?: string) => {
+    if (id) setDeleteCandidateId(id);
+  };
+
+  const confirmDeletePrompt = async () => {
+    if (!deleteCandidateId) return;
+    try {
+      await deleteInvoiceHistoryEntry(deleteCandidateId);
+      setHistory((prev) => prev.filter((item) => item.id !== deleteCandidateId));
       showToast('Deleted invoice from Firestore');
+    } catch (err) {
+      console.error('Delete error:', err);
+    } finally {
+      setDeleteCandidateId(null);
     }
   };
 
@@ -381,7 +391,7 @@ export const HistorySidebar: React.FC<HistorySidebarProps> = ({
 
                       {/* Delete button */}
                       <button
-                        onClick={() => handleDelete(entry.id)}
+                        onClick={() => handleDeleteClick(entry.id)}
                         className="p-1 text-red-600 hover:text-red-800 hover:bg-red-50 rounded border border-transparent hover:border-red-400 transition"
                         title="Delete from Firestore"
                       >
@@ -400,6 +410,19 @@ export const HistorySidebar: React.FC<HistorySidebarProps> = ({
           </div>
         </div>
       </div>
+
+      {/* NEO-BRUTALIST DELETE CONFIRMATION MODAL */}
+      <NeoBrutalModal
+        isOpen={!!deleteCandidateId}
+        onClose={() => setDeleteCandidateId(null)}
+        onConfirm={confirmDeletePrompt}
+        title="Delete Prompt"
+        message="Are you sure you want to permanently delete this invoice prompt from Firebase Firestore? This action cannot be undone."
+        confirmText="Delete Forever"
+        cancelText="Cancel"
+        variant="danger"
+        type="confirm"
+      />
     </div>
   );
 };

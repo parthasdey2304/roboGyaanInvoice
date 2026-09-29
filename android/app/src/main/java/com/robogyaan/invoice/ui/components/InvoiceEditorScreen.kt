@@ -17,6 +17,10 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -40,6 +44,7 @@ fun InvoiceEditorScreen(
     viewModel: InvoiceViewModel,
     modifier: Modifier = Modifier
 ) {
+    var showResetDialog by remember { mutableStateOf(false) }
     LazyColumn(
         modifier = modifier
             .fillMaxSize()
@@ -372,7 +377,7 @@ fun InvoiceEditorScreen(
                 ) {
                     NeoBrutalButton(
                         text = "Reset to Defaults",
-                        onClick = { viewModel.resetToDefaults() },
+                        onClick = { showResetDialog = true },
                         backgroundColor = Color.White,
                         icon = { Icon(Icons.Default.Refresh, contentDescription = "Reset", modifier = Modifier.size(16.dp)) }
                     )
@@ -384,4 +389,16 @@ fun InvoiceEditorScreen(
             Spacer(modifier = Modifier.height(20.dp))
         }
     }
+
+    // NEO-BRUTALIST RESET DIALOG
+    NeoBrutalAlertDialog(
+        isOpen = showResetDialog,
+        onDismiss = { showResetDialog = false },
+        onConfirm = { viewModel.resetToDefaults() },
+        title = "Reset Template",
+        message = "Reset all fields to the default Robogyaan template values? Any current edits will be cleared.",
+        confirmText = "Yes, Reset",
+        cancelText = "Cancel",
+        isDanger = false
+    )
 }

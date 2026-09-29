@@ -125,57 +125,104 @@ export default function InvoicePage() {
     });
   };
 
-  const handlePrint = () => {
-    window.print();
+  const generatePdfInstance = async (): Promise<jsPDF | null> => {
+    if (!previewRef.current) return null;
+    setIsExporting(true);
+    setIsPdfExporting(true);
+
+    // Give React time to ensure all pages are in DOM for capture
+    await new Promise((resolve) => setTimeout(resolve, 150));
+
+    const container = previewRef.current;
+    const pageElements = container.querySelectorAll<HTMLElement>('.print-invoice-page');
+
+    if (!pageElements || pageElements.length === 0) {
+      throw new Error('No invoice pages found to export');
+    }
+
+    const pdf = new jsPDF({
+      orientation: 'portrait',
+      unit: 'mm',
+      format: 'a4',
+    });
+
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = pdf.internal.pageSize.getHeight();
+
+    for (let i = 0; i < pageElements.length; i++) {
+      const pageEl = pageElements[i];
+
+      // Temporarily ensure element is displayed during capture
+      const prevDisplay = pageEl.style.display;
+      pageEl.style.display = 'flex';
+
+      const dataUrl = await toPng(pageEl, {
+        quality: 0.98,
+        pixelRatio: 2.5,
+        backgroundColor: '#FFFFFF',
+        cacheBust: true,
+      });
+
+      pageEl.style.display = prevDisplay;
+
+      if (i > 0) {
+        pdf.addPage('a4', 'portrait');
+      }
+
+      pdf.addImage(dataUrl, 'PNG', 0, 0, pdfWidth, pdfHeight);
+    }
+
+    return pdf;
+  };
+
+  const handlePrint = async () => {
+    try {
+      const pdf = await generatePdfInstance();
+      if (!pdf) {
+        window.print();
+        return;
+      }
+
+      // Print the exact vector/high-res PDF directly
+      const blob = pdf.output('blob');
+      const blobUrl = URL.createObjectURL(blob);
+      const printIframe = document.createElement('iframe');
+      printIframe.style.position = 'fixed';
+      printIframe.style.right = '0';
+      printIframe.style.bottom = '0';
+      printIframe.style.width = '0';
+      printIframe.style.height = '0';
+      printIframe.style.border = '0';
+      printIframe.src = blobUrl;
+      document.body.appendChild(printIframe);
+
+      printIframe.onload = () => {
+        try {
+          printIframe.contentWindow?.focus();
+          printIframe.contentWindow?.print();
+        } catch {
+          window.print();
+        }
+        setTimeout(() => {
+          try {
+            document.body.removeChild(printIframe);
+            URL.revokeObjectURL(blobUrl);
+          } catch {}
+        }, 60000);
+      };
+    } catch (err) {
+      console.error('Print generation error, fallback to window.print():', err);
+      window.print();
+    } finally {
+      setIsPdfExporting(false);
+      setIsExporting(false);
+    }
   };
 
   const handleDownloadPdf = async () => {
-    if (!previewRef.current) return;
     try {
-      setIsExporting(true);
-      setIsPdfExporting(true);
-
-      // Give React time to ensure all pages are in DOM for capture
-      await new Promise((resolve) => setTimeout(resolve, 150));
-
-      const container = previewRef.current;
-      const pageElements = container.querySelectorAll<HTMLElement>('.print-invoice-page');
-
-      if (!pageElements || pageElements.length === 0) {
-        throw new Error('No invoice pages found to export');
-      }
-
-      const pdf = new jsPDF({
-        orientation: 'portrait',
-        unit: 'mm',
-        format: 'a4',
-      });
-
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = pdf.internal.pageSize.getHeight();
-
-      for (let i = 0; i < pageElements.length; i++) {
-        const pageEl = pageElements[i];
-
-        // Temporarily ensure element is displayed during capture
-        const prevDisplay = pageEl.style.display;
-        pageEl.style.display = 'flex';
-
-        const dataUrl = await toPng(pageEl, {
-          quality: 0.98,
-          pixelRatio: 2.5,
-          backgroundColor: '#FFFFFF',
-          cacheBust: true,
-        });
-
-        pageEl.style.display = prevDisplay;
-
-        if (i > 0) {
-          pdf.addPage('a4', 'portrait');
-        }
-
-        pdf.addImage(dataUrl, 'PNG', 0, 0, pdfWidth, pdfHeight);
-      }
+      const pdf = await generatePdfInstance();
+      if (!pdf) return;
 
       pdf.save(`Invoice_${invoiceData.invoiceNo.replace(/[^a-zA-Z0-9_-]/g, '_')}.pdf`);
 
@@ -415,9 +462,9 @@ export default function InvoicePage() {
           </div>
 
           {/* MAIN CONTENT AREA */}
-          <div className="flex-1 max-w-7xl mx-auto w-full p-4 sm:p-6">
+          <div className="flex-1 max-w-7xl mx-auto w-full p-4 sm:p-6 print:p-0 print:m-0 print:max-w-none">
             <div
-              className={`grid gap-8 ${
+              className={`grid gap-8 print:block print:p-0 print:m-0 ${
                 activeTab === 'split'
                   ? 'grid-cols-1 lg:grid-cols-12'
                   : 'grid-cols-1'
@@ -489,7 +536,7 @@ export default function InvoicePage() {
                     </div>
                   </div>
 
-                  <div className="lg:sticky lg:top-24 overflow-x-auto pb-8">
+                  <div className="lg:sticky lg:top-24 overflow-x-auto pb-8 print:p-0 print:m-0 print:overflow-visible print:static">
                     <InvoicePreview
                       ref={previewRef}
                       data={invoiceData}

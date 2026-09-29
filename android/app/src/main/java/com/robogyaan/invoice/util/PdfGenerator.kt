@@ -141,7 +141,7 @@ object PdfGenerator {
                 canvas.drawRoundRect(billToPill, 9f, 9f, pillPaint)
                 blackPaint.textSize = 10f
                 blackPaint.isFakeBoldText = true
-                canvas.drawText("BILL To :", margin + 14f, currentY + 13f, blackPaint)
+                canvas.drawText("BILL To:", margin + 14f, currentY + 13f, blackPaint)
 
                 blackPaint.textSize = 11f
                 canvas.drawText(data.billedTo.name, margin, currentY + 34f, blackPaint)
@@ -156,7 +156,7 @@ object PdfGenerator {
                 canvas.drawRoundRect(fromPill, 9f, 9f, pillPaint)
                 blackPaint.textSize = 10f
                 blackPaint.isFakeBoldText = true
-                canvas.drawText("From :", fromX + 14f, currentY + 13f, blackPaint)
+                canvas.drawText("From:", fromX + 14f, currentY + 13f, blackPaint)
 
                 blackPaint.textSize = 11f
                 canvas.drawText(data.from.company, fromX, currentY + 34f, blackPaint)
@@ -197,41 +197,71 @@ object PdfGenerator {
 
                 currentY += 54f
             } else {
-                // Continuation Header
+                // Continuation Header (Matching Page 1 geometry and user's sketch)
                 val logoBitmap = BitmapFactory.decodeResource(context.resources, R.drawable.ic_robogyaan_logo)
                 if (logoBitmap != null) {
-                    val logoWidth = 100f
+                    val logoWidth = 130f
                     val logoHeight = (logoBitmap.height * logoWidth) / logoBitmap.width
                     val dstRect = RectF(margin, currentY, margin + logoWidth, currentY + logoHeight)
                     canvas.drawBitmap(logoBitmap, null, dstRect, blackPaint)
                 }
 
-                // Page X of Y Badge
-                val pageBadgeRect = RectF(margin + 110f, currentY + 4f, margin + 200f, currentY + 22f)
-                val blackBg = Paint().apply { color = Color.BLACK; style = Paint.Style.FILL }
-                canvas.drawRoundRect(pageBadgeRect, 4f, 4f, blackBg)
+                // Top Right Geometric Blocks
+                val blockWidth = 230f
 
-                val badgeYellowText = Paint().apply {
-                    color = Color.parseColor("#FFE600")
-                    typeface = poppinsSemiBold
-                    textSize = 8.5f
-                    isFakeBoldText = true
-                    textAlign = Paint.Align.CENTER
-                    isAntiAlias = true
+                // Black Polygon
+                val blackPath = Path().apply {
+                    moveTo(rightX - blockWidth + 24f, currentY + 5f)
+                    lineTo(rightX, currentY + 5f)
+                    lineTo(rightX, currentY + 32f)
+                    lineTo(rightX - blockWidth, currentY + 32f)
+                    close()
                 }
-                canvas.drawText("PAGE ${pageSlice.pageNumber} OF ${pageSlice.totalPages}", pageBadgeRect.centerX(), currentY + 16f, badgeYellowText)
+                val blackFill = Paint().apply { color = Color.parseColor("#121212"); style = Paint.Style.FILL }
+                canvas.drawPath(blackPath, blackFill)
 
-                // Invoice # & Client on right
-                val rightText = Paint().apply {
+                val whiteTextCont = Paint().apply {
+                    color = Color.WHITE
+                    typeface = poppinsSemiBold
+                    textSize = 10f
+                    isFakeBoldText = true
+                    isAntiAlias = true
+                    textAlign = Paint.Align.RIGHT
+                }
+                canvas.drawText("Invoice No. : ${data.invoiceNo}", rightX - 12f, currentY + 23f, whiteTextCont)
+
+                // Orange Badge for PAGE X OF Y
+                val orangePath = Path().apply {
+                    moveTo(rightX - blockWidth + 40f, currentY + 36f)
+                    lineTo(rightX, currentY + 36f)
+                    lineTo(rightX, currentY + 58f)
+                    lineTo(rightX - blockWidth + 20f, currentY + 58f)
+                    close()
+                }
+                val orangeFill = Paint().apply { color = Color.parseColor("#FFA500"); style = Paint.Style.FILL }
+                canvas.drawPath(orangePath, orangeFill)
+
+                val badgeText = Paint().apply {
                     color = Color.BLACK
                     typeface = poppinsSemiBold
                     textSize = 9.5f
+                    isFakeBoldText = true
+                    isAntiAlias = true
+                    textAlign = Paint.Align.RIGHT
+                }
+                canvas.drawText("PAGE ${pageSlice.pageNumber} OF ${pageSlice.totalPages}", rightX - 12f, currentY + 51f, badgeText)
+
+                // Client name below badge
+                val clientText = Paint().apply {
+                    color = Color.parseColor("#4B5563")
+                    typeface = poppinsSemiBold
+                    textSize = 9f
                     textAlign = Paint.Align.RIGHT
                     isAntiAlias = true
                 }
-                canvas.drawText("Invoice #${data.invoiceNo} • ${data.billedTo.name}", rightX, currentY + 18f, rightText)
+                canvas.drawText(data.billedTo.name, rightX, currentY + 70f, clientText)
 
-                currentY += 34f
+                currentY += 76f
 
                 val linePaint = Paint().apply { color = Color.parseColor("#D1D5DB"); strokeWidth = 1f }
                 canvas.drawLine(margin, currentY, rightX, currentY, linePaint)

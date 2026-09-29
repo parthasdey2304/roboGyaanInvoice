@@ -38,7 +38,7 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(
     }, [pages.length, onTotalPagesChange]);
 
     return (
-      <div ref={ref} className="w-full flex flex-col items-center gap-8 py-2 sm:py-4">
+      <div ref={ref} className="invoice-preview-container w-full flex flex-col items-center gap-8 py-2 sm:py-4 print:p-0 print:m-0 print:gap-0 print:block">
         {pages.map((pageSlice: InvoicePageSlice, pageIndex: number) => {
           const isVisibleOnScreen =
             forceShowAllForExport ||
@@ -96,8 +96,8 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(
                     {/* SENDER & RECIPIENT BLOCKS */}
                     <div className="grid grid-cols-2 gap-6 my-4 text-xs sm:text-sm leading-relaxed">
                       <div>
-                        <div className="inline-block bg-[#E5E7EB] text-black px-4 py-0.5 rounded-full font-bold text-xs sm:text-sm mb-2 shadow-sm border border-neutral-300">
-                          BILL To :
+                        <div className="inline-flex items-center whitespace-nowrap bg-[#E5E7EB] text-black px-4 py-0.5 rounded-full font-bold text-xs sm:text-sm mb-2 shadow-sm border border-neutral-300">
+                          BILL To:
                         </div>
                         <div className="font-bold text-sm sm:text-base tracking-wide uppercase text-neutral-900 mt-1">
                           {data.billedTo.name || 'CLIENT / SCHOOL NAME'}
@@ -109,8 +109,8 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(
                       </div>
 
                       <div>
-                        <div className="inline-block bg-[#E5E7EB] text-black px-4 py-0.5 rounded-full font-bold text-xs sm:text-sm mb-2 shadow-sm border border-neutral-300">
-                          From :
+                        <div className="inline-flex items-center whitespace-nowrap bg-[#E5E7EB] text-black px-4 py-0.5 rounded-full font-bold text-xs sm:text-sm mb-2 shadow-sm border border-neutral-300">
+                          From:
                         </div>
                         <div className="font-bold text-sm sm:text-base tracking-wide uppercase text-neutral-900 mt-1">
                           {data.from.company}
@@ -164,24 +164,38 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(
                 ) : (
                   // Continuation Page Header
                   <div>
-                    <div className="flex items-center justify-between pb-2 mb-2">
-                      <div className="flex items-center gap-3">
+                    <div className="flex items-start justify-between relative mb-2">
+                      <div className="pt-1">
                         <RobogyaanLogo />
-                        <span className="text-[11px] font-black tracking-wider bg-black text-[#FFE600] px-2 py-0.5 rounded">
-                          PAGE {pageSlice.pageNumber} OF {pageSlice.totalPages}
-                        </span>
                       </div>
 
-                      <div className="flex items-center gap-2 text-right">
-                        <div className="bg-[#121212] text-white py-1 px-4 rounded text-xs font-bold">
-                          Invoice #{data.invoiceNo}
+                      <div className="flex flex-col items-end gap-1.5 w-7/12 max-w-[340px]">
+                        <div
+                          className="bg-[#121212] text-white py-1.5 px-6 font-bold text-xs sm:text-sm tracking-wide text-right w-full whitespace-nowrap"
+                          style={{
+                            clipPath: 'polygon(12% 0, 100% 0, 100% 100%, 0% 100%)',
+                          }}
+                        >
+                          <span className="opacity-90">Invoice No. : </span>
+                          <span className="font-extrabold">{data.invoiceNo}</span>
                         </div>
-                        <div className="text-xs text-neutral-600 font-semibold hidden sm:block">
+
+                        <div
+                          className="bg-[#FFA500] text-black py-1 px-5 font-bold text-xs sm:text-sm tracking-wide text-right w-10/12 whitespace-nowrap"
+                          style={{
+                            clipPath: 'polygon(14% 0, 100% 0, 100% 100%, 0% 100%)',
+                          }}
+                        >
+                          <span className="font-extrabold">PAGE {pageSlice.pageNumber} OF {pageSlice.totalPages}</span>
+                        </div>
+
+                        <div className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-neutral-600 text-right pr-1 truncate max-w-full">
                           {data.billedTo.name}
                         </div>
                       </div>
                     </div>
-                    <hr className="border-t-[1.5px] border-neutral-300 mb-3" />
+
+                    <hr className="border-t-[1.5px] border-neutral-300 my-3" />
                   </div>
                 )}
 

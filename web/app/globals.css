@@ -118,27 +118,52 @@ body {
 @media print {
   @page {
     size: A4 portrait;
-    margin: 0;
+    margin: 0 !important;
   }
 
   html, body {
-    width: 210mm;
+    width: 210mm !important;
+    height: auto !important;
     margin: 0 !important;
     padding: 0 !important;
     background: #FFFFFF !important;
+    overflow: visible !important;
     font-family: var(--font-poppins), 'Poppins', sans-serif !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
 
-  .no-print {
+  header, footer, nav, aside, .no-print {
     display: none !important;
+  }
+
+  /* Reset outer layout wrappers so they don't introduce padding, gaps or margins in print */
+  body > div,
+  main,
+  div[class*="max-w-7xl"],
+  div[class*="grid"] {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    display: block !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  .invoice-preview-container {
+    padding: 0 !important;
+    margin: 0 !important;
+    gap: 0 !important;
+    display: block !important;
+    width: 210mm !important;
   }
 
   .print-invoice-page {
     width: 210mm !important;
     min-height: 297mm !important;
     max-height: 297mm !important;
+    height: 297mm !important;
     box-sizing: border-box !important;
     margin: 0 !important;
     padding: 12mm 14mm !important;
@@ -149,11 +174,21 @@ body {
     page-break-after: always !important;
     break-after: page !important;
     display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 
   .print-invoice-page:last-child {
     page-break-after: avoid !important;
     break-after: avoid !important;
   }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
 }
+
 

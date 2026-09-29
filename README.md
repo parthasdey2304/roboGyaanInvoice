@@ -1,8 +1,16 @@
 # RoboGyaan Invoice Generation Suite
 
+[![Vercel Deployment](https://img.shields.io/badge/Vercel-Live_Web_App-000000?style=for-the-badge&logo=vercel)](https://robogyaan-invoice.vercel.app)
+[![Android APK Release](https://img.shields.io/badge/Android_APK-v1.0.0_Download-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/parthasdey2304/roboGyaanInvoice/releases/download/v1.0.0/robogyaan-invoice-v1.0.0.apk)
+[![GitHub Release](https://img.shields.io/badge/GitHub-Release_Notes-181717?style=for-the-badge&logo=github)](https://github.com/parthasdey2304/roboGyaanInvoice/releases/tag/v1.0.0)
+
 A dual-platform invoice generation system for **RoboGyaan**:
 1. **Next.js 14+ (App Router)** web application with real-time live preview, responsive split-screen layout, and high-fidelity PDF export / print engine.
 2. **Native Android Application** written in Kotlin using **Jetpack Compose (Material 3)**, reactive `StateFlow` ViewModel, and native vector A4 PDF generation via `android.graphics.pdf.PdfDocument`.
+
+- 🌐 **Live Web Application:** [https://robogyaan-invoice.vercel.app](https://robogyaan-invoice.vercel.app)
+- 📱 **Android APK Download:** [robogyaan-invoice-v1.0.0.apk](https://github.com/parthasdey2304/roboGyaanInvoice/releases/download/v1.0.0/robogyaan-invoice-v1.0.0.apk)
+- 📦 **GitHub Release Notes:** [v1.0.0 Release](https://github.com/parthasdey2304/roboGyaanInvoice/releases/tag/v1.0.0)
 
 Both platforms strictly adhere to a **Neo-Brutalist** design language with the hand-drawn **Virgil / Excalidraw** aesthetic, high-contrast black borders with asymmetric hard drop shadows, a vibrant yellow primary palette, and an exact replica of the official RoboGyaan invoice structure.
 

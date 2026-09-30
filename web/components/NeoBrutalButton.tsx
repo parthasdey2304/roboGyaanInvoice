@@ -18,7 +18,7 @@ export const NeoBrutalButton: React.FC<NeoBrutalButtonProps> = ({
 }) => {
   const variantStyles = {
     yellow: 'bg-[#FFE600] hover:bg-[#FFDD00] text-black border-black',
-    white: 'bg-white hover:bg-neutral-100 text-black border-black',
+    white: 'bg-white hover:bg-neutral-100 text-black border-black dark:bg-[#27272a] dark:text-white dark:border-neutral-600 dark:hover:bg-[#323238]',
     dark: 'bg-[#1E1E1E] hover:bg-black text-white border-black',
     orange: 'bg-[#FFA500] hover:bg-[#FF9100] text-black border-black',
     danger: 'bg-[#FF4D4D] hover:bg-[#E03A3A] text-white border-black',

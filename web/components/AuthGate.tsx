@@ -17,13 +17,20 @@ export const AuthGate: React.FC<AuthGateProps> = ({ children }) => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [hashingProgress, setHashingProgress] = useState<boolean>(false);
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
   // Load theme and check existing session on load
   useEffect(() => {
     const savedTheme = localStorage.getItem('robogyaan_theme') as 'light' | 'dark' | null;
     if (savedTheme) {
       setTheme(savedTheme);
+      if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    } else {
+      document.documentElement.classList.remove('dark');
     }
 
     const checkSession = async () => {
@@ -55,6 +62,11 @@ export const AuthGate: React.FC<AuthGateProps> = ({ children }) => {
     const nextTheme = theme === 'dark' ? 'light' : 'dark';
     setTheme(nextTheme);
     localStorage.setItem('robogyaan_theme', nextTheme);
+    if (nextTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
   };
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -115,7 +127,7 @@ export const AuthGate: React.FC<AuthGateProps> = ({ children }) => {
   // Initial loading spinner
   if (isAuthenticated === null) {
     return (
-      <div className={`min-h-screen flex items-center justify-center ${theme === 'dark' ? 'bg-[#09090b]' : 'bg-[#FDFBF7]'}`}>
+      <div className="min-h-screen flex items-center justify-center bg-transparent relative">
         <InteractiveGridBackground theme={theme} enabled={true} />
         <div className="flex flex-col items-center gap-3 relative z-10">
           <div className="w-12 h-12 bg-[#FFE600] border-2 border-black rounded-lg shadow-[3px_3px_0px_#000] flex items-center justify-center animate-bounce">

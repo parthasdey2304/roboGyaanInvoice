@@ -77,6 +77,8 @@ export default function InvoicePage() {
       } else {
         document.documentElement.classList.remove('dark');
       }
+    } else {
+      document.documentElement.classList.remove('dark');
     }
 
     const savedBg = localStorage.getItem('robogyaan_bg_style') as 'default' | 'grid' | null;
@@ -259,7 +261,7 @@ export default function InvoicePage() {
   return (
     <AuthGate>
       {(user, onLogout) => (
-        <main className={`min-h-screen flex flex-col relative ${isDark ? 'dark bg-[#09090b] text-white' : 'bg-[#FDFBF7] text-black'}`}>
+        <main className={`min-h-screen flex flex-col relative bg-transparent ${isDark ? 'dark text-white' : 'text-black'}`}>
           {/* INTERACTIVE BACKGROUND CANVAS WITH MOUSE SWELL ANIMATION */}
           <InteractiveGridBackground
             theme={theme}

@@ -157,7 +157,7 @@ export const HistorySidebar: React.FC<HistorySidebarProps> = ({
       />
 
       <div className="fixed inset-y-0 left-0 max-w-full flex pr-10">
-        <div className="w-screen max-w-md bg-[#FFFDF7] border-r-[3.5px] border-black shadow-[6px_0px_0px_#000000] flex flex-col z-50">
+        <div className="w-screen max-w-md bg-[#FFFDF7] dark:bg-[#1a1b22] border-r-[3.5px] border-black shadow-[6px_0px_0px_#000000] flex flex-col z-50 text-black dark:text-white">
           {/* Header */}
           <div className="bg-[#FFE600] border-b-[3px] border-black p-4 flex items-center justify-between shadow-[0_2px_0px_#000]">
             <div className="flex items-center gap-2.5">
@@ -189,7 +189,7 @@ export const HistorySidebar: React.FC<HistorySidebarProps> = ({
           </div>
 
           {/* Save / Update Current Invoice Section */}
-          <div className="p-4 border-b-2 border-black bg-white space-y-2">
+          <div className="p-4 border-b-2 border-black bg-white dark:bg-[#22242e] space-y-2">
             {!showSavePrompt ? (
               <div className="space-y-2">
                 {activeInvoiceId && (
@@ -212,8 +212,8 @@ export const HistorySidebar: React.FC<HistorySidebarProps> = ({
                 </button>
               </div>
             ) : (
-              <div className="space-y-2 border-2 border-black p-3 bg-neutral-50 rounded shadow-[2px_2px_0px_#000]">
-                <label className="block text-[11px] font-black uppercase tracking-wider text-black">
+              <div className="space-y-2 border-2 border-black p-3 bg-neutral-50 dark:bg-[#272732] rounded shadow-[2px_2px_0px_#000]">
+                <label className="block text-[11px] font-black uppercase tracking-wider text-black dark:text-white">
                   Prompt Description / Note:
                 </label>
                 <input
@@ -290,7 +290,7 @@ export const HistorySidebar: React.FC<HistorySidebarProps> = ({
                   <div
                     key={entry.id}
                     className={`border-2 border-black rounded-lg p-3 shadow-[3px_3px_0px_#000] space-y-2 transition ${
-                      isActive ? 'bg-[#FFFDE6] ring-2 ring-black' : 'bg-white hover:bg-neutral-50'
+                      isActive ? 'bg-[#FFFDE6] dark:bg-[#2e2a14] ring-2 ring-black' : 'bg-white dark:bg-[#22242e] hover:bg-neutral-50 dark:hover:bg-[#2a2c38]'
                     }`}
                   >
                     <div className="flex items-start justify-between gap-2">
@@ -313,7 +313,7 @@ export const HistorySidebar: React.FC<HistorySidebarProps> = ({
                               type="text"
                               value={editingText}
                               onChange={(e) => setEditingText(e.target.value)}
-                              className="neo-input text-xs font-medium w-full py-0.5 px-1.5"
+                              className="neo-input text-xs font-medium w-full py-0.5 px-1.5 dark:bg-[#1a1b22] dark:text-white"
                               autoFocus
                             />
                             <button
@@ -333,7 +333,7 @@ export const HistorySidebar: React.FC<HistorySidebarProps> = ({
                           </div>
                         ) : (
                           <div className="flex items-center gap-1 mt-1 group">
-                            <h4 className="text-xs font-black text-black line-clamp-1">
+                            <h4 className="text-xs font-black text-black dark:text-white line-clamp-1">
                               {entry.promptDescription || entry.clientName}
                             </h4>
                             <button
@@ -341,24 +341,24 @@ export const HistorySidebar: React.FC<HistorySidebarProps> = ({
                                 setEditingId(entry.id || null);
                                 setEditingText(entry.promptDescription || '');
                               }}
-                              className="opacity-60 group-hover:opacity-100 hover:text-black p-0.5 transition"
+                              className="opacity-60 group-hover:opacity-100 hover:text-black dark:hover:text-white p-0.5 transition"
                               title="Rename Prompt Description"
                             >
-                              <Edit2 className="w-3 h-3 text-neutral-600" />
+                              <Edit2 className="w-3 h-3 text-neutral-600 dark:text-neutral-400" />
                             </button>
                           </div>
                         )}
 
-                        <p className="text-[11px] font-semibold text-neutral-700 mt-0.5">
+                        <p className="text-[11px] font-semibold text-neutral-700 dark:text-neutral-300 mt-0.5">
                           {entry.clientName}
                         </p>
                       </div>
 
                       <div className="text-right shrink-0">
-                        <span className="text-xs font-black text-black block">
+                        <span className="text-xs font-black text-black dark:text-white block">
                           ₹{formatINR(entry.totalAmount)}
                         </span>
-                        <span className="text-[9px] font-bold text-neutral-500">
+                        <span className="text-[9px] font-bold text-neutral-500 dark:text-neutral-400">
                           {entry.createdAt ? new Date(entry.createdAt).toLocaleDateString() : 'Cloud'}
                         </span>
                       </div>

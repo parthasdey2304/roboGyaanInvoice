@@ -66,11 +66,16 @@ fun NeoBrutalCard(
                 if (title != null) {
                     Text(
                         text = title,
-                        fontSize = 16.sp,
+                        fontSize = 17.sp,
                         fontWeight = FontWeight.Black,
                         color = NeoBlack,
                         fontFamily = VirgilFontFamily,
-                        lineHeight = 20.sp,
+                        lineHeight = 21.sp,
+                        style = TextStyle(
+                            fontFamily = VirgilFontFamily,
+                            fontWeight = FontWeight.Black,
+                            fontSynthesis = androidx.compose.ui.text.font.FontSynthesis.Weight
+                        ),
                         modifier = Modifier.weight(1f, fill = false)
                     )
                 } else {

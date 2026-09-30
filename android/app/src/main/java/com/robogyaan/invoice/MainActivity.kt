@@ -13,7 +13,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectVerticalDragGestures
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
@@ -39,6 +38,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.layout.onSizeChanged
 import androidx.core.content.FileProvider
 import com.robogyaan.invoice.ui.InvoiceViewModel
 import com.robogyaan.invoice.ui.components.AuthPreferences
@@ -67,6 +67,8 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Enable edge-to-edge so Compose can observe real WindowInsets including IME
+        androidx.core.view.WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
             val context = LocalContext.current
             var isDarkMode by remember { mutableStateOf(AuthPreferences.isDarkMode(context)) }
@@ -647,56 +649,67 @@ fun MainScreen(
                     invoiceData = invoiceData,
                     viewModel = invoiceViewModel
                 )
-                1 -> BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
+                1 -> {
                     val isKeyboardOpen = WindowInsets.isImeVisible
-                    val totalHeight = maxHeight
-                    val density = androidx.compose.ui.platform.LocalDensity.current
-                    val totalHeightPx = with(density) { totalHeight.toPx() }
-
-                    val editorWeight = splitRatio.coerceIn(0.20f, 0.80f)
-                    val previewWeight = (1f - editorWeight).coerceIn(0.20f, 0.80f)
 
                     if (isKeyboardOpen) {
-                        // Keyboard is open: hide PDF preview, show only editor full-screen
+                        // Keyboard open → full-screen editor only, no PDF preview
                         InvoiceEditorScreen(
                             invoiceData = invoiceData,
                             viewModel = invoiceViewModel,
-                            modifier = Modifier.fillMaxSize()
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .imePadding()
                         )
                     } else {
-                        Column(modifier = Modifier.fillMaxSize()) {
-                            Box(modifier = Modifier.weight(editorWeight)) {
-                                InvoiceEditorScreen(
-                                    invoiceData = invoiceData,
-                                    viewModel = invoiceViewModel
-                                )
-                            }
+                        // Normal split: editor on top, yellow handle bar, preview below
+                        val editorFraction = splitRatio.coerceIn(0.25f, 0.75f)
+                        val previewFraction = 1f - editorFraction
+                        var containerHeightPx by remember { mutableFloatStateOf(1800f) }
 
-                            // Split Resizer Divider with Yellow Handle Box (Image 1 circled by user)
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .onSizeChanged { containerHeightPx = it.height.toFloat() }
+                        ) {
+                            // TOP: Editor panel
                             Box(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .height(26.dp)
-                                    .pointerInput(totalHeightPx) {
+                                    .fillMaxHeight(editorFraction)
+                            ) {
+                                InvoiceEditorScreen(
+                                    invoiceData = invoiceData,
+                                    viewModel = invoiceViewModel,
+                                    modifier = Modifier.fillMaxSize()
+                                )
+                            }
+
+                            // MIDDLE: Yellow handle divider — drag to resize, tap to cycle presets
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(28.dp)
+                                    .pointerInput(containerHeightPx) {
                                         detectVerticalDragGestures { change, dragAmount ->
                                             change.consume()
-                                            if (totalHeightPx > 0) {
-                                                val deltaRatio = dragAmount / totalHeightPx
-                                                splitRatio = (splitRatio + deltaRatio).coerceIn(0.25f, 0.75f)
+                                            if (containerHeightPx > 0f) {
+                                                splitRatio = (splitRatio + dragAmount / containerHeightPx)
+                                                    .coerceIn(0.25f, 0.75f)
                                             }
                                         }
                                     },
                                 contentAlignment = Alignment.Center
                             ) {
-                                // Divider horizontal line across screen
+                                // Full-width line
                                 Box(
                                     modifier = Modifier
                                         .fillMaxWidth()
-                                        .height(3.dp)
+                                        .height(2.dp)
                                         .background(if (isDarkMode) Color(0xFF52525B) else Color.Black)
                                 )
 
-                                // Yellow Color Small Box Handle (circled in user's screenshot)
+                                // Yellow neo-brutal handle — tap to cycle 50:50 → 25:75 → 75:25
                                 Box(
                                     modifier = Modifier
                                         .neoBrutal(
@@ -707,47 +720,45 @@ fun MainScreen(
                                             cornerRadius = 6.dp
                                         )
                                         .clickable {
-                                            // Tap cycles between 50-50, 25-75, 75-25 presets
                                             splitRatio = when {
-                                                kotlin.math.abs(splitRatio - 0.50f) < 0.08f -> 0.25f
-                                                kotlin.math.abs(splitRatio - 0.25f) < 0.08f -> 0.75f
+                                                kotlin.math.abs(splitRatio - 0.50f) < 0.10f -> 0.25f
+                                                kotlin.math.abs(splitRatio - 0.25f) < 0.10f -> 0.75f
                                                 else -> 0.50f
                                             }
                                         }
-                                        .padding(horizontal = 10.dp, vertical = 3.dp),
+                                        .padding(horizontal = 12.dp, vertical = 4.dp),
                                     contentAlignment = Alignment.Center
                                 ) {
                                     Row(
                                         verticalAlignment = Alignment.CenterVertically,
-                                        horizontalArrangement = Arrangement.spacedBy(4.dp)
+                                        horizontalArrangement = Arrangement.spacedBy(5.dp)
                                     ) {
                                         Box(
                                             modifier = Modifier
-                                                .width(8.dp)
+                                                .width(10.dp)
                                                 .height(2.5.dp)
-                                                .background(Color.Black, RoundedCornerShape(1.dp))
+                                                .background(Color.Black, RoundedCornerShape(2.dp))
                                         )
                                         Text(
-                                            text = "${(editorWeight * 100).toInt()}:${(previewWeight * 100).toInt()}",
+                                            text = "${(editorFraction * 100).toInt()}:${(previewFraction * 100).toInt()}",
                                             fontFamily = VirgilFontFamily,
                                             fontWeight = FontWeight.Black,
-                                            fontSize = 10.sp,
+                                            fontSize = 11.sp,
                                             color = Color.Black
                                         )
                                         Box(
                                             modifier = Modifier
-                                                .width(8.dp)
+                                                .width(10.dp)
                                                 .height(2.5.dp)
-                                                .background(Color.Black, RoundedCornerShape(1.dp))
+                                                .background(Color.Black, RoundedCornerShape(2.dp))
                                         )
                                     }
                                 }
                             }
 
-                            Box(modifier = Modifier.weight(previewWeight)) {
-                                InvoicePreviewScreen(
-                                    invoiceData = invoiceData
-                                )
+                            // BOTTOM: PDF Preview — fills remaining space
+                            Box(modifier = Modifier.fillMaxSize()) {
+                                InvoicePreviewScreen(invoiceData = invoiceData)
                             }
                         }
                     }

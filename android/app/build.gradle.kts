@@ -11,8 +11,8 @@ android {
         applicationId = "com.robogyaan.invoice"
         minSdk = 24
         targetSdk = 34
-        versionCode = 13
-        versionName = "1.5.4"
+        versionCode = 14
+        versionName = "1.5.5"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -20,9 +20,19 @@ android {
         }
     }
 
+    signingConfigs {
+        create("release") {
+            storeFile = file("robogyaan-release.jks")
+            storePassword = "robogyaan123"
+            keyAlias = "robogyaan"
+            keyPassword = "robogyaan123"
+        }
+    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("release")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

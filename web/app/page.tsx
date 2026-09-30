@@ -524,10 +524,7 @@ export default function InvoicePage() {
                   <span className="block h-0.5 w-full bg-current rounded" />
                   <span className="block h-0.5 w-full bg-current rounded" />
                 </div>
-                <span className="font-virgil font-black">Prompt History</span>
-                <span className="text-[9px] bg-black text-[#FFE600] px-1.5 py-0.5 rounded font-black border border-black">
-                  Firestore
-                </span>
+                <span className="font-virgil font-black">History</span>
               </button>
 
               {activeInvoiceId && (

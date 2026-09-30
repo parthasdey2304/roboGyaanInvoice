@@ -23,6 +23,7 @@ import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.VerticalSplit
 import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.WbSunny
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -164,6 +165,7 @@ fun MainScreen(
     var isFirstLaunch by remember { mutableStateOf(true) }
     var showLogoutDialog by remember { mutableStateOf(false) }
     var showSettingsDialog by remember { mutableStateOf(false) }
+    var showResetConfirmDialog by remember { mutableStateOf(false) }
 
     // Restore cached autosave draft on launch if available and currently on default
     LaunchedEffect(Unit) {
@@ -473,67 +475,89 @@ fun MainScreen(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    // 3-DASH PROMPT HISTORY BUTTON ON LEFT TOP BELOW NAVBAR
-                    Box(
-                        modifier = Modifier
-                            .neoBrutal(
-                                backgroundColor = if (isDarkMode) Color(0xFF27272A) else Color.White,
-                                borderColor = if (isDarkMode) Color(0xFF52525B) else Color.Black,
-                                shadowOffset = if (isDarkMode) 0.dp else 2.5.dp,
-                                cornerRadius = 6.dp
-                            )
-                            .clickable { isHistoryOpen = true }
-                            .padding(horizontal = 10.dp, vertical = 6.dp)
+                    // Left side: History + Reset buttons grouped together
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(6.dp)
                     ) {
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.spacedBy(6.dp)
+                        // 3-DASH HISTORY BUTTON
+                        Box(
+                            modifier = Modifier
+                                .neoBrutal(
+                                    backgroundColor = if (isDarkMode) Color(0xFF27272A) else Color.White,
+                                    borderColor = if (isDarkMode) Color(0xFF52525B) else Color.Black,
+                                    shadowOffset = if (isDarkMode) 0.dp else 2.5.dp,
+                                    cornerRadius = 6.dp
+                                )
+                                .clickable { isHistoryOpen = true }
+                                .padding(horizontal = 10.dp, vertical = 6.dp)
                         ) {
-                            // 3 horizontal dashes icon
-                            Column(
-                                verticalArrangement = Arrangement.spacedBy(2.5.dp),
-                                modifier = Modifier.width(14.dp)
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(6.dp)
                             ) {
-                                Box(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .height(2.dp)
-                                        .background(if (isDarkMode) Color.White else Color.Black, RoundedCornerShape(1.dp))
-                                )
-                                Box(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .height(2.dp)
-                                        .background(if (isDarkMode) Color.White else Color.Black, RoundedCornerShape(1.dp))
-                                )
-                                Box(
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .height(2.dp)
-                                        .background(if (isDarkMode) Color.White else Color.Black, RoundedCornerShape(1.dp))
-                                )
-                            }
-                            Text(
-                                text = "Prompt History",
-                                fontFamily = VirgilFontFamily,
-                                fontWeight = FontWeight.Black,
-                                fontSize = 11.sp,
-                                color = if (isDarkMode) Color.White else NeoBlack
-                            )
-                            Box(
-                                modifier = Modifier
-                                    .background(
-                                        if (isDarkMode) NeoYellow else Color.Black,
-                                        RoundedCornerShape(3.dp)
+                                // 3 horizontal dashes icon
+                                Column(
+                                    verticalArrangement = Arrangement.spacedBy(2.5.dp),
+                                    modifier = Modifier.width(14.dp)
+                                ) {
+                                    Box(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .height(2.dp)
+                                            .background(if (isDarkMode) Color.White else Color.Black, RoundedCornerShape(1.dp))
                                     )
-                                    .padding(horizontal = 4.dp, vertical = 1.dp)
-                            ) {
+                                    Box(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .height(2.dp)
+                                            .background(if (isDarkMode) Color.White else Color.Black, RoundedCornerShape(1.dp))
+                                    )
+                                    Box(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .height(2.dp)
+                                            .background(if (isDarkMode) Color.White else Color.Black, RoundedCornerShape(1.dp))
+                                    )
+                                }
                                 Text(
-                                    text = "Firestore",
-                                    color = if (isDarkMode) Color.Black else NeoYellow,
+                                    text = "History",
                                     fontFamily = VirgilFontFamily,
                                     fontWeight = FontWeight.Black,
-                                    fontSize = 8.sp
+                                    fontSize = 11.sp,
+                                    color = if (isDarkMode) Color.White else NeoBlack
+                                )
+                            }
+                        }
+
+                        // Reset Button (Phone/Android only)
+                        Box(
+                            modifier = Modifier
+                                .neoBrutal(
+                                    backgroundColor = if (isDarkMode) Color(0xFF27272A) else Color.White,
+                                    borderColor = if (isDarkMode) Color(0xFF52525B) else Color.Black,
+                                    shadowOffset = if (isDarkMode) 0.dp else 2.5.dp,
+                                    cornerRadius = 6.dp
+                                )
+                                .clickable { showResetConfirmDialog = true }
+                                .padding(horizontal = 10.dp, vertical = 6.dp)
+                        ) {
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(5.dp)
+                            ) {
+                                Icon(
+                                    Icons.Default.Refresh,
+                                    contentDescription = "Reset Invoice",
+                                    tint = if (isDarkMode) Color.White else Color.Black,
+                                    modifier = Modifier.size(13.dp)
+                                )
+                                Text(
+                                    text = "Reset",
+                                    fontFamily = VirgilFontFamily,
+                                    fontWeight = FontWeight.Black,
+                                    fontSize = 11.sp,
+                                    color = if (isDarkMode) Color.White else NeoBlack
                                 )
                             }
                         }
@@ -623,6 +647,7 @@ fun MainScreen(
                     viewModel = invoiceViewModel
                 )
                 1 -> BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
+                    val isKeyboardOpen = WindowInsets.isImeVisible
                     val totalHeight = maxHeight
                     val density = androidx.compose.ui.platform.LocalDensity.current
                     val totalHeightPx = with(density) { totalHeight.toPx() }
@@ -630,90 +655,99 @@ fun MainScreen(
                     val editorWeight = splitRatio.coerceIn(0.20f, 0.80f)
                     val previewWeight = (1f - editorWeight).coerceIn(0.20f, 0.80f)
 
-                    Column(modifier = Modifier.fillMaxSize()) {
-                        Box(modifier = Modifier.weight(editorWeight)) {
-                            InvoiceEditorScreen(
-                                invoiceData = invoiceData,
-                                viewModel = invoiceViewModel
-                            )
-                        }
+                    if (isKeyboardOpen) {
+                        // Keyboard is open: hide PDF preview, show only editor full-screen
+                        InvoiceEditorScreen(
+                            invoiceData = invoiceData,
+                            viewModel = invoiceViewModel,
+                            modifier = Modifier.fillMaxSize()
+                        )
+                    } else {
+                        Column(modifier = Modifier.fillMaxSize()) {
+                            Box(modifier = Modifier.weight(editorWeight)) {
+                                InvoiceEditorScreen(
+                                    invoiceData = invoiceData,
+                                    viewModel = invoiceViewModel
+                                )
+                            }
 
-                        // Split Resizer Divider with Yellow Handle Box (Image 1 circled by user)
-                        Box(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .height(26.dp)
-                                .pointerInput(totalHeightPx) {
-                                    detectVerticalDragGestures { change, dragAmount ->
-                                        change.consume()
-                                        if (totalHeightPx > 0) {
-                                            val deltaRatio = dragAmount / totalHeightPx
-                                            splitRatio = (splitRatio + deltaRatio).coerceIn(0.25f, 0.75f)
-                                        }
-                                    }
-                                },
-                            contentAlignment = Alignment.Center
-                        ) {
-                            // Divider horizontal line across screen
+                            // Split Resizer Divider with Yellow Handle Box (Image 1 circled by user)
                             Box(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .height(3.dp)
-                                    .background(if (isDarkMode) Color(0xFF52525B) else Color.Black)
-                            )
-
-                            // Yellow Color Small Box Handle (circled in user's screenshot)
-                            Box(
-                                modifier = Modifier
-                                    .neoBrutal(
-                                        backgroundColor = NeoYellow,
-                                        borderColor = Color.Black,
-                                        borderWidth = 2.dp,
-                                        shadowOffset = 2.dp,
-                                        cornerRadius = 6.dp
-                                    )
-                                    .clickable {
-                                        // Tap cycles between 50-50, 25-75, 75-25 presets
-                                        splitRatio = when {
-                                            kotlin.math.abs(splitRatio - 0.50f) < 0.08f -> 0.25f
-                                            kotlin.math.abs(splitRatio - 0.25f) < 0.08f -> 0.75f
-                                            else -> 0.50f
+                                    .height(26.dp)
+                                    .pointerInput(totalHeightPx) {
+                                        detectVerticalDragGestures { change, dragAmount ->
+                                            change.consume()
+                                            if (totalHeightPx > 0) {
+                                                val deltaRatio = dragAmount / totalHeightPx
+                                                splitRatio = (splitRatio + deltaRatio).coerceIn(0.25f, 0.75f)
+                                            }
                                         }
-                                    }
-                                    .padding(horizontal = 10.dp, vertical = 3.dp),
+                                    },
                                 contentAlignment = Alignment.Center
                             ) {
-                                Row(
-                                    verticalAlignment = Alignment.CenterVertically,
-                                    horizontalArrangement = Arrangement.spacedBy(4.dp)
+                                // Divider horizontal line across screen
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .height(3.dp)
+                                        .background(if (isDarkMode) Color(0xFF52525B) else Color.Black)
+                                )
+
+                                // Yellow Color Small Box Handle (circled in user's screenshot)
+                                Box(
+                                    modifier = Modifier
+                                        .neoBrutal(
+                                            backgroundColor = NeoYellow,
+                                            borderColor = Color.Black,
+                                            borderWidth = 2.dp,
+                                            shadowOffset = 2.dp,
+                                            cornerRadius = 6.dp
+                                        )
+                                        .clickable {
+                                            // Tap cycles between 50-50, 25-75, 75-25 presets
+                                            splitRatio = when {
+                                                kotlin.math.abs(splitRatio - 0.50f) < 0.08f -> 0.25f
+                                                kotlin.math.abs(splitRatio - 0.25f) < 0.08f -> 0.75f
+                                                else -> 0.50f
+                                            }
+                                        }
+                                        .padding(horizontal = 10.dp, vertical = 3.dp),
+                                    contentAlignment = Alignment.Center
                                 ) {
-                                    Box(
-                                        modifier = Modifier
-                                            .width(8.dp)
-                                            .height(2.5.dp)
-                                            .background(Color.Black, RoundedCornerShape(1.dp))
-                                    )
-                                    Text(
-                                        text = "${(editorWeight * 100).toInt()}:${(previewWeight * 100).toInt()}",
-                                        fontFamily = VirgilFontFamily,
-                                        fontWeight = FontWeight.Black,
-                                        fontSize = 10.sp,
-                                        color = Color.Black
-                                    )
-                                    Box(
-                                        modifier = Modifier
-                                            .width(8.dp)
-                                            .height(2.5.dp)
-                                            .background(Color.Black, RoundedCornerShape(1.dp))
-                                    )
+                                    Row(
+                                        verticalAlignment = Alignment.CenterVertically,
+                                        horizontalArrangement = Arrangement.spacedBy(4.dp)
+                                    ) {
+                                        Box(
+                                            modifier = Modifier
+                                                .width(8.dp)
+                                                .height(2.5.dp)
+                                                .background(Color.Black, RoundedCornerShape(1.dp))
+                                        )
+                                        Text(
+                                            text = "${(editorWeight * 100).toInt()}:${(previewWeight * 100).toInt()}",
+                                            fontFamily = VirgilFontFamily,
+                                            fontWeight = FontWeight.Black,
+                                            fontSize = 10.sp,
+                                            color = Color.Black
+                                        )
+                                        Box(
+                                            modifier = Modifier
+                                                .width(8.dp)
+                                                .height(2.5.dp)
+                                                .background(Color.Black, RoundedCornerShape(1.dp))
+                                        )
+                                    }
                                 }
                             }
-                        }
 
-                        Box(modifier = Modifier.weight(previewWeight)) {
-                            InvoicePreviewScreen(
-                                invoiceData = invoiceData
-                            )
+                            Box(modifier = Modifier.weight(previewWeight)) {
+                                InvoicePreviewScreen(
+                                    invoiceData = invoiceData
+                                )
+                            }
                         }
                     }
                 }
@@ -754,6 +788,21 @@ fun MainScreen(
                 onToggleDarkMode = onToggleDarkMode,
                 isGridBackground = isGridBackground,
                 onToggleGridBackground = onToggleGridBackground
+            )
+
+            // RESET INVOICE CONFIRM DIALOG (Phone/Android only)
+            NeoBrutalAlertDialog(
+                isOpen = showResetConfirmDialog,
+                onDismiss = { showResetConfirmDialog = false },
+                onConfirm = {
+                    invoiceViewModel.resetToDefaults()
+                    showResetConfirmDialog = false
+                },
+                title = "Reset Invoice",
+                message = "This will clear all current invoice data and reset it back to the default template. Are you sure?",
+                confirmText = "Reset",
+                cancelText = "Cancel",
+                isDanger = true
             )
         }
     }

@@ -134,15 +134,20 @@ fun LoginScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(20.dp),
+            .background(if (isDarkMode) Color(0xFF09090B) else Color(0xFFFDFBF7)),
         contentAlignment = Alignment.Center
     ) {
-        // Grid Boxes Background (Matching Image 1)
-        BoxGridBackground(isDarkMode = isDarkMode, enabled = isGridBackground)
+        // Grid Boxes Background (Full edge-to-edge screen)
+        BoxGridBackground(
+            isDarkMode = isDarkMode,
+            enabled = isGridBackground,
+            modifier = Modifier.fillMaxSize()
+        )
 
         Column(
             modifier = Modifier
                 .fillMaxWidth()
+                .padding(horizontal = 20.dp, vertical = 24.dp)
                 .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {

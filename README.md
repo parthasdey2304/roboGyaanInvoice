@@ -1,34 +1,32 @@
 # ⚡ RoboGyaan Invoice Generation Suite ⚡
 
 ```text
- ╔═══════════════════════════════════════════════════════════════════════════════╗
- ║   ____       _             ____                             ___               ║
- ║  |  _ \ ___ | |__   ___   / ___| _   _  __ _  __ _ _ __    |_ _|_ ____   __   ║
- ║  | |_) / _ \| '_ \ / _ \ | |  _ | | | |/ _` |/ _` | '_ \    | || '_ \ \ / /   ║
- ║  |  _ < (_) | |_) | (_) || |_| || |_| | (_| | (_| | | | |   | || | | \ V /    ║
- ║  |_| \_\___/|_.__/ \___/  \____| \__, |\__,_|\__,_|_| |_|  |___|_| |_|\_/     ║
- ║                                  |___/                                        ║
- ║  >>> DUAL-PLATFORM NEO-BRUTALIST INVOICE ENGINE • WEB & NATIVE ANDROID <<<   ║
- ╚═══════════════════════════════════════════════════════════════════════════════╝
+  ____       _             ____                             ___             
+ |  _ \ ___ | |__   ___   / ___| _   _  __ _  __ _ _ __    |_ _|_ ____   __ 
+ | |_) / _ \| '_ \ / _ \ | |  _ | | | |/ _` |/ _` | '_ \    | || '_ \ \ / / 
+ |  _ < (_) | |_) | (_) || |_| || |_| | (_| | (_| | | | |   | || | | \ V /  
+ |_| \_\___/|_.__/ \___/  \____| \__, |\__,_|\__,_|_| |_|  |___|_| |_|\_/   
+                                 |___/                                      
 ```
 
 <div align="center">
 
 [![Vercel Deployment](https://img.shields.io/badge/Vercel-https://invoice.robogyaan.in/-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://invoice.robogyaan.in)
-[![Android APK Release](https://img.shields.io/badge/Android_APK-v1.5.0_Download-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/parthasdey2304/roboGyaanInvoice/releases/download/v1.5.0/robogyaan-invoice-v1.5.0.apk)
-[![GitHub Release](https://img.shields.io/badge/GitHub-v1.5.0_Release-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/parthasdey2304/roboGyaanInvoice/releases/tag/v1.5.0)
+[![Android APK Release](https://img.shields.io/badge/Android_APK-v1.5.1_Download-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/parthasdey2304/roboGyaanInvoice/releases/download/v1.5.1/robogyaan-invoice-v1.5.1.apk)
+[![GitHub Release](https://img.shields.io/badge/GitHub-v1.5.1_Release-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/parthasdey2304/roboGyaanInvoice/releases/tag/v1.5.1)
 [![Font Virgil](https://img.shields.io/badge/Typography-Virgil_(Excalidraw)-FF6B6B?style=for-the-badge&logo=penpot&logoColor=white)](https://plus.excalidraw.com/virgil)
 [![Next.js 16](https://img.shields.io/badge/Next.js-16.3.7_Turbopack-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
 [![Jetpack Compose](https://img.shields.io/badge/Jetpack_Compose-Material_3-4285F4?style=for-the-badge&logo=jetpackcompose&logoColor=white)](https://developer.android.com/jetpack/compose)
 [![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_CSS-v4.0-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Firebase Firestore](https://img.shields.io/badge/Firebase-Firestore_Realtime-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)](https://firebase.google.com/)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg?style=for-the-badge)](https://opensource.org/licenses/Apache-2.0)
 
 **The ultimate dual-platform billing powerhouse engineered for RoboGyaan.**  
 *Hand-crafted Neo-Brutalist architecture, high-contrast asymmetric shadows, 60 FPS interactive grid physics, and authentic Excalidraw hand-drawn aesthetics.*
 
 ---
 
-[🌐 **Live Web Application**](https://invoice.robogyaan.in) • [📱 **Download Android APK (v1.5.0)**](https://github.com/parthasdey2304/roboGyaanInvoice/releases/download/v1.5.0/robogyaan-invoice-v1.5.0.apk) • [📦 **GitHub Release Notes**](https://github.com/parthasdey2304/roboGyaanInvoice/releases/tag/v1.5.0) • [✨ **Excalidraw Virgil Font**](https://plus.excalidraw.com/virgil)
+[🌐 **Live Web Application**](https://invoice.robogyaan.in) • [📱 **Download Android APK (v1.5.1)**](https://github.com/parthasdey2304/roboGyaanInvoice/releases/download/v1.5.1/robogyaan-invoice-v1.5.1.apk) • [📦 **GitHub Release Notes**](https://github.com/parthasdey2304/roboGyaanInvoice/releases/tag/v1.5.1) • [✨ **Excalidraw Virgil Font**](https://plus.excalidraw.com/virgil)
 
 </div>
 
@@ -43,19 +41,12 @@ At the heart of the **RoboGyaan Invoice Suite** lies a deliberate departure from
 
 By coupling **Virgil** with high-contrast **Neo-Brutalism** (thick 2.5px solid black borders, `#FFE600` primary solar yellow, and zero-blur `4px 4px 0px #000000` asymmetric drop shadows), every invoice feels simultaneously **authoritative, artistic, and playfully human**.
 
-```text
- ┌────────────────────────────────────────────────────────┐
- │  ROBOGYAAN INVOICE SYSTEM                             │
- │  ┌──────────────────────────────────────────────────┐  │
- │  │ ✏️ Font: Virgil (Excalidraw Open-Source)         │  │
- │  │ 🎨 Style: Neo-Brutalist Asymmetric Hard Shadows  │  │
- │  │ ⚡ Palette: Vibrant Yellow (#FFE600) + Black      │  │
- │  │ 📐 Paper: Authentic White (#FFFFFF) Invariant    │  │
- │  └──────────────────────────────────────────────────┘  │
- └───────────────────────▲────────────────────────────────┘
-                         │
-             Hand-Crafted Aesthetic
-```
+| Design Dimension | Implementation Specification |
+| :--- | :--- |
+| **Typography** | [Virgil, an open-source font frequently used in Excalidraw.](https://plus.excalidraw.com/virgil) |
+| **Aesthetic System** | Neo-Brutalist 2.5px solid black borders + 4px hard asymmetric drop shadows |
+| **Primary Palette** | Solar Yellow (`#FFE600`) + Obsidian Charcoal Slate (`#22242E`) |
+| **Paper Standard** | Authentic Pure White (`#FFFFFF`) invariant for preview, print & PDF export |
 
 ### 🔤 Typography & Font Integration Architecture
 
@@ -171,15 +162,17 @@ flowchart TD
 
 Both Web and Android clients feature an interactive background that mirrors the RoboGyaan branding grid with physical cursor / touch lens distortion:
 
-```text
-       Normal Grid Node                         Swelled Grid Node (Near Cursor)
-       ┌───┬───┬───┐                                 ┌───┬───┬───┐
-       │   │   │   │                                 │   │ / │ \ │
-       ├───┼───┼───┤                                 ├───┼───┼───┤
-       │   │ • │   │        Cursor (x, y) ➔          │  (  •  )  │   <-- Swells 3D outwards
-       ├───┼───┼───┤                                 ├───┼───┼───┤
-       │   │   │   │                                 │   │ \ │ / │
-       └───┴───┴───┘                                 └───┴───┴───┘
+```mermaid
+flowchart LR
+    subgraph IdleMesh["🔲 Idle Canvas Grid"]
+        NodeA["Equidistant Orthogonal Grid<br/>42px Box Intervals (No Swell)"]
+    end
+    
+    subgraph CursorLens["🔍 Active Touch / Mouse Swell"]
+        NodeB["Non-Linear Displacement Lens<br/>d < 220px: Nodes Displace Outwards<br/>Radial Yellow Glow + Crosshair Accents"]
+    end
+
+    IdleMesh -->|"Cursor Proximity (x, y)"| CursorLens
 ```
 
 ### 🧮 Distortion Mathematics & Physics
@@ -225,7 +218,7 @@ graph LR
 | :--- | :---: | :---: | :--- | :--- |
 | `--color-primary` | `#FFE600` | `#FFE600` | Action buttons, table headers, active tabs | `2.5px solid #000000`, `4px 4px 0px #000000` |
 | `--color-surface` | `#FFFFFF` | `#18181B` | Editor cards, input fields, modal dialogs | `2px solid #000000`, `3px 3px 0px #000000` |
-| `--color-background` | `#FDFBF7` | `#0C0C0E` | Main app background behind canvas grid | Transparent canvas overlay |
+| `--color-background` | `#FDFBF7` | `#22242E` | Main app background behind canvas grid | Transparent canvas overlay |
 | `--color-paper` | `#FFFFFF` | `#FFFFFF` | **Invoice Sheets (IMMUTABLE INVARIANT)** | `1.5px solid #000000`, `rounded-xl` preview |
 | `--color-pill` | `#E5E7EB` | `#27272A` | BILL TO & FROM pill badges | `2px solid #000000` |
 | `--color-reg-badge` | `#FFA500` | `#FFA500` | Official Gov Registration Badge | `2px solid #000000`, angled banner |
@@ -237,13 +230,10 @@ graph LR
 
 Both platforms implement a pure, zero-dependency algorithm designed specifically for the **Indian Numbering System** (handling *Hundreds, Thousands, Lakhs, and Crores* up to ₹99,99,99,999):
 
-```text
- ┌────────────────────────────────────────────────────────────────────────────────┐
- │ Number: ₹ 1,50,500                                                             │
- │ Grouping: [1] Crore  |  [0]  |  [1] Lakh  |  [50] Thousand  |  [500]           │
- │ Output: "One Lakh Fifty Thousand Five Hundred Only"                            │
- └────────────────────────────────────────────────────────────────────────────────┘
-```
+> **Indian Currency Number Grouping Example:**
+> - **Input Amount:** `₹ 1,50,500`
+> - **Algorithm Grouping:** `[1] Lakh, [50] Thousand, [500] Hundred`
+> - **Words Output:** *One Lakh Fifty Thousand Five Hundred Only*
 
 | Input Number (₹) | Indian System Formatting | Algorithmic Output String in Virgil Typography |
 | :---: | :---: | :--- |
@@ -342,7 +332,7 @@ roboGyaanInvoice/
     │       │   │   │   ├── InvoiceEditorScreen.kt # Compose form editor screen
     │       │   │   │   ├── NeoBrutalComponents.kt # NeoBrutalCard, buttons, text fields
     │       │   │   │   ├── SettingsDialog.kt      # App settings & GitHub updater modal
-    │       │   │   │   └── SwellGridBackground.kt # Jetpack Compose canvas swell grid
+    │       │   │   │   └── BoxGridBackground.kt   # Jetpack Compose canvas box-box grid
     │       │   │   ├── preview/
     │       │   │   │   └── InvoicePreviewScreen.kt# A4 sheet preview with page selector
     │       │   │   └── theme/
@@ -444,7 +434,7 @@ Contributions, bug reports, and suggestions are welcome!
 4. Push to the branch (`git push origin feature/amazing-feature`).
 5. Open a Pull Request.
 
-Distributed under the **MIT License**. See `LICENSE` for more information.
+Distributed under the **Apache License 2.0**. See [LICENSE](LICENSE) for more information.
 
 ---
 

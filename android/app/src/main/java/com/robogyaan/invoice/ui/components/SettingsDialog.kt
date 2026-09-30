@@ -85,7 +85,7 @@ fun SettingsDialog(
                     .fillMaxWidth(0.95f)
                     .widthIn(max = 480.dp)
                     .neoBrutal(
-                        backgroundColor = if (isDarkMode) Color(0xFF1E1E22) else Color(0xFFFFFDF7),
+                        backgroundColor = if (isDarkMode) Color(0xFF181A22) else Color(0xFFFFFDF7),
                         shadowOffset = 6.dp,
                         cornerRadius = 12.dp
                     )
@@ -305,7 +305,7 @@ fun SettingsDialog(
                                 modifier = Modifier
                                     .weight(1f)
                                     .background(
-                                        if (!isGridBackground) NeoYellow else if (isDarkMode) Color(0xFF1E1E22) else Color(0xFFF3F4F6),
+                                        if (!isGridBackground) NeoYellow else if (isDarkMode) Color(0xFF22242E) else Color(0xFFF3F4F6),
                                         RoundedCornerShape(6.dp)
                                     )
                                     .border(1.5.dp, Color.Black, RoundedCornerShape(6.dp))
@@ -326,7 +326,7 @@ fun SettingsDialog(
                                 modifier = Modifier
                                     .weight(1f)
                                     .background(
-                                        if (isGridBackground) NeoYellow else if (isDarkMode) Color(0xFF1E1E22) else Color(0xFFF3F4F6),
+                                        if (isGridBackground) NeoYellow else if (isDarkMode) Color(0xFF22242E) else Color(0xFFF3F4F6),
                                         RoundedCornerShape(6.dp)
                                     )
                                     .border(1.5.dp, Color.Black, RoundedCornerShape(6.dp))

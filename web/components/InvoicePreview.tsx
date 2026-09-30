@@ -232,7 +232,7 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(
                       return (
                         <div
                           key={item.id || itemIdx}
-                          className="grid grid-cols-12 text-xs sm:text-sm border-b border-neutral-300/80 last:border-b-0 min-h-[42px] items-stretch"
+                          className="grid grid-cols-12 text-xs sm:text-sm min-h-[42px] items-stretch"
                         >
                           <div className="col-span-5 p-2 sm:p-2.5 border-r-[2px] border-black flex items-start">
                             <span>

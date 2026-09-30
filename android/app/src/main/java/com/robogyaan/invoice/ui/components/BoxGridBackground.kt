@@ -16,13 +16,13 @@ fun BoxGridBackground(
 ) {
     if (!enabled) {
         Canvas(modifier = modifier.fillMaxSize()) {
-            drawRect(color = if (isDarkMode) Color(0xFF121212) else Color(0xFFFDFBF7))
+            drawRect(color = if (isDarkMode) Color(0xFF22242E) else Color(0xFFFDFBF7))
         }
         return
     }
 
-    val backgroundColor = if (isDarkMode) Color(0xFF09090B) else Color(0xFFFDFBF7)
-    val gridLineColor = if (isDarkMode) Color(0xFF222226) else Color(0xFFE5E7EB)
+    val backgroundColor = if (isDarkMode) Color(0xFF22242E) else Color(0xFFFDFBF7)
+    val gridLineColor = if (isDarkMode) Color(0xFF3B3D4A) else Color(0xFFE5E7EB)
 
     Canvas(modifier = modifier.fillMaxSize()) {
         drawRect(color = backgroundColor)

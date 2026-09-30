@@ -36,9 +36,13 @@ export const InteractiveGridBackground: React.FC<InteractiveGridBackgroundProps>
 
     const handleResize = () => {
       const dpr = window.devicePixelRatio || 1;
-      canvas.width = window.innerWidth * dpr;
-      canvas.height = window.innerHeight * dpr;
-      ctx.scale(dpr, dpr);
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      canvas.width = Math.floor(w * dpr);
+      canvas.height = Math.floor(h * dpr);
+      canvas.style.width = `${w}px`;
+      canvas.style.height = `${h}px`;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
 
     handleResize();
@@ -73,21 +77,21 @@ export const InteractiveGridBackground: React.FC<InteractiveGridBackgroundProps>
       const isDark = theme === 'dark';
 
       // Base background color
-      ctx.fillStyle = isDark ? '#09090b' : '#FDFBF7';
+      ctx.fillStyle = isDark ? '#0c0c0e' : '#FDFBF7';
       ctx.fillRect(0, 0, width, height);
 
-      // Grid line and swell colors
+      // Grid line and swell colors - crisp, clearly visible cross-cross box-box lines
       const gridLineColor = isDark
-        ? 'rgba(255, 255, 255, 0.08)'
-        : 'rgba(0, 0, 0, 0.07)';
+        ? 'rgba(255, 255, 255, 0.15)'
+        : 'rgba(0, 0, 0, 0.14)';
       const swellAuraColor = isDark
-        ? 'rgba(255, 230, 0, 0.06)'
-        : 'rgba(255, 230, 0, 0.14)';
+        ? 'rgba(255, 230, 0, 0.12)'
+        : 'rgba(255, 230, 0, 0.22)';
       const activeLineColor = isDark
-        ? 'rgba(255, 255, 255, 0.18)'
-        : 'rgba(0, 0, 0, 0.15)';
+        ? 'rgba(255, 255, 255, 0.38)'
+        : 'rgba(0, 0, 0, 0.35)';
 
-      // 1. Draw subtle radial glow under cursor if active
+      // 1. Draw tactile radial glow under cursor when active
       if (mouse.x > -500 && mouse.y > -500) {
         const gradient = ctx.createRadialGradient(
           mouse.x,
@@ -98,6 +102,7 @@ export const InteractiveGridBackground: React.FC<InteractiveGridBackgroundProps>
           swellRadius
         );
         gradient.addColorStop(0, swellAuraColor);
+        gradient.addColorStop(0.6, swellAuraColor);
         gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
         ctx.fillStyle = gradient;
         ctx.beginPath();
@@ -105,7 +110,7 @@ export const InteractiveGridBackground: React.FC<InteractiveGridBackgroundProps>
         ctx.fill();
       }
 
-      // Compute grid dimensions
+      // Compute grid dimensions (40px square grid boxes)
       const cols = Math.ceil(width / cellSize) + 2;
       const rows = Math.ceil(height / cellSize) + 2;
 
@@ -128,7 +133,7 @@ export const InteractiveGridBackground: React.FC<InteractiveGridBackgroundProps>
             const dist = Math.sqrt(dx * dx + dy * dy);
 
             if (dist < swellRadius && dist > 0.001) {
-              // Smooth cosine bell-curve for lens swelling
+              // Smooth cosine bell-curve for 3D lens swelling
               const factor = Math.cos((dist / swellRadius) * (Math.PI / 2));
               const displacement = factor * factor * maxSwell;
               const angle = Math.atan2(dy, dx);
@@ -173,7 +178,7 @@ export const InteractiveGridBackground: React.FC<InteractiveGridBackgroundProps>
         ctx.stroke();
       }
 
-      // 5. Draw subtle intersection nodes near the mouse for tactile depth
+      // 5. Draw prominent intersection cross points near cursor for 3D tactile feedback
       if (mouse.x > -500) {
         for (let r = 0; r <= rows; r++) {
           for (let c = 0; c <= cols; c++) {
@@ -182,10 +187,10 @@ export const InteractiveGridBackground: React.FC<InteractiveGridBackgroundProps>
             if (dist < swellRadius) {
               const nodeAlpha = Math.max(0, 1 - dist / swellRadius);
               ctx.fillStyle = isDark
-                ? `rgba(255, 230, 0, ${0.4 * nodeAlpha})`
-                : `rgba(0, 0, 0, ${0.25 * nodeAlpha})`;
+                ? `rgba(255, 230, 0, ${0.65 * nodeAlpha})`
+                : `rgba(0, 0, 0, ${0.45 * nodeAlpha})`;
               ctx.beginPath();
-              ctx.arc(pt.x, pt.y, 1.5, 0, Math.PI * 2);
+              ctx.arc(pt.x, pt.y, 2, 0, Math.PI * 2);
               ctx.fill();
             }
           }
@@ -208,8 +213,8 @@ export const InteractiveGridBackground: React.FC<InteractiveGridBackgroundProps>
   if (!enabled) {
     return (
       <div
-        className={`fixed inset-0 pointer-events-none -z-10 transition-colors duration-200 ${
-          theme === 'dark' ? 'bg-[#121212]' : 'bg-[#FDFBF7]'
+        className={`fixed inset-0 pointer-events-none z-0 transition-colors duration-200 ${
+          theme === 'dark' ? 'bg-[#0c0c0e]' : 'bg-[#FDFBF7]'
         }`}
       />
     );
@@ -218,7 +223,7 @@ export const InteractiveGridBackground: React.FC<InteractiveGridBackgroundProps>
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none -z-10 block w-full h-full"
+      className="fixed inset-0 pointer-events-none z-0 block w-full h-full"
     />
   );
 };

@@ -165,7 +165,7 @@ export const InvoiceEditor: React.FC<InvoiceEditorProps> = ({
         >
           <div className="space-y-3">
             <div>
-              <label className="block text-xs font-bold uppercase mb-1">
+              <label className="block text-xs font-bold uppercase mb-1 text-black dark:text-white">
                 Client / School Name
               </label>
               <input
@@ -177,7 +177,7 @@ export const InvoiceEditor: React.FC<InvoiceEditorProps> = ({
               />
             </div>
             <div>
-              <label className="block text-xs font-bold uppercase mb-1">
+              <label className="block text-xs font-bold uppercase mb-1 text-black dark:text-white">
                 Address Line
               </label>
               <input
@@ -189,7 +189,7 @@ export const InvoiceEditor: React.FC<InvoiceEditorProps> = ({
               />
             </div>
             <div>
-              <label className="block text-xs font-bold uppercase mb-1">
+              <label className="block text-xs font-bold uppercase mb-1 text-black dark:text-white">
                 Pin & State
               </label>
               <input
@@ -211,7 +211,7 @@ export const InvoiceEditor: React.FC<InvoiceEditorProps> = ({
         >
           <div className="space-y-3">
             <div>
-              <label className="block text-xs font-bold uppercase mb-1">
+              <label className="block text-xs font-bold uppercase mb-1 text-black dark:text-white">
                 Organization / Company
               </label>
               <input
@@ -223,7 +223,7 @@ export const InvoiceEditor: React.FC<InvoiceEditorProps> = ({
               />
             </div>
             <div>
-              <label className="block text-xs font-bold uppercase mb-1">
+              <label className="block text-xs font-bold uppercase mb-1 text-black dark:text-white">
                 Address
               </label>
               <input
@@ -235,7 +235,7 @@ export const InvoiceEditor: React.FC<InvoiceEditorProps> = ({
               />
             </div>
             <div>
-              <label className="block text-xs font-bold uppercase mb-1">
+              <label className="block text-xs font-bold uppercase mb-1 text-black dark:text-white">
                 City, Pin & State
               </label>
               <input
@@ -274,23 +274,23 @@ export const InvoiceEditor: React.FC<InvoiceEditorProps> = ({
             return (
               <div
                 key={item.id || index}
-                className="p-3 sm:p-4 rounded-lg border-2 border-black bg-neutral-50 shadow-[3px_3px_0px_0px_#000000] relative space-y-3"
+                className="p-3 sm:p-4 rounded-lg border-2 border-black dark:border-neutral-700 bg-neutral-50 dark:bg-[#202024] text-black dark:text-white shadow-[3px_3px_0px_0px_#000000] relative space-y-3"
               >
-                <div className="flex items-center justify-between border-b border-black/20 pb-2">
-                  <span className="font-extrabold text-sm flex items-center gap-1.5">
-                    <span className="w-5 h-5 bg-[#FFE600] border border-black rounded-full inline-flex items-center justify-center text-xs">
+                <div className="flex items-center justify-between border-b border-black/20 dark:border-neutral-700 pb-2">
+                  <span className="font-extrabold text-sm flex items-center gap-1.5 text-black dark:text-white">
+                    <span className="w-5 h-5 bg-[#FFE600] text-black border border-black rounded-full inline-flex items-center justify-center text-xs font-bold">
                       {index + 1}
                     </span>
                     Line Item #{index + 1}
                   </span>
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-black bg-black text-white px-2 py-0.5 rounded">
+                    <span className="text-xs font-black bg-black text-[#FFE600] px-2 py-0.5 rounded border border-black dark:border-neutral-600">
                       Subtotal: ₹{formatINR(rowTotal)}
                     </span>
                     {data.items.length > 1 && (
                       <button
                         onClick={() => removeItem(index)}
-                        className="p-1 text-red-600 hover:text-red-800 hover:bg-red-50 rounded border border-transparent hover:border-red-400 transition"
+                        className="p-1 text-red-600 hover:text-red-800 dark:text-red-400 dark:hover:text-red-300 hover:bg-red-50 dark:hover:bg-red-950/30 rounded border border-transparent hover:border-red-400 transition"
                         title="Delete Item"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -301,7 +301,7 @@ export const InvoiceEditor: React.FC<InvoiceEditorProps> = ({
 
                 <div className="grid grid-cols-12 gap-2 sm:gap-3 items-end">
                   <div className="col-span-6">
-                    <label className="block text-[11px] sm:text-xs font-bold mb-1 truncate" title="Description / Program Name">
+                    <label className="block text-[11px] sm:text-xs font-bold mb-1 truncate text-black dark:text-white" title="Description / Program Name">
                       Description / Program Name
                     </label>
                     <input
@@ -316,7 +316,7 @@ export const InvoiceEditor: React.FC<InvoiceEditorProps> = ({
                   </div>
 
                   <div className="col-span-3">
-                    <label className="block text-[11px] sm:text-xs font-bold mb-1 truncate" title="Amount / Student Head (₹)">
+                    <label className="block text-[11px] sm:text-xs font-bold mb-1 truncate text-black dark:text-white" title="Amount / Student Head (₹)">
                       Amount / Student Head (₹)
                     </label>
                     <input
@@ -336,7 +336,7 @@ export const InvoiceEditor: React.FC<InvoiceEditorProps> = ({
                   </div>
 
                   <div className="col-span-3">
-                    <label className="block text-[11px] sm:text-xs font-bold mb-1 truncate" title="No. of Students">
+                    <label className="block text-[11px] sm:text-xs font-bold mb-1 truncate text-black dark:text-white" title="No. of Students">
                       No. of Students
                     </label>
                     <input
@@ -370,7 +370,7 @@ export const InvoiceEditor: React.FC<InvoiceEditorProps> = ({
         <div className="space-y-5">
           {/* Payment Method Chips */}
           <div>
-            <label className="block text-xs font-black uppercase tracking-wider mb-2">
+            <label className="block text-xs font-black uppercase tracking-wider mb-2 text-black dark:text-white">
               Payment Method
             </label>
             <div className="flex flex-wrap gap-2">
@@ -381,10 +381,10 @@ export const InvoiceEditor: React.FC<InvoiceEditorProps> = ({
                     key={method}
                     type="button"
                     onClick={() => updateField('paymentMethod', method)}
-                    className={`px-3 py-1.5 rounded-lg border-2 border-black font-bold text-xs sm:text-sm tracking-wide transition-all ${
+                    className={`px-3 py-1.5 rounded-lg border-2 font-bold text-xs sm:text-sm tracking-wide transition-all ${
                       isSelected
-                        ? 'bg-[#FFE600] shadow-[3px_3px_0px_0px_#000000] -translate-y-0.5'
-                        : 'bg-white hover:bg-neutral-100 shadow-[2px_2px_0px_0px_#000000]'
+                        ? 'bg-[#FFE600] text-black border-black shadow-[3px_3px_0px_0px_#000000] -translate-y-0.5'
+                        : 'bg-white text-black border-black hover:bg-neutral-100 dark:bg-[#27272a] dark:text-white dark:border-neutral-600 dark:hover:bg-[#323238] shadow-[2px_2px_0px_0px_#000000]'
                     }`}
                   >
                     {isSelected && <Check className="w-3.5 h-3.5 inline mr-1 stroke-[3]" />}
@@ -395,15 +395,15 @@ export const InvoiceEditor: React.FC<InvoiceEditorProps> = ({
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-black/20">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 border-t border-black/20 dark:border-neutral-700">
             {/* Signature Upload / Reset */}
             <div>
-              <label className="block text-xs font-bold uppercase mb-1">
+              <label className="block text-xs font-bold uppercase mb-1 text-black dark:text-white">
                 Authorised Signature (PNG)
               </label>
               <div className="flex items-center gap-2">
-                <label className="neo-btn bg-white hover:bg-neutral-50 text-xs py-1.5 px-3 cursor-pointer">
-                  <Upload className="w-3.5 h-3.5 mr-1.5" />
+                <label className="neo-btn bg-white text-black border-black hover:bg-neutral-50 dark:bg-[#27272a] dark:text-white dark:border-neutral-600 dark:hover:bg-[#323238] text-xs py-1.5 px-3 cursor-pointer">
+                  <Upload className="w-3.5 h-3.5 mr-1.5 text-black dark:text-white" />
                   Upload Custom Signature
                   <input
                     type="file"
@@ -415,21 +415,21 @@ export const InvoiceEditor: React.FC<InvoiceEditorProps> = ({
                 {data.signatureImage !== '/signature.png' && (
                   <button
                     onClick={() => updateField('signatureImage', '/signature.png')}
-                    className="p-1.5 text-neutral-600 hover:text-black border border-black rounded"
+                    className="p-1.5 text-neutral-700 hover:text-black dark:text-neutral-300 dark:hover:text-white border border-black dark:border-neutral-600 rounded bg-white dark:bg-[#27272a]"
                     title="Reset to default Suman Mondal signature"
                   >
                     <RotateCcw className="w-3.5 h-3.5" />
                   </button>
                 )}
               </div>
-              <p className="text-[11px] text-neutral-500 mt-1">
+              <p className="text-[11px] text-neutral-600 dark:text-neutral-400 mt-1">
                 Default: Official Suman Mondal cursive signature.
               </p>
             </div>
 
             {/* Watermark Toggle */}
             <div className="flex flex-col justify-center">
-              <label className="block text-xs font-bold uppercase mb-1">
+              <label className="block text-xs font-bold uppercase mb-1 text-black dark:text-white">
                 Robogyaan Watermark
               </label>
               <label className="inline-flex items-center gap-2 cursor-pointer select-none">
@@ -439,7 +439,7 @@ export const InvoiceEditor: React.FC<InvoiceEditorProps> = ({
                   onChange={(e) => updateField('showWatermark', e.target.checked)}
                   className="w-5 h-5 accent-black border-2 border-black rounded cursor-pointer"
                 />
-                <span className="text-xs font-bold">
+                <span className="text-xs font-bold text-black dark:text-white">
                   Display subtle network logo watermark in table
                 </span>
               </label>
@@ -447,7 +447,7 @@ export const InvoiceEditor: React.FC<InvoiceEditorProps> = ({
           </div>
 
           {/* Reset Action */}
-          <div className="pt-3 border-t border-black/20 flex justify-end">
+          <div className="pt-3 border-t border-black/20 dark:border-neutral-700 flex justify-end">
             <NeoBrutalButton
               variant="white"
               size="sm"

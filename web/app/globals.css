@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @font-face {
   font-family: 'Virgil';
   src: url('/fonts/Virgil.woff2') format('woff2');
@@ -27,6 +29,11 @@
 :root {
   --background: #FFFDF0;
   --foreground: #1E1E1E;
+}
+
+.dark {
+  --background: #0c0c0e;
+  --foreground: #FFFFFF;
 }
 
 body {

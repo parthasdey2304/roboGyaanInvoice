@@ -1,15 +1,15 @@
 {
   "android/app/build.gradle.kts": {
-    "mtime": 1790761192.9981775,
-    "seen": 1790763415.334942,
-    "ast_hash": "b6e71fe14ccefb97a67055eb85c01521",
-    "semantic_hash": "b6e71fe14ccefb97a67055eb85c01521"
+    "mtime": 1790764825.7341657,
+    "seen": 1790765041.2199092,
+    "ast_hash": "92b7a5ce7adb05a3bb1310ae5b3e8b14",
+    "semantic_hash": "92b7a5ce7adb05a3bb1310ae5b3e8b14"
   },
   "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt": {
-    "mtime": 1790759680.6110797,
-    "seen": 1790760230.2732906,
-    "ast_hash": "e44242b30cf52d63712e6c8dd2d7b475",
-    "semantic_hash": "e44242b30cf52d63712e6c8dd2d7b475"
+    "mtime": 1790765000.4207056,
+    "seen": 1790765041.2199192,
+    "ast_hash": "b69a6b04ea705f901aa723f6d364d455",
+    "semantic_hash": "b69a6b04ea705f901aa723f6d364d455"
   },
   "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt": {
     "mtime": 1790761192.9987109,
@@ -48,10 +48,10 @@
     "semantic_hash": "bf7b10543e22081aff6eff013a52a24b"
   },
   "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt": {
-    "mtime": 1790760300.8805416,
-    "seen": 1790761084.5109599,
-    "ast_hash": "34a2068fcc167786094bd6641d589ca1",
-    "semantic_hash": "34a2068fcc167786094bd6641d589ca1"
+    "mtime": 1790763809.8285186,
+    "seen": 1790765041.2218235,
+    "ast_hash": "6dd3ea836f392a2658539d8b412a51ce",
+    "semantic_hash": "6dd3ea836f392a2658539d8b412a51ce"
   },
   "android/app/src/main/java/com/robogyaan/invoice/ui/components/NeoBrutalComponents.kt": {
     "mtime": 1790758573.1784482,
@@ -144,10 +144,10 @@
     "semantic_hash": "24304bdad8651e036de53da416cc5a9a"
   },
   "web/app/page.tsx": {
-    "mtime": 1790757320.0536454,
-    "seen": 1790758411.0693457,
-    "ast_hash": "ef07111c6156569917c462dfb12094f2",
-    "semantic_hash": "ef07111c6156569917c462dfb12094f2"
+    "mtime": 1790764694.4649303,
+    "seen": 1790765041.2247498,
+    "ast_hash": "4ba289433a7a89a118d412f18f94bd6a",
+    "semantic_hash": "4ba289433a7a89a118d412f18f94bd6a"
   },
   "web/components/AuthGate.tsx": {
     "mtime": 1790760300.8894346,
@@ -267,143 +267,143 @@
     "mtime": 1790718145.4031942,
     "seen": 1790722023.5581467,
     "ast_hash": "7006ab42a60240a20ed20e0fc1b04673",
-    "semantic_hash": "7006ab42a60240a20ed20e0fc1b04673"
+    "semantic_hash": ""
   },
   ".agents/git-pr-release.md": {
     "mtime": 1790718145.4031942,
     "seen": 1790722023.5581477,
     "ast_hash": "23530956df070ec966ca8d5344d650ed",
-    "semantic_hash": "23530956df070ec966ca8d5344d650ed"
+    "semantic_hash": ""
   },
   ".agents/syntax-style.md": {
     "mtime": 1790718283.673212,
     "seen": 1790722023.5581486,
     "ast_hash": "a0f380ef4f5818e1d838d31a1cd00ac0",
-    "semantic_hash": "a0f380ef4f5818e1d838d31a1cd00ac0"
+    "semantic_hash": ""
   },
   "README.md": {
     "mtime": 1790760836.4292612,
     "seen": 1790761084.5110798,
     "ast_hash": "4ce747b1c2d7897e4946a1834e98429f",
-    "semantic_hash": "4ce747b1c2d7897e4946a1834e98429f"
+    "semantic_hash": ""
   },
   "web/AGENTS.md": {
     "mtime": 1790712840.1096625,
     "seen": 1790722023.5581498,
     "ast_hash": "3ad29ed1c7e1970f724e872fcffc4909",
-    "semantic_hash": "3ad29ed1c7e1970f724e872fcffc4909"
+    "semantic_hash": ""
   },
   "web/CLAUDE.md": {
     "mtime": 1790712840.1096625,
     "seen": 1790722023.5581508,
     "ast_hash": "771faa62feb60b7de901a397aebb29b0",
-    "semantic_hash": "771faa62feb60b7de901a397aebb29b0"
+    "semantic_hash": ""
   },
   "web/README.md": {
     "mtime": 1790712840.1102107,
     "seen": 1790722023.5581515,
     "ast_hash": "9162add00befbcdb432430f405c4ad8d",
-    "semantic_hash": "9162add00befbcdb432430f405c4ad8d"
+    "semantic_hash": ""
   },
   "android/app/src/main/res/drawable/ic_robogyaan_logo.png": {
     "mtime": 1790712840.0989697,
     "seen": 1790722023.5581522,
     "ast_hash": "0438cb3e749a4024c77ba77c2af65de8",
-    "semantic_hash": "0438cb3e749a4024c77ba77c2af65de8"
+    "semantic_hash": ""
   },
   "android/app/src/main/res/drawable/ic_robogyaan_symbol.png": {
     "mtime": 1790712840.0989697,
     "seen": 1790722023.558153,
     "ast_hash": "5cba0853cfe8f91b318d59bc99797e1a",
-    "semantic_hash": "5cba0853cfe8f91b318d59bc99797e1a"
+    "semantic_hash": ""
   },
   "android/app/src/main/res/drawable/ic_signature.png": {
     "mtime": 1790712840.0999758,
     "seen": 1790722023.5581539,
     "ast_hash": "85d6d98ea56673f1e9968a89e140b1dd",
-    "semantic_hash": "85d6d98ea56673f1e9968a89e140b1dd"
+    "semantic_hash": ""
   },
   "robogyaan_logo.png": {
     "mtime": 1790712840.1054952,
     "seen": 1790722023.5581546,
     "ast_hash": "0438cb3e749a4024c77ba77c2af65de8",
-    "semantic_hash": "0438cb3e749a4024c77ba77c2af65de8"
+    "semantic_hash": ""
   },
   "robogyaan_symbol.png": {
     "mtime": 1790712840.1054952,
     "seen": 1790722023.5581555,
     "ast_hash": "5cba0853cfe8f91b318d59bc99797e1a",
-    "semantic_hash": "5cba0853cfe8f91b318d59bc99797e1a"
+    "semantic_hash": ""
   },
   "signature.png": {
     "mtime": 1790712840.1064997,
     "seen": 1790722023.558156,
     "ast_hash": "85d6d98ea56673f1e9968a89e140b1dd",
-    "semantic_hash": "85d6d98ea56673f1e9968a89e140b1dd"
+    "semantic_hash": ""
   },
   "web/public/file.svg": {
     "mtime": 1790712840.12002,
     "seen": 1790722023.5581567,
     "ast_hash": "d09f95206c3fa0bb9bd9fefabfd0ea71",
-    "semantic_hash": "d09f95206c3fa0bb9bd9fefabfd0ea71"
+    "semantic_hash": ""
   },
   "web/public/globe.svg": {
     "mtime": 1790712840.121136,
     "seen": 1790722023.558158,
     "ast_hash": "2aaafa6a49b6563925fe440891e32717",
-    "semantic_hash": "2aaafa6a49b6563925fe440891e32717"
+    "semantic_hash": ""
   },
   "web/public/next.svg": {
     "mtime": 1790712840.121673,
     "seen": 1790722023.5581584,
     "ast_hash": "8e061864f388b47f33a1c3780831193e",
-    "semantic_hash": "8e061864f388b47f33a1c3780831193e"
+    "semantic_hash": ""
   },
   "web/public/robogyaan_logo.png": {
     "mtime": 1790712840.121673,
     "seen": 1790722023.558159,
     "ast_hash": "0438cb3e749a4024c77ba77c2af65de8",
-    "semantic_hash": "0438cb3e749a4024c77ba77c2af65de8"
+    "semantic_hash": ""
   },
   "web/public/robogyaan_symbol.png": {
     "mtime": 1790712840.1222298,
     "seen": 1790722023.5581598,
     "ast_hash": "5cba0853cfe8f91b318d59bc99797e1a",
-    "semantic_hash": "5cba0853cfe8f91b318d59bc99797e1a"
+    "semantic_hash": ""
   },
   "web/public/signature.png": {
     "mtime": 1790712840.1233397,
     "seen": 1790722023.5581603,
     "ast_hash": "85d6d98ea56673f1e9968a89e140b1dd",
-    "semantic_hash": "85d6d98ea56673f1e9968a89e140b1dd"
+    "semantic_hash": ""
   },
   "web/public/vercel.svg": {
     "mtime": 1790712840.124236,
     "seen": 1790722023.5581613,
     "ast_hash": "c0af2f507b369b085b35ef4bbe3bcf1e",
-    "semantic_hash": "c0af2f507b369b085b35ef4bbe3bcf1e"
+    "semantic_hash": ""
   },
   "web/public/window.svg": {
     "mtime": 1790712840.1247616,
     "seen": 1790722023.558162,
     "ast_hash": "a2760511c65806022ad20adf74370ff3",
-    "semantic_hash": "a2760511c65806022ad20adf74370ff3"
+    "semantic_hash": ""
   },
   "android/app/src/main/java/com/robogyaan/invoice/ui/components/AppUpdateManager.kt": {
-    "mtime": 1790763306.80993,
-    "seen": 1790763415.3349605,
-    "ast_hash": "0370201ee6c659ac677310ca18225544",
-    "semantic_hash": "0370201ee6c659ac677310ca18225544"
+    "mtime": 1790764783.4849799,
+    "seen": 1790765041.2214863,
+    "ast_hash": "f1f57759620cc7035f8aece0108dcd2a",
+    "semantic_hash": "f1f57759620cc7035f8aece0108dcd2a"
   },
   "android/app/src/main/java/com/robogyaan/invoice/ui/components/BoxGridBackground.kt": {
-    "mtime": 1790760300.8798943,
-    "seen": 1790761084.5109503,
-    "ast_hash": "520a8fff49f8e7067bc69fbd6cfe075f",
-    "semantic_hash": "520a8fff49f8e7067bc69fbd6cfe075f"
+    "mtime": 1790763792.16281,
+    "seen": 1790765041.2214885,
+    "ast_hash": "b088e97716d0962d650ca225bcfe9426",
+    "semantic_hash": "b088e97716d0962d650ca225bcfe9426"
   },
   "android/app/src/main/java/com/robogyaan/invoice/ui/components/SettingsDialog.kt": {
-    "mtime": 1790763208.3443663,
-    "seen": 1790763415.3349683,
+    "mtime": 1790763477.83525,
+    "seen": 1790765041.2219334,
     "ast_hash": "5e04d3fff48b02d8174a24381464e20f",
     "semantic_hash": "5e04d3fff48b02d8174a24381464e20f"
   },
@@ -414,15 +414,15 @@
     "semantic_hash": "349e0eb0f0a520d5feeef10c700973cc"
   },
   "web/components/SettingsModal.tsx": {
-    "mtime": 1790763220.1375337,
-    "seen": 1790763415.3350003,
-    "ast_hash": "83ee8ecec66c8de04049e01c162a4275",
-    "semantic_hash": "83ee8ecec66c8de04049e01c162a4275"
+    "mtime": 1790764785.5410268,
+    "seen": 1790765041.2258613,
+    "ast_hash": "76a1332b2b0f323dc7363fc6809ae393",
+    "semantic_hash": "76a1332b2b0f323dc7363fc6809ae393"
   },
   "web/app/api/version/route.ts": {
-    "mtime": 1790763099.6097248,
-    "seen": 1790763415.334986,
-    "ast_hash": "a13fcdea90c6465716b156dd7e4d6084",
-    "semantic_hash": "a13fcdea90c6465716b156dd7e4d6084"
+    "mtime": 1790764785.6142783,
+    "seen": 1790765041.2246473,
+    "ast_hash": "d000f066876a68b4782abe2c88be68ef",
+    "semantic_hash": "d000f066876a68b4782abe2c88be68ef"
   }
 }

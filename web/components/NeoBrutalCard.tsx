@@ -18,11 +18,11 @@ export const NeoBrutalCard: React.FC<NeoBrutalCardProps> = ({
   headerAction,
 }) => {
   const bgColors = {
-    white: 'bg-white text-black dark:bg-[#1c1d25] dark:text-white dark:border-neutral-600',
+    white: 'bg-white text-black dark:bg-[#18181b] dark:text-white dark:border-neutral-700',
     yellow: 'bg-[#FFE600] text-black',
     dark: 'bg-[#1E1E1E] text-white',
     orange: 'bg-[#FFA500] text-black',
-    gray: 'bg-[#F3F4F6] text-black dark:bg-[#22242e] dark:text-white',
+    gray: 'bg-[#F3F4F6] text-black dark:bg-[#27272a] dark:text-white',
   };
 
   return (

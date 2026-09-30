@@ -81,7 +81,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   backgroundStyle,
   onBackgroundStyleChange,
 }) => {
-  const currentVersion = 'v1.5.2';
+  const currentVersion = 'v1.5.3';
   const [latestReleaseTag, setLatestReleaseTag] = useState<string | null>(null);
   const [checkingRelease, setCheckingRelease] = useState(false);
   const [downloadProgress, setDownloadProgress] = useState<number | null>(null);
@@ -176,7 +176,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-150">
       <div
         className={`w-full max-w-lg border-[3.5px] border-black rounded-xl p-5 sm:p-7 shadow-[8px_8px_0px_#000000] relative max-h-[90vh] overflow-y-auto ${
-          isDark ? 'bg-[#1a1b22] text-white border-white/80' : 'bg-[#FFFDF7] text-black'
+          isDark ? 'bg-[#18181b] text-white border-white/80' : 'bg-[#FFFDF7] text-black'
         }`}
       >
         {/* Header */}
@@ -214,7 +214,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
           {/* Theme Selector */}
           <div
             className={`p-3.5 border-2 border-black rounded-lg ${
-              isDark ? 'bg-[#22242e] shadow-[3px_3px_0px_#000]' : 'bg-white shadow-[3px_3px_0px_#000]'
+              isDark ? 'bg-[#27272a] shadow-[3px_3px_0px_#000]' : 'bg-white shadow-[3px_3px_0px_#000]'
             }`}
           >
             <div className="flex items-center justify-between mb-2">
@@ -278,7 +278,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                   backgroundStyle === 'default'
                     ? 'bg-[#FFE600] text-black shadow-[2px_2px_0px_#000] font-black'
                     : isDark
-                    ? 'bg-[#22242e] text-neutral-200 hover:bg-[#2c2e3a]'
+                    ? 'bg-[#18181b] text-neutral-300 hover:bg-neutral-800'
                     : 'bg-neutral-50 text-neutral-700 hover:bg-neutral-100'
                 }`}
               >
@@ -298,7 +298,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                   backgroundStyle === 'grid'
                     ? 'bg-[#FFE600] text-black shadow-[2px_2px_0px_#000] font-black'
                     : isDark
-                    ? 'bg-[#22242e] text-neutral-200 hover:bg-[#2c2e3a]'
+                    ? 'bg-[#18181b] text-neutral-300 hover:bg-neutral-800'
                     : 'bg-neutral-50 text-neutral-700 hover:bg-neutral-100'
                 }`}
               >
@@ -327,7 +327,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
 
           <div
             className={`p-4 border-2 border-black rounded-lg ${
-              isDark ? 'bg-[#22242e] shadow-[3px_3px_0px_#000]' : 'bg-white shadow-[3px_3px_0px_#000]'
+              isDark ? 'bg-[#27272a] shadow-[3px_3px_0px_#000]' : 'bg-white shadow-[3px_3px_0px_#000]'
             }`}
           >
             {/* Version status banner */}

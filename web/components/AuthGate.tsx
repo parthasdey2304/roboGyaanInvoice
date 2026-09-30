@@ -204,7 +204,7 @@ export const AuthGate: React.FC<AuthGateProps> = ({ children }) => {
         {/* Security Notice Banner */}
         <div
           className={`mb-5 border-2 border-black rounded-lg p-3 shadow-[2px_2px_0px_#000] ${
-            isDark ? 'bg-[#272732] border-neutral-600' : 'bg-[#FFFDE6]'
+            isDark ? 'bg-[#27272a]' : 'bg-[#FFFDE6]'
           }`}
         >
           <div className="flex items-start gap-2">
@@ -236,7 +236,7 @@ export const AuthGate: React.FC<AuthGateProps> = ({ children }) => {
               placeholder="invoiceadmin@robogyaan.in"
               required
               className={`neo-input w-full text-xs font-semibold py-2.5 px-3 border-2 border-black rounded-lg shadow-[2.5px_2.5px_0px_#000] focus:shadow-[4px_4px_0px_#FFE600] outline-none ${
-                isDark ? 'bg-[#272732] text-white border-neutral-500' : 'bg-white text-black'
+                isDark ? 'bg-[#27272a] text-white border-neutral-600' : 'bg-white text-black'
               }`}
             />
           </div>
@@ -253,7 +253,7 @@ export const AuthGate: React.FC<AuthGateProps> = ({ children }) => {
               placeholder="Enter admin password"
               required
               className={`neo-input w-full text-xs font-semibold py-2.5 px-3 border-2 border-black rounded-lg shadow-[2.5px_2.5px_0px_#000] focus:shadow-[4px_4px_0px_#FFE600] outline-none ${
-                isDark ? 'bg-[#272732] text-white border-neutral-500' : 'bg-white text-black'
+                isDark ? 'bg-[#27272a] text-white border-neutral-600' : 'bg-white text-black'
               }`}
             />
           </div>

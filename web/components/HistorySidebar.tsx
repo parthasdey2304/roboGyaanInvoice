@@ -290,7 +290,7 @@ export const HistorySidebar: React.FC<HistorySidebarProps> = ({
                   <div
                     key={entry.id}
                     className={`border-2 border-black rounded-lg p-3 shadow-[3px_3px_0px_#000] space-y-2 transition ${
-                      isActive ? 'bg-[#FFFDE6] dark:bg-[#2e2a14] ring-2 ring-black' : 'bg-white dark:bg-[#22242e] hover:bg-neutral-50 dark:hover:bg-[#2a2c38]'
+                      isActive ? 'bg-[#FFFDE6] dark:bg-[#2e2a14] ring-2 ring-black' : 'bg-white dark:bg-[#18181b] hover:bg-neutral-50 dark:hover:bg-[#222226]'
                     }`}
                   >
                     <div className="flex items-start justify-between gap-2">
@@ -313,7 +313,7 @@ export const HistorySidebar: React.FC<HistorySidebarProps> = ({
                               type="text"
                               value={editingText}
                               onChange={(e) => setEditingText(e.target.value)}
-                              className="neo-input text-xs font-medium w-full py-0.5 px-1.5 dark:bg-[#1a1b22] dark:text-white"
+                              className="neo-input text-xs font-medium w-full py-0.5 px-1.5 dark:bg-[#18181b] dark:text-white"
                               autoFocus
                             />
                             <button

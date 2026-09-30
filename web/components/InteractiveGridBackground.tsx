@@ -76,19 +76,19 @@ export const InteractiveGridBackground: React.FC<InteractiveGridBackgroundProps>
 
       const isDark = theme === 'dark';
 
-      // Base background color - soft elevated slate-charcoal with a touch of white for comfortable visibility
-      ctx.fillStyle = isDark ? '#22242e' : '#FDFBF7';
+      // Base background color
+      ctx.fillStyle = isDark ? '#0c0c0e' : '#FDFBF7';
       ctx.fillRect(0, 0, width, height);
 
       // Grid line and swell colors - crisp, clearly visible cross-cross box-box lines
       const gridLineColor = isDark
-        ? 'rgba(255, 255, 255, 0.22)'
+        ? 'rgba(255, 255, 255, 0.15)'
         : 'rgba(0, 0, 0, 0.14)';
       const swellAuraColor = isDark
-        ? 'rgba(255, 230, 0, 0.18)'
+        ? 'rgba(255, 230, 0, 0.12)'
         : 'rgba(255, 230, 0, 0.22)';
       const activeLineColor = isDark
-        ? 'rgba(255, 255, 255, 0.45)'
+        ? 'rgba(255, 255, 255, 0.38)'
         : 'rgba(0, 0, 0, 0.35)';
 
       // 1. Draw tactile radial glow under cursor when active
@@ -214,7 +214,7 @@ export const InteractiveGridBackground: React.FC<InteractiveGridBackgroundProps>
     return (
       <div
         className={`fixed inset-0 pointer-events-none z-0 transition-colors duration-200 ${
-          theme === 'dark' ? 'bg-[#22242e]' : 'bg-[#FDFBF7]'
+          theme === 'dark' ? 'bg-[#0c0c0e]' : 'bg-[#FDFBF7]'
         }`}
       />
     );

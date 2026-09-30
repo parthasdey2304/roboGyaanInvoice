@@ -1751,17 +1751,6 @@
       "source_location": "L1"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_boxgridbackground_kt_modifier",
-      "label": "Modifier",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "Web Application & History Sidebar",
-      "file_type": "code",
-      "norm_label": "modifier",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
       "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_historysidebarsheet",
       "label": "HistorySidebarSheet.kt",
       "_origin": "ast",
@@ -1964,6 +1953,17 @@
       "source_location": ""
     },
     {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_kt_context",
+      "label": "Context",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "In-App Software Updater System",
+      "file_type": "code",
+      "norm_label": "context",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
       "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager",
       "label": "AppUpdateManager.kt",
       "_origin": "ast",
@@ -1972,16 +1972,6 @@
       "norm_label": "appupdatemanager.kt",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/AppUpdateManager.kt",
       "source_location": "L1"
-    },
-    {
-      "id": "context",
-      "label": "Context",
-      "_origin": "ast",
-      "community": 10,
-      "file_type": "code",
-      "norm_label": "context",
-      "source_file": "",
-      "source_location": ""
     },
     {
       "id": "android_app_src_main_java_com_robogyaan_invoice_ui_neobrutalmodifiers",
@@ -2956,13 +2946,13 @@
       "source_location": ""
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_kt_context",
-      "label": "Context",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_boxgridbackground_kt_modifier",
+      "label": "Modifier",
       "_origin": "ast",
       "community": 31,
-      "community_name": "In-App Software Updater System",
+      "community_name": "Web Application & History Sidebar",
       "file_type": "code",
-      "norm_label": "context",
+      "norm_label": "modifier",
       "source_file": "",
       "source_location": ""
     },
@@ -3141,6 +3131,16 @@
       "norm_label": "settings.gradle.kts",
       "source_file": "android/settings.gradle.kts",
       "source_location": "L1"
+    },
+    {
+      "id": "context",
+      "label": "Context",
+      "_origin": "ast",
+      "community": 43,
+      "file_type": "code",
+      "norm_label": "context",
+      "source_file": "",
+      "source_location": ""
     },
     {
       "id": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice",
@@ -3666,7 +3666,7 @@
       "_origin": "semantic",
       "author": null,
       "captured_at": null,
-      "community": 43,
+      "community": 44,
       "community_name": "Web Public Symbol Asset",
       "contributor": null,
       "file_type": "image",
@@ -3681,7 +3681,7 @@
       "_origin": "semantic",
       "author": null,
       "captured_at": null,
-      "community": 44,
+      "community": 45,
       "community_name": "Web Public Vercel Icon Asset",
       "contributor": null,
       "file_type": "image",
@@ -3696,7 +3696,7 @@
       "_origin": "semantic",
       "author": null,
       "captured_at": null,
-      "community": 45,
+      "community": 46,
       "community_name": "Web Public Window Icon Asset",
       "contributor": null,
       "file_type": "image",
@@ -3711,7 +3711,7 @@
       "_origin": "semantic",
       "author": null,
       "captured_at": null,
-      "community": 46,
+      "community": 47,
       "community_name": "Next.js Web App Bootstrap Guide",
       "contributor": null,
       "file_type": "image",
@@ -3726,7 +3726,7 @@
       "_origin": "semantic",
       "author": null,
       "captured_at": null,
-      "community": 47,
+      "community": 48,
       "community_name": "Web Public Directory RoboGyaan Symbol Asset",
       "contributor": null,
       "file_type": "image",
@@ -3741,7 +3741,7 @@
       "_origin": "semantic",
       "author": null,
       "captured_at": null,
-      "community": 48,
+      "community": 49,
       "community_name": "Web Public Vercel Logo SVG Asset",
       "contributor": null,
       "file_type": "image",
@@ -3756,7 +3756,7 @@
       "_origin": "semantic",
       "author": null,
       "captured_at": null,
-      "community": 49,
+      "community": 50,
       "community_name": "Web Public Window Icon SVG Asset",
       "contributor": null,
       "file_type": "image",
@@ -3771,7 +3771,7 @@
       "_origin": "semantic",
       "author": null,
       "captured_at": null,
-      "community": 50,
+      "community": 51,
       "community_name": "Next.js Web Portal Bootstrap Guide",
       "contributor": null,
       "file_type": "document",
@@ -3948,7 +3948,7 @@
       "id": "RoboGyaan Invoice Suite Documentation",
       "label": "RoboGyaan Invoice Suite Documentation",
       "community": 16,
-      "description": "Comprehensive architectural documentation and specifications for RoboGyaan Invoice Suite v1.5.2 covering Virgil Excalidraw typography, Neo-Brutalism design system, Apache License 2.0, dual-platform architecture, and responsive split view.",
+      "description": "Comprehensive architectural documentation and specifications for RoboGyaan Invoice Suite v1.5.3 covering Virgil Excalidraw typography, Neo-Brutalism design system, Deep Obsidian Dark Mode, Apache License 2.0, dual-platform architecture, and responsive split view.",
       "file_type": "concept",
       "norm_label": "robogyaan invoice suite documentation",
       "source_file": "README.md",
@@ -3965,12 +3965,12 @@
       "type": "Feature"
     },
     {
-      "id": "Virgil Excalidraw Typography Specification",
-      "label": "Virgil Excalidraw Typography Specification",
+      "id": "Deep Obsidian Dark Mode Palette",
+      "label": "Deep Obsidian Dark Mode Palette",
       "community": 16,
-      "description": "Specification for using open-source Virgil font across Web and Android to convey an authentic, hand-drawn sketch feel with bold Neo-Brutalist accents.",
+      "description": "Standard high-contrast dark theme palette (#0c0c0e, #09090b, #121212) restoring the classic pitch black canvas and crisp UI card contrast.",
       "file_type": "concept",
-      "norm_label": "virgil excalidraw typography specification",
+      "norm_label": "deep obsidian dark mode palette",
       "source_file": "README.md",
       "type": "Concept"
     }
@@ -4785,7 +4785,7 @@
     },
     {
       "source": "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager",
-      "target": "context",
+      "target": "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_kt_context",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -4935,7 +4935,7 @@
     },
     {
       "source": "android_app_src_main_java_com_robogyaan_invoice_ui_components_boxgridbackground",
-      "target": "android_app_src_main_java_com_robogyaan_invoice_ui_components_boxgridbackground_kt_modifier",
+      "target": "modifier",
       "relation": "imports",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -4964,6 +4964,21 @@
       "weight": 1.0
     },
     {
+      "source": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen",
+      "target": "modifier",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "metadata": {
+        "target_fqn": "androidx.compose.ui.Modifier"
+      },
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
       "source": "android_app_src_main_java_com_robogyaan_invoice_ui_components_neobrutalcomponents",
       "target": "android_app_src_main_java_com_robogyaan_invoice_ui_components_neobrutalcomponents_kt_modifier",
       "relation": "imports",
@@ -4976,6 +4991,21 @@
       },
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/NeoBrutalComponents.kt",
       "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "android_app_src_main_java_com_robogyaan_invoice_ui_components_settingsdialog",
+      "target": "modifier",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "metadata": {
+        "target_fqn": "androidx.compose.ui.Modifier"
+      },
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/SettingsDialog.kt",
+      "source_location": "L17",
       "weight": 1.0
     },
     {
@@ -7167,7 +7197,7 @@
     },
     {
       "source": "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_appupdatemanager_checkforupdates",
-      "target": "context",
+      "target": "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_kt_context",
       "relation": "references",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -7179,7 +7209,7 @@
     },
     {
       "source": "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_appupdatemanager_deletependingapk",
-      "target": "context",
+      "target": "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_kt_context",
       "relation": "references",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -7191,7 +7221,7 @@
     },
     {
       "source": "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_appupdatemanager_downloadapk",
-      "target": "context",
+      "target": "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_kt_context",
       "relation": "references",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -7203,7 +7233,7 @@
     },
     {
       "source": "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_appupdatemanager_installapk",
-      "target": "context",
+      "target": "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_kt_context",
       "relation": "references",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -7215,7 +7245,7 @@
     },
     {
       "source": "android_app_src_main_java_com_robogyaan_invoice_ui_components_boxgridbackground_boxgridbackground",
-      "target": "android_app_src_main_java_com_robogyaan_invoice_ui_components_boxgridbackground_kt_modifier",
+      "target": "modifier",
       "relation": "references",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -10159,14 +10189,14 @@
     },
     {
       "source": "RoboGyaan Invoice Suite Documentation",
-      "target": "Responsive Split Page Resizer Specification",
+      "target": "Deep Obsidian Dark Mode Palette",
       "relation": "specifies",
       "confidence_score": 1.0,
       "source_file": "README.md"
     },
     {
       "source": "RoboGyaan Invoice Suite Documentation",
-      "target": "Virgil Excalidraw Typography Specification",
+      "target": "Responsive Split Page Resizer Specification",
       "relation": "specifies",
       "confidence_score": 1.0,
       "source_file": "README.md"
@@ -10199,5 +10229,5 @@
       "source_file": ".agents/syntax-style.md"
     }
   ],
-  "built_at_commit": "810a6f0f2552e4307ddceb297f65105ca3cfbd9f"
+  "built_at_commit": "e743f8aa81d841b33d98249600908938387c0346"
 }

@@ -214,7 +214,7 @@ fun LoginScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .neoBrutal(
-                        backgroundColor = if (isDarkMode) Color(0xFF181A22) else Color.White,
+                        backgroundColor = if (isDarkMode) Color(0xFF1E1E22) else Color.White,
                         borderWidth = 3.dp,
                         shadowOffset = 6.dp,
                         cornerRadius = 12.dp

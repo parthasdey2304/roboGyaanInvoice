@@ -28,8 +28,8 @@ private val DarkColorScheme = darkColorScheme(
     secondary = NeoOrange,
     onSecondary = NeoBlack,
     tertiary = NeoDarkGray,
-    background = Color(0xFF22242E),
-    surface = Color(0xFF181A22),
+    background = Color(0xFF121212),
+    surface = Color(0xFF1E1E22),
     onSurface = Color.White
 )
 

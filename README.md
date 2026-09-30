@@ -12,8 +12,8 @@
 <div align="center">
 
 [![Vercel Deployment](https://img.shields.io/badge/Vercel-https://invoice.robogyaan.in/-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://invoice.robogyaan.in)
-[![Android APK Release](https://img.shields.io/badge/Android_APK-v1.5.3_Download-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/parthasdey2304/roboGyaanInvoice/releases/download/v1.5.3/robogyaan-invoice-v1.5.3.apk)
-[![GitHub Release](https://img.shields.io/badge/GitHub-v1.5.3_Release-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/parthasdey2304/roboGyaanInvoice/releases/tag/v1.5.3)
+[![Android APK Release](https://img.shields.io/badge/Android_APK-v1.5.4_Download-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/parthasdey2304/roboGyaanInvoice/releases/download/v1.5.4/robogyaan-invoice-v1.5.4.apk)
+[![GitHub Release](https://img.shields.io/badge/GitHub-v1.5.4_Release-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/parthasdey2304/roboGyaanInvoice/releases/tag/v1.5.4)
 [![Font Virgil](https://img.shields.io/badge/Typography-Virgil_(Excalidraw)-FF6B6B?style=for-the-badge&logo=penpot&logoColor=white)](https://plus.excalidraw.com/virgil)
 [![Next.js 16](https://img.shields.io/badge/Next.js-16.3.7_Turbopack-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
 [![Jetpack Compose](https://img.shields.io/badge/Jetpack_Compose-Material_3-4285F4?style=for-the-badge&logo=jetpackcompose&logoColor=white)](https://developer.android.com/jetpack/compose)
@@ -26,7 +26,7 @@
 
 ---
 
-[🌐 **Live Web Application**](https://invoice.robogyaan.in) • [📱 **Download Android APK (v1.5.3)**](https://github.com/parthasdey2304/roboGyaanInvoice/releases/download/v1.5.3/robogyaan-invoice-v1.5.3.apk) • [📦 **GitHub Release Notes**](https://github.com/parthasdey2304/roboGyaanInvoice/releases/tag/v1.5.3) • [✨ **Excalidraw Virgil Font**](https://plus.excalidraw.com/virgil)
+[🌐 **Live Web Application**](https://invoice.robogyaan.in) • [📱 **Download Android APK (v1.5.4)**](https://github.com/parthasdey2304/roboGyaanInvoice/releases/download/v1.5.4/robogyaan-invoice-v1.5.4.apk) • [📦 **GitHub Release Notes**](https://github.com/parthasdey2304/roboGyaanInvoice/releases/tag/v1.5.4) • [✨ **Excalidraw Virgil Font**](https://plus.excalidraw.com/virgil)
 
 </div>
 

@@ -81,7 +81,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   backgroundStyle,
   onBackgroundStyleChange,
 }) => {
-  const currentVersion = 'v1.5.5';
+  const currentVersion = 'v1.5.6';
   const [latestReleaseTag, setLatestReleaseTag] = useState<string | null>(null);
   const [checkingRelease, setCheckingRelease] = useState(false);
   const [downloadProgress, setDownloadProgress] = useState<number | null>(null);

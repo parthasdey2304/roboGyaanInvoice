@@ -287,7 +287,7 @@
       "file_type": "code",
       "norm_label": "mainactivity",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L63"
+      "source_location": "L64"
     },
     {
       "id": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice",
@@ -1017,7 +1017,7 @@
       "file_type": "code",
       "norm_label": "handdrawnasteriskicon()",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L116"
+      "source_location": "L119"
     },
     {
       "id": "android_app_src_main_java_com_robogyaan_invoice_mainactivity_mainactivity_oncreate",
@@ -1029,7 +1029,7 @@
       "file_type": "code",
       "norm_label": ".oncreate()",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L67"
+      "source_location": "L68"
     },
     {
       "id": "android_app_src_main_java_com_robogyaan_invoice_mainactivity_mainscreen",
@@ -1041,7 +1041,7 @@
       "file_type": "code",
       "norm_label": "mainscreen()",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L147"
+      "source_location": "L149"
     },
     {
       "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_boxgridbackground_boxgridbackground",
@@ -3986,7 +3986,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L75",
+      "source_location": "L78",
       "weight": 1.0
     },
     {
@@ -3998,7 +3998,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L77",
+      "source_location": "L80",
       "weight": 1.0
     },
     {
@@ -4010,7 +4010,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L88",
+      "source_location": "L91",
       "weight": 1.0
     },
     {
@@ -4022,7 +4022,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L172",
+      "source_location": "L175",
       "weight": 1.0
     },
     {
@@ -4034,7 +4034,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L188",
+      "source_location": "L191",
       "weight": 1.0
     },
     {
@@ -4046,7 +4046,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L595",
+      "source_location": "L598",
       "weight": 1.0
     },
     {
@@ -4058,7 +4058,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L642",
+      "source_location": "L645",
       "weight": 1.0
     },
     {
@@ -4070,7 +4070,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L645",
+      "source_location": "L648",
       "weight": 1.0
     },
     {
@@ -4082,7 +4082,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L747",
+      "source_location": "L761",
       "weight": 1.0
     },
     {
@@ -4094,7 +4094,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L760",
+      "source_location": "L772",
       "weight": 1.0
     },
     {
@@ -4106,7 +4106,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L772",
+      "source_location": "L784",
       "weight": 1.0
     },
     {
@@ -4118,7 +4118,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L784",
+      "source_location": "L796",
       "weight": 1.0
     },
     {
@@ -4598,7 +4598,7 @@
       "confidence_score": 1.0,
       "context": "field",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L65",
+      "source_location": "L66",
       "weight": 1.0
     },
     {
@@ -5414,7 +5414,7 @@
         "target_fqn": "com.robogyaan.invoice.ui.InvoiceViewModel"
       },
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L42",
+      "source_location": "L43",
       "weight": 1.0
     },
     {
@@ -5444,7 +5444,7 @@
         "target_fqn": "com.robogyaan.invoice.ui.components.AuthPreferences"
       },
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L43",
+      "source_location": "L44",
       "weight": 1.0
     },
     {
@@ -5459,7 +5459,7 @@
         "target_fqn": "com.robogyaan.invoice.ui.components.BoxGridBackground"
       },
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L44",
+      "source_location": "L45",
       "weight": 1.0
     },
     {
@@ -5474,7 +5474,7 @@
         "target_fqn": "com.robogyaan.invoice.ui.components.HistorySidebarSheet"
       },
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L45",
+      "source_location": "L46",
       "weight": 1.0
     },
     {
@@ -5489,7 +5489,7 @@
         "target_fqn": "com.robogyaan.invoice.ui.components.InvoiceEditorScreen"
       },
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L46",
+      "source_location": "L47",
       "weight": 1.0
     },
     {
@@ -5504,7 +5504,7 @@
         "target_fqn": "com.robogyaan.invoice.ui.components.LoginScreen"
       },
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L47",
+      "source_location": "L48",
       "weight": 1.0
     },
     {
@@ -5519,7 +5519,7 @@
         "target_fqn": "com.robogyaan.invoice.ui.components.NeoBrutalAlertDialog"
       },
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L48",
+      "source_location": "L49",
       "weight": 1.0
     },
     {
@@ -5534,7 +5534,7 @@
         "target_fqn": "com.robogyaan.invoice.ui.components.NeoBrutalButton"
       },
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L49",
+      "source_location": "L50",
       "weight": 1.0
     },
     {
@@ -5549,7 +5549,7 @@
         "target_fqn": "com.robogyaan.invoice.ui.components.SettingsDialog"
       },
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L50",
+      "source_location": "L51",
       "weight": 1.0
     },
     {
@@ -5564,7 +5564,7 @@
         "target_fqn": "com.robogyaan.invoice.ui.neoBrutal"
       },
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L51",
+      "source_location": "L52",
       "weight": 1.0
     },
     {
@@ -5699,7 +5699,7 @@
         "target_fqn": "com.robogyaan.invoice.ui.preview.InvoicePreviewScreen"
       },
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L52",
+      "source_location": "L53",
       "weight": 1.0
     },
     {
@@ -5714,7 +5714,7 @@
         "target_fqn": "com.robogyaan.invoice.ui.theme.RoboGyaanInvoiceTheme"
       },
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L55",
+      "source_location": "L56",
       "weight": 1.0
     },
     {
@@ -5774,7 +5774,7 @@
         "target_fqn": "com.robogyaan.invoice.util.PdfGenerator"
       },
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L57",
+      "source_location": "L58",
       "weight": 1.0
     },
     {
@@ -7175,7 +7175,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L116",
+      "source_location": "L119",
       "weight": 1.0
     },
     {
@@ -7187,7 +7187,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L116",
+      "source_location": "L119",
       "weight": 1.0
     },
     {
@@ -7199,7 +7199,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L67",
+      "source_location": "L68",
       "weight": 1.0
     },
     {
@@ -7211,7 +7211,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L147",
+      "source_location": "L149",
       "weight": 1.0
     },
     {
@@ -7844,7 +7844,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L116",
+      "source_location": "L119",
       "weight": 1.0
     },
     {
@@ -7855,7 +7855,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L147",
+      "source_location": "L149",
       "weight": 1.0
     },
     {
@@ -7866,7 +7866,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L63",
+      "source_location": "L64",
       "weight": 1.0
     },
     {
@@ -9351,7 +9351,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L63",
+      "source_location": "L64",
       "weight": 1.0
     },
     {
@@ -9505,7 +9505,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L67",
+      "source_location": "L68",
       "weight": 1.0
     },
     {
@@ -10077,5 +10077,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "d51cb3fcdf1b259750600756a99ea945a65127bd"
+  "built_at_commit": "537a314a9f0f719be29c94b4a75addf99dbfa4f7"
 }

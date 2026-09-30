@@ -1,7 +1,7 @@
 # Graph Report - roboGyaanInvoice  (2026-09-30)
 
 ## Corpus Check
-- Corpus is ~37,430 words - fits in a single context window. You may not need a graph.
+- Corpus is ~37,461 words - fits in a single context window. You may not need a graph.
 
 ## Summary
 - 305 nodes · 543 edges · 25 communities (17 shown, 8 thin omitted)

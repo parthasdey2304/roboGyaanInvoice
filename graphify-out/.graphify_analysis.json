@@ -1,0 +1,532 @@
+{
+  "communities": {
+    "0": [
+      "web_app_page",
+      "web_app_page_invoicepage",
+      "web_components_authgate",
+      "web_components_authgate_authgate",
+      "web_components_authgate_authgateprops",
+      "web_components_historysidebar",
+      "web_components_historysidebar_historysidebar",
+      "web_components_historysidebar_historysidebarprops",
+      "web_components_interactivegridbackground",
+      "web_components_interactivegridbackground_interactivegridbackground",
+      "web_components_interactivegridbackground_interactivegridbackgroundprops",
+      "web_components_invoiceeditor",
+      "web_components_invoiceeditor_invoiceeditor",
+      "web_components_invoiceeditor_invoiceeditorprops",
+      "web_components_invoicepreview_invoicepreviewprops",
+      "web_components_neobrutalbutton",
+      "web_components_neobrutalbutton_neobrutalbutton",
+      "web_components_neobrutalbutton_neobrutalbuttonprops",
+      "web_components_neobrutalcard",
+      "web_components_neobrutalcard_neobrutalcard",
+      "web_components_neobrutalcard_neobrutalcardprops",
+      "web_components_neobrutalmodal",
+      "web_components_neobrutalmodal_neobrutalmodal",
+      "web_components_neobrutalmodal_neobrutalmodalprops",
+      "web_components_settingsmodal",
+      "web_components_settingsmodal_handdrawnasterisksticker",
+      "web_components_settingsmodal_settingsmodal",
+      "web_components_settingsmodal_settingsmodalprops",
+      "web_lib_crypto",
+      "web_lib_crypto_auth_salt",
+      "web_lib_crypto_hashpasswordwithargon2",
+      "web_lib_defaultinvoice",
+      "web_lib_defaultinvoice_defaultinvoicedata",
+      "web_lib_firebase",
+      "web_lib_firebase_app",
+      "web_lib_firebase_autosave_draft_id",
+      "web_lib_firebase_autosaveinvoice",
+      "web_lib_firebase_db",
+      "web_lib_firebase_deleteinvoicehistoryentry",
+      "web_lib_firebase_fetchinvoicehistory",
+      "web_lib_firebase_firebaseconfig",
+      "web_lib_firebase_getautosaveddraft",
+      "web_lib_firebase_getlocalhistory",
+      "web_lib_firebase_initanalytics",
+      "web_lib_firebase_invoicehistoryentry",
+      "web_lib_firebase_saveinvoiceprompt",
+      "web_lib_firebase_updateinvoicehistoryentry",
+      "web_lib_numbertowordsindian",
+      "web_lib_numbertowordsindian_formatinr",
+      "web_lib_types",
+      "web_lib_types_billedparty",
+      "web_lib_types_invoicedata",
+      "web_lib_types_paymentmethod",
+      "web_lib_types_senderparty"
+    ],
+    "1": [
+      "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels",
+      "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels_invoicedata",
+      "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels_invoiceitem",
+      "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels_invoicepageslice",
+      "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels_paginateinvoiceitems",
+      "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels_paymentmethod",
+      "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels_paymentmethod_bank_draft",
+      "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels_paymentmethod_cash",
+      "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels_paymentmethod_cheque",
+      "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels_paymentmethod_neft",
+      "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels_paymentmethod_upi",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_additem",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_getamountinwords",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_removeitem",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_resettodefaults",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_setinvoicedata",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_togglewatermark",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_updatebilledto",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_updateduedate",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_updateinvoiceno",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_updateissuedate",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_updateitem",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_updatepaymentmethod",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_updateregistrationno",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_updatesender",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_kt_invoicedata",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_preview_invoicepreviewscreen",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_preview_invoicepreviewscreen_invoicepreviewscreen",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_preview_invoicepreviewscreen_invoicesheetcard",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_preview_invoicepreviewscreen_kt_invoicedata",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_preview_invoicepreviewscreen_kt_modifier",
+      "android_app_src_main_java_com_robogyaan_invoice_util_pdfgenerator",
+      "android_app_src_main_java_com_robogyaan_invoice_util_pdfgenerator_kt_context",
+      "android_app_src_main_java_com_robogyaan_invoice_util_pdfgenerator_kt_invoicedata",
+      "android_app_src_main_java_com_robogyaan_invoice_util_pdfgenerator_pdfgenerator",
+      "android_app_src_main_java_com_robogyaan_invoice_util_pdfgenerator_pdfgenerator_generatea4pdf",
+      "invoicepageslice",
+      "paymentmethod",
+      "stateflow",
+      "viewmodel"
+    ],
+    "2": [
+      "android_app_src_main_java_com_robogyaan_invoice_mainactivity",
+      "android_app_src_main_java_com_robogyaan_invoice_mainactivity_handdrawnasteriskicon",
+      "android_app_src_main_java_com_robogyaan_invoice_mainactivity_kt_color",
+      "android_app_src_main_java_com_robogyaan_invoice_mainactivity_kt_modifier",
+      "android_app_src_main_java_com_robogyaan_invoice_mainactivity_mainactivity",
+      "android_app_src_main_java_com_robogyaan_invoice_mainactivity_mainactivity_oncreate",
+      "android_app_src_main_java_com_robogyaan_invoice_mainactivity_mainscreen",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_boxgridbackground",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_boxgridbackground_boxgridbackground",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_boxgridbackground_kt_modifier",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_historysidebarsheet_historysidebarsheet",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_historysidebarsheet_kt_invoicedata",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_invoiceeditorscreen",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_invoiceeditorscreen_invoiceeditorscreen",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_invoiceeditorscreen_kt_invoicedata",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_invoiceeditorscreen_kt_modifier",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_loginscreen",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_neobrutalcomponents",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_neobrutalcomponents_kt_color",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_neobrutalcomponents_kt_dp",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_neobrutalcomponents_kt_modifier",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_neobrutalcomponents_neobrutalalertdialog",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_neobrutalcomponents_neobrutalbutton",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_neobrutalcomponents_neobrutalcard",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_neobrutalcomponents_neobrutaltextfield",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_settingsdialog",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_settingsdialog_settingsdialog",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_theme_color",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_theme_theme",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_theme_theme_robogyaaninvoicetheme",
+      "bundle",
+      "componentactivity",
+      "composable",
+      "keyboardtype"
+    ],
+    "3": [
+      "ref_dom",
+      "ref_dom_iterable",
+      "ref_esnext",
+      "ref_mts",
+      "ref_next_dev_types_ts",
+      "ref_next_env_d_ts",
+      "ref_next_types_ts",
+      "ref_node_modules",
+      "ref_ts",
+      "ref_tsx",
+      "web_tsconfig",
+      "web_tsconfig_compileroptions",
+      "web_tsconfig_compileroptions_allowjs",
+      "web_tsconfig_compileroptions_esmoduleinterop",
+      "web_tsconfig_compileroptions_incremental",
+      "web_tsconfig_compileroptions_isolatedmodules",
+      "web_tsconfig_compileroptions_jsx",
+      "web_tsconfig_compileroptions_lib",
+      "web_tsconfig_compileroptions_module",
+      "web_tsconfig_compileroptions_moduleresolution",
+      "web_tsconfig_compileroptions_noemit",
+      "web_tsconfig_compileroptions_paths",
+      "web_tsconfig_compileroptions_plugins",
+      "web_tsconfig_compileroptions_resolvejsonmodule",
+      "web_tsconfig_compileroptions_skiplibcheck",
+      "web_tsconfig_compileroptions_strict",
+      "web_tsconfig_compileroptions_target",
+      "web_tsconfig_exclude",
+      "web_tsconfig_include"
+    ],
+    "4": [
+      "eslint",
+      "eslint_config_next",
+      "tailwindcss",
+      "tailwindcss_postcss",
+      "types_node",
+      "types_react",
+      "types_react_dom",
+      "typescript",
+      "web_package",
+      "web_package_devdependencies",
+      "web_package_devdependencies_eslint",
+      "web_package_devdependencies_eslint_config_next",
+      "web_package_devdependencies_tailwindcss",
+      "web_package_devdependencies_tailwindcss_postcss",
+      "web_package_devdependencies_types_node",
+      "web_package_devdependencies_types_react",
+      "web_package_devdependencies_types_react_dom",
+      "web_package_devdependencies_typescript",
+      "web_package_name",
+      "web_package_private",
+      "web_package_scripts",
+      "web_package_scripts_build",
+      "web_package_scripts_dev",
+      "web_package_scripts_lint",
+      "web_package_scripts_start",
+      "web_package_version"
+    ],
+    "5": [
+      "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice",
+      "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice",
+      "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_autosavedraft",
+      "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_cachehistory",
+      "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_defaulthistory",
+      "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_deleteprompt",
+      "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_fetchhistory",
+      "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_getcachedhistory",
+      "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_invoicetojson",
+      "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_jsontoinvoice",
+      "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_parseinvoicefromfirestorefields",
+      "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_saveprompt",
+      "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_serializeinvoicetofirestorefields",
+      "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_updateprompt",
+      "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_invoicehistoryitem",
+      "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_kt_context",
+      "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_kt_invoicedata",
+      "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels_billedparty",
+      "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels_senderparty",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_historysidebarsheet",
+      "jsonobject"
+    ],
+    "6": [
+      "firebase",
+      "hash_wasm",
+      "html2canvas",
+      "html_to_image",
+      "jspdf",
+      "lucide_react",
+      "next",
+      "react",
+      "react_dom",
+      "web_package_dependencies",
+      "web_package_dependencies_firebase",
+      "web_package_dependencies_hash_wasm",
+      "web_package_dependencies_html2canvas",
+      "web_package_dependencies_html_to_image",
+      "web_package_dependencies_jspdf",
+      "web_package_dependencies_lucide_react",
+      "web_package_dependencies_next",
+      "web_package_dependencies_react",
+      "web_package_dependencies_react_dom"
+    ],
+    "7": [
+      "web_components_invoicepreview",
+      "web_components_invoicepreview_invoicepreview",
+      "web_components_robogyaanlogo",
+      "web_components_robogyaanlogo_robogyaanlogo",
+      "web_components_robogyaanlogo_robogyaanlogoprops",
+      "web_lib_numbertowordsindian_numbertowordsindian",
+      "web_lib_numbertowordsindian_numbertowordsindian_convertthreedigits",
+      "web_lib_numbertowordsindian_numbertowordsindian_converttwodigits",
+      "web_lib_pagination",
+      "web_lib_pagination_continuation_page_max_items",
+      "web_lib_pagination_final_page_with_footer_max",
+      "web_lib_pagination_first_page_multi_capacity",
+      "web_lib_pagination_first_page_single_capacity",
+      "web_lib_pagination_invoicepageslice",
+      "web_lib_pagination_paginateinvoiceitems",
+      "web_lib_types_invoiceitem"
+    ],
+    "8": [
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences_hashpassword",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences_isdarkmode",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences_isgridbackground",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences_isloggedin",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences_setdarkmode",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences_setgridbackground",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences_setloggedin",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences_verifycredentials",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_kt_context"
+    ],
+    "9": [
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_appupdatemanager",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_appupdatemanager_checkforupdates",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_appupdatemanager_compareversions",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_appupdatemanager_deletependingapk",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_appupdatemanager_downloadapk",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_appupdatemanager_getinstalledversion",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_appupdatemanager_installapk",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_kt_context",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_updateinfo"
+    ],
+    "10": [
+      "android_app_src_main_java_com_robogyaan_invoice_ui_neobrutalmodifiers",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_neobrutalmodifiers_kt_color",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_neobrutalmodifiers_kt_dp",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_neobrutalmodifiers_kt_modifier",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_neobrutalmodifiers_neobrutal",
+      "android_app_src_main_java_com_robogyaan_invoice_ui_neobrutalmodifiers_neobrutalclickable"
+    ],
+    "11": [
+      "android_app_src_main_java_com_robogyaan_invoice_util_numbertowordsindian",
+      "android_app_src_main_java_com_robogyaan_invoice_util_numbertowordsindian_numbertowordsindian",
+      "android_app_src_main_java_com_robogyaan_invoice_util_numbertowordsindian_numbertowordsindian_convert",
+      "android_app_src_main_java_com_robogyaan_invoice_util_numbertowordsindian_numbertowordsindian_convertthreedigits",
+      "android_app_src_main_java_com_robogyaan_invoice_util_numbertowordsindian_numbertowordsindian_converttwodigits",
+      "android_app_src_main_java_com_robogyaan_invoice_util_numbertowordsindian_numbertowordsindian_formatinr"
+    ],
+    "12": [
+      "web_app_layout",
+      "web_app_layout_metadata",
+      "web_app_layout_poppins",
+      "web_app_layout_rootlayout",
+      "web_app_layout_virgil"
+    ],
+    "13": [
+      "android_gradlew",
+      "android_gradlew__entry",
+      "android_gradlew_die",
+      "android_gradlew_warn"
+    ],
+    "14": [
+      "web_app_api_auth_login_route",
+      "web_app_api_auth_login_route_expected_email",
+      "web_app_api_auth_login_route_expected_hash",
+      "web_app_api_auth_login_route_post"
+    ],
+    "15": [
+      "web_app_api_auth_check_route",
+      "web_app_api_auth_check_route_expected_email",
+      "web_app_api_auth_check_route_get"
+    ],
+    "16": [
+      "web_app_api_version_route",
+      "web_app_api_version_route_dynamic",
+      "web_app_api_version_route_get"
+    ],
+    "17": [
+      "web_app_api_auth_logout_route",
+      "web_app_api_auth_logout_route_post"
+    ],
+    "18": [
+      "web_eslint_config",
+      "web_eslint_config_eslintconfig"
+    ],
+    "19": [
+      "web_next_config",
+      "web_next_config_nextconfig"
+    ],
+    "20": [
+      "web_postcss_config",
+      "web_postcss_config_config"
+    ],
+    "21": [
+      "android_app_build_gradle"
+    ],
+    "22": [
+      "android_app_src_main_java_com_robogyaan_invoice_ui_theme_type"
+    ],
+    "23": [
+      "android_build_gradle"
+    ],
+    "24": [
+      "android_settings_gradle"
+    ]
+  },
+  "cohesion": {
+    "0": 0.07896575821104122,
+    "1": 0.06852497096399536,
+    "2": 0.1319073083778966,
+    "3": 0.06896551724137931,
+    "4": 0.07692307692307693,
+    "5": 0.35714285714285715,
+    "6": 0.10526315789473684,
+    "7": 0.18333333333333332,
+    "8": 0.3090909090909091,
+    "9": 0.37777777777777777,
+    "10": 0.8,
+    "11": 0.5333333333333333,
+    "12": 0.4,
+    "13": 0.8333333333333334,
+    "14": 0.5,
+    "15": 0.6666666666666666,
+    "16": 0.6666666666666666,
+    "17": 1.0,
+    "18": 1.0,
+    "19": 1.0,
+    "20": 1.0,
+    "21": 1.0,
+    "22": 1.0,
+    "23": 1.0,
+    "24": 1.0
+  },
+  "gods": [
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel",
+      "label": "InvoiceViewModel",
+      "degree": 23
+    },
+    {
+      "id": "web_tsconfig_compileroptions",
+      "label": "compilerOptions",
+      "degree": 16
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice",
+      "label": "FirebaseFirestoreService",
+      "degree": 14
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_mainactivity_mainscreen",
+      "label": "MainScreen()",
+      "degree": 12
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_neobrutalmodifiers_neobrutal",
+      "label": "neoBrutal()",
+      "degree": 12
+    },
+    {
+      "id": "web_lib_types_invoicedata",
+      "label": "InvoiceData",
+      "degree": 11
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_invoiceeditorscreen_invoiceeditorscreen",
+      "label": "InvoiceEditorScreen()",
+      "degree": 10
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences",
+      "label": "AuthPreferences",
+      "degree": 10
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_invoicehistoryitem",
+      "label": "InvoiceHistoryItem",
+      "degree": 9
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_neobrutalcomponents_neobrutalbutton",
+      "label": "NeoBrutalButton()",
+      "degree": 9
+    }
+  ],
+  "surprises": [
+    {
+      "source": "MainActivity",
+      "target": "InvoiceViewModel",
+      "source_files": [
+        "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
+        "android/app/src/main/java/com/robogyaan/invoice/ui/InvoiceViewModel.kt"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "MainScreen()",
+      "target": "InvoiceViewModel",
+      "source_files": [
+        "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
+        "android/app/src/main/java/com/robogyaan/invoice/ui/InvoiceViewModel.kt"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "MainScreen()",
+      "target": "InvoicePreviewScreen()",
+      "source_files": [
+        "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
+        "android/app/src/main/java/com/robogyaan/invoice/ui/preview/InvoicePreviewScreen.kt"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "InvoiceEditorScreen()",
+      "target": "InvoiceViewModel",
+      "source_files": [
+        "android/app/src/main/java/com/robogyaan/invoice/ui/components/InvoiceEditorScreen.kt",
+        "android/app/src/main/java/com/robogyaan/invoice/ui/InvoiceViewModel.kt"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "LoginScreen()",
+      "target": "BoxGridBackground()",
+      "source_files": [
+        "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
+        "android/app/src/main/java/com/robogyaan/invoice/ui/components/BoxGridBackground.kt"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `InvoiceViewModel` connect `Community 1` to `Community 2`?",
+      "why": "High betweenness centrality (0.048) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `MainScreen()` connect `Community 2` to `Community 1`, `Community 5`?",
+      "why": "High betweenness centrality (0.041) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `AuthPreferences` connect `Community 8` to `Community 2`?",
+      "why": "High betweenness centrality (0.021) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `CASH`, `UPI`, `CHEQUE` to the rest of the system?",
+      "why": "80 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 0` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.07896575821104122 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 1` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.06852497096399536 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Community 2` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.1319073083778966 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

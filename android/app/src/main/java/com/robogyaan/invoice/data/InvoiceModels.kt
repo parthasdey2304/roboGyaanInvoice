@@ -6,7 +6,7 @@ enum class PaymentMethod(val displayName: String) {
     CASH("CASH"),
     UPI("UPI"),
     CHEQUE("CHEQUE"),
-    BANK_DRAFT("BANK DRAFT"),
+    BANK_DRAFT("DRAFT"),
     NEFT("NEFT")
 }
 

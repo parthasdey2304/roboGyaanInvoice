@@ -25,16 +25,22 @@ export const NeoBrutalCard: React.FC<NeoBrutalCardProps> = ({
     gray: 'bg-[#F3F4F6] text-black dark:bg-[#27272a] dark:text-white',
   };
 
+  const isWarmColoredCard = variant === 'yellow' || variant === 'orange';
+
   return (
     <div
       className={`border-[2.5px] border-black rounded-lg shadow-[4px_4px_0px_0px_#000000] p-4 sm:p-5 transition-all ${bgColors[variant]} ${className}`}
     >
       {(title || badge || headerAction) && (
-        <div className="flex items-start justify-between gap-2 pb-3 mb-3 border-b-2 border-black/80 dark:border-neutral-700">
+        <div className={`flex items-start justify-between gap-2 pb-3 mb-3 border-b-2 ${
+          isWarmColoredCard ? 'border-black/80' : 'border-black/80 dark:border-neutral-700'
+        }`}>
           {/* Left Title: Written normally */}
           <div>
             {title && (
-              <h3 className="text-base sm:text-lg font-black tracking-tight text-black dark:text-white whitespace-pre-line leading-snug [-webkit-text-stroke:0.5px_currentColor]">
+              <h3 className={`text-base sm:text-lg font-black tracking-tight whitespace-pre-line leading-snug [-webkit-text-stroke:0.5px_currentColor] ${
+                isWarmColoredCard ? 'text-black' : 'text-black dark:text-white'
+              }`}>
                 {title}
               </h3>
             )}

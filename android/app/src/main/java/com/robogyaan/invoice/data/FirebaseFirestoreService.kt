@@ -375,7 +375,12 @@ object FirebaseFirestoreService {
         }
 
         val payStr = fields.optJSONObject("paymentMethod")?.optString("stringValue") ?: "CASH"
-        val payment = try { PaymentMethod.valueOf(payStr) } catch (_: Exception) { PaymentMethod.CASH }
+        val payment = try {
+            when (payStr) {
+                "BANK DRAFT", "BANK_DRAFT", "DRAFT" -> PaymentMethod.BANK_DRAFT
+                else -> PaymentMethod.valueOf(payStr)
+            }
+        } catch (_: Exception) { PaymentMethod.CASH }
         val auth = fields.optJSONObject("authoriserName")?.optString("stringValue") ?: "Suman Mondal"
         val watermark = fields.optJSONObject("showWatermark")?.optBoolean("booleanValue", true) ?: true
 
@@ -500,7 +505,11 @@ object FirebaseFirestoreService {
         val auth = root.optString("authoriserName", "Suman Mondal")
         val watermark = root.optBoolean("showWatermark", true)
         val payMethod = try {
-            PaymentMethod.valueOf(root.optString("paymentMethod", "CASH"))
+            val pm = root.optString("paymentMethod", "CASH")
+            when (pm) {
+                "BANK DRAFT", "BANK_DRAFT", "DRAFT" -> PaymentMethod.BANK_DRAFT
+                else -> PaymentMethod.valueOf(pm)
+            }
         } catch (_: Exception) {
             PaymentMethod.CASH
         }

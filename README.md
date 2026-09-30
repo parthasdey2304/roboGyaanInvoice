@@ -1,6 +1,6 @@
 # RoboGyaan Invoice Generation Suite
 
-[![Vercel Deployment](https://img.shields.io/badge/Vercel-Live_Web_App-000000?style=for-the-badge&logo=vercel)](https://invoice.robogyaan.in)
+[![Vercel Deployment](https://img.shields.io/badge/Vercel-https://invoice.robogyaan.in/-000000?style=for-the-badge&logo=vercel)](https://invoice.robogyaan.in)
 [![Android APK Release](https://img.shields.io/badge/Android_APK-v1.5.0_Download-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/parthasdey2304/roboGyaanInvoice/releases/download/v1.5.0/robogyaan-invoice-v1.5.0.apk)
 [![GitHub Release](https://img.shields.io/badge/GitHub-v1.5.0_Release-181717?style=for-the-badge&logo=github)](https://github.com/parthasdey2304/roboGyaanInvoice/releases/tag/v1.5.0)
 

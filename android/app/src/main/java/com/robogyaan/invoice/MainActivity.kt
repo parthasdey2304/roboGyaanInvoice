@@ -11,6 +11,7 @@ import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectVerticalDragGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -27,7 +28,11 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -151,6 +156,7 @@ fun MainScreen(
     val coroutineScope = rememberCoroutineScope()
     val invoiceData by invoiceViewModel.invoiceState.collectAsState()
     var selectedTab by remember { mutableIntStateOf(0) }
+    var splitRatio by remember { mutableFloatStateOf(0.5f) }
     var isGeneratingPdf by remember { mutableStateOf(false) }
     var isHistoryOpen by remember { mutableStateOf(false) }
     var activeInvoiceId by remember { mutableStateOf<String?>(null) }
@@ -233,12 +239,23 @@ fun MainScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(topBarBg)
-                    .neoBrutal(
-                        backgroundColor = topBarBg,
-                        borderColor = topBarBorder,
-                        shadowOffset = if (isDarkMode) 0.dp else 3.dp,
-                        cornerRadius = 0.dp
-                    )
+                    .drawBehind {
+                        val strokeWidth = 2.dp.toPx()
+                        val shadowHeight = if (isDarkMode) 0.dp.toPx() else 3.dp.toPx()
+                        if (shadowHeight > 0f) {
+                            drawRect(
+                                color = Color.Black,
+                                topLeft = Offset(0f, size.height),
+                                size = Size(size.width, shadowHeight)
+                            )
+                        }
+                        drawLine(
+                            color = topBarBorder,
+                            start = Offset(0f, size.height),
+                            end = Offset(size.width, size.height),
+                            strokeWidth = strokeWidth
+                        )
+                    }
                     .padding(horizontal = 12.dp, vertical = 8.dp)
             ) {
                 // Top Row: Heading on Top Left, Editor/Split/Preview & Theme Toggle on Top Right
@@ -421,6 +438,30 @@ fun MainScreen(
                                 )
                             }
                         }
+
+                        // App Settings Button in Navbar (User Request)
+                        Box(
+                            modifier = Modifier
+                                .size(34.dp)
+                                .background(
+                                    if (isDarkMode) Color(0xFF27272A) else Color.White,
+                                    RoundedCornerShape(8.dp)
+                                )
+                                .border(
+                                    2.dp,
+                                    if (isDarkMode) Color(0xFF52525B) else Color.Black,
+                                    RoundedCornerShape(8.dp)
+                                )
+                                .clickable { showSettingsDialog = true },
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Icon(
+                                Icons.Default.Settings,
+                                contentDescription = "App Settings & In-App Updater",
+                                tint = if (isDarkMode) NeoYellow else Color.Black,
+                                modifier = Modifier.size(18.dp)
+                            )
+                        }
                     }
                 }
 
@@ -543,36 +584,6 @@ fun MainScreen(
                             }
                         )
 
-                        // Settings Button with Hand-Drawn Asterisk Sticker (Image 2)
-                        Box(
-                            modifier = Modifier
-                                .neoBrutal(
-                                    backgroundColor = if (isDarkMode) Color(0xFF27272A) else Color.White,
-                                    borderColor = if (isDarkMode) Color(0xFF52525B) else Color.Black,
-                                    shadowOffset = if (isDarkMode) 0.dp else 2.dp,
-                                    cornerRadius = 6.dp
-                                )
-                                .clickable { showSettingsDialog = true }
-                                .padding(horizontal = 8.dp, vertical = 7.dp),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            Row(
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.spacedBy(4.dp)
-                            ) {
-                                HandDrawnAsteriskIcon(
-                                    modifier = Modifier.size(15.dp),
-                                    color = if (isDarkMode) NeoYellow else Color.Black
-                                )
-                                Icon(
-                                    Icons.Default.Settings,
-                                    contentDescription = "Settings",
-                                    tint = if (isDarkMode) Color.White else Color.Black,
-                                    modifier = Modifier.size(15.dp)
-                                )
-                            }
-                        }
-
                         // Logout button
                         Box(
                             modifier = Modifier
@@ -611,23 +622,99 @@ fun MainScreen(
                     invoiceData = invoiceData,
                     viewModel = invoiceViewModel
                 )
-                1 -> Column(modifier = Modifier.fillMaxSize()) {
-                    Box(modifier = Modifier.weight(1f)) {
-                        InvoiceEditorScreen(
-                            invoiceData = invoiceData,
-                            viewModel = invoiceViewModel
-                        )
-                    }
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(3.dp)
-                            .background(if (isDarkMode) Color(0xFF52525B) else Color.Black)
-                    )
-                    Box(modifier = Modifier.weight(1f)) {
-                        InvoicePreviewScreen(
-                            invoiceData = invoiceData
-                        )
+                1 -> BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
+                    val totalHeight = maxHeight
+                    val density = androidx.compose.ui.platform.LocalDensity.current
+                    val totalHeightPx = with(density) { totalHeight.toPx() }
+
+                    val editorWeight = splitRatio.coerceIn(0.20f, 0.80f)
+                    val previewWeight = (1f - editorWeight).coerceIn(0.20f, 0.80f)
+
+                    Column(modifier = Modifier.fillMaxSize()) {
+                        Box(modifier = Modifier.weight(editorWeight)) {
+                            InvoiceEditorScreen(
+                                invoiceData = invoiceData,
+                                viewModel = invoiceViewModel
+                            )
+                        }
+
+                        // Split Resizer Divider with Yellow Handle Box (Image 1 circled by user)
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(26.dp)
+                                .pointerInput(totalHeightPx) {
+                                    detectVerticalDragGestures { change, dragAmount ->
+                                        change.consume()
+                                        if (totalHeightPx > 0) {
+                                            val deltaRatio = dragAmount / totalHeightPx
+                                            splitRatio = (splitRatio + deltaRatio).coerceIn(0.25f, 0.75f)
+                                        }
+                                    }
+                                },
+                            contentAlignment = Alignment.Center
+                        ) {
+                            // Divider horizontal line across screen
+                            Box(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .height(3.dp)
+                                    .background(if (isDarkMode) Color(0xFF52525B) else Color.Black)
+                            )
+
+                            // Yellow Color Small Box Handle (circled in user's screenshot)
+                            Box(
+                                modifier = Modifier
+                                    .neoBrutal(
+                                        backgroundColor = NeoYellow,
+                                        borderColor = Color.Black,
+                                        borderWidth = 2.dp,
+                                        shadowOffset = 2.dp,
+                                        cornerRadius = 6.dp
+                                    )
+                                    .clickable {
+                                        // Tap cycles between 50-50, 25-75, 75-25 presets
+                                        splitRatio = when {
+                                            kotlin.math.abs(splitRatio - 0.50f) < 0.08f -> 0.25f
+                                            kotlin.math.abs(splitRatio - 0.25f) < 0.08f -> 0.75f
+                                            else -> 0.50f
+                                        }
+                                    }
+                                    .padding(horizontal = 10.dp, vertical = 3.dp),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Row(
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    horizontalArrangement = Arrangement.spacedBy(4.dp)
+                                ) {
+                                    Box(
+                                        modifier = Modifier
+                                            .width(8.dp)
+                                            .height(2.5.dp)
+                                            .background(Color.Black, RoundedCornerShape(1.dp))
+                                    )
+                                    Text(
+                                        text = "${(editorWeight * 100).toInt()}:${(previewWeight * 100).toInt()}",
+                                        fontFamily = VirgilFontFamily,
+                                        fontWeight = FontWeight.Black,
+                                        fontSize = 10.sp,
+                                        color = Color.Black
+                                    )
+                                    Box(
+                                        modifier = Modifier
+                                            .width(8.dp)
+                                            .height(2.5.dp)
+                                            .background(Color.Black, RoundedCornerShape(1.dp))
+                                    )
+                                }
+                            }
+                        }
+
+                        Box(modifier = Modifier.weight(previewWeight)) {
+                            InvoicePreviewScreen(
+                                invoiceData = invoiceData
+                            )
+                        }
                     }
                 }
                 2 -> InvoicePreviewScreen(

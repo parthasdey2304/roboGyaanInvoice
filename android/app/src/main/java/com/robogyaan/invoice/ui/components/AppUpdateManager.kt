@@ -20,7 +20,7 @@ data class UpdateInfo(
 )
 
 object AppUpdateManager {
-    const val CURRENT_VERSION = "1.5.1"
+    const val CURRENT_VERSION = "1.5.2"
     private const val GITHUB_RELEASES_API =
         "https://api.github.com/repos/parthasdey2304/roboGyaanInvoice/releases/latest"
 

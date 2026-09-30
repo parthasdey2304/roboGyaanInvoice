@@ -1,8 +1,8 @@
 package com.robogyaan.invoice.ui.theme
 
 import android.app.Activity
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
@@ -22,17 +22,29 @@ private val LightColorScheme = lightColorScheme(
     onSurface = NeoBlack
 )
 
+private val DarkColorScheme = darkColorScheme(
+    primary = NeoYellow,
+    onPrimary = NeoBlack,
+    secondary = NeoOrange,
+    onSecondary = NeoBlack,
+    tertiary = NeoDarkGray,
+    background = Color(0xFF121212),
+    surface = Color(0xFF1E1E22),
+    onSurface = Color.White
+)
+
 @Composable
 fun RoboGyaanInvoiceTheme(
+    darkTheme: Boolean = false,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = LightColorScheme
+    val colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = NeoYellow.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = true
+            window.statusBarColor = if (darkTheme) Color.Black.toArgb() else NeoYellow.toArgb()
+            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !darkTheme
         }
     }
 

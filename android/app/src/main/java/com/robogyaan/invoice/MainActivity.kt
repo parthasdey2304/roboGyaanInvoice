@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -15,10 +16,13 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.ExitToApp
+import androidx.compose.material.icons.filled.Nightlight
 import androidx.compose.material.icons.filled.PictureAsPdf
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.VerticalSplit
 import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.WbSunny
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -31,11 +35,13 @@ import androidx.compose.ui.unit.sp
 import androidx.core.content.FileProvider
 import com.robogyaan.invoice.ui.InvoiceViewModel
 import com.robogyaan.invoice.ui.components.AuthPreferences
+import com.robogyaan.invoice.ui.components.BoxGridBackground
 import com.robogyaan.invoice.ui.components.HistorySidebarSheet
 import com.robogyaan.invoice.ui.components.InvoiceEditorScreen
 import com.robogyaan.invoice.ui.components.LoginScreen
 import com.robogyaan.invoice.ui.components.NeoBrutalAlertDialog
 import com.robogyaan.invoice.ui.components.NeoBrutalButton
+import com.robogyaan.invoice.ui.components.SettingsDialog
 import com.robogyaan.invoice.ui.neoBrutal
 import com.robogyaan.invoice.ui.preview.InvoicePreviewScreen
 import com.robogyaan.invoice.ui.theme.NeoBlack
@@ -55,15 +61,38 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            RoboGyaanInvoiceTheme {
-                val context = LocalContext.current
-                var isLoggedIn by remember { mutableStateOf(AuthPreferences.isLoggedIn(context)) }
+            val context = LocalContext.current
+            var isDarkMode by remember { mutableStateOf(AuthPreferences.isDarkMode(context)) }
+            var isGridBackground by remember { mutableStateOf(AuthPreferences.isGridBackground(context)) }
+            var isLoggedIn by remember { mutableStateOf(AuthPreferences.isLoggedIn(context)) }
 
+            RoboGyaanInvoiceTheme(darkTheme = isDarkMode) {
                 if (!isLoggedIn) {
-                    LoginScreen(onLoginSuccess = { isLoggedIn = true })
+                    LoginScreen(
+                        isDarkMode = isDarkMode,
+                        isGridBackground = isGridBackground,
+                        onToggleDarkMode = {
+                            val next = !isDarkMode
+                            isDarkMode = next
+                            AuthPreferences.setDarkMode(context, next)
+                        },
+                        onLoginSuccess = { isLoggedIn = true }
+                    )
                 } else {
                     MainScreen(
                         invoiceViewModel = invoiceViewModel,
+                        isDarkMode = isDarkMode,
+                        onToggleDarkMode = {
+                            val next = !isDarkMode
+                            isDarkMode = next
+                            AuthPreferences.setDarkMode(context, next)
+                        },
+                        isGridBackground = isGridBackground,
+                        onToggleGridBackground = {
+                            val next = !isGridBackground
+                            isGridBackground = next
+                            AuthPreferences.setGridBackground(context, next)
+                        },
                         onLogout = {
                             AuthPreferences.setLoggedIn(context, false)
                             isLoggedIn = false
@@ -75,10 +104,47 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+/**
+ * Hand-Drawn Asterisk / Splat Sticker Icon from Image 2
+ */
+@Composable
+fun HandDrawnAsteriskIcon(
+    modifier: Modifier = Modifier,
+    color: Color = Color.Black
+) {
+    Canvas(modifier = modifier) {
+        val w = size.width
+        val h = size.height
+        val cx = w / 2f
+        val cy = h / 2f
+        val strokeWidth = 2.dp.toPx()
+
+        // 8 rays with organic hand-drawn length variations matching Image 2
+        val angles = listOf(0.0, 45.0, 90.0, 135.0, 180.0, 225.0, 270.0, 315.0)
+        angles.forEachIndexed { i, deg ->
+            val rad = Math.toRadians(deg)
+            val len = if (i % 2 == 0) w * 0.46f else w * 0.36f
+            val endX = cx + (len * Math.cos(rad)).toFloat()
+            val endY = cy + (len * Math.sin(rad)).toFloat()
+            drawLine(
+                color = color,
+                start = androidx.compose.ui.geometry.Offset(cx, cy),
+                end = androidx.compose.ui.geometry.Offset(endX, endY),
+                strokeWidth = strokeWidth,
+                cap = androidx.compose.ui.graphics.StrokeCap.Round
+            )
+        }
+    }
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
     invoiceViewModel: InvoiceViewModel,
+    isDarkMode: Boolean,
+    onToggleDarkMode: (Boolean) -> Unit,
+    isGridBackground: Boolean,
+    onToggleGridBackground: (Boolean) -> Unit,
     onLogout: () -> Unit
 ) {
     val context = LocalContext.current
@@ -91,6 +157,7 @@ fun MainScreen(
     var autosaveStatus by remember { mutableStateOf("idle") }
     var isFirstLaunch by remember { mutableStateOf(true) }
     var showLogoutDialog by remember { mutableStateOf(false) }
+    var showSettingsDialog by remember { mutableStateOf(false) }
 
     // Restore cached autosave draft on launch if available and currently on default
     LaunchedEffect(Unit) {
@@ -158,18 +225,23 @@ fun MainScreen(
 
     Scaffold(
         topBar = {
+            val topBarBg = if (isDarkMode) Color.Black else NeoYellow
+            val topBarTextColor = if (isDarkMode) Color.White else Color.Black
+            val topBarBorder = if (isDarkMode) Color(0xFF27272A) else Color.Black
+
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(NeoYellow)
+                    .background(topBarBg)
                     .neoBrutal(
-                        backgroundColor = NeoYellow,
-                        shadowOffset = 3.dp,
+                        backgroundColor = topBarBg,
+                        borderColor = topBarBorder,
+                        shadowOffset = if (isDarkMode) 0.dp else 3.dp,
                         cornerRadius = 0.dp
                     )
                     .padding(horizontal = 12.dp, vertical = 8.dp)
             ) {
-                // Top Row: Heading on Top Left, Editor/Split/Preview on Top Right
+                // Top Row: Heading on Top Left, Editor/Split/Preview & Theme Toggle on Top Right
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically,
@@ -183,12 +255,15 @@ fun MainScreen(
                         Box(
                             modifier = Modifier
                                 .size(34.dp)
-                                .background(Color.Black, RoundedCornerShape(6.dp)),
+                                .background(
+                                    if (isDarkMode) NeoYellow else Color.Black,
+                                    RoundedCornerShape(6.dp)
+                                ),
                             contentAlignment = Alignment.Center
                         ) {
                             Text(
                                 text = "RG",
-                                color = NeoYellow,
+                                color = if (isDarkMode) Color.Black else NeoYellow,
                                 fontWeight = FontWeight.Black,
                                 fontSize = 15.sp,
                                 fontFamily = VirgilFontFamily
@@ -204,18 +279,21 @@ fun MainScreen(
                                     text = "ROBOGYAAN",
                                     fontWeight = FontWeight.Black,
                                     fontSize = 15.sp,
-                                    color = Color.Black,
+                                    color = topBarTextColor,
                                     fontFamily = VirgilFontFamily,
                                     lineHeight = 15.sp
                                 )
                                 Box(
                                     modifier = Modifier
-                                        .background(Color.Black, RoundedCornerShape(3.dp))
+                                        .background(
+                                            if (isDarkMode) NeoYellow else Color.Black,
+                                            RoundedCornerShape(3.dp)
+                                        )
                                         .padding(horizontal = 4.dp, vertical = 1.dp)
                                 ) {
                                     Text(
                                         text = "INVOICE",
-                                        color = Color.White,
+                                        color = if (isDarkMode) Color.Black else Color.White,
                                         fontWeight = FontWeight.Black,
                                         fontSize = 8.sp,
                                         fontFamily = VirgilFontFamily
@@ -226,83 +304,129 @@ fun MainScreen(
                                 text = "NEO-BRUTALIST LIVE ENGINE",
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 8.sp,
-                                color = Color.Black.copy(alpha = 0.8f),
+                                color = topBarTextColor.copy(alpha = 0.8f),
                                 fontFamily = VirgilFontFamily
                             )
                         }
                     }
 
-                    // TOP RIGHT: EDITOR, SPLIT, PREVIEW segmented control (ONLY ICONS ON PHONE SCREEN)
+                    // TOP RIGHT: Segmented control + Sun/Moon Toggle in SAME SPAN
                     Row(
-                        modifier = Modifier
-                            .background(Color.White, RoundedCornerShape(8.dp))
-                            .border(2.dp, Color.Black, RoundedCornerShape(8.dp))
-                            .padding(2.dp),
-                        horizontalArrangement = Arrangement.spacedBy(2.dp),
-                        verticalAlignment = Alignment.CenterVertically
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(6.dp)
                     ) {
-                        // Tab 0: Editor (Icon Only)
-                        Box(
+                        // EDITOR, SPLIT, PREVIEW segmented control
+                        Row(
                             modifier = Modifier
                                 .background(
-                                    if (selectedTab == 0) Color.Black else Color.Transparent,
-                                    RoundedCornerShape(6.dp)
+                                    if (isDarkMode) Color(0xFF27272A) else Color.White,
+                                    RoundedCornerShape(8.dp)
                                 )
-                                .clickable { selectedTab = 0 }
-                                .padding(horizontal = 8.dp, vertical = 6.dp),
-                            contentAlignment = Alignment.Center
+                                .border(
+                                    2.dp,
+                                    if (isDarkMode) Color(0xFF52525B) else Color.Black,
+                                    RoundedCornerShape(8.dp)
+                                )
+                                .padding(2.dp),
+                            horizontalArrangement = Arrangement.spacedBy(2.dp),
+                            verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Icon(
-                                Icons.Default.Edit,
-                                contentDescription = "Editor Tab",
-                                tint = if (selectedTab == 0) NeoYellow else Color.Black,
-                                modifier = Modifier.size(16.dp)
-                            )
+                            // Tab 0: Editor
+                            Box(
+                                modifier = Modifier
+                                    .background(
+                                        if (selectedTab == 0) (if (isDarkMode) NeoYellow else Color.Black) else Color.Transparent,
+                                        RoundedCornerShape(6.dp)
+                                    )
+                                    .clickable { selectedTab = 0 }
+                                    .padding(horizontal = 8.dp, vertical = 6.dp),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Icon(
+                                    Icons.Default.Edit,
+                                    contentDescription = "Editor Tab",
+                                    tint = if (selectedTab == 0) (if (isDarkMode) Color.Black else NeoYellow) else (if (isDarkMode) Color.White else Color.Black),
+                                    modifier = Modifier.size(16.dp)
+                                )
+                            }
+
+                            // Tab 1: Split
+                            Box(
+                                modifier = Modifier
+                                    .background(
+                                        if (selectedTab == 1) (if (isDarkMode) NeoYellow else Color.Black) else Color.Transparent,
+                                        RoundedCornerShape(6.dp)
+                                    )
+                                    .clickable { selectedTab = 1 }
+                                    .padding(horizontal = 8.dp, vertical = 6.dp),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Icon(
+                                    Icons.Default.VerticalSplit,
+                                    contentDescription = "Split Tab",
+                                    tint = if (selectedTab == 1) (if (isDarkMode) Color.Black else NeoYellow) else (if (isDarkMode) Color.White else Color.Black),
+                                    modifier = Modifier.size(16.dp)
+                                )
+                            }
+
+                            // Tab 2: Preview
+                            Box(
+                                modifier = Modifier
+                                    .background(
+                                        if (selectedTab == 2) (if (isDarkMode) NeoYellow else Color.Black) else Color.Transparent,
+                                        RoundedCornerShape(6.dp)
+                                    )
+                                    .clickable { selectedTab = 2 }
+                                    .padding(horizontal = 8.dp, vertical = 6.dp),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Icon(
+                                    Icons.Default.Visibility,
+                                    contentDescription = "Preview Tab",
+                                    tint = if (selectedTab == 2) (if (isDarkMode) Color.Black else NeoYellow) else (if (isDarkMode) Color.White else Color.Black),
+                                    modifier = Modifier.size(16.dp)
+                                )
+                            }
                         }
 
-                        // Tab 1: Split (Icon Only)
+                        // Sun / Moon toggle in the EXACT same span
                         Box(
                             modifier = Modifier
+                                .size(34.dp)
                                 .background(
-                                    if (selectedTab == 1) Color.Black else Color.Transparent,
-                                    RoundedCornerShape(6.dp)
+                                    if (isDarkMode) Color(0xFF27272A) else Color.White,
+                                    RoundedCornerShape(8.dp)
                                 )
-                                .clickable { selectedTab = 1 }
-                                .padding(horizontal = 8.dp, vertical = 6.dp),
+                                .border(
+                                    2.dp,
+                                    if (isDarkMode) Color(0xFF52525B) else Color.Black,
+                                    RoundedCornerShape(8.dp)
+                                )
+                                .clickable { onToggleDarkMode(!isDarkMode) },
                             contentAlignment = Alignment.Center
                         ) {
-                            Icon(
-                                Icons.Default.VerticalSplit,
-                                contentDescription = "Split Tab",
-                                tint = if (selectedTab == 1) NeoYellow else Color.Black,
-                                modifier = Modifier.size(16.dp)
-                            )
-                        }
-
-                        // Tab 2: Preview (Icon Only)
-                        Box(
-                            modifier = Modifier
-                                .background(
-                                    if (selectedTab == 2) Color.Black else Color.Transparent,
-                                    RoundedCornerShape(6.dp)
+                            if (isDarkMode) {
+                                Icon(
+                                    Icons.Default.WbSunny,
+                                    contentDescription = "Switch to Light Mode",
+                                    tint = NeoYellow,
+                                    modifier = Modifier.size(18.dp)
                                 )
-                                .clickable { selectedTab = 2 }
-                                .padding(horizontal = 8.dp, vertical = 6.dp),
-                            contentAlignment = Alignment.Center
-                        ) {
-                            Icon(
-                                Icons.Default.Visibility,
-                                contentDescription = "Preview Tab",
-                                tint = if (selectedTab == 2) NeoYellow else Color.Black,
-                                modifier = Modifier.size(16.dp)
-                            )
+                            } else {
+                                Icon(
+                                    Icons.Default.Nightlight,
+                                    contentDescription = "Switch to Dark Mode",
+                                    tint = Color.Black,
+                                    modifier = Modifier.size(18.dp)
+                                )
+                            }
                         }
                     }
                 }
 
                 Spacer(modifier = Modifier.height(8.dp))
 
-                // Action Bar Below Navbar: 3-DASH BUTTON ON TOP LEFT BELOW NAVBAR & PDF Export + Logout on Right
+                // Action Bar Below Navbar: 3-DASH BUTTON ON TOP LEFT BELOW NAVBAR & PDF Export + Settings + Logout on Right
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween,
@@ -312,8 +436,9 @@ fun MainScreen(
                     Box(
                         modifier = Modifier
                             .neoBrutal(
-                                backgroundColor = Color.White,
-                                shadowOffset = 2.5.dp,
+                                backgroundColor = if (isDarkMode) Color(0xFF27272A) else Color.White,
+                                borderColor = if (isDarkMode) Color(0xFF52525B) else Color.Black,
+                                shadowOffset = if (isDarkMode) 0.dp else 2.5.dp,
                                 cornerRadius = 6.dp
                             )
                             .clickable { isHistoryOpen = true }
@@ -332,19 +457,19 @@ fun MainScreen(
                                     modifier = Modifier
                                         .fillMaxWidth()
                                         .height(2.dp)
-                                        .background(Color.Black, RoundedCornerShape(1.dp))
+                                        .background(if (isDarkMode) Color.White else Color.Black, RoundedCornerShape(1.dp))
                                 )
                                 Box(
                                     modifier = Modifier
                                         .fillMaxWidth()
                                         .height(2.dp)
-                                        .background(Color.Black, RoundedCornerShape(1.dp))
+                                        .background(if (isDarkMode) Color.White else Color.Black, RoundedCornerShape(1.dp))
                                 )
                                 Box(
                                     modifier = Modifier
                                         .fillMaxWidth()
                                         .height(2.dp)
-                                        .background(Color.Black, RoundedCornerShape(1.dp))
+                                        .background(if (isDarkMode) Color.White else Color.Black, RoundedCornerShape(1.dp))
                                 )
                             }
                             Text(
@@ -352,16 +477,19 @@ fun MainScreen(
                                 fontFamily = VirgilFontFamily,
                                 fontWeight = FontWeight.Black,
                                 fontSize = 11.sp,
-                                color = NeoBlack
+                                color = if (isDarkMode) Color.White else NeoBlack
                             )
                             Box(
                                 modifier = Modifier
-                                    .background(Color.Black, RoundedCornerShape(3.dp))
+                                    .background(
+                                        if (isDarkMode) NeoYellow else Color.Black,
+                                        RoundedCornerShape(3.dp)
+                                    )
                                     .padding(horizontal = 4.dp, vertical = 1.dp)
                             ) {
                                 Text(
                                     text = "Firestore",
-                                    color = NeoYellow,
+                                    color = if (isDarkMode) Color.Black else NeoYellow,
                                     fontFamily = VirgilFontFamily,
                                     fontWeight = FontWeight.Black,
                                     fontSize = 8.sp
@@ -394,7 +522,7 @@ fun MainScreen(
                         }
                     }
 
-                    // Right Actions: Export PDF & Logout
+                    // Right Actions: Export PDF, Settings (with sticker), & Logout
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.spacedBy(6.dp)
@@ -403,24 +531,55 @@ fun MainScreen(
                             text = if (isGeneratingPdf) "Exporting..." else "Export PDF",
                             onClick = { exportAndSharePdf() },
                             enabled = !isGeneratingPdf,
-                            backgroundColor = Color.Black,
-                            contentColor = Color.White,
+                            backgroundColor = if (isDarkMode) NeoYellow else Color.Black,
+                            contentColor = if (isDarkMode) Color.Black else Color.White,
                             icon = {
                                 Icon(
                                     Icons.Default.Share,
                                     contentDescription = "Share PDF",
-                                    tint = NeoYellow,
+                                    tint = if (isDarkMode) Color.Black else NeoYellow,
                                     modifier = Modifier.size(13.dp)
                                 )
                             }
                         )
 
+                        // Settings Button with Hand-Drawn Asterisk Sticker (Image 2)
+                        Box(
+                            modifier = Modifier
+                                .neoBrutal(
+                                    backgroundColor = if (isDarkMode) Color(0xFF27272A) else Color.White,
+                                    borderColor = if (isDarkMode) Color(0xFF52525B) else Color.Black,
+                                    shadowOffset = if (isDarkMode) 0.dp else 2.dp,
+                                    cornerRadius = 6.dp
+                                )
+                                .clickable { showSettingsDialog = true }
+                                .padding(horizontal = 8.dp, vertical = 7.dp),
+                            contentAlignment = Alignment.Center
+                        ) {
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(4.dp)
+                            ) {
+                                HandDrawnAsteriskIcon(
+                                    modifier = Modifier.size(15.dp),
+                                    color = if (isDarkMode) NeoYellow else Color.Black
+                                )
+                                Icon(
+                                    Icons.Default.Settings,
+                                    contentDescription = "Settings",
+                                    tint = if (isDarkMode) Color.White else Color.Black,
+                                    modifier = Modifier.size(15.dp)
+                                )
+                            }
+                        }
+
                         // Logout button
                         Box(
                             modifier = Modifier
                                 .neoBrutal(
-                                    backgroundColor = Color.White,
-                                    shadowOffset = 2.dp,
+                                    backgroundColor = if (isDarkMode) Color(0xFF27272A) else Color.White,
+                                    borderColor = if (isDarkMode) Color(0xFF52525B) else Color.Black,
+                                    shadowOffset = if (isDarkMode) 0.dp else 2.dp,
                                     cornerRadius = 6.dp
                                 )
                                 .clickable { showLogoutDialog = true }
@@ -430,7 +589,7 @@ fun MainScreen(
                             Icon(
                                 Icons.Default.ExitToApp,
                                 contentDescription = "Logout",
-                                tint = Color.Black,
+                                tint = if (isDarkMode) Color.White else Color.Black,
                                 modifier = Modifier.size(16.dp)
                             )
                         }
@@ -444,6 +603,9 @@ fun MainScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
+            // Interactive/Composable Box Grid Background (Image 1)
+            BoxGridBackground(isDarkMode = isDarkMode, enabled = isGridBackground)
+
             when (selectedTab) {
                 0 -> InvoiceEditorScreen(
                     invoiceData = invoiceData,
@@ -460,7 +622,7 @@ fun MainScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(3.dp)
-                            .background(Color.Black)
+                            .background(if (isDarkMode) Color(0xFF52525B) else Color.Black)
                     )
                     Box(modifier = Modifier.weight(1f)) {
                         InvoicePreviewScreen(
@@ -495,6 +657,16 @@ fun MainScreen(
                 confirmText = "Log Out",
                 cancelText = "Stay Logged In",
                 isDanger = true
+            )
+
+            // APP SETTINGS & IN-APP UPDATER DIALOG (Image 2)
+            SettingsDialog(
+                isOpen = showSettingsDialog,
+                onDismiss = { showSettingsDialog = false },
+                isDarkMode = isDarkMode,
+                onToggleDarkMode = onToggleDarkMode,
+                isGridBackground = isGridBackground,
+                onToggleGridBackground = onToggleGridBackground
             )
         }
     }

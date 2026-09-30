@@ -4,6 +4,7 @@ import android.content.Context
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -14,10 +15,12 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Mail
+import androidx.compose.material.icons.filled.Nightlight
 import androidx.compose.material.icons.filled.Security
 import androidx.compose.material.icons.filled.Shield
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material.icons.filled.WbSunny
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -69,10 +72,36 @@ object AuthPreferences {
             .putString(KEY_USER_EMAIL, email)
             .apply()
     }
+
+    private const val KEY_DARK_MODE = "is_dark_mode_enabled"
+    private const val KEY_GRID_BG = "is_grid_bg_enabled"
+
+    fun isDarkMode(context: Context): Boolean {
+        val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        return prefs.getBoolean(KEY_DARK_MODE, false)
+    }
+
+    fun setDarkMode(context: Context, enabled: Boolean) {
+        val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        prefs.edit().putBoolean(KEY_DARK_MODE, enabled).apply()
+    }
+
+    fun isGridBackground(context: Context): Boolean {
+        val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        return prefs.getBoolean(KEY_GRID_BG, true)
+    }
+
+    fun setGridBackground(context: Context, enabled: Boolean) {
+        val prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        prefs.edit().putBoolean(KEY_GRID_BG, enabled).apply()
+    }
 }
 
 @Composable
 fun LoginScreen(
+    isDarkMode: Boolean = false,
+    isGridBackground: Boolean = true,
+    onToggleDarkMode: ((Boolean) -> Unit)? = null,
     onLoginSuccess: () -> Unit
 ) {
     val context = LocalContext.current
@@ -105,40 +134,76 @@ fun LoginScreen(
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFFDFBF7))
             .padding(20.dp),
         contentAlignment = Alignment.Center
     ) {
+        // Grid Boxes Background (Matching Image 1)
+        BoxGridBackground(isDarkMode = isDarkMode, enabled = isGridBackground)
+
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // Security Top Tag
-            Box(
-                modifier = Modifier
-                    .background(NeoYellow, RoundedCornerShape(20.dp))
-                    .border(2.dp, Color.Black, RoundedCornerShape(20.dp))
-                    .padding(horizontal = 12.dp, vertical = 5.dp)
+            // Security Top Tag & Theme Toggle Row
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(6.dp)
+                Box(
+                    modifier = Modifier
+                        .background(NeoYellow, RoundedCornerShape(20.dp))
+                        .border(2.dp, Color.Black, RoundedCornerShape(20.dp))
+                        .padding(horizontal = 12.dp, vertical = 5.dp)
                 ) {
-                    Icon(
-                        Icons.Default.Shield,
-                        contentDescription = "Security",
-                        tint = Color.Black,
-                        modifier = Modifier.size(14.dp)
-                    )
-                    Text(
-                        text = "ARGON2ID SECURED • CLOUD FIRESTORE",
-                        fontFamily = VirgilFontFamily,
-                        fontWeight = FontWeight.Black,
-                        fontSize = 10.sp,
-                        color = Color.Black
-                    )
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(6.dp)
+                    ) {
+                        Icon(
+                            Icons.Default.Shield,
+                            contentDescription = "Security",
+                            tint = Color.Black,
+                            modifier = Modifier.size(14.dp)
+                        )
+                        Text(
+                            text = "ARGON2ID • CLOUD FIRESTORE",
+                            fontFamily = VirgilFontFamily,
+                            fontWeight = FontWeight.Black,
+                            fontSize = 10.sp,
+                            color = Color.Black
+                        )
+                    }
+                }
+
+                // Sun / Moon toggle in same container
+                if (onToggleDarkMode != null) {
+                    Box(
+                        modifier = Modifier
+                            .size(32.dp)
+                            .background(if (isDarkMode) Color.Black else Color.White, RoundedCornerShape(8.dp))
+                            .border(2.dp, Color.Black, RoundedCornerShape(8.dp))
+                            .clickable { onToggleDarkMode(!isDarkMode) },
+                        contentAlignment = Alignment.Center
+                    ) {
+                        if (isDarkMode) {
+                            Icon(
+                                Icons.Default.WbSunny,
+                                contentDescription = "Switch to Light Mode",
+                                tint = NeoYellow,
+                                modifier = Modifier.size(16.dp)
+                            )
+                        } else {
+                            Icon(
+                                Icons.Default.Nightlight,
+                                contentDescription = "Switch to Dark Mode",
+                                tint = Color.Black,
+                                modifier = Modifier.size(16.dp)
+                            )
+                        }
+                    }
                 }
             }
 
@@ -149,7 +214,7 @@ fun LoginScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .neoBrutal(
-                        backgroundColor = Color.White,
+                        backgroundColor = if (isDarkMode) Color(0xFF1E1E22) else Color.White,
                         borderWidth = 3.dp,
                         shadowOffset = 6.dp,
                         cornerRadius = 12.dp
@@ -190,28 +255,28 @@ fun LoginScreen(
                                     text = "ROBOGYAAN",
                                     fontWeight = FontWeight.Black,
                                     fontSize = 18.sp,
-                                    color = Color.Black,
+                                    color = if (isDarkMode) Color.White else Color.Black,
                                     fontFamily = VirgilFontFamily
                                 )
                                 Box(
                                     modifier = Modifier
-                                        .background(Color.Black, RoundedCornerShape(3.dp))
-                                        .padding(horizontal = 5.dp, vertical = 1.dp)
+                                        .background(Color.Black, RoundedCornerShape(4.dp))
+                                        .padding(horizontal = 6.dp, vertical = 2.dp)
                                 ) {
                                     Text(
-                                        text = "PORTAL",
+                                        text = "INVOICE",
                                         color = Color.White,
                                         fontWeight = FontWeight.Black,
-                                        fontSize = 9.sp,
+                                        fontSize = 10.sp,
                                         fontFamily = VirgilFontFamily
                                     )
                                 }
                             }
                             Text(
-                                text = "ADMIN AUTHENTICATION GATE",
+                                text = "ADMIN AUTHENTICATION PORTAL",
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 9.sp,
-                                color = Color.Gray,
+                                color = if (isDarkMode) Color.LightGray else Color.Gray,
                                 fontFamily = VirgilFontFamily
                             )
                         }
@@ -221,8 +286,8 @@ fun LoginScreen(
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .background(Color(0xFFFFFDE6), RoundedCornerShape(8.dp))
-                            .border(1.5.dp, Color.Black, RoundedCornerShape(8.dp))
+                            .background(if (isDarkMode) Color(0xFF2A2A2E) else Color(0xFFFFFDE6), RoundedCornerShape(6.dp))
+                            .border(1.5.dp, Color.Black, RoundedCornerShape(6.dp))
                             .padding(10.dp)
                     ) {
                         Row(
@@ -232,175 +297,184 @@ fun LoginScreen(
                             Icon(
                                 Icons.Default.Security,
                                 contentDescription = "Security Note",
-                                tint = Color.Black,
+                                tint = NeoYellow,
                                 modifier = Modifier.size(16.dp)
                             )
                             Text(
-                                text = "Enter credentials to unlock Robogyaan Cloud Invoicing Engine. Protected by Argon2 encryption.",
+                                text = "Password is encrypted client-side using Argon2id/SHA-256 before verification. Plaintext is never stored.",
+                                fontSize = 10.sp,
                                 fontFamily = PoppinsFontFamily,
-                                fontWeight = FontWeight.Medium,
-                                fontSize = 11.sp,
-                                color = NeoBlack,
-                                lineHeight = 15.sp
-                            )
-                        }
-                    }
-
-                    if (errorMessage != null) {
-                        Spacer(modifier = Modifier.height(12.dp))
-                        Box(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .background(Color(0xFFFFEBEB), RoundedCornerShape(6.dp))
-                                .border(1.5.dp, Color.Red, RoundedCornerShape(6.dp))
-                                .padding(10.dp)
-                        ) {
-                            Text(
-                                text = errorMessage ?: "",
-                                color = Color(0xFFB91C1C),
-                                fontSize = 12.sp,
-                                fontWeight = FontWeight.Bold,
-                                fontFamily = PoppinsFontFamily
+                                color = if (isDarkMode) Color.White else Color.Black,
+                                lineHeight = 14.sp
                             )
                         }
                     }
 
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    // Email Input
+                    // Error Banner
+                    if (errorMessage != null) {
+                        Box(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .background(Color(0xFFFFEBEE), RoundedCornerShape(6.dp))
+                                .border(1.5.dp, Color(0xFFD32F2F), RoundedCornerShape(6.dp))
+                                .padding(10.dp)
+                        ) {
+                            Text(
+                                text = errorMessage ?: "",
+                                color = Color(0xFFD32F2F),
+                                fontSize = 11.sp,
+                                fontWeight = FontWeight.Bold,
+                                fontFamily = PoppinsFontFamily
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(14.dp))
+                    }
+
+                    // Email Field
                     Text(
                         text = "ADMIN EMAIL ADDRESS",
                         fontSize = 11.sp,
                         fontWeight = FontWeight.Black,
-                        color = NeoBlack,
                         fontFamily = VirgilFontFamily,
-                        modifier = Modifier.padding(bottom = 4.dp)
+                        color = if (isDarkMode) Color.White else NeoBlack
                     )
+                    Spacer(modifier = Modifier.height(4.dp))
+
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
                             .neoBrutal(
-                                backgroundColor = Color.White,
+                                backgroundColor = if (isDarkMode) Color(0xFF2A2A2E) else Color.White,
                                 shadowOffset = 2.5.dp,
                                 cornerRadius = 6.dp
                             )
-                            .padding(horizontal = 10.dp, vertical = 10.dp)
+                            .padding(horizontal = 12.dp, vertical = 10.dp)
                     ) {
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.spacedBy(8.dp)
-                        ) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
                             Icon(
                                 Icons.Default.Mail,
                                 contentDescription = "Email",
-                                tint = Color.Gray,
+                                tint = if (isDarkMode) Color.LightGray else Color.Gray,
                                 modifier = Modifier.size(16.dp)
                             )
+                            Spacer(modifier = Modifier.width(8.dp))
                             BasicTextField(
                                 value = email,
                                 onValueChange = { email = it },
+                                modifier = Modifier.fillMaxWidth(),
                                 singleLine = true,
-                                cursorBrush = SolidColor(Color.Black),
+                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
                                 textStyle = TextStyle(
+                                    fontSize = 13.sp,
                                     fontFamily = PoppinsFontFamily,
                                     fontWeight = FontWeight.Medium,
-                                    fontSize = 13.sp,
-                                    color = NeoBlack
+                                    color = if (isDarkMode) Color.White else Color.Black
                                 ),
-                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
-                                modifier = Modifier.fillMaxWidth()
+                                cursorBrush = SolidColor(if (isDarkMode) Color.White else Color.Black)
                             )
                         }
                     }
 
                     Spacer(modifier = Modifier.height(14.dp))
 
-                    // Password Input
+                    // Password Field
                     Text(
                         text = "ADMIN PASSWORD",
                         fontSize = 11.sp,
                         fontWeight = FontWeight.Black,
-                        color = NeoBlack,
                         fontFamily = VirgilFontFamily,
-                        modifier = Modifier.padding(bottom = 4.dp)
+                        color = if (isDarkMode) Color.White else NeoBlack
                     )
+                    Spacer(modifier = Modifier.height(4.dp))
+
                     Box(
                         modifier = Modifier
                             .fillMaxWidth()
                             .neoBrutal(
-                                backgroundColor = Color.White,
+                                backgroundColor = if (isDarkMode) Color(0xFF2A2A2E) else Color.White,
                                 shadowOffset = 2.5.dp,
                                 cornerRadius = 6.dp
                             )
-                            .padding(horizontal = 10.dp, vertical = 10.dp)
+                            .padding(horizontal = 12.dp, vertical = 10.dp)
                     ) {
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.spacedBy(8.dp)
-                        ) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
                             Icon(
                                 Icons.Default.Lock,
                                 contentDescription = "Password",
-                                tint = Color.Gray,
+                                tint = if (isDarkMode) Color.LightGray else Color.Gray,
                                 modifier = Modifier.size(16.dp)
                             )
+                            Spacer(modifier = Modifier.width(8.dp))
                             BasicTextField(
                                 value = password,
                                 onValueChange = { password = it },
+                                modifier = Modifier.weight(1f),
                                 singleLine = true,
                                 visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
-                                cursorBrush = SolidColor(Color.Black),
+                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
                                 textStyle = TextStyle(
+                                    fontSize = 13.sp,
                                     fontFamily = PoppinsFontFamily,
                                     fontWeight = FontWeight.Medium,
-                                    fontSize = 13.sp,
-                                    color = NeoBlack
+                                    color = if (isDarkMode) Color.White else Color.Black
                                 ),
-                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
-                                modifier = Modifier.weight(1f)
+                                cursorBrush = SolidColor(if (isDarkMode) Color.White else Color.Black)
                             )
-                            IconButton(
-                                onClick = { passwordVisible = !passwordVisible },
-                                modifier = Modifier.size(24.dp)
-                            ) {
-                                Icon(
-                                    if (passwordVisible) Icons.Default.VisibilityOff else Icons.Default.Visibility,
-                                    contentDescription = "Toggle password",
-                                    tint = Color.Gray,
-                                    modifier = Modifier.size(16.dp)
-                                )
-                            }
+                            Icon(
+                                imageVector = if (passwordVisible) Icons.Default.Visibility else Icons.Default.VisibilityOff,
+                                contentDescription = if (passwordVisible) "Hide password" else "Show password",
+                                tint = if (isDarkMode) Color.LightGray else Color.Gray,
+                                modifier = Modifier
+                                    .size(18.dp)
+                                    .clickable { passwordVisible = !passwordVisible }
+                            )
                         }
                     }
 
                     Spacer(modifier = Modifier.height(20.dp))
 
-                    // Authenticate Button
-                    NeoBrutalButton(
-                        text = if (isAuthenticating) "AUTHENTICATING..." else "AUTHENTICATE & ENTER",
-                        onClick = { handleLogin() },
-                        enabled = !isAuthenticating,
-                        backgroundColor = NeoYellow,
-                        contentColor = Color.Black,
-                        modifier = Modifier.fillMaxWidth(),
-                        icon = {
+                    // Sign In Button
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .neoBrutal(
+                                backgroundColor = NeoYellow,
+                                shadowOffset = 4.dp,
+                                cornerRadius = 8.dp
+                            )
+                            .clickable(enabled = !isAuthenticating) { handleLogin() }
+                            .padding(vertical = 12.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(8.dp)
+                        ) {
+                            Text(
+                                text = if (isAuthenticating) "AUTHENTICATING..." else "SIGN IN TO INVOICE SUITE",
+                                fontFamily = VirgilFontFamily,
+                                fontWeight = FontWeight.Black,
+                                fontSize = 13.sp,
+                                color = Color.Black
+                            )
                             Icon(
                                 Icons.Default.ArrowForward,
-                                contentDescription = "Enter",
+                                contentDescription = "Sign In",
                                 tint = Color.Black,
                                 modifier = Modifier.size(16.dp)
                             )
                         }
-                    )
+                    }
                 }
             }
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(20.dp))
 
             Text(
-                text = "RoboGyaan Dual-Platform Suite • Neo-Brutalist Live Engine",
-                fontFamily = VirgilFontFamily,
-                fontWeight = FontWeight.Bold,
+                text = "RoboGyaan Invoice Suite • Official Management System",
+                fontFamily = PoppinsFontFamily,
                 fontSize = 10.sp,
                 color = Color.Gray
             )

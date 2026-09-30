@@ -9,8 +9,23 @@ import { NeoBrutalButton } from '../components/NeoBrutalButton';
 import { NeoBrutalModal } from '../components/NeoBrutalModal';
 import { HistorySidebar } from '../components/HistorySidebar';
 import { AuthGate } from '../components/AuthGate';
+import { InteractiveGridBackground } from '../components/InteractiveGridBackground';
+import { SettingsModal, HandDrawnAsteriskSticker } from '../components/SettingsModal';
 import { autoSaveInvoice, getAutosavedDraft, AUTOSAVE_DRAFT_ID } from '../lib/firebase';
-import { Download, Printer, RotateCcw, Eye, Edit3, Columns, CheckCircle2, LogOut, ShieldCheck } from 'lucide-react';
+import {
+  Download,
+  Printer,
+  RotateCcw,
+  Eye,
+  Edit3,
+  Columns,
+  CheckCircle2,
+  LogOut,
+  ShieldCheck,
+  Sun,
+  Moon,
+  Settings,
+} from 'lucide-react';
 import { toPng } from 'html-to-image';
 import jsPDF from 'jspdf';
 
@@ -36,6 +51,9 @@ export default function InvoicePage() {
   const [isExporting, setIsExporting] = useState(false);
   const [exportSuccess, setExportSuccess] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [backgroundStyle, setBackgroundStyle] = useState<'default' | 'grid'>('grid');
   const [previewPage, setPreviewPage] = useState<number | 'all'>('all');
   const [totalPages, setTotalPages] = useState<number>(1);
   const [isPdfExporting, setIsPdfExporting] = useState<boolean>(false);
@@ -49,14 +67,45 @@ export default function InvoicePage() {
   invoiceDataRef.current = invoiceData;
   activeInvoiceIdRef.current = activeInvoiceId;
 
-  // Restore autosaved draft on mount if available
+  // Restore theme, background style & autosaved draft on mount
   useEffect(() => {
+    const savedTheme = localStorage.getItem('robogyaan_theme') as 'light' | 'dark' | null;
+    if (savedTheme) {
+      setTheme(savedTheme);
+      if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    }
+
+    const savedBg = localStorage.getItem('robogyaan_bg_style') as 'default' | 'grid' | null;
+    if (savedBg) {
+      setBackgroundStyle(savedBg);
+    }
+
     const draft = getAutosavedDraft();
     if (draft && !activeInvoiceId) {
       setInvoiceData(draft);
       setActiveInvoiceId(AUTOSAVE_DRAFT_ID);
     }
   }, []);
+
+  const toggleTheme = () => {
+    const nextTheme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(nextTheme);
+    localStorage.setItem('robogyaan_theme', nextTheme);
+    if (nextTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  };
+
+  const handleBackgroundStyleChange = (style: 'default' | 'grid') => {
+    setBackgroundStyle(style);
+    localStorage.setItem('robogyaan_bg_style', style);
+  };
 
   // Debounced Autosave: any change is saved to Firestore without duplicate copies
   useEffect(() => {
@@ -144,6 +193,7 @@ export default function InvoicePage() {
       orientation: 'portrait',
       unit: 'mm',
       format: 'a4',
+      compress: true,
     });
 
     const pdfWidth = pdf.internal.pageSize.getWidth();
@@ -152,80 +202,47 @@ export default function InvoicePage() {
     for (let i = 0; i < pageElements.length; i++) {
       const pageEl = pageElements[i];
 
-      // Temporarily ensure element is displayed during capture
-      const prevDisplay = pageEl.style.display;
-      pageEl.style.display = 'flex';
+      const originalClasses = pageEl.className;
+      pageEl.classList.remove('hidden');
+      pageEl.classList.add('flex');
 
       const dataUrl = await toPng(pageEl, {
-        quality: 0.98,
         pixelRatio: 2.5,
-        backgroundColor: '#FFFFFF',
         cacheBust: true,
+        backgroundColor: '#FFFFFF',
+        filter: (node) => {
+          if (node instanceof HTMLElement && node.classList.contains('no-print')) {
+            return false;
+          }
+          return true;
+        },
       });
 
-      pageEl.style.display = prevDisplay;
+      pageEl.className = originalClasses;
 
       if (i > 0) {
         pdf.addPage('a4', 'portrait');
       }
 
-      pdf.addImage(dataUrl, 'PNG', 0, 0, pdfWidth, pdfHeight);
+      pdf.addImage(dataUrl, 'PNG', 0, 0, pdfWidth, pdfHeight, undefined, 'FAST');
     }
 
     return pdf;
   };
 
-  const handlePrint = async () => {
+  const handlePrint = () => {
+    window.print();
+  };
+
+  const handleDownloadPdf = async () => {
     try {
       const pdf = await generatePdfInstance();
       if (!pdf) {
         window.print();
         return;
       }
-
-      // Print the exact vector/high-res PDF directly
-      const blob = pdf.output('blob');
-      const blobUrl = URL.createObjectURL(blob);
-      const printIframe = document.createElement('iframe');
-      printIframe.style.position = 'fixed';
-      printIframe.style.right = '0';
-      printIframe.style.bottom = '0';
-      printIframe.style.width = '0';
-      printIframe.style.height = '0';
-      printIframe.style.border = '0';
-      printIframe.src = blobUrl;
-      document.body.appendChild(printIframe);
-
-      printIframe.onload = () => {
-        try {
-          printIframe.contentWindow?.focus();
-          printIframe.contentWindow?.print();
-        } catch {
-          window.print();
-        }
-        setTimeout(() => {
-          try {
-            document.body.removeChild(printIframe);
-            URL.revokeObjectURL(blobUrl);
-          } catch {}
-        }, 60000);
-      };
-    } catch (err) {
-      console.error('Print generation error, fallback to window.print():', err);
-      window.print();
-    } finally {
-      setIsPdfExporting(false);
-      setIsExporting(false);
-    }
-  };
-
-  const handleDownloadPdf = async () => {
-    try {
-      const pdf = await generatePdfInstance();
-      if (!pdf) return;
-
-      pdf.save(`Invoice_${invoiceData.invoiceNo.replace(/[^a-zA-Z0-9_-]/g, '_')}.pdf`);
-
+      const filename = `RoboGyaan_Invoice_${invoiceData.invoiceNo.replace(/[^a-zA-Z0-9_-]/g, '_')}.pdf`;
+      pdf.save(filename);
       setExportSuccess(true);
       setTimeout(() => setExportSuccess(false), 3000);
     } catch (err) {
@@ -237,12 +254,26 @@ export default function InvoicePage() {
     }
   };
 
+  const isDark = theme === 'dark';
+
   return (
     <AuthGate>
       {(user, onLogout) => (
-        <main className="min-h-screen flex flex-col bg-[#FDFBF7]">
+        <main className={`min-h-screen flex flex-col relative ${isDark ? 'dark bg-[#09090b] text-white' : 'bg-[#FDFBF7] text-black'}`}>
+          {/* INTERACTIVE BACKGROUND CANVAS WITH MOUSE SWELL ANIMATION */}
+          <InteractiveGridBackground
+            theme={theme}
+            enabled={backgroundStyle === 'grid'}
+          />
+
           {/* TOP HEADER & ACTION BAR */}
-          <header className="no-print sticky top-0 z-50 bg-[#FFE600] border-b-[3px] border-black px-4 sm:px-6 py-2.5 shadow-[0_4px_0px_0px_#000000]">
+          <header
+            className={`no-print sticky top-0 z-40 border-b-[3px] px-4 sm:px-6 py-2.5 transition-colors duration-200 ${
+              isDark
+                ? 'bg-black text-white border-[#27272a] shadow-[0_4px_0px_0px_#18181b]'
+                : 'bg-[#FFE600] text-black border-black shadow-[0_4px_0px_0px_#000000]'
+            }`}
+          >
             <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-2.5 sm:gap-3">
               {/* Top Left Row on Mobile / Left Section on Desktop */}
               <div className="w-full md:w-auto flex items-center justify-between gap-3">
@@ -252,24 +283,35 @@ export default function InvoicePage() {
                     RG
                   </div>
                   <div className="text-left">
-                    <h1 className="text-lg sm:text-2xl font-black tracking-tight leading-none text-black flex items-center gap-1.5 sm:gap-2">
-                      ROBOGYAAN <span className="text-[10px] sm:text-xs bg-black text-white px-1.5 sm:px-2 py-0.5 rounded font-black tracking-wider">INVOICE</span>
+                    <h1 className="text-lg sm:text-2xl font-black tracking-tight leading-none flex items-center gap-1.5 sm:gap-2">
+                      ROBOGYAAN{' '}
+                      <span
+                        className={`text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 rounded font-black tracking-wider ${
+                          isDark ? 'bg-[#FFE600] text-black' : 'bg-black text-white'
+                        }`}
+                      >
+                        INVOICE
+                      </span>
                     </h1>
-                    <p className="text-[10px] sm:text-[11px] font-bold text-black/80 uppercase tracking-wider mt-0.5">
+                    <p
+                      className={`text-[10px] sm:text-[11px] font-bold uppercase tracking-wider mt-0.5 ${
+                        isDark ? 'text-neutral-400' : 'text-black/80'
+                      }`}
+                    >
                       Neo-Brutalist Live Engine
                     </p>
                   </div>
                 </div>
 
                 {/* Mobile View Toggles on Top Right (< md): ONLY ICONS VISIBLE ON PHONE SCREEN */}
-                <div className="flex md:hidden items-center gap-1 bg-white p-1 rounded-lg border-2 border-black shadow-[2px_2px_0px_#000] shrink-0">
+                <div className="flex md:hidden items-center gap-1 bg-white dark:bg-[#18181b] p-1 rounded-lg border-2 border-black dark:border-neutral-700 shadow-[2px_2px_0px_#000] shrink-0">
                   <button
                     type="button"
                     onClick={() => setActiveTab('editor')}
                     className={`p-1.5 rounded transition-all ${
                       activeTab === 'editor'
                         ? 'bg-black text-[#FFE600] shadow-[1px_1px_0px_#000]'
-                        : 'text-black hover:bg-neutral-100'
+                        : 'text-black dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800'
                     }`}
                     title="Editor Mode"
                     aria-label="Editor Mode"
@@ -282,7 +324,7 @@ export default function InvoicePage() {
                     className={`p-1.5 rounded transition-all ${
                       activeTab === 'split'
                         ? 'bg-black text-[#FFE600] shadow-[1px_1px_0px_#000]'
-                        : 'text-black hover:bg-neutral-100'
+                        : 'text-black dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800'
                     }`}
                     title="Split Mode"
                     aria-label="Split Mode"
@@ -295,12 +337,28 @@ export default function InvoicePage() {
                     className={`p-1.5 rounded transition-all ${
                       activeTab === 'preview'
                         ? 'bg-black text-[#FFE600] shadow-[1px_1px_0px_#000]'
-                        : 'text-black hover:bg-neutral-100'
+                        : 'text-black dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800'
                     }`}
                     title="Preview Mode"
                     aria-label="Preview Mode"
                   >
                     <Eye className="w-4 h-4" />
+                  </button>
+
+                  {/* Mobile Theme Toggle Button */}
+                  <button
+                    type="button"
+                    onClick={toggleTheme}
+                    className="p-1.5 rounded text-black dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800"
+                    title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+                  >
+                    <span className="flex items-center justify-center">
+                      {isDark ? (
+                        <Sun className="w-4 h-4 text-[#FFE600]" />
+                      ) : (
+                        <Moon className="w-4 h-4 text-black" />
+                      )}
+                    </span>
                   </button>
                 </div>
               </div>
@@ -308,14 +366,14 @@ export default function InvoicePage() {
               {/* Desktop Right Side: Tabs + Action Buttons + User Logout */}
               <div className="flex items-center justify-end gap-2.5 flex-wrap w-full md:w-auto">
                 {/* Desktop Tabs on Top Right: BOTH ICONS AND TEXT VISIBLE */}
-                <div className="hidden md:flex items-center gap-1 bg-white p-1 rounded-lg border-2 border-black shadow-[2px_2px_0px_#000]">
+                <div className="hidden md:flex items-center gap-1 bg-white dark:bg-[#18181b] p-1 rounded-lg border-2 border-black dark:border-neutral-700 shadow-[2px_2px_0px_#000]">
                   <button
                     type="button"
                     onClick={() => setActiveTab('editor')}
                     className={`px-3 py-1.5 text-xs font-black uppercase tracking-wider rounded flex items-center gap-1.5 transition-all ${
                       activeTab === 'editor'
                         ? 'bg-black text-[#FFE600] shadow-[1px_1px_0px_#000]'
-                        : 'text-black hover:bg-neutral-100'
+                        : 'text-black dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800'
                     }`}
                   >
                     <Edit3 className="w-3.5 h-3.5" />
@@ -327,7 +385,7 @@ export default function InvoicePage() {
                     className={`px-3 py-1.5 text-xs font-black uppercase tracking-wider rounded flex items-center gap-1.5 transition-all ${
                       activeTab === 'split'
                         ? 'bg-black text-[#FFE600] shadow-[1px_1px_0px_#000]'
-                        : 'text-black hover:bg-neutral-100'
+                        : 'text-black dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800'
                     }`}
                   >
                     <Columns className="w-3.5 h-3.5" />
@@ -339,7 +397,7 @@ export default function InvoicePage() {
                     className={`px-3 py-1.5 text-xs font-black uppercase tracking-wider rounded flex items-center gap-1.5 transition-all ${
                       activeTab === 'preview'
                         ? 'bg-black text-[#FFE600] shadow-[1px_1px_0px_#000]'
-                        : 'text-black hover:bg-neutral-100'
+                        : 'text-black dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-800'
                     }`}
                   >
                     <Eye className="w-3.5 h-3.5" />
@@ -349,6 +407,42 @@ export default function InvoicePage() {
 
                 {/* Action Buttons */}
                 <div className="flex items-center gap-2 justify-end w-full sm:w-auto">
+                  {/* NAVBAR LIGHT / DARK MODE TOGGLE (SAME SPAN REQUIREMENT) */}
+                  <button
+                    type="button"
+                    onClick={toggleTheme}
+                    className={`p-2 rounded-lg border-2 font-black transition active:translate-x-[1px] active:translate-y-[1px] flex items-center justify-center cursor-pointer ${
+                      isDark
+                        ? 'bg-[#18181b] text-[#FFE600] border-neutral-700 shadow-[2px_2px_0px_#FFE600]'
+                        : 'bg-white text-black border-black shadow-[2px_2px_0px_#000]'
+                    }`}
+                    title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+                    aria-label={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+                  >
+                    <span className="flex items-center justify-center">
+                      {isDark ? (
+                        <Sun className="w-4 h-4 text-[#FFE600]" />
+                      ) : (
+                        <Moon className="w-4 h-4 text-black" />
+                      )}
+                    </span>
+                  </button>
+
+                  {/* Settings Button */}
+                  <button
+                    type="button"
+                    onClick={() => setIsSettingsOpen(true)}
+                    className={`p-2 rounded-lg border-2 font-black transition active:translate-x-[1px] active:translate-y-[1px] flex items-center justify-center cursor-pointer ${
+                      isDark
+                        ? 'bg-[#18181b] text-white border-neutral-700 shadow-[2px_2px_0px_#ffffff]'
+                        : 'bg-white text-black border-black shadow-[2px_2px_0px_#000]'
+                    }`}
+                    title="App Settings & Updates"
+                    aria-label="App Settings"
+                  >
+                    <Settings className="w-4 h-4" />
+                  </button>
+
                   <NeoBrutalButton
                     variant="white"
                     size="sm"
@@ -400,7 +494,7 @@ export default function InvoicePage() {
                       });
                     }}
                     title={`Logged in as ${user.email}. Click to Logout`}
-                    className="p-2 bg-white text-black font-black border-2 border-black rounded-lg shadow-[2px_2px_0px_#000] hover:bg-red-50 hover:text-red-700 transition active:translate-x-[1px] active:translate-y-[1px] flex items-center gap-1 text-xs"
+                    className="p-2 bg-white text-black font-black border-2 border-black rounded-lg shadow-[2px_2px_0px_#000] hover:bg-red-50 hover:text-red-700 transition active:translate-x-[1px] active:translate-y-[1px] flex items-center gap-1 text-xs cursor-pointer"
                   >
                     <LogOut className="w-3.5 h-3.5" />
                     <span className="hidden sm:inline font-bold">Logout</span>
@@ -410,30 +504,32 @@ export default function InvoicePage() {
             </div>
           </header>
 
-          {/* 3-DASH SIDEBAR TOGGLE ON THE LEFT TOP BELOW NAVBAR */}
-          <div className="no-print max-w-7xl mx-auto w-full px-4 sm:px-6 pt-3 pb-0 flex items-center justify-between flex-wrap gap-2">
+          {/* 3-DASH SIDEBAR TOGGLE ON THE LEFT TOP BELOW NAVBAR & SETTINGS STICKER */}
+          <div className="no-print max-w-7xl mx-auto w-full px-4 sm:px-6 pt-3 pb-0 flex items-center justify-between flex-wrap gap-2 relative z-10">
             <div className="flex items-center gap-2.5 flex-wrap">
               <button
                 type="button"
                 onClick={() => setIsSidebarOpen(true)}
-                className="flex items-center gap-2 px-3 py-1.5 bg-white text-black font-black text-xs uppercase tracking-wider border-2 border-black rounded-lg shadow-[3px_3px_0px_#000000] hover:bg-[#FFE600] transition active:translate-x-[1px] active:translate-y-[1px]"
+                className={`flex items-center gap-2 px-3 py-1.5 font-black text-xs uppercase tracking-wider border-2 border-black rounded-lg shadow-[3px_3px_0px_#000000] hover:bg-[#FFE600] hover:text-black transition active:translate-x-[1px] active:translate-y-[1px] cursor-pointer ${
+                  isDark ? 'bg-[#18181b] text-white border-neutral-700' : 'bg-white text-black'
+                }`}
                 title="Open Prompt History Sidebar (Firebase Firestore)"
                 aria-label="Open Prompt History"
               >
                 {/* 3 horizontal dashes icon */}
                 <div className="flex flex-col gap-1 w-4 justify-center">
-                  <span className="block h-0.5 w-full bg-black rounded" />
-                  <span className="block h-0.5 w-full bg-black rounded" />
-                  <span className="block h-0.5 w-full bg-black rounded" />
+                  <span className="block h-0.5 w-full bg-current rounded" />
+                  <span className="block h-0.5 w-full bg-current rounded" />
+                  <span className="block h-0.5 w-full bg-current rounded" />
                 </div>
                 <span className="font-virgil font-black">Prompt History</span>
-                <span className="text-[9px] bg-black text-[#FFE600] px-1.5 py-0.5 rounded font-black">
+                <span className="text-[9px] bg-black text-[#FFE600] px-1.5 py-0.5 rounded font-black border border-black">
                   Firestore
                 </span>
               </button>
 
               {activeInvoiceId && (
-                <div className="flex items-center gap-1.5 bg-[#FFFDE6] border-2 border-black px-2.5 py-1 rounded-lg text-xs font-bold shadow-[2px_2px_0px_#000]">
+                <div className="flex items-center gap-1.5 bg-[#FFFDE6] dark:bg-[#27272a] text-black dark:text-white border-2 border-black dark:border-neutral-700 px-2.5 py-1 rounded-lg text-xs font-bold shadow-[2px_2px_0px_#000]">
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
                   <span>Editing Loaded Invoice:</span>
                   <span className="font-black underline">{invoiceData.invoiceNo}</span>
@@ -455,14 +551,24 @@ export default function InvoicePage() {
               )}
             </div>
 
-            <div className="hidden sm:flex items-center gap-1 text-[11px] font-bold text-neutral-500">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-              <span>{user.email}</span>
+            {/* User status & Hand-Drawn Asterisk/Splat sticker matching Image 2 */}
+            <div className="hidden sm:flex items-center gap-2 text-[11px] font-bold text-neutral-500 dark:text-neutral-400">
+              <div className="flex items-center gap-1">
+                <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+                <span>{user.email}</span>
+              </div>
+
+              {/* Hand-Drawn Asterisk Sticker from Image 2 */}
+              <HandDrawnAsteriskSticker
+                className="w-5 h-5 ml-1"
+                onClick={() => setIsSettingsOpen(true)}
+                title="App Settings & Updates (Click to open)"
+              />
             </div>
           </div>
 
           {/* MAIN CONTENT AREA */}
-          <div className="flex-1 max-w-7xl mx-auto w-full p-4 sm:p-6 print:p-0 print:m-0 print:max-w-none">
+          <div className="flex-1 max-w-7xl mx-auto w-full p-4 sm:p-6 print:p-0 print:m-0 print:max-w-none relative z-10">
             <div
               className={`grid gap-8 print:block print:p-0 print:m-0 ${
                 activeTab === 'split'
@@ -478,8 +584,8 @@ export default function InvoicePage() {
                   }`}
                 >
                   <div className="mb-4">
-                    <h2 className="text-xl font-black text-black">Invoice Editor</h2>
-                    <p className="text-xs text-neutral-600 font-medium">
+                    <h2 className="text-xl font-black">{isDark ? 'Invoice Editor' : 'Invoice Editor'}</h2>
+                    <p className="text-xs text-neutral-500 dark:text-neutral-400 font-medium">
                       Update quantities, rates, and client details with instant real-time calculation.
                     </p>
                   </div>
@@ -492,7 +598,7 @@ export default function InvoicePage() {
                 </div>
               )}
 
-              {/* RIGHT PANEL: STICKY LIVE A4 PREVIEW */}
+              {/* RIGHT PANEL: STICKY LIVE A4 PREVIEW (ROUNDED BORDERS AS PER IMAGE 3) */}
               {(activeTab === 'split' || activeTab === 'preview') && (
                 <div
                   className={`${
@@ -503,18 +609,18 @@ export default function InvoicePage() {
                 >
                   <div className="no-print flex items-center justify-between mb-4 flex-wrap gap-3">
                     <div>
-                      <h2 className="text-xl font-black text-black flex items-center gap-2">
+                      <h2 className="text-xl font-black flex items-center gap-2">
                         Live A4 Preview
                         <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse inline-block" />
                       </h2>
-                      <p className="text-xs text-neutral-600 font-medium">
+                      <p className="text-xs text-neutral-500 dark:text-neutral-400 font-medium">
                         Multi-page A4 layout &bull; Dynamic page breaks with authentic Robogyaan fidelity.
                       </p>
                     </div>
 
                     {/* Page Selector Dropdown */}
-                    <div className="flex items-center gap-2 bg-white border-2 border-black rounded-lg px-3 py-1 shadow-[2px_2px_0px_#000000]">
-                      <label htmlFor="preview-page-select" className="text-xs font-black uppercase text-black shrink-0">
+                    <div className="flex items-center gap-2 bg-white dark:bg-[#18181b] border-2 border-black dark:border-neutral-700 rounded-lg px-3 py-1 shadow-[2px_2px_0px_#000000]">
+                      <label htmlFor="preview-page-select" className="text-xs font-black uppercase text-black dark:text-white shrink-0">
                         Page:
                       </label>
                       <select
@@ -524,11 +630,13 @@ export default function InvoicePage() {
                           const val = e.target.value;
                           setPreviewPage(val === 'all' ? 'all' : parseInt(val, 10));
                         }}
-                        className="bg-transparent text-xs font-black text-black py-0.5 pr-2 focus:outline-none cursor-pointer"
+                        className="bg-transparent text-xs font-black text-black dark:text-white py-0.5 pr-2 focus:outline-none cursor-pointer"
                       >
-                        <option value="all">All Pages ({totalPages})</option>
+                        <option value="all" className="bg-white dark:bg-[#18181b] text-black dark:text-white">
+                          All Pages ({totalPages})
+                        </option>
                         {Array.from({ length: totalPages }, (_, i) => (
-                          <option key={i} value={i}>
+                          <option key={i} value={i} className="bg-white dark:bg-[#18181b] text-black dark:text-white">
                             Page {i + 1} of {totalPages}
                           </option>
                         ))}
@@ -556,7 +664,7 @@ export default function InvoicePage() {
           </div>
 
           {/* FOOTER */}
-          <footer className="no-print mt-auto border-t-2 border-black bg-white py-4 px-6 text-center text-xs font-bold text-neutral-600">
+          <footer className="no-print mt-auto border-t-2 border-black dark:border-neutral-800 bg-white dark:bg-[#121212] py-4 px-6 text-center text-xs font-bold text-neutral-600 dark:text-neutral-400 relative z-10">
             Robogyaan Dual-Platform Invoice Suite &bull; Neo-Brutalist Edition &bull; IGNITING CURIOSITY, BUILDING FUTURE
           </footer>
 
@@ -570,6 +678,24 @@ export default function InvoicePage() {
               setActiveInvoiceId(loadedId || null);
             }}
             activeInvoiceId={activeInvoiceId}
+          />
+
+          {/* APP SETTINGS & IN-APP UPDATER MODAL */}
+          <SettingsModal
+            isOpen={isSettingsOpen}
+            onClose={() => setIsSettingsOpen(false)}
+            theme={theme}
+            onThemeChange={(nextTheme) => {
+              setTheme(nextTheme);
+              localStorage.setItem('robogyaan_theme', nextTheme);
+              if (nextTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+              } else {
+                document.documentElement.classList.remove('dark');
+              }
+            }}
+            backgroundStyle={backgroundStyle}
+            onBackgroundStyleChange={handleBackgroundStyleChange}
           />
 
           {/* NEO-BRUTALIST MODAL / ALERT DIALOG */}

@@ -50,7 +50,7 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(
               key={pageSlice.pageNumber}
               id={`invoice-page-${pageSlice.pageNumber}`}
               data-page-number={pageSlice.pageNumber}
-              className={`print-invoice-page bg-white text-black font-sans relative shadow-[0_10px_35px_rgba(0,0,0,0.15)] border-2 border-black box-border w-full max-w-[760px] h-auto min-h-fit md:min-h-[1020px] md:aspect-[1/1.414] p-4 sm:p-8 flex flex-col justify-between ${
+              className={`print-invoice-page !bg-white !text-black font-sans relative shadow-[0_10px_35px_rgba(0,0,0,0.15)] border-2 border-black rounded-xl sm:rounded-2xl overflow-hidden print:rounded-none print:shadow-none print:border-none print:overflow-visible box-border w-full max-w-[760px] h-auto min-h-fit md:min-h-[1020px] md:aspect-[1/1.414] p-4 sm:p-8 flex flex-col justify-between ${
                 isVisibleOnScreen ? 'flex' : 'hidden print:flex'
               }`}
               style={{

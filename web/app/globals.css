@@ -114,6 +114,35 @@ body {
   box-shadow: 4px 4px 0px #FFE600;
 }
 
+/* Dark Mode Utilities */
+.dark .neo-input {
+  background-color: #27272a;
+  color: #ffffff;
+  border-color: #3f3f46;
+  box-shadow: 3px 3px 0px #000000;
+}
+
+.dark .neo-input::placeholder {
+  color: #9ca3af !important;
+}
+
+.dark .neo-input:focus {
+  border-color: #FFE600;
+  box-shadow: 4px 4px 0px #FFE600;
+}
+
+.dark select.neo-input option {
+  background-color: #27272a;
+  color: #ffffff;
+}
+
+/* Ensure the printed invoice paper ALWAYS stays authentic white with black text */
+.dark .print-invoice-page,
+.print-invoice-page {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
 /* Print Specific Rules for Pixel-Perfect Multi-Page A4 Export with Poppins Font */
 @media print {
   @page {

@@ -1,18 +1,29 @@
 # RoboGyaan Invoice Generation Suite
 
 [![Vercel Deployment](https://img.shields.io/badge/Vercel-Live_Web_App-000000?style=for-the-badge&logo=vercel)](https://invoice.robogyaan.in)
-[![Android APK Release](https://img.shields.io/badge/Android_APK-v1.4.0_Download-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/parthasdey2304/roboGyaanInvoice/releases/download/v1.4.0/robogyaan-invoice-v1.4.0.apk)
-[![GitHub Release](https://img.shields.io/badge/GitHub-v1.4.0_Release-181717?style=for-the-badge&logo=github)](https://github.com/parthasdey2304/roboGyaanInvoice/releases/tag/v1.4.0)
+[![Android APK Release](https://img.shields.io/badge/Android_APK-v1.5.0_Download-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/parthasdey2304/roboGyaanInvoice/releases/download/v1.5.0/robogyaan-invoice-v1.5.0.apk)
+[![GitHub Release](https://img.shields.io/badge/GitHub-v1.5.0_Release-181717?style=for-the-badge&logo=github)](https://github.com/parthasdey2304/roboGyaanInvoice/releases/tag/v1.5.0)
 
 A dual-platform invoice generation system for **RoboGyaan**:
-1. **Next.js 16+ (App Router)** web application with real-time live preview, responsive split-screen layout, high-fidelity multi-page PDF export / print engine, real-time Firebase Firestore autosave, and Argon2id authentication.
-2. **Native Android Application** written in Kotlin using **Jetpack Compose (Material 3)**, reactive `StateFlow` ViewModel, multi-page pagination engine with page dropdown selector, Firestore cloud synchronization with real-time autosave, and native multi-page vector A4 PDF generation via `android.graphics.pdf.PdfDocument`.
+1. **Next.js 16+ (App Router)** web application with real-time live preview, responsive split-screen layout, high-fidelity multi-page PDF export / print engine, real-time Firebase Firestore autosave, interactive 60fps canvas grid background with mouse swelling distortion, light/dark mode with single-span Sun/Moon toggle, and in-app APK updater.
+2. **Native Android Application** written in Kotlin using **Jetpack Compose (Material 3)**, reactive `StateFlow` ViewModel, multi-page pagination engine with page dropdown selector, Firestore cloud synchronization with real-time autosave, dark/light theme engine, rounded PDF preview cards, and integrated in-app GitHub releases updater with progress indicator and MB/s download speed meter.
 
 - 🌐 **Live Web Application:** [https://invoice.robogyaan.in](https://invoice.robogyaan.in)
-- 📱 **Android APK Download:** [robogyaan-invoice-v1.4.0.apk](https://github.com/parthasdey2304/roboGyaanInvoice/releases/download/v1.4.0/robogyaan-invoice-v1.4.0.apk)
-- 📦 **GitHub Release Notes:** [v1.4.0 Release](https://github.com/parthasdey2304/roboGyaanInvoice/releases/tag/v1.4.0)
+- 📱 **Android APK Download:** [robogyaan-invoice-v1.5.0.apk](https://github.com/parthasdey2304/roboGyaanInvoice/releases/download/v1.5.0/robogyaan-invoice-v1.5.0.apk)
+- 📦 **GitHub Release Notes:** [v1.5.0 Release](https://github.com/parthasdey2304/roboGyaanInvoice/releases/tag/v1.5.0)
 
 Both platforms strictly adhere to a **Neo-Brutalist** design language with the hand-drawn **Virgil / Excalidraw** aesthetic, high-contrast black borders with asymmetric hard drop shadows, a vibrant yellow primary palette, and an exact replica of the official RoboGyaan invoice structure.
+
+---
+
+## 🚀 What's New in v1.5.0
+
+- 🌓 **Navbar Light & Dark Mode:** Interactive Sun/Moon toggle in the exact same container span. Smooth transition between Neo-Brutalist yellow/white theme and high-contrast dark mode with black `#000000` header and white typography.
+- 📄 **PDF Authentic White Paper Immunity:** The invoice preview and printed/exported sheets strictly maintain authentic pure white background (`#FFFFFF`) with genuine black typography and amber headers in both light and dark modes.
+- 🔲 **Interactive Box-Box Grid Background:** HTML5 Canvas (Web) and Jetpack Compose Canvas (Android) grid background matching the login and main screens, complete with an interactive cursor swelling lens deformation effect on hover.
+- ⭕ **Rounded Borders for PDF Sheets:** Clean rounded borders (`rounded-xl` / `16.dp`) for invoice preview sheets in split and preview modes without harsh drop shadows.
+- ⚙️ **App Settings & Hand-Drawn Asterisk Sticker:** Hand-drawn asterisk/splat sticker next to admin email opening comprehensive app settings.
+- 📲 **In-App Software Updater:** Direct GitHub Releases API integration checking for updates, real-time 0%–100% progress bar with live download speed in MB/s, automatic corrupted/partial file deletion, and direct package installer launch.
 
 ---
 

@@ -99,14 +99,39 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
     const fetchLatestRelease = async () => {
       setCheckingRelease(true);
       try {
-        const res = await fetch(
-          'https://api.github.com/repos/parthasdey2304/roboGyaanInvoice/releases/latest'
-        );
-        if (res.ok) {
-          const data = await res.json();
-          if (isMounted && data.tag_name) {
-            setLatestReleaseTag(data.tag_name);
+        let tag: string | null = null;
+        try {
+          const res = await fetch(
+            'https://api.github.com/repos/parthasdey2304/roboGyaanInvoice/releases/latest'
+          );
+          if (res.ok) {
+            const data = await res.json();
+            if (data.tag_name) {
+              tag = data.tag_name;
+            }
           }
+        } catch {
+          // GitHub direct API network error, try internal endpoint
+        }
+
+        if (!tag) {
+          try {
+            const res2 = await fetch('/api/version');
+            if (res2.ok) {
+              const data2 = await res2.json();
+              if (data2.latestVersion) {
+                tag = data2.latestVersion.startsWith('v')
+                  ? data2.latestVersion
+                  : `v${data2.latestVersion}`;
+              }
+            }
+          } catch {
+            // fallback error
+          }
+        }
+
+        if (isMounted && tag) {
+          setLatestReleaseTag(tag);
         }
       } catch (e) {
         console.error('Failed to check latest release:', e);

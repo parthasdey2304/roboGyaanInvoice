@@ -24,7 +24,19 @@ object AppUpdateManager {
     private const val GITHUB_RELEASES_API =
         "https://api.github.com/repos/parthasdey2304/roboGyaanInvoice/releases/latest"
 
+    fun getInstalledVersion(context: Context): String {
+        return try {
+            val pInfo = context.packageManager.getPackageInfo(context.packageName, 0)
+            pInfo.versionName ?: CURRENT_VERSION
+        } catch (_: Exception) {
+            CURRENT_VERSION
+        }
+    }
+
     suspend fun checkForUpdates(context: Context): UpdateInfo = withContext(Dispatchers.IO) {
+        val currentInstalled = getInstalledVersion(context)
+
+        // 1. Try official GitHub Releases API first
         try {
             val url = URL(GITHUB_RELEASES_API)
             val connection = url.openConnection() as HttpURLConnection
@@ -57,10 +69,10 @@ object AppUpdateManager {
                     apkDownloadUrl = "https://github.com/parthasdey2304/roboGyaanInvoice/releases/download/v$tagName/robogyaan-invoice-v$tagName.apk"
                 }
 
-                val isNewer = compareVersions(tagName, CURRENT_VERSION) > 0
+                val isNewer = compareVersions(tagName, currentInstalled) > 0
                 return@withContext UpdateInfo(
                     isAvailable = isNewer,
-                    latestVersion = tagName.ifEmpty { CURRENT_VERSION },
+                    latestVersion = tagName.ifEmpty { currentInstalled },
                     downloadUrl = apkDownloadUrl,
                     releaseNotes = body
                 )
@@ -69,10 +81,43 @@ object AppUpdateManager {
             e.printStackTrace()
         }
 
+        // 2. Secondary fallback: check web portal API endpoint
+        try {
+            val fallbackUrl = URL("https://invoice.robogyaan.in/api/version")
+            val connection = fallbackUrl.openConnection() as HttpURLConnection
+            connection.requestMethod = "GET"
+            connection.setRequestProperty("Accept", "application/json")
+            connection.setRequestProperty("User-Agent", "RoboGyaanInvoice-Android")
+            connection.connectTimeout = 6000
+            connection.readTimeout = 6000
+
+            if (connection.responseCode == HttpURLConnection.HTTP_OK) {
+                val response = connection.inputStream.bufferedReader().use { it.readText() }
+                val json = JSONObject(response)
+                val latestVer = json.optString("latestVersion", "").removePrefix("v").trim()
+                val apkUrl = json.optString("downloadUrl", "")
+                val notes = json.optString("releaseNotes", "")
+
+                if (latestVer.isNotEmpty()) {
+                    val isNewer = compareVersions(latestVer, currentInstalled) > 0
+                    return@withContext UpdateInfo(
+                        isAvailable = isNewer,
+                        latestVersion = latestVer,
+                        downloadUrl = apkUrl.ifEmpty {
+                            "https://github.com/parthasdey2304/roboGyaanInvoice/releases/download/v$latestVer/robogyaan-invoice-v$latestVer.apk"
+                        },
+                        releaseNotes = notes
+                    )
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
         return@withContext UpdateInfo(
             isAvailable = false,
-            latestVersion = CURRENT_VERSION,
-            downloadUrl = "https://github.com/parthasdey2304/roboGyaanInvoice/releases/download/v$CURRENT_VERSION/robogyaan-invoice-v$CURRENT_VERSION.apk"
+            latestVersion = currentInstalled,
+            downloadUrl = "https://github.com/parthasdey2304/roboGyaanInvoice/releases/download/v$currentInstalled/robogyaan-invoice-v$currentInstalled.apk"
         )
     }
 
@@ -94,45 +139,49 @@ object AppUpdateManager {
         onProgress: (progress: Int, speedMBs: Float, downloadedBytes: Long, totalBytes: Long) -> Unit
     ): File? = withContext(Dispatchers.IO) {
         val targetFile = File(context.cacheDir, "robogyaan-invoice-update.apk")
-        // If file exists from previous partial or incomplete attempt, safely remove it
         if (targetFile.exists()) {
             targetFile.delete()
         }
 
         var connection: HttpURLConnection? = null
         try {
-            val url = URL(downloadUrl)
-            connection = url.openConnection() as HttpURLConnection
-            connection.requestMethod = "GET"
-            connection.setRequestProperty("User-Agent", "RoboGyaanInvoice-Android")
-            connection.connectTimeout = 15000
-            connection.readTimeout = 20000
-            connection.instanceFollowRedirects = true
+            var currentUrl = downloadUrl
+            var responseCode: Int
+            var redirects = 0
 
-            // Follow HTTP redirects if needed
-            var responseCode = connection.responseCode
-            if (responseCode == HttpURLConnection.HTTP_MOVED_TEMP ||
-                responseCode == HttpURLConnection.HTTP_MOVED_PERM ||
-                responseCode == 307 || responseCode == 308
-            ) {
-                val newUrl = connection.getHeaderField("Location")
-                connection.disconnect()
-                connection = URL(newUrl).openConnection() as HttpURLConnection
-                connection.setRequestProperty("User-Agent", "RoboGyaanInvoice-Android")
-                connection.connectTimeout = 15000
-                connection.readTimeout = 20000
-                responseCode = connection.responseCode
-            }
+            // Follow HTTP redirects safely (e.g. GitHub release -> AWS S3)
+            do {
+                connection?.disconnect()
+                val conn = URL(currentUrl).openConnection() as HttpURLConnection
+                conn.requestMethod = "GET"
+                conn.setRequestProperty("User-Agent", "RoboGyaanInvoice-Android")
+                conn.connectTimeout = 15000
+                conn.readTimeout = 20000
+                conn.instanceFollowRedirects = true
+                connection = conn
 
-            if (responseCode != HttpURLConnection.HTTP_OK) {
+                responseCode = conn.responseCode
+                if (responseCode == HttpURLConnection.HTTP_MOVED_TEMP ||
+                    responseCode == HttpURLConnection.HTTP_MOVED_PERM ||
+                    responseCode == 307 || responseCode == 308 || responseCode == 303 || responseCode == 302
+                ) {
+                    currentUrl = conn.getHeaderField("Location") ?: break
+                    redirects++
+                } else {
+                    break
+                }
+            } while (redirects < 6)
+
+            val activeConn = connection
+            if (activeConn == null || responseCode != HttpURLConnection.HTTP_OK) {
                 targetFile.delete()
                 return@withContext null
             }
 
-            val fileLength = connection.contentLength.toLong()
+            val fileLength = activeConn.contentLength.toLong()
             val totalBytes = if (fileLength > 0) fileLength else (24L * 1024 * 1024)
 
-            connection.inputStream.use { input ->
+            activeConn.inputStream.use { input ->
                 FileOutputStream(targetFile).use { output ->
                     val buffer = ByteArray(16384)
                     var bytesRead: Long = 0

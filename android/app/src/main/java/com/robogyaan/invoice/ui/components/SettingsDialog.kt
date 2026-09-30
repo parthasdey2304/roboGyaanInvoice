@@ -44,6 +44,7 @@ fun SettingsDialog(
     if (!isOpen) return
 
     val context = LocalContext.current
+    val installedVersion = remember { AppUpdateManager.getInstalledVersion(context) }
     val coroutineScope = rememberCoroutineScope()
     var updateInfo by remember { mutableStateOf<UpdateInfo?>(null) }
     var isCheckingUpdate by remember { mutableStateOf(false) }
@@ -374,41 +375,112 @@ fun SettingsDialog(
                             horizontalArrangement = Arrangement.SpaceBetween,
                             verticalAlignment = Alignment.CenterVertically
                         ) {
+                            if (isCheckingUpdate) {
+                                Row(
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    horizontalArrangement = Arrangement.spacedBy(6.dp)
+                                ) {
+                                    CircularProgressIndicator(
+                                        modifier = Modifier.size(14.dp),
+                                        strokeWidth = 2.dp,
+                                        color = NeoYellow
+                                    )
+                                    Text(
+                                        text = "Checking GitHub Releases...",
+                                        fontFamily = VirgilFontFamily,
+                                        fontWeight = FontWeight.Black,
+                                        fontSize = 11.sp,
+                                        color = NeoYellow
+                                    )
+                                }
+                            } else if (updateInfo?.isAvailable == true) {
+                                Row(
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    horizontalArrangement = Arrangement.spacedBy(6.dp)
+                                ) {
+                                    Icon(
+                                        Icons.Default.ArrowCircleUp,
+                                        contentDescription = "Update Available",
+                                        tint = NeoYellow,
+                                        modifier = Modifier.size(16.dp)
+                                    )
+                                    Text(
+                                        text = "Update Available: v${updateInfo?.latestVersion}",
+                                        fontFamily = VirgilFontFamily,
+                                        fontWeight = FontWeight.Black,
+                                        fontSize = 11.sp,
+                                        color = NeoYellow
+                                    )
+                                }
+                            } else {
+                                Row(
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    horizontalArrangement = Arrangement.spacedBy(6.dp)
+                                ) {
+                                    Icon(
+                                        Icons.Default.CheckCircle,
+                                        contentDescription = "Up to date",
+                                        tint = Color(0xFF16A34A),
+                                        modifier = Modifier.size(16.dp)
+                                    )
+                                    Text(
+                                        text = "App is up to date (v$installedVersion)",
+                                        fontFamily = VirgilFontFamily,
+                                        fontWeight = FontWeight.Black,
+                                        fontSize = 11.sp,
+                                        color = Color(0xFF16A34A)
+                                    )
+                                }
+                            }
+
                             Row(
                                 verticalAlignment = Alignment.CenterVertically,
                                 horizontalArrangement = Arrangement.spacedBy(6.dp)
                             ) {
-                                Icon(
-                                    Icons.Default.CheckCircle,
-                                    contentDescription = "Status",
-                                    tint = Color(0xFF16A34A),
-                                    modifier = Modifier.size(16.dp)
-                                )
-                                Text(
-                                    text = if (updateInfo?.isAvailable == true) {
-                                        "Update Available: v${updateInfo?.latestVersion}"
-                                    } else {
-                                        "You are using an app that is up to date (v${AppUpdateManager.CURRENT_VERSION})"
-                                    },
-                                    fontFamily = VirgilFontFamily,
-                                    fontWeight = FontWeight.Black,
-                                    fontSize = 11.sp,
-                                    color = if (updateInfo?.isAvailable == true) NeoYellow else Color(0xFF16A34A)
-                                )
-                            }
+                                Box(
+                                    modifier = Modifier
+                                        .size(24.dp)
+                                        .background(
+                                            if (isDarkMode) Color(0xFF1E1E22) else Color(0xFFF3F4F6),
+                                            RoundedCornerShape(4.dp)
+                                        )
+                                        .border(1.dp, Color.Black, RoundedCornerShape(4.dp))
+                                        .clickable(enabled = !isCheckingUpdate) {
+                                            coroutineScope.launch {
+                                                isCheckingUpdate = true
+                                                updateInfo = AppUpdateManager.checkForUpdates(context)
+                                                isCheckingUpdate = false
+                                                val msg = if (updateInfo?.isAvailable == true) {
+                                                    "New update v${updateInfo?.latestVersion} found!"
+                                                } else {
+                                                    "App is up to date (v$installedVersion)"
+                                                }
+                                                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+                                            }
+                                        },
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    Icon(
+                                        Icons.Default.Refresh,
+                                        contentDescription = "Check Again",
+                                        tint = if (isDarkMode) Color.White else Color.Black,
+                                        modifier = Modifier.size(13.dp)
+                                    )
+                                }
 
-                            Box(
-                                modifier = Modifier
-                                    .background(Color.Black, RoundedCornerShape(4.dp))
-                                    .padding(horizontal = 6.dp, vertical = 2.dp)
-                            ) {
-                                Text(
-                                    text = "v${AppUpdateManager.CURRENT_VERSION}",
-                                    color = NeoYellow,
-                                    fontFamily = VirgilFontFamily,
-                                    fontWeight = FontWeight.Black,
-                                    fontSize = 9.sp
-                                )
+                                Box(
+                                    modifier = Modifier
+                                        .background(Color.Black, RoundedCornerShape(4.dp))
+                                        .padding(horizontal = 6.dp, vertical = 2.dp)
+                                ) {
+                                    Text(
+                                        text = "v$installedVersion",
+                                        color = NeoYellow,
+                                        fontFamily = VirgilFontFamily,
+                                        fontWeight = FontWeight.Black,
+                                        fontSize = 9.sp
+                                    )
+                                }
                             }
                         }
 
@@ -525,7 +597,7 @@ fun SettingsDialog(
                                         modifier = Modifier.size(16.dp)
                                     )
                                     Text(
-                                        text = "Install Now (v${AppUpdateManager.CURRENT_VERSION})",
+                                        text = "Install Now (v${updateInfo?.latestVersion ?: installedVersion})",
                                         fontFamily = VirgilFontFamily,
                                         fontWeight = FontWeight.Black,
                                         fontSize = 13.sp,
@@ -534,7 +606,11 @@ fun SettingsDialog(
                                 }
                             }
                         } else if (downloadProgress == null) {
-                            val buttonVersion = updateInfo?.latestVersion ?: AppUpdateManager.CURRENT_VERSION
+                            val isNewerAvailable = updateInfo?.isAvailable == true
+                            val targetVersion = if (isNewerAvailable) (updateInfo?.latestVersion ?: installedVersion) else installedVersion
+                            val buttonText = if (isNewerAvailable) "Download Update v$targetVersion" else "Re-download APK (v$installedVersion)"
+                            val buttonIcon = if (isNewerAvailable) Icons.Default.Download else Icons.Default.DownloadForOffline
+
                             Box(
                                 modifier = Modifier
                                     .fillMaxWidth()
@@ -547,7 +623,7 @@ fun SettingsDialog(
                                         downloadJob = coroutineScope.launch {
                                             downloadProgress = 0
                                             val url = updateInfo?.downloadUrl
-                                                ?: "https://github.com/parthasdey2304/roboGyaanInvoice/releases/download/v$buttonVersion/robogyaan-invoice-v$buttonVersion.apk"
+                                                ?: "https://github.com/parthasdey2304/roboGyaanInvoice/releases/download/v$targetVersion/robogyaan-invoice-v$targetVersion.apk"
                                             val file = AppUpdateManager.downloadApk(context, url) { p, speed, dBytes, tBytes ->
                                                 downloadProgress = p
                                                 downloadSpeedMBs = speed
@@ -571,13 +647,13 @@ fun SettingsDialog(
                                     horizontalArrangement = Arrangement.spacedBy(6.dp)
                                 ) {
                                     Icon(
-                                        Icons.Default.Download,
-                                        contentDescription = "Download Update",
+                                        buttonIcon,
+                                        contentDescription = buttonText,
                                         tint = Color.Black,
                                         modifier = Modifier.size(16.dp)
                                     )
                                     Text(
-                                        text = "Download Update v$buttonVersion",
+                                        text = buttonText,
                                         fontFamily = VirgilFontFamily,
                                         fontWeight = FontWeight.Black,
                                         fontSize = 13.sp,

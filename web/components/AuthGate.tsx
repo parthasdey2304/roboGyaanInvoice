@@ -14,7 +14,8 @@ import {
   Fingerprint,
   AlertTriangle,
   Sparkles,
-  CheckCircle2
+  CheckCircle2,
+  ScanFace
 } from 'lucide-react';
 import { InteractiveGridBackground } from './InteractiveGridBackground';
 import {
@@ -27,6 +28,8 @@ import {
   registerPlatformCredential,
   verifyPlatformCredential,
   MAX_BIOMETRIC_ATTEMPTS,
+  getBiometricType,
+  BiometricAuthType,
 } from '../lib/webauthn';
 
 interface AuthGateProps {
@@ -45,6 +48,7 @@ export const AuthGate: React.FC<AuthGateProps> = ({ children }) => {
 
   // Biometric state
   const [authMode, setAuthMode] = useState<'fingerprint' | 'password'>('fingerprint');
+  const [biometricType, setBiometricType] = useState<BiometricAuthType>('fingerprint');
   const [biometricAvailable, setBiometricAvailable] = useState<boolean>(false);
   const [isBiometricLocked, setIsBiometricLocked] = useState<boolean>(false);
   const [failedAttempts, setFailedAttempts] = useState<number>(0);
@@ -66,6 +70,10 @@ export const AuthGate: React.FC<AuthGateProps> = ({ children }) => {
       document.documentElement.classList.remove('dark');
     }
 
+    // Detect if this device is Face ID (Apple iPhone/iPad or Safari) vs Fingerprint (Android/Windows)
+    const bioType = getBiometricType();
+    setBiometricType(bioType);
+
     // Check biometric lockout status
     const lockout = getBiometricLockoutStatus();
     setIsBiometricLocked(lockout.isLocked);
@@ -82,7 +90,7 @@ export const AuthGate: React.FC<AuthGateProps> = ({ children }) => {
       setAuthMode('fingerprint');
     }
 
-    // Detect hardware support (Windows Hello / Apple Touch ID / Android biometrics)
+    // Detect hardware support (Windows Hello / Apple Face ID / Touch ID / Android biometrics)
     isPlatformBiometricAvailable().then((supported) => {
       setBiometricAvailable(supported);
       if (!supported && !credId) {
@@ -238,11 +246,11 @@ export const AuthGate: React.FC<AuthGateProps> = ({ children }) => {
         setIsBiometricLocked(true);
         setAuthMode('password');
         setError(
-          `Maximum fingerprint attempts reached (${MAX_BIOMETRIC_ATTEMPTS}/${MAX_BIOMETRIC_ATTEMPTS}). Fingerprint login is locked. Please enter your Admin Password.`
+          `Maximum ${biometricType === 'faceid' ? 'Face ID' : 'fingerprint'} attempts reached (${MAX_BIOMETRIC_ATTEMPTS}/${MAX_BIOMETRIC_ATTEMPTS}). ${biometricType === 'faceid' ? 'Face ID' : 'Fingerprint'} login is locked. Please enter your Admin Password.`
         );
       } else {
         setBiometricFeedback(
-          `Fingerprint not recognized or cancelled. Attempt ${count} of ${MAX_BIOMETRIC_ATTEMPTS}.`
+          `${biometricType === 'faceid' ? 'Face' : 'Fingerprint'} not recognized or cancelled. Attempt ${count} of ${MAX_BIOMETRIC_ATTEMPTS}.`
         );
       }
     } finally {
@@ -254,7 +262,7 @@ export const AuthGate: React.FC<AuthGateProps> = ({ children }) => {
   const handleRegisterDeviceBiometrics = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!setupPassword) {
-      setError('Please enter your Admin Password to pair device biometrics.');
+      setError(`Please enter your Admin Password to pair ${biometricType === 'faceid' ? 'Face ID' : 'fingerprint'} sensor.`);
       return;
     }
 
@@ -274,7 +282,7 @@ export const AuthGate: React.FC<AuthGateProps> = ({ children }) => {
       });
       const chalData = await chalRes.json();
 
-      // Register platform credential (Touch ID / Windows Hello / Android biometric)
+      // Register platform credential (Touch ID / Face ID / Windows Hello / Android biometric)
       const cred = await registerPlatformCredential(chalData.challenge, emailInput.trim());
 
       // Save on server
@@ -285,6 +293,9 @@ export const AuthGate: React.FC<AuthGateProps> = ({ children }) => {
           action: 'register',
           passwordHash: passwordHash,
           credentialId: cred.rawId,
+          name: biometricType === 'faceid' ? 'Apple Face ID' : 'Primary Fingerprint',
+          platform: biometricType === 'faceid' ? 'Apple iOS / Safari' : 'Platform Authenticator',
+          biometricType: biometricType,
         }),
       });
       const regData = await regRes.json();
@@ -402,7 +413,7 @@ export const AuthGate: React.FC<AuthGateProps> = ({ children }) => {
           </div>
         </div>
 
-        {/* Two Options for Login: Fingerprint and Admin Password */}
+        {/* Two Options for Login: Biometric (Face ID / Fingerprint) and Admin Password */}
         <div className="grid grid-cols-2 gap-2 mb-5">
           <button
             type="button"
@@ -425,10 +436,18 @@ export const AuthGate: React.FC<AuthGateProps> = ({ children }) => {
           >
             {isBiometricLocked ? (
               <Lock className="w-4 h-4 text-red-500" />
+            ) : biometricType === 'faceid' ? (
+              <ScanFace className="w-4 h-4" />
             ) : (
               <Fingerprint className="w-4 h-4" />
             )}
-            <span>{isBiometricLocked ? 'Locked' : 'Fingerprint'}</span>
+            <span>
+              {isBiometricLocked
+                ? 'Locked'
+                : biometricType === 'faceid'
+                ? 'Face ID'
+                : 'Fingerprint'}
+            </span>
           </button>
 
           <button
@@ -456,10 +475,10 @@ export const AuthGate: React.FC<AuthGateProps> = ({ children }) => {
             <AlertTriangle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
             <div>
               <p className="font-black uppercase tracking-wide text-red-700 dark:text-red-300">
-                Fingerprint Option Locked (5/5 Failed)
+                {biometricType === 'faceid' ? 'Face ID' : 'Fingerprint'} Option Locked (5/5 Failed)
               </p>
               <p className="text-[11px] leading-tight mt-0.5">
-                Maximum biometric attempts exceeded. For your security, fingerprint access is locked. Please authenticate using your Admin Password below to unlock.
+                Maximum biometric attempts exceeded. For your security, {biometricType === 'faceid' ? 'Face ID' : 'fingerprint'} access is locked. Please authenticate using your Admin Password below to unlock.
               </p>
             </div>
           </div>
@@ -476,11 +495,19 @@ export const AuthGate: React.FC<AuthGateProps> = ({ children }) => {
               <KeyRound className="w-4 h-4 text-[#FFE600] shrink-0 mt-0.5" />
               <p className="text-[11px] font-bold leading-tight">
                 {authMode === 'fingerprint' ? (
-                  <>
-                    Compatible with <span className="underline font-black text-[#FFE600]">Windows Hello</span>,{' '}
-                    <span className="underline font-black text-[#FFE600]">MacBook Touch ID</span>, and{' '}
-                    <span className="underline font-black text-[#FFE600]">Android fingerprint sensors</span> (in-display, power button, rear).
-                  </>
+                  biometricType === 'faceid' ? (
+                    <>
+                      Apple <span className="underline font-black text-[#FFE600]">Face ID</span> &bull;{' '}
+                      <span className="underline font-black text-[#FFE600]">TrueDepth Camera</span> &bull;{' '}
+                      <span className="underline font-black text-[#FFE600]">Secure Enclave</span> hardware encryption.
+                    </>
+                  ) : (
+                    <>
+                      Compatible with <span className="underline font-black text-[#FFE600]">Windows Hello</span>,{' '}
+                      <span className="underline font-black text-[#FFE600]">MacBook Touch ID</span>, and{' '}
+                      <span className="underline font-black text-[#FFE600]">Android fingerprint sensors</span> (in-display, power button, rear).
+                    </>
+                  )
                 ) : (
                   <>
                     Password is encrypted client-side using <span className="underline font-black text-[#FFE600]">Argon2id</span>. Plaintext is never transmitted.
@@ -499,26 +526,81 @@ export const AuthGate: React.FC<AuthGateProps> = ({ children }) => {
         )}
 
         {/* ----------------------------------------------------------------- */}
-        {/* OPTION 1: FINGERPRINT LOGIN VIEW                                  */}
+        {/* OPTION 1: BIOMETRIC LOGIN VIEW (FACE ID OR FINGERPRINT)            */}
         {/* ----------------------------------------------------------------- */}
         {authMode === 'fingerprint' && !isBiometricLocked && (
           <div className="space-y-4">
             {hasRegisteredCred ? (
-              <div className="text-center py-3">
-                <div
-                  onClick={handleBiometricAuth}
-                  className="mx-auto w-24 h-24 rounded-full border-4 border-black bg-[#FFE600] flex items-center justify-center cursor-pointer shadow-[4px_4px_0px_#000] hover:scale-105 active:scale-95 transition"
-                  title="Touch sensor to authenticate"
-                >
-                  <Fingerprint className="w-14 h-14 text-black animate-pulse" />
-                </div>
+              <div className="text-center py-2">
+                {/* 1A: APPLE FACE ID TRUE DEPTH VIEW */}
+                {biometricType === 'faceid' ? (
+                  <div>
+                    {/* Apple iPhone Dynamic Island / Sensor Notch Cutout */}
+                    <div className="mx-auto mb-3.5 w-44 h-7 bg-black rounded-full border border-neutral-700 flex items-center justify-between px-3 shadow-md">
+                      {/* Infrared Camera */}
+                      <div className="flex items-center gap-1.5" title="TrueDepth Infrared Camera">
+                        <div className="w-2.5 h-2.5 rounded-full bg-neutral-900 border border-neutral-700 flex items-center justify-center">
+                          <div className="w-1.5 h-1.5 rounded-full bg-red-600 animate-ping opacity-80" />
+                        </div>
+                        <span className="text-[8px] font-mono text-neutral-400">IR</span>
+                      </div>
+                      {/* Speaker Slit */}
+                      <div className="w-12 h-1 bg-neutral-800 rounded-full" />
+                      {/* 30k Dot Projector */}
+                      <div className="flex items-center gap-1" title="30,000 IR Dot Projector">
+                        <span className="text-[8px] font-mono text-cyan-400">30K</span>
+                        <div className="w-2.5 h-2.5 rounded-full bg-cyan-950 border border-cyan-500/50 flex items-center justify-center">
+                          <div className="w-1 h-1 rounded-full bg-cyan-400" />
+                        </div>
+                      </div>
+                    </div>
 
-                <h3 className="text-sm font-black uppercase tracking-wider mt-4">
-                  Touch Fingerprint Sensor
-                </h3>
-                <p className="text-[11px] font-bold text-neutral-500 dark:text-neutral-400 mt-1">
-                  Windows Hello &bull; Touch ID &bull; Android Biometrics
-                </p>
+                    {/* Apple Face ID Interactive Viewfinder */}
+                    <div
+                      onClick={handleBiometricAuth}
+                      className="relative w-28 h-28 mx-auto flex items-center justify-center cursor-pointer group"
+                      title="Tap to scan Face ID"
+                    >
+                      {/* 4 Corner Framing Brackets */}
+                      <div className="absolute top-0 left-0 w-5 h-5 border-t-4 border-l-4 border-[#FFE600] rounded-tl-lg transition group-hover:scale-110" />
+                      <div className="absolute top-0 right-0 w-5 h-5 border-t-4 border-r-4 border-[#FFE600] rounded-tr-lg transition group-hover:scale-110" />
+                      <div className="absolute bottom-0 left-0 w-5 h-5 border-b-4 border-l-4 border-[#FFE600] rounded-bl-lg transition group-hover:scale-110" />
+                      <div className="absolute bottom-0 right-0 w-5 h-5 border-b-4 border-r-4 border-[#FFE600] rounded-br-lg transition group-hover:scale-110" />
+
+                      {/* Face ID Center Glyph */}
+                      <div className="w-20 h-20 rounded-2xl bg-[#FFE600] border-2 border-black flex items-center justify-center shadow-[3px_3px_0px_#000] relative overflow-hidden group-hover:scale-105 active:scale-95 transition">
+                        <ScanFace className="w-12 h-12 text-black animate-pulse" />
+                        {/* 3D Depth Mesh Scanning Laser Sweep */}
+                        <div className="absolute inset-x-0 h-1 bg-white shadow-[0_0_8px_#ffffff] animate-bounce" />
+                      </div>
+                    </div>
+
+                    <h3 className="text-sm font-black uppercase tracking-wider mt-3">
+                      Position Face in Frame
+                    </h3>
+                    <p className="text-[11px] font-bold text-neutral-500 dark:text-neutral-400 mt-0.5">
+                      Apple TrueDepth Sensor &bull; Secure Enclave
+                    </p>
+                  </div>
+                ) : (
+                  /* 1B: UNIVERSAL FINGERPRINT SENSOR VIEW */
+                  <div>
+                    <div
+                      onClick={handleBiometricAuth}
+                      className="mx-auto w-24 h-24 rounded-full border-4 border-black bg-[#FFE600] flex items-center justify-center cursor-pointer shadow-[4px_4px_0px_#000] hover:scale-105 active:scale-95 transition"
+                      title="Touch sensor to authenticate"
+                    >
+                      <Fingerprint className="w-14 h-14 text-black animate-pulse" />
+                    </div>
+
+                    <h3 className="text-sm font-black uppercase tracking-wider mt-4">
+                      Touch Fingerprint Sensor
+                    </h3>
+                    <p className="text-[11px] font-bold text-neutral-500 dark:text-neutral-400 mt-1">
+                      Windows Hello &bull; Touch ID &bull; Android Biometrics
+                    </p>
+                  </div>
+                )}
 
                 {/* Remaining Attempts Pill */}
                 <div className="mt-3 inline-flex items-center gap-1.5 px-3 py-1 bg-neutral-100 dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-700 rounded-full text-[10px] font-bold">
@@ -543,31 +625,43 @@ export const AuthGate: React.FC<AuthGateProps> = ({ children }) => {
                   type="button"
                   disabled={loading}
                   onClick={handleBiometricAuth}
-                  className="w-full mt-5 py-3 bg-[#FFE600] text-black font-black text-xs uppercase tracking-wider border-2 border-black rounded-lg shadow-[4px_4px_0px_#000] hover:bg-[#FFD700] flex items-center justify-center gap-2 transition active:translate-x-[2px] active:translate-y-[2px] disabled:opacity-60 cursor-pointer"
+                  className="w-full mt-4 py-3 bg-[#FFE600] text-black font-black text-xs uppercase tracking-wider border-2 border-black rounded-lg shadow-[4px_4px_0px_#000] hover:bg-[#FFD700] flex items-center justify-center gap-2 transition active:translate-x-[2px] active:translate-y-[2px] disabled:opacity-60 cursor-pointer"
                 >
                   {loading ? (
                     <>
                       <Loader2 className="w-4 h-4 animate-spin text-black" />
-                      <span className="text-black">Listening for Fingerprint Sensor...</span>
+                      <span className="text-black">
+                        {biometricType === 'faceid' ? 'Scanning Face with TrueDepth Sensor...' : 'Listening for Fingerprint Sensor...'}
+                      </span>
                     </>
                   ) : (
                     <>
-                      <Fingerprint className="w-4 h-4 text-black" />
-                      <span className="text-black">Scan Fingerprint to Sign In</span>
+                      {biometricType === 'faceid' ? (
+                        <ScanFace className="w-4 h-4 text-black" />
+                      ) : (
+                        <Fingerprint className="w-4 h-4 text-black" />
+                      )}
+                      <span className="text-black">
+                        {biometricType === 'faceid' ? 'Scan Face ID to Sign In' : 'Scan Fingerprint to Sign In'}
+                      </span>
                     </>
                   )}
                 </button>
               </div>
             ) : (
-              /* One-time setup on this browser to pair Touch ID / Windows Hello */
+              /* One-time setup on this browser to pair Touch ID / Face ID / Windows Hello */
               <form onSubmit={handleRegisterDeviceBiometrics} className="space-y-3">
                 <div className="border-2 border-black rounded-lg p-3 bg-neutral-50 dark:bg-neutral-800/80">
                   <div className="flex items-center gap-2 text-xs font-black uppercase text-[#FFE600]">
                     <Sparkles className="w-4 h-4 text-black dark:text-[#FFE600]" />
-                    <span>Setup Fingerprint on this Device</span>
+                    <span>
+                      {biometricType === 'faceid' ? 'Setup Apple Face ID on this Device' : 'Setup Fingerprint on this Device'}
+                    </span>
                   </div>
                   <p className="text-[11px] font-medium text-neutral-600 dark:text-neutral-300 mt-1 leading-snug">
-                    Enter your admin password once to register your laptop or phone&apos;s fingerprint sensor (Touch ID, Windows Hello, or Android fingerprint).
+                    {biometricType === 'faceid'
+                      ? "Enter your admin password once to register Apple Face ID on this iPhone / Safari browser via TrueDepth camera and Secure Enclave."
+                      : "Enter your admin password once to register your laptop or phone's fingerprint sensor (Touch ID, Windows Hello, or Android fingerprint)."}
                   </p>
                 </div>
 
@@ -597,13 +691,19 @@ export const AuthGate: React.FC<AuthGateProps> = ({ children }) => {
                     <>
                       <Loader2 className="w-4 h-4 animate-spin text-black" />
                       <span className="text-black">
-                        {hashingProgress ? 'Computing Argon2 Hash...' : 'Connecting to Sensor...'}
+                        {hashingProgress ? 'Computing Argon2 Hash...' : 'Connecting to Hardware Sensor...'}
                       </span>
                     </>
                   ) : (
                     <>
-                      <Fingerprint className="w-4 h-4 text-black" />
-                      <span className="text-black">Pair Sensor &amp; Authenticate</span>
+                      {biometricType === 'faceid' ? (
+                        <ScanFace className="w-4 h-4 text-black" />
+                      ) : (
+                        <Fingerprint className="w-4 h-4 text-black" />
+                      )}
+                      <span className="text-black">
+                        {biometricType === 'faceid' ? 'Pair Face ID & Authenticate' : 'Pair Sensor & Authenticate'}
+                      </span>
                     </>
                   )}
                 </button>
@@ -688,7 +788,7 @@ export const AuthGate: React.FC<AuthGateProps> = ({ children }) => {
                   onClick={() => setAuthMode('fingerprint')}
                   className="text-[11px] font-bold underline hover:text-[#FFE600] cursor-pointer"
                 >
-                  &larr; Switch to Fingerprint Login
+                  &larr; Switch to {biometricType === 'faceid' ? 'Face ID' : 'Fingerprint'} Login
                 </button>
               </div>
             )}
@@ -702,8 +802,17 @@ export const AuthGate: React.FC<AuthGateProps> = ({ children }) => {
               href="/biometrics"
               className="inline-flex items-center gap-1.5 text-[11px] font-black uppercase text-[#D4AF37] hover:underline"
             >
-              <Fingerprint className="w-3.5 h-3.5" />
-              <span>Biometric Vault &amp; Sensor Setup &rarr;</span>
+              {biometricType === 'faceid' ? (
+                <ScanFace className="w-3.5 h-3.5" />
+              ) : (
+                <Fingerprint className="w-3.5 h-3.5" />
+              )}
+              <span>
+                {biometricType === 'faceid'
+                  ? 'Face ID Vault & Setup'
+                  : 'Biometric Vault & Sensor Setup'}{' '}
+                &rarr;
+              </span>
             </a>
           </div>
           <p className="text-[10px] font-bold text-neutral-500 dark:text-neutral-400">

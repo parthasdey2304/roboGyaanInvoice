@@ -30,12 +30,21 @@ async function getCloudBiometricCredentials(): Promise<any[]> {
       if (!docId.startsWith('biometric_cred_')) continue;
 
       const fields = doc.fields || {};
+      const bioName = fields.name?.stringValue || 'Enrolled Biometric';
+      const bioPlatform = fields.platform?.stringValue || 'unknown';
+      const detectedType = fields.biometricType?.stringValue || (
+        (bioName.toLowerCase().includes('face') || bioPlatform.toLowerCase().includes('ios') || bioPlatform.toLowerCase().includes('iphone') || bioPlatform.toLowerCase().includes('safari'))
+          ? 'faceid'
+          : 'fingerprint'
+      );
+
       list.push({
         id: fields.credentialId?.stringValue || docId.replace('biometric_cred_', ''),
         docId: docId,
-        name: fields.name?.stringValue || 'Enrolled Fingerprint',
-        platform: fields.platform?.stringValue || 'unknown',
+        name: bioName,
+        platform: bioPlatform,
         deviceModel: fields.deviceModel?.stringValue || '',
+        biometricType: detectedType,
         enabled: fields.enabled?.booleanValue ?? true,
         createdAt: fields.createdAt?.stringValue || new Date().toISOString(),
         lastUsedAt: fields.lastUsedAt?.stringValue || null,
@@ -71,7 +80,7 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { action, credentialId, name, platform, deviceModel, passwordHash, enabled } = body;
+    const { action, credentialId, name, platform, deviceModel, passwordHash, enabled, biometricType } = body;
 
     // 1. Generate challenge for WebAuthn ceremony
     if (action === 'challenge') {
@@ -103,12 +112,21 @@ export async function POST(request: Request) {
 
       const docId = sanitizeDocId(credentialId);
       const createdAt = new Date().toISOString();
+      const bioName = String(name || 'Admin Biometric');
+      const bioPlatform = String(platform || 'browser');
+      const computedType = biometricType || (
+        (bioName.toLowerCase().includes('face') || bioPlatform.toLowerCase().includes('ios') || bioPlatform.toLowerCase().includes('iphone') || bioPlatform.toLowerCase().includes('safari'))
+          ? 'faceid'
+          : 'fingerprint'
+      );
+
       const firestoreDoc = {
         fields: {
           type: { stringValue: 'biometric_credential' },
+          biometricType: { stringValue: computedType },
           credentialId: { stringValue: String(credentialId) },
-          name: { stringValue: String(name || 'Admin Fingerprint') },
-          platform: { stringValue: String(platform || 'browser') },
+          name: { stringValue: bioName },
+          platform: { stringValue: bioPlatform },
           deviceModel: { stringValue: String(deviceModel || 'Platform Authenticator') },
           enabled: { booleanValue: true },
           createdAt: { stringValue: createdAt },
@@ -133,11 +151,12 @@ export async function POST(request: Request) {
 
       return NextResponse.json({
         success: true,
-        message: 'Fingerprint enrolled and saved to Cloud Firestore successfully.',
+        message: `${computedType === 'faceid' ? 'Face ID' : 'Fingerprint'} enrolled and saved to Cloud Firestore successfully.`,
         credential: {
           id: credentialId,
-          name: name || 'Admin Fingerprint',
-          platform: platform || 'browser',
+          name: bioName,
+          platform: bioPlatform,
+          biometricType: computedType,
           enabled: true,
           createdAt: createdAt,
         },

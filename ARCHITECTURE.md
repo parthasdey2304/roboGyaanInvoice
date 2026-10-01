@@ -116,3 +116,39 @@ sequenceDiagram
     Note over Admin, Cloud: Subsequent Logins with that Finger are Immediately Blocked on Web & Android
 ```
 
+---
+
+## 6. Apple Face ID TrueDepth Biometric Architecture (v1.6.0)
+
+When accessed on Apple iOS devices (iPhone, iPad) or Apple Safari browsers, the suite dynamically adapts to dedicated **Apple Face ID** biometric authentication:
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor User as iOS User (iPhone / Safari)
+    participant UI as AuthGate / Biometrics Page
+    participant TrueDepth as Apple TrueDepth Camera Array
+    participant Enclave as Apple Secure Enclave
+    participant API as /api/auth/biometric
+    participant Cloud as Cloud Firestore
+
+    User->>UI: Select "Face ID" Login / Setup
+    UI->>API: Request WebAuthn Challenge
+    API-->>UI: Return 32-byte Cryptographic Challenge
+    UI->>TrueDepth: Activate Sensor Array (Infrared Camera + 30k Dot Projector)
+    TrueDepth-->>UI: Capture 3D Depth Mesh Contours (Head Roll Verification)
+    TrueDepth->>Enclave: Evaluate 3D Facial Key against Mathematical Enclave Model
+    Enclave-->>UI: Cryptographic Assertion (Hardware Verified)
+    UI->>API: POST { action: "verify", credentialId }
+    API->>Cloud: Query biometric_cred_{id} (Verify isEnabled == true)
+    Cloud-->>API: Status Active
+    API-->>UI: Session Authorized (30-day Cookie Issued)
+    UI->>User: Access Granted to Invoice Suite
+```
+
+### Apple TrueDepth Hardware Subsystem & Security:
+1. **Dynamic Island / Sensor Notch Visualizer:** Emulates Apple's infrared camera emitter, speaker bar, and 30,000 IR dot matrix projection.
+2. **Circular Head Roll Setup Wizard:** Guides user through two full 3D head rolls with 24 radial green segments that light up as depth contour coverage reaches 100%.
+3. **Platform Separation:** Face ID is strictly scoped to Apple devices (iOS and Safari), while Android and Windows devices maintain dedicated fingerprint sensor flows.
+4. **5-Attempt Lockout Parity:** Enforces strict lockout upon 5 consecutive failed face recognition attempts with automatic fallback to Admin Password.
+

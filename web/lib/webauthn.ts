@@ -9,6 +9,80 @@ export const ROBOGYAAN_BIOMETRIC_FAIL_COUNT = 'robogyaan_biometric_failed_attemp
 export const ROBOGYAAN_BIOMETRIC_LOCKED = 'robogyaan_biometric_locked';
 export const MAX_BIOMETRIC_ATTEMPTS = 5;
 
+export type BiometricAuthType = 'faceid' | 'fingerprint';
+
+/**
+ * Detects if the current client is an Apple hardware device (iPhone, iPad, iPod, Mac).
+ */
+export function isAppleDevice(): boolean {
+  if (typeof window === 'undefined' || !navigator) return false;
+  const ua = navigator.userAgent || '';
+  const platform = (navigator as any).userAgentData?.platform || navigator.platform || '';
+  return (
+    /iPhone|iPad|iPod/.test(ua) ||
+    /Macintosh|Mac OS X|MacIntel/.test(ua) ||
+    (platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+  );
+}
+
+/**
+ * Detects iOS devices (iPhone, iPad, iPod, including iPadOS pretending to be Mac).
+ */
+export function isIOS(): boolean {
+  if (typeof window === 'undefined' || !navigator) return false;
+  const ua = navigator.userAgent || '';
+  const platform = (navigator as any).userAgentData?.platform || navigator.platform || '';
+  return (
+    /iPhone|iPad|iPod/.test(ua) ||
+    (platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+  );
+}
+
+/**
+ * Detects whether the current browser is Apple Safari (and not Chrome/Edge/Firefox on iOS/Mac).
+ */
+export function isSafariBrowser(): boolean {
+  if (typeof window === 'undefined' || !navigator) return false;
+  const ua = navigator.userAgent || '';
+  return (
+    /Safari/.test(ua) &&
+    !/Chrome|CriOS|FxiOS|EdgiOS|OPiOS|mercury/i.test(ua)
+  );
+}
+
+/**
+ * Determines whether the user should be presented with Apple Face ID or Fingerprint authentication.
+ * Face ID applies to:
+ * - iPhone & iPad on ANY browser (Safari, Chrome iOS, Firefox iOS, etc.)
+ * - Apple Safari browsers on macOS / iOS
+ * Android and Windows devices are explicitly kept on Fingerprint sensors.
+ */
+export function isFaceIdPlatform(): boolean {
+  if (typeof window === 'undefined' || !navigator) return false;
+  const ua = navigator.userAgent || '';
+
+  // Explicit exclusion: Android and Windows are always Fingerprint
+  if (/Android/i.test(ua) || /Windows/i.test(ua)) {
+    return false;
+  }
+
+  // 1. iPhone or iPad (any browser)
+  if (isIOS()) {
+    return true;
+  }
+
+  // 2. Safari on an Apple platform (macOS or iOS)
+  if (isAppleDevice() && isSafariBrowser()) {
+    return true;
+  }
+
+  return false;
+}
+
+export function getBiometricType(): BiometricAuthType {
+  return isFaceIdPlatform() ? 'faceid' : 'fingerprint';
+}
+
 export function bufferToBase64Url(buffer: ArrayBuffer): string {
   const bytes = new Uint8Array(buffer);
   let str = '';

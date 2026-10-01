@@ -152,3 +152,22 @@ sequenceDiagram
 3. **Platform Separation:** Face ID is strictly scoped to Apple devices (iOS and Safari), while Android and Windows devices maintain dedicated fingerprint sensor flows.
 4. **5-Attempt Lockout Parity:** Enforces strict lockout upon 5 consecutive failed face recognition attempts with automatic fallback to Admin Password.
 
+---
+
+## 7. High-Contrast Dark Mode Visual Polish & Accessibility (v1.6.1)
+
+In v1.6.1, the visual accessibility across dark mode was strengthened:
+
+```mermaid
+flowchart LR
+    A["Dark Mode Active"] --> B["SettingsDialog Theme Toggle"]
+    B --> C["Light Option: Icon & Text Color.White (Contrast 14:1)"]
+    B --> D["Container: #18181B background + #3F3F46 1.5dp border"]
+    B --> E["Dark Option: #27272A active pill + NeoYellow Icon"]
+```
+
+- **Theme Toggle Contrast Guarantee:** In `SettingsDialog.kt`, the unselected "Light" option now renders both the `WbSunny` icon and the Virgil text in `Color.White` when in dark mode (instead of `Color.Black`), ensuring high readability against dark surfaces.
+- **Container Differentiation:** Toggle background uses `#18181B` with subtle `#3F3F46` border in dark mode to clearly distinguish interactive buttons from the dialog background.
+- **Version Parity:** Web API (`/api/version`), Web Settings Modal, Android Native `AppUpdateManager`, and Gradle configuration synchronized to `v1.6.1` (versionCode 20).
+
+

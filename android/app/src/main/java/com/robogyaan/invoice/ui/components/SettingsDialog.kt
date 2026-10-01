@@ -200,10 +200,14 @@ fun SettingsDialog(
                         Row(
                             modifier = Modifier
                                 .background(
-                                    if (isDarkMode) Color.Black else Color(0xFFF3F4F6),
+                                    if (isDarkMode) Color(0xFF18181B) else Color(0xFFF3F4F6),
                                     RoundedCornerShape(6.dp)
                                 )
-                                .border(1.5.dp, Color.Black, RoundedCornerShape(6.dp))
+                                .border(
+                                    1.5.dp,
+                                    if (isDarkMode) Color(0xFF3F3F46) else Color.Black,
+                                    RoundedCornerShape(6.dp)
+                                )
                                 .padding(2.dp)
                         ) {
                             Box(
@@ -223,7 +227,7 @@ fun SettingsDialog(
                                     Icon(
                                         Icons.Default.WbSunny,
                                         contentDescription = "Light Mode",
-                                        tint = Color.Black,
+                                        tint = if (!isDarkMode) Color.Black else Color.White,
                                         modifier = Modifier.size(13.dp)
                                     )
                                     Text(
@@ -231,7 +235,7 @@ fun SettingsDialog(
                                         fontFamily = VirgilFontFamily,
                                         fontWeight = FontWeight.Black,
                                         fontSize = 10.sp,
-                                        color = Color.Black
+                                        color = if (!isDarkMode) Color.Black else Color.White
                                     )
                                 }
                             }
@@ -239,7 +243,7 @@ fun SettingsDialog(
                             Box(
                                 modifier = Modifier
                                     .background(
-                                        if (isDarkMode) Color.Black else Color.Transparent,
+                                        if (isDarkMode) Color(0xFF27272A) else Color.Transparent,
                                         RoundedCornerShape(4.dp)
                                     )
                                     .clickable { onToggleDarkMode(true) }

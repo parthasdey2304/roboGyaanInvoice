@@ -52,5 +52,10 @@ service cloud.firestore {
     match /invoice_prompts/{promptId} {
       allow read, write: if true;
     }
+
+    // RoboGyaan Biometric Credentials Collection
+    match /biometric_credentials/{credentialId} {
+      allow read, write: if true;
+    }
   }
 }

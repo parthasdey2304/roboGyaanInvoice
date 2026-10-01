@@ -199,69 +199,17 @@
       "source_location": "L17"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_mainactivity_mainactivity",
-      "label": "MainActivity",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels_billedparty",
+      "label": "BilledParty",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
       "community": 1,
       "community_name": "Android Main Activity & Navigation",
       "file_type": "code",
-      "norm_label": "mainactivity",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L65"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences",
-      "label": "AuthPreferences",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "Android Main Activity & Navigation",
-      "file_type": "code",
-      "norm_label": "authpreferences",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L57"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_loginauthmode",
-      "label": "LoginAuthMode",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "Android Main Activity & Navigation",
-      "file_type": "code",
-      "norm_label": "loginauthmode",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L52"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_appupdatemanager",
-      "label": "AppUpdateManager",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "In-App Updater & Release Checker",
-      "file_type": "code",
-      "norm_label": "appupdatemanager",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/AppUpdateManager.kt",
-      "source_location": "L22"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_updateinfo",
-      "label": "UpdateInfo",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 10,
-      "community_name": "In-App Updater & Release Checker",
-      "file_type": "code",
-      "norm_label": "updateinfo",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/AppUpdateManager.kt",
-      "source_location": "L15"
+      "norm_label": "billedparty",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/InvoiceModels.kt",
+      "source_location": "L23"
     },
     {
       "id": "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels_invoicedata",
@@ -269,8 +217,8 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 2,
-      "community_name": "Invoice Domain Models & State",
+      "community": 1,
+      "community_name": "Android Main Activity & Navigation",
       "file_type": "code",
       "norm_label": "invoicedata",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/InvoiceModels.kt",
@@ -282,8 +230,8 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 2,
-      "community_name": "Invoice Domain Models & State",
+      "community": 1,
+      "community_name": "Android Main Activity & Navigation",
       "file_type": "code",
       "norm_label": "invoiceitem",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/InvoiceModels.kt",
@@ -295,8 +243,8 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 2,
-      "community_name": "Invoice Domain Models & State",
+      "community": 1,
+      "community_name": "Android Main Activity & Navigation",
       "file_type": "code",
       "norm_label": "invoicepageslice",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/InvoiceModels.kt",
@@ -308,25 +256,38 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 2,
-      "community_name": "Invoice Domain Models & State",
+      "community": 1,
+      "community_name": "Android Main Activity & Navigation",
       "file_type": "code",
       "norm_label": "paymentmethod",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/InvoiceModels.kt",
       "source_location": "L5"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_util_numbertowordsindian_numbertowordsindian",
-      "label": "NumberToWordsIndian",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels_senderparty",
+      "label": "SenderParty",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 2,
-      "community_name": "Invoice Domain Models & State",
+      "community": 1,
+      "community_name": "Android Main Activity & Navigation",
       "file_type": "code",
-      "norm_label": "numbertowordsindian",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/util/NumberToWordsIndian.kt",
-      "source_location": "L7"
+      "norm_label": "senderparty",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/InvoiceModels.kt",
+      "source_location": "L29"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel",
+      "label": "InvoiceViewModel",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Android Main Activity & Navigation",
+      "file_type": "code",
+      "norm_label": "invoiceviewmodel",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/InvoiceViewModel.kt",
+      "source_location": "L16"
     },
     {
       "id": "android_app_src_main_java_com_robogyaan_invoice_util_pdfgenerator_pdfgenerator",
@@ -334,12 +295,77 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 2,
-      "community_name": "Invoice Domain Models & State",
+      "community": 1,
+      "community_name": "Android Main Activity & Navigation",
       "file_type": "code",
       "norm_label": "pdfgenerator",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/util/PdfGenerator.kt",
       "source_location": "L14"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_util_numbertowordsindian_numbertowordsindian",
+      "label": "NumberToWordsIndian",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "Web Root Layout & Font Setup",
+      "file_type": "code",
+      "norm_label": "numbertowordsindian",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/util/NumberToWordsIndian.kt",
+      "source_location": "L7"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_mainactivity_mainactivity",
+      "label": "MainActivity",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Invoice Domain Models & State",
+      "file_type": "code",
+      "norm_label": "mainactivity",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
+      "source_location": "L65"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences",
+      "label": "AuthPreferences",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Invoice Domain Models & State",
+      "file_type": "code",
+      "norm_label": "authpreferences",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
+      "source_location": "L58"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_loginauthmode",
+      "label": "LoginAuthMode",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Invoice Domain Models & State",
+      "file_type": "code",
+      "norm_label": "loginauthmode",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
+      "source_location": "L53"
+    },
+    {
+      "id": "web_app_biometrics_page_cloudbiometriccred",
+      "label": "CloudBiometricCred",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "Android Compose Editor UI",
+      "file_type": "code",
+      "norm_label": "cloudbiometriccred",
+      "source_file": "web/app/biometrics/page.tsx",
+      "source_location": "L31"
     },
     {
       "id": "web_components_authgate_authgateprops",
@@ -347,8 +373,8 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 6,
-      "community_name": "Authentication & Biometrics UI",
+      "community": 4,
+      "community_name": "Android Compose Editor UI",
       "file_type": "code",
       "norm_label": "authgateprops",
       "source_file": "web/components/AuthGate.tsx",
@@ -360,8 +386,8 @@
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
-      "community": 6,
-      "community_name": "Authentication & Biometrics UI",
+      "community": 4,
+      "community_name": "Android Compose Editor UI",
       "file_type": "code",
       "norm_label": "interactivegridbackgroundprops",
       "source_file": "web/components/InteractiveGridBackground.tsx",
@@ -394,43 +420,30 @@
       "source_location": "L14"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels_billedparty",
-      "label": "BilledParty",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 7,
-      "community_name": "Android Firebase Sync Service",
-      "file_type": "code",
-      "norm_label": "billedparty",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/InvoiceModels.kt",
-      "source_location": "L23"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels_senderparty",
-      "label": "SenderParty",
-      "_callable": true,
-      "_callable_class": true,
-      "_origin": "ast",
-      "community": 7,
-      "community_name": "Android Firebase Sync Service",
-      "file_type": "code",
-      "norm_label": "senderparty",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/InvoiceModels.kt",
-      "source_location": "L29"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel",
-      "label": "InvoiceViewModel",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_appupdatemanager",
+      "label": "AppUpdateManager",
       "_callable": true,
       "_callable_class": true,
       "_origin": "ast",
       "community": 9,
       "community_name": "Android Invoice ViewModel",
       "file_type": "code",
-      "norm_label": "invoiceviewmodel",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/InvoiceViewModel.kt",
-      "source_location": "L16"
+      "norm_label": "appupdatemanager",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/AppUpdateManager.kt",
+      "source_location": "L22"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_updateinfo",
+      "label": "UpdateInfo",
+      "_callable": true,
+      "_callable_class": true,
+      "_origin": "ast",
+      "community": 9,
+      "community_name": "Android Invoice ViewModel",
+      "file_type": "code",
+      "norm_label": "updateinfo",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/AppUpdateManager.kt",
+      "source_location": "L15"
     },
     {
       "id": "web_app_page_invoicepage",
@@ -697,328 +710,328 @@
       "source_location": "L23"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_mainactivity_handdrawnasteriskicon",
-      "label": "HandDrawnAsteriskIcon()",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels_paginateinvoiceitems",
+      "label": "paginateInvoiceItems()",
       "_callable": true,
       "_origin": "ast",
       "community": 1,
       "community_name": "Android Main Activity & Navigation",
       "file_type": "code",
-      "norm_label": "handdrawnasteriskicon()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L120"
+      "norm_label": "paginateinvoiceitems()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/InvoiceModels.kt",
+      "source_location": "L78"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_mainactivity_mainactivity_oncreate",
-      "label": ".onCreate()",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_additem",
+      "label": ".addItem()",
       "_callable": true,
       "_origin": "ast",
       "community": 1,
       "community_name": "Android Main Activity & Navigation",
       "file_type": "code",
-      "norm_label": ".oncreate()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L69"
+      "norm_label": ".additem()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/InvoiceViewModel.kt",
+      "source_location": "L63"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_mainactivity_mainscreen",
-      "label": "MainScreen()",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_getamountinwords",
+      "label": ".getAmountInWords()",
       "_callable": true,
       "_origin": "ast",
       "community": 1,
       "community_name": "Android Main Activity & Navigation",
       "file_type": "code",
-      "norm_label": "mainscreen()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
-      "source_location": "L150"
+      "norm_label": ".getamountinwords()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/InvoiceViewModel.kt",
+      "source_location": "L108"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_boxgridbackground_boxgridbackground",
-      "label": "BoxGridBackground()",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_removeitem",
+      "label": ".removeItem()",
       "_callable": true,
       "_origin": "ast",
       "community": 1,
       "community_name": "Android Main Activity & Navigation",
       "file_type": "code",
-      "norm_label": "boxgridbackground()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/BoxGridBackground.kt",
-      "source_location": "L21"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences_checkbiometricavailability",
-      "label": ".checkBiometricAvailability()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "Android Main Activity & Navigation",
-      "file_type": "code",
-      "norm_label": ".checkbiometricavailability()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L128"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences_getfailedbiometricattempts",
-      "label": ".getFailedBiometricAttempts()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "Android Main Activity & Navigation",
-      "file_type": "code",
-      "norm_label": ".getfailedbiometricattempts()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L93"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences_hashpassword",
-      "label": ".hashPassword()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "Android Main Activity & Navigation",
-      "file_type": "code",
-      "norm_label": ".hashpassword()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L69"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences_isbiometriclocked",
-      "label": ".isBiometricLocked()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "Android Main Activity & Navigation",
-      "file_type": "code",
-      "norm_label": ".isbiometriclocked()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L109"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences_isdarkmode",
-      "label": ".isDarkMode()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "Android Main Activity & Navigation",
-      "file_type": "code",
-      "norm_label": ".isdarkmode()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L138"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences_isgridbackground",
-      "label": ".isGridBackground()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "Android Main Activity & Navigation",
-      "file_type": "code",
-      "norm_label": ".isgridbackground()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L148"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences_isloggedin",
-      "label": ".isLoggedIn()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "Android Main Activity & Navigation",
-      "file_type": "code",
-      "norm_label": ".isloggedin()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L80"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences_recordfailedbiometricattempt",
-      "label": ".recordFailedBiometricAttempt()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "Android Main Activity & Navigation",
-      "file_type": "code",
-      "norm_label": ".recordfailedbiometricattempt()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L98"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences_resetfailedbiometricattempts",
-      "label": ".resetFailedBiometricAttempts()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "Android Main Activity & Navigation",
-      "file_type": "code",
-      "norm_label": ".resetfailedbiometricattempts()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L120"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences_setbiometriclocked",
-      "label": ".setBiometricLocked()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "Android Main Activity & Navigation",
-      "file_type": "code",
-      "norm_label": ".setbiometriclocked()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L115"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences_setdarkmode",
-      "label": ".setDarkMode()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "Android Main Activity & Navigation",
-      "file_type": "code",
-      "norm_label": ".setdarkmode()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L143"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences_setgridbackground",
-      "label": ".setGridBackground()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "Android Main Activity & Navigation",
-      "file_type": "code",
-      "norm_label": ".setgridbackground()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L153"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences_setloggedin",
-      "label": ".setLoggedIn()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "Android Main Activity & Navigation",
-      "file_type": "code",
-      "norm_label": ".setloggedin()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L85"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences_verifycredentials",
-      "label": ".verifyCredentials()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "Android Main Activity & Navigation",
-      "file_type": "code",
-      "norm_label": ".verifycredentials()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
+      "norm_label": ".removeitem()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/InvoiceViewModel.kt",
       "source_location": "L75"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_loginscreen",
-      "label": "LoginScreen()",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_resettodefaults",
+      "label": ".resetToDefaults()",
       "_callable": true,
       "_origin": "ast",
       "community": 1,
       "community_name": "Android Main Activity & Navigation",
       "file_type": "code",
-      "norm_label": "loginscreen()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L159"
+      "norm_label": ".resettodefaults()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/InvoiceViewModel.kt",
+      "source_location": "L104"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_appupdatemanager_checkforupdates",
-      "label": ".checkForUpdates()",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_setinvoicedata",
+      "label": ".setInvoiceData()",
       "_callable": true,
       "_origin": "ast",
-      "community": 10,
-      "community_name": "In-App Updater & Release Checker",
+      "community": 1,
+      "community_name": "Android Main Activity & Navigation",
       "file_type": "code",
-      "norm_label": ".checkforupdates()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/AppUpdateManager.kt",
-      "source_location": "L36"
+      "norm_label": ".setinvoicedata()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/InvoiceViewModel.kt",
+      "source_location": "L100"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_appupdatemanager_compareversions",
-      "label": ".compareVersions()",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_togglewatermark",
+      "label": ".toggleWatermark()",
       "_callable": true,
       "_origin": "ast",
-      "community": 10,
-      "community_name": "In-App Updater & Release Checker",
+      "community": 1,
+      "community_name": "Android Main Activity & Navigation",
       "file_type": "code",
-      "norm_label": ".compareversions()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/AppUpdateManager.kt",
-      "source_location": "L124"
+      "norm_label": ".togglewatermark()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/InvoiceViewModel.kt",
+      "source_location": "L59"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_appupdatemanager_deletependingapk",
-      "label": ".deletePendingApk()",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_updatebilledto",
+      "label": ".updateBilledTo()",
       "_callable": true,
       "_origin": "ast",
-      "community": 10,
-      "community_name": "In-App Updater & Release Checker",
+      "community": 1,
+      "community_name": "Android Main Activity & Navigation",
       "file_type": "code",
-      "norm_label": ".deletependingapk()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/AppUpdateManager.kt",
-      "source_location": "L225"
+      "norm_label": ".updatebilledto()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/InvoiceViewModel.kt",
+      "source_location": "L39"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_appupdatemanager_downloadapk",
-      "label": ".downloadApk()",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_updateduedate",
+      "label": ".updateDueDate()",
       "_callable": true,
       "_origin": "ast",
-      "community": 10,
-      "community_name": "In-App Updater & Release Checker",
+      "community": 1,
+      "community_name": "Android Main Activity & Navigation",
       "file_type": "code",
-      "norm_label": ".downloadapk()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/AppUpdateManager.kt",
-      "source_location": "L136"
+      "norm_label": ".updateduedate()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/InvoiceViewModel.kt",
+      "source_location": "L35"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_appupdatemanager_getinstalledversion",
-      "label": ".getInstalledVersion()",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_updateinvoiceno",
+      "label": ".updateInvoiceNo()",
       "_callable": true,
       "_origin": "ast",
-      "community": 10,
-      "community_name": "In-App Updater & Release Checker",
+      "community": 1,
+      "community_name": "Android Main Activity & Navigation",
       "file_type": "code",
-      "norm_label": ".getinstalledversion()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/AppUpdateManager.kt",
+      "norm_label": ".updateinvoiceno()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/InvoiceViewModel.kt",
+      "source_location": "L23"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_updateissuedate",
+      "label": ".updateIssueDate()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Android Main Activity & Navigation",
+      "file_type": "code",
+      "norm_label": ".updateissuedate()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/InvoiceViewModel.kt",
+      "source_location": "L31"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_updateitem",
+      "label": ".updateItem()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Android Main Activity & Navigation",
+      "file_type": "code",
+      "norm_label": ".updateitem()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/InvoiceViewModel.kt",
+      "source_location": "L82"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_updatepaymentmethod",
+      "label": ".updatePaymentMethod()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Android Main Activity & Navigation",
+      "file_type": "code",
+      "norm_label": ".updatepaymentmethod()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/InvoiceViewModel.kt",
+      "source_location": "L55"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_updateregistrationno",
+      "label": ".updateRegistrationNo()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Android Main Activity & Navigation",
+      "file_type": "code",
+      "norm_label": ".updateregistrationno()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/InvoiceViewModel.kt",
       "source_location": "L27"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_appupdatemanager_installapk",
-      "label": ".installApk()",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_updatesender",
+      "label": ".updateSender()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Android Main Activity & Navigation",
+      "file_type": "code",
+      "norm_label": ".updatesender()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/InvoiceViewModel.kt",
+      "source_location": "L47"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_preview_invoicepreviewscreen_invoicepreviewscreen",
+      "label": "InvoicePreviewScreen()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Android Main Activity & Navigation",
+      "file_type": "code",
+      "norm_label": "invoicepreviewscreen()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/preview/InvoicePreviewScreen.kt",
+      "source_location": "L40"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_preview_invoicepreviewscreen_invoicesheetcard",
+      "label": "InvoiceSheetCard()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Android Main Activity & Navigation",
+      "file_type": "code",
+      "norm_label": "invoicesheetcard()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/preview/InvoicePreviewScreen.kt",
+      "source_location": "L187"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_util_pdfgenerator_pdfgenerator_generatea4pdf",
+      "label": ".generateA4Pdf()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Android Main Activity & Navigation",
+      "file_type": "code",
+      "norm_label": ".generatea4pdf()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/util/PdfGenerator.kt",
+      "source_location": "L20"
+    },
+    {
+      "id": "web_app_api_auth_biometric_route_get",
+      "label": "GET()",
       "_callable": true,
       "_origin": "ast",
       "community": 10,
       "community_name": "In-App Updater & Release Checker",
       "file_type": "code",
-      "norm_label": ".installapk()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/AppUpdateManager.kt",
-      "source_location": "L232"
+      "norm_label": "get()",
+      "source_file": "web/app/api/auth/biometric/route.ts",
+      "source_location": "L55"
     },
     {
-      "id": "web_app_layout_rootlayout",
-      "label": "RootLayout()",
+      "id": "web_app_api_auth_biometric_route_getcloudbiometriccredentials",
+      "label": "getCloudBiometricCredentials()",
       "_callable": true,
       "_origin": "ast",
-      "community": 11,
-      "community_name": "Web Root Layout & Font Setup",
+      "community": 10,
+      "community_name": "In-App Updater & Release Checker",
       "file_type": "code",
-      "norm_label": "rootlayout()",
-      "source_file": "web/app/layout.tsx",
-      "source_location": "L24"
+      "norm_label": "getcloudbiometriccredentials()",
+      "source_file": "web/app/api/auth/biometric/route.ts",
+      "source_location": "L14"
     },
     {
       "id": "web_app_api_auth_biometric_route_post",
       "label": "POST()",
       "_callable": true,
       "_origin": "ast",
-      "community": 13,
-      "community_name": "WebAuthn Biometric API",
+      "community": 10,
+      "community_name": "In-App Updater & Release Checker",
       "file_type": "code",
       "norm_label": "post()",
       "source_file": "web/app/api/auth/biometric/route.ts",
-      "source_location": "L7"
+      "source_location": "L71"
+    },
+    {
+      "id": "web_app_api_auth_biometric_route_sanitizedocid",
+      "label": "sanitizeDocId()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "In-App Updater & Release Checker",
+      "file_type": "code",
+      "norm_label": "sanitizedocid()",
+      "source_file": "web/app/api/auth/biometric/route.ts",
+      "source_location": "L9"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_util_numbertowordsindian_numbertowordsindian_convert",
+      "label": ".convert()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "Web Root Layout & Font Setup",
+      "file_type": "code",
+      "norm_label": ".convert()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/util/NumberToWordsIndian.kt",
+      "source_location": "L45"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_util_numbertowordsindian_numbertowordsindian_convertthreedigits",
+      "label": ".convertThreeDigits()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "Web Root Layout & Font Setup",
+      "file_type": "code",
+      "norm_label": ".convertthreedigits()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/util/NumberToWordsIndian.kt",
+      "source_location": "L27"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_util_numbertowordsindian_numbertowordsindian_converttwodigits",
+      "label": ".convertTwoDigits()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "Web Root Layout & Font Setup",
+      "file_type": "code",
+      "norm_label": ".converttwodigits()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/util/NumberToWordsIndian.kt",
+      "source_location": "L19"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_util_numbertowordsindian_numbertowordsindian_formatinr",
+      "label": ".formatINR()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "Web Root Layout & Font Setup",
+      "file_type": "code",
+      "norm_label": ".formatinr()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/util/NumberToWordsIndian.kt",
+      "source_location": "L72"
+    },
+    {
+      "id": "web_app_layout_rootlayout",
+      "label": "RootLayout()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 12,
+      "community_name": "Gradle Wrapper Build Scripts",
+      "file_type": "code",
+      "norm_label": "rootlayout()",
+      "source_file": "web/app/layout.tsx",
+      "source_location": "L24"
     },
     {
       "id": "web_app_api_auth_login_route_post",
@@ -1069,240 +1082,264 @@
       "source_location": "L3"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels_paginateinvoiceitems",
-      "label": "paginateInvoiceItems()",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_mainactivity_handdrawnasteriskicon",
+      "label": "HandDrawnAsteriskIcon()",
       "_callable": true,
       "_origin": "ast",
       "community": 2,
       "community_name": "Invoice Domain Models & State",
       "file_type": "code",
-      "norm_label": "paginateinvoiceitems()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/InvoiceModels.kt",
-      "source_location": "L78"
+      "norm_label": "handdrawnasteriskicon()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
+      "source_location": "L120"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_additem",
-      "label": ".addItem()",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_mainactivity_mainactivity_oncreate",
+      "label": ".onCreate()",
       "_callable": true,
       "_origin": "ast",
       "community": 2,
       "community_name": "Invoice Domain Models & State",
       "file_type": "code",
-      "norm_label": ".additem()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/InvoiceViewModel.kt",
-      "source_location": "L63"
+      "norm_label": ".oncreate()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
+      "source_location": "L69"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_preview_invoicepreviewscreen_invoicepreviewscreen",
-      "label": "InvoicePreviewScreen()",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_mainactivity_mainscreen",
+      "label": "MainScreen()",
       "_callable": true,
       "_origin": "ast",
       "community": 2,
       "community_name": "Invoice Domain Models & State",
       "file_type": "code",
-      "norm_label": "invoicepreviewscreen()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/preview/InvoicePreviewScreen.kt",
-      "source_location": "L40"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_preview_invoicepreviewscreen_invoicesheetcard",
-      "label": "InvoiceSheetCard()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "Invoice Domain Models & State",
-      "file_type": "code",
-      "norm_label": "invoicesheetcard()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/preview/InvoicePreviewScreen.kt",
-      "source_location": "L187"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_util_numbertowordsindian_numbertowordsindian_convert",
-      "label": ".convert()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "Invoice Domain Models & State",
-      "file_type": "code",
-      "norm_label": ".convert()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/util/NumberToWordsIndian.kt",
-      "source_location": "L45"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_util_numbertowordsindian_numbertowordsindian_convertthreedigits",
-      "label": ".convertThreeDigits()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "Invoice Domain Models & State",
-      "file_type": "code",
-      "norm_label": ".convertthreedigits()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/util/NumberToWordsIndian.kt",
-      "source_location": "L27"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_util_numbertowordsindian_numbertowordsindian_converttwodigits",
-      "label": ".convertTwoDigits()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "Invoice Domain Models & State",
-      "file_type": "code",
-      "norm_label": ".converttwodigits()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/util/NumberToWordsIndian.kt",
-      "source_location": "L19"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_util_numbertowordsindian_numbertowordsindian_formatinr",
-      "label": ".formatINR()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "Invoice Domain Models & State",
-      "file_type": "code",
-      "norm_label": ".formatinr()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/util/NumberToWordsIndian.kt",
-      "source_location": "L72"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_util_pdfgenerator_pdfgenerator_generatea4pdf",
-      "label": ".generateA4Pdf()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "Invoice Domain Models & State",
-      "file_type": "code",
-      "norm_label": ".generatea4pdf()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/util/PdfGenerator.kt",
-      "source_location": "L20"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_historysidebarsheet_historysidebarsheet",
-      "label": "HistorySidebarSheet()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "Android Compose Editor UI",
-      "file_type": "code",
-      "norm_label": "historysidebarsheet()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/HistorySidebarSheet.kt",
-      "source_location": "L37"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_invoiceeditorscreen_invoiceeditorscreen",
-      "label": "InvoiceEditorScreen()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "Android Compose Editor UI",
-      "file_type": "code",
-      "norm_label": "invoiceeditorscreen()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/InvoiceEditorScreen.kt",
-      "source_location": "L41"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_neobrutalcomponents_neobrutalalertdialog",
-      "label": "NeoBrutalAlertDialog()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "Android Compose Editor UI",
-      "file_type": "code",
-      "norm_label": "neobrutalalertdialog()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/NeoBrutalComponents.kt",
-      "source_location": "L205"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_neobrutalcomponents_neobrutalbutton",
-      "label": "NeoBrutalButton()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "Android Compose Editor UI",
-      "file_type": "code",
-      "norm_label": "neobrutalbutton()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/NeoBrutalComponents.kt",
-      "source_location": "L114"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_neobrutalcomponents_neobrutalcard",
-      "label": "NeoBrutalCard()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "Android Compose Editor UI",
-      "file_type": "code",
-      "norm_label": "neobrutalcard()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/NeoBrutalComponents.kt",
-      "source_location": "L33"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_neobrutalcomponents_neobrutaltextfield",
-      "label": "NeoBrutalTextField()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "Android Compose Editor UI",
-      "file_type": "code",
-      "norm_label": "neobrutaltextfield()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/NeoBrutalComponents.kt",
+      "norm_label": "mainscreen()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
       "source_location": "L150"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_settingsdialog_settingsdialog",
-      "label": "SettingsDialog()",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_boxgridbackground_boxgridbackground",
+      "label": "BoxGridBackground()",
       "_callable": true,
       "_origin": "ast",
-      "community": 4,
-      "community_name": "Android Compose Editor UI",
+      "community": 2,
+      "community_name": "Invoice Domain Models & State",
       "file_type": "code",
-      "norm_label": "settingsdialog()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/SettingsDialog.kt",
-      "source_location": "L35"
+      "norm_label": "boxgridbackground()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/BoxGridBackground.kt",
+      "source_location": "L21"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_neobrutalmodifiers_neobrutal",
-      "label": "neoBrutal()",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences_checkbiometricavailability",
+      "label": ".checkBiometricAvailability()",
       "_callable": true,
       "_origin": "ast",
-      "community": 4,
-      "community_name": "Android Compose Editor UI",
+      "community": 2,
+      "community_name": "Invoice Domain Models & State",
       "file_type": "code",
-      "norm_label": "neobrutal()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/NeoBrutalModifiers.kt",
-      "source_location": "L24"
+      "norm_label": ".checkbiometricavailability()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
+      "source_location": "L129"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_neobrutalmodifiers_neobrutalclickable",
-      "label": "neoBrutalClickable()",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences_getfailedbiometricattempts",
+      "label": ".getFailedBiometricAttempts()",
       "_callable": true,
       "_origin": "ast",
-      "community": 4,
-      "community_name": "Android Compose Editor UI",
+      "community": 2,
+      "community_name": "Invoice Domain Models & State",
       "file_type": "code",
-      "norm_label": "neobrutalclickable()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/NeoBrutalModifiers.kt",
-      "source_location": "L69"
+      "norm_label": ".getfailedbiometricattempts()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
+      "source_location": "L94"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences_hashpassword",
+      "label": ".hashPassword()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Invoice Domain Models & State",
+      "file_type": "code",
+      "norm_label": ".hashpassword()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
+      "source_location": "L70"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences_isbiometriclocked",
+      "label": ".isBiometricLocked()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Invoice Domain Models & State",
+      "file_type": "code",
+      "norm_label": ".isbiometriclocked()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
+      "source_location": "L110"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences_isdarkmode",
+      "label": ".isDarkMode()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Invoice Domain Models & State",
+      "file_type": "code",
+      "norm_label": ".isdarkmode()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
+      "source_location": "L139"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences_isgridbackground",
+      "label": ".isGridBackground()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Invoice Domain Models & State",
+      "file_type": "code",
+      "norm_label": ".isgridbackground()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
+      "source_location": "L149"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences_isloggedin",
+      "label": ".isLoggedIn()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Invoice Domain Models & State",
+      "file_type": "code",
+      "norm_label": ".isloggedin()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
+      "source_location": "L81"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences_recordfailedbiometricattempt",
+      "label": ".recordFailedBiometricAttempt()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Invoice Domain Models & State",
+      "file_type": "code",
+      "norm_label": ".recordfailedbiometricattempt()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
+      "source_location": "L99"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences_resetfailedbiometricattempts",
+      "label": ".resetFailedBiometricAttempts()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Invoice Domain Models & State",
+      "file_type": "code",
+      "norm_label": ".resetfailedbiometricattempts()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
+      "source_location": "L121"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences_setbiometriclocked",
+      "label": ".setBiometricLocked()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Invoice Domain Models & State",
+      "file_type": "code",
+      "norm_label": ".setbiometriclocked()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
+      "source_location": "L116"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences_setdarkmode",
+      "label": ".setDarkMode()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Invoice Domain Models & State",
+      "file_type": "code",
+      "norm_label": ".setdarkmode()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
+      "source_location": "L144"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences_setgridbackground",
+      "label": ".setGridBackground()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Invoice Domain Models & State",
+      "file_type": "code",
+      "norm_label": ".setgridbackground()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
+      "source_location": "L154"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences_setloggedin",
+      "label": ".setLoggedIn()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Invoice Domain Models & State",
+      "file_type": "code",
+      "norm_label": ".setloggedin()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
+      "source_location": "L86"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_authpreferences_verifycredentials",
+      "label": ".verifyCredentials()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Invoice Domain Models & State",
+      "file_type": "code",
+      "norm_label": ".verifycredentials()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
+      "source_location": "L76"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_loginscreen",
+      "label": "LoginScreen()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Invoice Domain Models & State",
+      "file_type": "code",
+      "norm_label": "loginscreen()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
+      "source_location": "L160"
     },
     {
       "id": "android_app_src_main_java_com_robogyaan_invoice_ui_theme_theme_robogyaaninvoicetheme",
       "label": "RoboGyaanInvoiceTheme()",
       "_callable": true,
       "_origin": "ast",
-      "community": 4,
-      "community_name": "Android Compose Editor UI",
+      "community": 2,
+      "community_name": "Invoice Domain Models & State",
       "file_type": "code",
       "norm_label": "robogyaaninvoicetheme()",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/theme/Theme.kt",
       "source_location": "L36"
     },
     {
+      "id": "web_app_biometrics_page_biometricsmanagementpage",
+      "label": "BiometricsManagementPage()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "Android Compose Editor UI",
+      "file_type": "code",
+      "norm_label": "biometricsmanagementpage()",
+      "source_file": "web/app/biometrics/page.tsx",
+      "source_location": "L42"
+    },
+    {
       "id": "web_components_authgate_authgate",
       "label": "AuthGate()",
       "_callable": true,
       "_origin": "ast",
-      "community": 6,
-      "community_name": "Authentication & Biometrics UI",
+      "community": 4,
+      "community_name": "Android Compose Editor UI",
       "file_type": "code",
       "norm_label": "authgate()",
       "source_file": "web/components/AuthGate.tsx",
@@ -1313,8 +1350,8 @@
       "label": "InteractiveGridBackground()",
       "_callable": true,
       "_origin": "ast",
-      "community": 6,
-      "community_name": "Authentication & Biometrics UI",
+      "community": 4,
+      "community_name": "Android Compose Editor UI",
       "file_type": "code",
       "norm_label": "interactivegridbackground()",
       "source_file": "web/components/InteractiveGridBackground.tsx",
@@ -1325,8 +1362,8 @@
       "label": "hashPasswordWithArgon2()",
       "_callable": true,
       "_origin": "ast",
-      "community": 6,
-      "community_name": "Authentication & Biometrics UI",
+      "community": 4,
+      "community_name": "Android Compose Editor UI",
       "file_type": "code",
       "norm_label": "hashpasswordwithargon2()",
       "source_file": "web/lib/crypto.ts",
@@ -1337,8 +1374,8 @@
       "label": "base64UrlToBuffer()",
       "_callable": true,
       "_origin": "ast",
-      "community": 6,
-      "community_name": "Authentication & Biometrics UI",
+      "community": 4,
+      "community_name": "Android Compose Editor UI",
       "file_type": "code",
       "norm_label": "base64urltobuffer()",
       "source_file": "web/lib/webauthn.ts",
@@ -1349,8 +1386,8 @@
       "label": "bufferToBase64Url()",
       "_callable": true,
       "_origin": "ast",
-      "community": 6,
-      "community_name": "Authentication & Biometrics UI",
+      "community": 4,
+      "community_name": "Android Compose Editor UI",
       "file_type": "code",
       "norm_label": "buffertobase64url()",
       "source_file": "web/lib/webauthn.ts",
@@ -1361,8 +1398,8 @@
       "label": "getBiometricLockoutStatus()",
       "_callable": true,
       "_origin": "ast",
-      "community": 6,
-      "community_name": "Authentication & Biometrics UI",
+      "community": 4,
+      "community_name": "Android Compose Editor UI",
       "file_type": "code",
       "norm_label": "getbiometriclockoutstatus()",
       "source_file": "web/lib/webauthn.ts",
@@ -1373,8 +1410,8 @@
       "label": "getSavedCredentialId()",
       "_callable": true,
       "_origin": "ast",
-      "community": 6,
-      "community_name": "Authentication & Biometrics UI",
+      "community": 4,
+      "community_name": "Android Compose Editor UI",
       "file_type": "code",
       "norm_label": "getsavedcredentialid()",
       "source_file": "web/lib/webauthn.ts",
@@ -1385,8 +1422,8 @@
       "label": "isPlatformBiometricAvailable()",
       "_callable": true,
       "_origin": "ast",
-      "community": 6,
-      "community_name": "Authentication & Biometrics UI",
+      "community": 4,
+      "community_name": "Android Compose Editor UI",
       "file_type": "code",
       "norm_label": "isplatformbiometricavailable()",
       "source_file": "web/lib/webauthn.ts",
@@ -1397,8 +1434,8 @@
       "label": "recordFailedBiometricAttempt()",
       "_callable": true,
       "_origin": "ast",
-      "community": 6,
-      "community_name": "Authentication & Biometrics UI",
+      "community": 4,
+      "community_name": "Android Compose Editor UI",
       "file_type": "code",
       "norm_label": "recordfailedbiometricattempt()",
       "source_file": "web/lib/webauthn.ts",
@@ -1409,8 +1446,8 @@
       "label": "registerPlatformCredential()",
       "_callable": true,
       "_origin": "ast",
-      "community": 6,
-      "community_name": "Authentication & Biometrics UI",
+      "community": 4,
+      "community_name": "Android Compose Editor UI",
       "file_type": "code",
       "norm_label": "registerplatformcredential()",
       "source_file": "web/lib/webauthn.ts",
@@ -1421,8 +1458,8 @@
       "label": "resetBiometricAttempts()",
       "_callable": true,
       "_origin": "ast",
-      "community": 6,
-      "community_name": "Authentication & Biometrics UI",
+      "community": 4,
+      "community_name": "Android Compose Editor UI",
       "file_type": "code",
       "norm_label": "resetbiometricattempts()",
       "source_file": "web/lib/webauthn.ts",
@@ -1433,8 +1470,8 @@
       "label": "saveCredentialId()",
       "_callable": true,
       "_origin": "ast",
-      "community": 6,
-      "community_name": "Authentication & Biometrics UI",
+      "community": 4,
+      "community_name": "Android Compose Editor UI",
       "file_type": "code",
       "norm_label": "savecredentialid()",
       "source_file": "web/lib/webauthn.ts",
@@ -1445,12 +1482,120 @@
       "label": "verifyPlatformCredential()",
       "_callable": true,
       "_origin": "ast",
-      "community": 6,
-      "community_name": "Authentication & Biometrics UI",
+      "community": 4,
+      "community_name": "Android Compose Editor UI",
       "file_type": "code",
       "norm_label": "verifyplatformcredential()",
       "source_file": "web/lib/webauthn.ts",
       "source_location": "L127"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_historysidebarsheet_historysidebarsheet",
+      "label": "HistorySidebarSheet()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "Authentication & Biometrics UI",
+      "file_type": "code",
+      "norm_label": "historysidebarsheet()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/HistorySidebarSheet.kt",
+      "source_location": "L37"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_invoiceeditorscreen_invoiceeditorscreen",
+      "label": "InvoiceEditorScreen()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "Authentication & Biometrics UI",
+      "file_type": "code",
+      "norm_label": "invoiceeditorscreen()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/InvoiceEditorScreen.kt",
+      "source_location": "L41"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_neobrutalcomponents_neobrutalalertdialog",
+      "label": "NeoBrutalAlertDialog()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "Authentication & Biometrics UI",
+      "file_type": "code",
+      "norm_label": "neobrutalalertdialog()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/NeoBrutalComponents.kt",
+      "source_location": "L205"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_neobrutalcomponents_neobrutalbutton",
+      "label": "NeoBrutalButton()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "Authentication & Biometrics UI",
+      "file_type": "code",
+      "norm_label": "neobrutalbutton()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/NeoBrutalComponents.kt",
+      "source_location": "L114"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_neobrutalcomponents_neobrutalcard",
+      "label": "NeoBrutalCard()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "Authentication & Biometrics UI",
+      "file_type": "code",
+      "norm_label": "neobrutalcard()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/NeoBrutalComponents.kt",
+      "source_location": "L33"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_neobrutalcomponents_neobrutaltextfield",
+      "label": "NeoBrutalTextField()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "Authentication & Biometrics UI",
+      "file_type": "code",
+      "norm_label": "neobrutaltextfield()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/NeoBrutalComponents.kt",
+      "source_location": "L150"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_settingsdialog_settingsdialog",
+      "label": "SettingsDialog()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "Authentication & Biometrics UI",
+      "file_type": "code",
+      "norm_label": "settingsdialog()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/SettingsDialog.kt",
+      "source_location": "L35"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_neobrutalmodifiers_neobrutal",
+      "label": "neoBrutal()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "Authentication & Biometrics UI",
+      "file_type": "code",
+      "norm_label": "neobrutal()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/NeoBrutalModifiers.kt",
+      "source_location": "L24"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_neobrutalmodifiers_neobrutalclickable",
+      "label": "neoBrutalClickable()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "Authentication & Biometrics UI",
+      "file_type": "code",
+      "norm_label": "neobrutalclickable()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/NeoBrutalModifiers.kt",
+      "source_location": "L69"
     },
     {
       "id": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_autosavedraft",
@@ -1462,7 +1607,7 @@
       "file_type": "code",
       "norm_label": ".autosavedraft()",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L233"
+      "source_location": "L274"
     },
     {
       "id": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_cachehistory",
@@ -1474,7 +1619,19 @@
       "file_type": "code",
       "norm_label": ".cachehistory()",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L401"
+      "source_location": "L442"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_checkcloudbiometricstatus",
+      "label": ".checkCloudBiometricStatus()",
+      "_callable": true,
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "Android Firebase Sync Service",
+      "file_type": "code",
+      "norm_label": ".checkcloudbiometricstatus()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
+      "source_location": "L35"
     },
     {
       "id": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_defaulthistory",
@@ -1486,7 +1643,7 @@
       "file_type": "code",
       "norm_label": ".defaulthistory()",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L564"
+      "source_location": "L605"
     },
     {
       "id": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_deleteprompt",
@@ -1498,7 +1655,7 @@
       "file_type": "code",
       "norm_label": ".deleteprompt()",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L157"
+      "source_location": "L198"
     },
     {
       "id": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_fetchhistory",
@@ -1510,7 +1667,7 @@
       "file_type": "code",
       "norm_label": ".fetchhistory()",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L35"
+      "source_location": "L76"
     },
     {
       "id": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_getcachedhistory",
@@ -1522,7 +1679,7 @@
       "file_type": "code",
       "norm_label": ".getcachedhistory()",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L423"
+      "source_location": "L464"
     },
     {
       "id": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_invoicetojson",
@@ -1534,7 +1691,7 @@
       "file_type": "code",
       "norm_label": ".invoicetojson()",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L462"
+      "source_location": "L503"
     },
     {
       "id": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_jsontoinvoice",
@@ -1546,7 +1703,7 @@
       "file_type": "code",
       "norm_label": ".jsontoinvoice()",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L500"
+      "source_location": "L541"
     },
     {
       "id": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_parseinvoicefromfirestorefields",
@@ -1558,7 +1715,7 @@
       "file_type": "code",
       "norm_label": ".parseinvoicefromfirestorefields()",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L335"
+      "source_location": "L376"
     },
     {
       "id": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_saveprompt",
@@ -1570,7 +1727,7 @@
       "file_type": "code",
       "norm_label": ".saveprompt()",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L103"
+      "source_location": "L144"
     },
     {
       "id": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_serializeinvoicetofirestorefields",
@@ -1582,7 +1739,7 @@
       "file_type": "code",
       "norm_label": ".serializeinvoicetofirestorefields()",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L297"
+      "source_location": "L338"
     },
     {
       "id": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_updateprompt",
@@ -1594,172 +1751,88 @@
       "file_type": "code",
       "norm_label": ".updateprompt()",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L175"
+      "source_location": "L216"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_getamountinwords",
-      "label": ".getAmountInWords()",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_appupdatemanager_checkforupdates",
+      "label": ".checkForUpdates()",
       "_callable": true,
       "_origin": "ast",
       "community": 9,
       "community_name": "Android Invoice ViewModel",
       "file_type": "code",
-      "norm_label": ".getamountinwords()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/InvoiceViewModel.kt",
-      "source_location": "L108"
+      "norm_label": ".checkforupdates()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/AppUpdateManager.kt",
+      "source_location": "L36"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_removeitem",
-      "label": ".removeItem()",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_appupdatemanager_compareversions",
+      "label": ".compareVersions()",
       "_callable": true,
       "_origin": "ast",
       "community": 9,
       "community_name": "Android Invoice ViewModel",
       "file_type": "code",
-      "norm_label": ".removeitem()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/InvoiceViewModel.kt",
-      "source_location": "L75"
+      "norm_label": ".compareversions()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/AppUpdateManager.kt",
+      "source_location": "L124"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_resettodefaults",
-      "label": ".resetToDefaults()",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_appupdatemanager_deletependingapk",
+      "label": ".deletePendingApk()",
       "_callable": true,
       "_origin": "ast",
       "community": 9,
       "community_name": "Android Invoice ViewModel",
       "file_type": "code",
-      "norm_label": ".resettodefaults()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/InvoiceViewModel.kt",
-      "source_location": "L104"
+      "norm_label": ".deletependingapk()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/AppUpdateManager.kt",
+      "source_location": "L225"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_setinvoicedata",
-      "label": ".setInvoiceData()",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_appupdatemanager_downloadapk",
+      "label": ".downloadApk()",
       "_callable": true,
       "_origin": "ast",
       "community": 9,
       "community_name": "Android Invoice ViewModel",
       "file_type": "code",
-      "norm_label": ".setinvoicedata()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/InvoiceViewModel.kt",
-      "source_location": "L100"
+      "norm_label": ".downloadapk()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/AppUpdateManager.kt",
+      "source_location": "L136"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_togglewatermark",
-      "label": ".toggleWatermark()",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_appupdatemanager_getinstalledversion",
+      "label": ".getInstalledVersion()",
       "_callable": true,
       "_origin": "ast",
       "community": 9,
       "community_name": "Android Invoice ViewModel",
       "file_type": "code",
-      "norm_label": ".togglewatermark()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/InvoiceViewModel.kt",
-      "source_location": "L59"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_updatebilledto",
-      "label": ".updateBilledTo()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "Android Invoice ViewModel",
-      "file_type": "code",
-      "norm_label": ".updatebilledto()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/InvoiceViewModel.kt",
-      "source_location": "L39"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_updateduedate",
-      "label": ".updateDueDate()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "Android Invoice ViewModel",
-      "file_type": "code",
-      "norm_label": ".updateduedate()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/InvoiceViewModel.kt",
-      "source_location": "L35"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_updateinvoiceno",
-      "label": ".updateInvoiceNo()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "Android Invoice ViewModel",
-      "file_type": "code",
-      "norm_label": ".updateinvoiceno()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/InvoiceViewModel.kt",
-      "source_location": "L23"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_updateissuedate",
-      "label": ".updateIssueDate()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "Android Invoice ViewModel",
-      "file_type": "code",
-      "norm_label": ".updateissuedate()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/InvoiceViewModel.kt",
-      "source_location": "L31"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_updateitem",
-      "label": ".updateItem()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "Android Invoice ViewModel",
-      "file_type": "code",
-      "norm_label": ".updateitem()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/InvoiceViewModel.kt",
-      "source_location": "L82"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_updatepaymentmethod",
-      "label": ".updatePaymentMethod()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "Android Invoice ViewModel",
-      "file_type": "code",
-      "norm_label": ".updatepaymentmethod()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/InvoiceViewModel.kt",
-      "source_location": "L55"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_updateregistrationno",
-      "label": ".updateRegistrationNo()",
-      "_callable": true,
-      "_origin": "ast",
-      "community": 9,
-      "community_name": "Android Invoice ViewModel",
-      "file_type": "code",
-      "norm_label": ".updateregistrationno()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/InvoiceViewModel.kt",
+      "norm_label": ".getinstalledversion()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/AppUpdateManager.kt",
       "source_location": "L27"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_invoiceviewmodel_updatesender",
-      "label": ".updateSender()",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_appupdatemanager_installapk",
+      "label": ".installApk()",
       "_callable": true,
       "_origin": "ast",
       "community": 9,
       "community_name": "Android Invoice ViewModel",
       "file_type": "code",
-      "norm_label": ".updatesender()",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/InvoiceViewModel.kt",
-      "source_location": "L47"
+      "norm_label": ".installapk()",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/AppUpdateManager.kt",
+      "source_location": "L232"
     },
     {
       "id": "web_app_page",
-      "label": "page.tsx",
+      "label": "app/page.tsx",
       "_origin": "ast",
       "community": 0,
       "community_name": "Web Invoice Editor & History",
       "file_type": "code",
-      "norm_label": "page.tsx",
+      "norm_label": "app/page.tsx",
       "source_file": "web/app/page.tsx",
       "source_location": "L1"
     },
@@ -2017,29 +2090,117 @@
       "source_location": "L1"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_mainactivity",
-      "label": "MainActivity.kt",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels",
+      "label": "InvoiceModels.kt",
       "_origin": "ast",
       "community": 1,
       "community_name": "Android Main Activity & Navigation",
       "file_type": "code",
-      "norm_label": "mainactivity.kt",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
+      "norm_label": "invoicemodels.kt",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/InvoiceModels.kt",
       "source_location": "L1"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_boxgridbackground",
-      "label": "BoxGridBackground.kt",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels_paymentmethod_bank_draft",
+      "label": "BANK_DRAFT",
       "_origin": "ast",
       "community": 1,
       "community_name": "Android Main Activity & Navigation",
       "file_type": "code",
-      "norm_label": "boxgridbackground.kt",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/BoxGridBackground.kt",
+      "norm_label": "bank_draft",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/InvoiceModels.kt",
+      "source_location": "L9"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels_paymentmethod_cash",
+      "label": "CASH",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Android Main Activity & Navigation",
+      "file_type": "code",
+      "norm_label": "cash",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/InvoiceModels.kt",
+      "source_location": "L6"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels_paymentmethod_cheque",
+      "label": "CHEQUE",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Android Main Activity & Navigation",
+      "file_type": "code",
+      "norm_label": "cheque",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/InvoiceModels.kt",
+      "source_location": "L8"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels_paymentmethod_neft",
+      "label": "NEFT",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Android Main Activity & Navigation",
+      "file_type": "code",
+      "norm_label": "neft",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/InvoiceModels.kt",
+      "source_location": "L10"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels_paymentmethod_upi",
+      "label": "UPI",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Android Main Activity & Navigation",
+      "file_type": "code",
+      "norm_label": "upi",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/InvoiceModels.kt",
+      "source_location": "L7"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel",
+      "label": "InvoiceViewModel.kt",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Android Main Activity & Navigation",
+      "file_type": "code",
+      "norm_label": "invoiceviewmodel.kt",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/InvoiceViewModel.kt",
       "source_location": "L1"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_boxgridbackground_kt_modifier",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_kt_invoicedata",
+      "label": "InvoiceData",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Android Main Activity & Navigation",
+      "file_type": "code",
+      "norm_label": "invoicedata",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_preview_invoicepreviewscreen",
+      "label": "InvoicePreviewScreen.kt",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Android Main Activity & Navigation",
+      "file_type": "code",
+      "norm_label": "invoicepreviewscreen.kt",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/preview/InvoicePreviewScreen.kt",
+      "source_location": "L1"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_preview_invoicepreviewscreen_kt_invoicedata",
+      "label": "InvoiceData",
+      "_origin": "ast",
+      "community": 1,
+      "community_name": "Android Main Activity & Navigation",
+      "file_type": "code",
+      "norm_label": "invoicedata",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_preview_invoicepreviewscreen_kt_modifier",
       "label": "Modifier",
       "_origin": "ast",
       "community": 1,
@@ -2050,18 +2211,18 @@
       "source_location": ""
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen",
-      "label": "LoginScreen.kt",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_util_pdfgenerator",
+      "label": "PdfGenerator.kt",
       "_origin": "ast",
       "community": 1,
       "community_name": "Android Main Activity & Navigation",
       "file_type": "code",
-      "norm_label": "loginscreen.kt",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
+      "norm_label": "pdfgenerator.kt",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/util/PdfGenerator.kt",
       "source_location": "L1"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_kt_context",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_util_pdfgenerator_kt_context",
       "label": "Context",
       "_origin": "ast",
       "community": 1,
@@ -2072,121 +2233,110 @@
       "source_location": ""
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_loginauthmode_fingerprint",
-      "label": "FINGERPRINT",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_util_pdfgenerator_kt_invoicedata",
+      "label": "InvoiceData",
       "_origin": "ast",
       "community": 1,
       "community_name": "Android Main Activity & Navigation",
       "file_type": "code",
-      "norm_label": "fingerprint",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L53"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_loginauthmode_password",
-      "label": "PASSWORD",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "Android Main Activity & Navigation",
-      "file_type": "code",
-      "norm_label": "password",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L54"
-    },
-    {
-      "id": "bundle",
-      "label": "Bundle",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "Android Main Activity & Navigation",
-      "file_type": "code",
-      "norm_label": "bundle",
+      "norm_label": "invoicedata",
       "source_file": "",
       "source_location": ""
     },
     {
-      "id": "color",
-      "label": "Color",
+      "id": "invoicepageslice",
+      "label": "InvoicePageSlice",
       "_origin": "ast",
       "community": 1,
       "community_name": "Android Main Activity & Navigation",
       "file_type": "code",
-      "norm_label": "color",
+      "norm_label": "invoicepageslice",
       "source_file": "",
       "source_location": ""
     },
     {
-      "id": "componentactivity",
-      "label": "ComponentActivity",
+      "id": "paymentmethod",
+      "label": "PaymentMethod",
       "_origin": "ast",
       "community": 1,
       "community_name": "Android Main Activity & Navigation",
       "file_type": "code",
-      "norm_label": "componentactivity",
+      "norm_label": "paymentmethod",
       "source_file": "",
       "source_location": ""
     },
     {
-      "id": "fragmentactivity",
-      "label": "FragmentActivity",
+      "id": "stateflow",
+      "label": "StateFlow",
       "_origin": "ast",
       "community": 1,
       "community_name": "Android Main Activity & Navigation",
       "file_type": "code",
-      "norm_label": "fragmentactivity",
+      "norm_label": "stateflow",
       "source_file": "",
       "source_location": ""
     },
     {
-      "id": "invoiceviewmodel",
-      "label": "InvoiceViewModel",
+      "id": "viewmodel",
+      "label": "ViewModel",
       "_origin": "ast",
       "community": 1,
       "community_name": "Android Main Activity & Navigation",
       "file_type": "code",
-      "norm_label": "invoiceviewmodel",
+      "norm_label": "viewmodel",
       "source_file": "",
       "source_location": ""
     },
     {
-      "id": "modifier",
-      "label": "Modifier",
-      "_origin": "ast",
-      "community": 1,
-      "community_name": "Android Main Activity & Navigation",
-      "file_type": "code",
-      "norm_label": "modifier",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager",
-      "label": "AppUpdateManager.kt",
+      "id": "web_app_api_auth_biometric_route",
+      "label": "biometric/route.ts",
       "_origin": "ast",
       "community": 10,
       "community_name": "In-App Updater & Release Checker",
       "file_type": "code",
-      "norm_label": "appupdatemanager.kt",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/AppUpdateManager.kt",
+      "norm_label": "biometric/route.ts",
+      "source_file": "web/app/api/auth/biometric/route.ts",
       "source_location": "L1"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_kt_context",
-      "label": "Context",
+      "id": "web_app_api_auth_biometric_route_expected_email",
+      "label": "EXPECTED_EMAIL",
       "_origin": "ast",
       "community": 10,
       "community_name": "In-App Updater & Release Checker",
       "file_type": "code",
-      "norm_label": "context",
-      "source_file": "",
-      "source_location": ""
+      "norm_label": "expected_email",
+      "source_file": "web/app/api/auth/biometric/route.ts",
+      "source_location": "L4"
+    },
+    {
+      "id": "web_app_api_auth_biometric_route_expected_hash",
+      "label": "EXPECTED_HASH",
+      "_origin": "ast",
+      "community": 10,
+      "community_name": "In-App Updater & Release Checker",
+      "file_type": "code",
+      "norm_label": "expected_hash",
+      "source_file": "web/app/api/auth/biometric/route.ts",
+      "source_location": "L5"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_util_numbertowordsindian",
+      "label": "NumberToWordsIndian.kt",
+      "_origin": "ast",
+      "community": 11,
+      "community_name": "Web Root Layout & Font Setup",
+      "file_type": "code",
+      "norm_label": "numbertowordsindian.kt",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/util/NumberToWordsIndian.kt",
+      "source_location": "L1"
     },
     {
       "id": "web_app_layout",
       "label": "layout.tsx",
       "_origin": "ast",
-      "community": 11,
-      "community_name": "Web Root Layout & Font Setup",
+      "community": 12,
+      "community_name": "Gradle Wrapper Build Scripts",
       "file_type": "code",
       "norm_label": "layout.tsx",
       "source_file": "web/app/layout.tsx",
@@ -2196,8 +2346,8 @@
       "id": "web_app_layout_metadata",
       "label": "metadata",
       "_origin": "ast",
-      "community": 11,
-      "community_name": "Web Root Layout & Font Setup",
+      "community": 12,
+      "community_name": "Gradle Wrapper Build Scripts",
       "file_type": "code",
       "norm_label": "metadata",
       "source_file": "web/app/layout.tsx",
@@ -2207,8 +2357,8 @@
       "id": "web_app_layout_poppins",
       "label": "poppins",
       "_origin": "ast",
-      "community": 11,
-      "community_name": "Web Root Layout & Font Setup",
+      "community": 12,
+      "community_name": "Gradle Wrapper Build Scripts",
       "file_type": "code",
       "norm_label": "poppins",
       "source_file": "web/app/layout.tsx",
@@ -2218,8 +2368,8 @@
       "id": "web_app_layout_virgil",
       "label": "virgil",
       "_origin": "ast",
-      "community": 11,
-      "community_name": "Web Root Layout & Font Setup",
+      "community": 12,
+      "community_name": "Gradle Wrapper Build Scripts",
       "file_type": "code",
       "norm_label": "virgil",
       "source_file": "web/app/layout.tsx",
@@ -2229,8 +2379,8 @@
       "id": "android_gradlew",
       "label": "gradlew",
       "_origin": "ast",
-      "community": 12,
-      "community_name": "Gradle Wrapper Build Scripts",
+      "community": 13,
+      "community_name": "WebAuthn Biometric API",
       "file_type": "code",
       "metadata": {
         "language": "bash",
@@ -2244,8 +2394,8 @@
       "id": "android_gradlew__entry",
       "label": "gradlew script",
       "_origin": "ast",
-      "community": 12,
-      "community_name": "Gradle Wrapper Build Scripts",
+      "community": 13,
+      "community_name": "WebAuthn Biometric API",
       "file_type": "code",
       "metadata": {
         "language": "bash",
@@ -2259,8 +2409,8 @@
       "id": "android_gradlew_die",
       "label": "die()",
       "_origin": "ast",
-      "community": 12,
-      "community_name": "Gradle Wrapper Build Scripts",
+      "community": 13,
+      "community_name": "WebAuthn Biometric API",
       "file_type": "code",
       "metadata": {
         "language": "bash",
@@ -2274,8 +2424,8 @@
       "id": "android_gradlew_warn",
       "label": "warn()",
       "_origin": "ast",
-      "community": 12,
-      "community_name": "Gradle Wrapper Build Scripts",
+      "community": 13,
+      "community_name": "WebAuthn Biometric API",
       "file_type": "code",
       "metadata": {
         "language": "bash",
@@ -2284,39 +2434,6 @@
       "norm_label": "warn()",
       "source_file": "android/gradlew",
       "source_location": "L92"
-    },
-    {
-      "id": "web_app_api_auth_biometric_route",
-      "label": "biometric/route.ts",
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "WebAuthn Biometric API",
-      "file_type": "code",
-      "norm_label": "biometric/route.ts",
-      "source_file": "web/app/api/auth/biometric/route.ts",
-      "source_location": "L1"
-    },
-    {
-      "id": "web_app_api_auth_biometric_route_expected_email",
-      "label": "EXPECTED_EMAIL",
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "WebAuthn Biometric API",
-      "file_type": "code",
-      "norm_label": "expected_email",
-      "source_file": "web/app/api/auth/biometric/route.ts",
-      "source_location": "L4"
-    },
-    {
-      "id": "web_app_api_auth_biometric_route_expected_hash",
-      "label": "EXPECTED_HASH",
-      "_origin": "ast",
-      "community": 13,
-      "community_name": "WebAuthn Biometric API",
-      "file_type": "code",
-      "norm_label": "expected_hash",
-      "source_file": "web/app/api/auth/biometric/route.ts",
-      "source_location": "L5"
     },
     {
       "id": "web_app_api_auth_login_route",
@@ -2451,106 +2568,29 @@
       "source_location": "L3"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels",
-      "label": "InvoiceModels.kt",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_mainactivity",
+      "label": "MainActivity.kt",
       "_origin": "ast",
       "community": 2,
       "community_name": "Invoice Domain Models & State",
       "file_type": "code",
-      "norm_label": "invoicemodels.kt",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/InvoiceModels.kt",
+      "norm_label": "mainactivity.kt",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt",
       "source_location": "L1"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels_paymentmethod_bank_draft",
-      "label": "BANK_DRAFT",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_boxgridbackground",
+      "label": "BoxGridBackground.kt",
       "_origin": "ast",
       "community": 2,
       "community_name": "Invoice Domain Models & State",
       "file_type": "code",
-      "norm_label": "bank_draft",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/InvoiceModels.kt",
-      "source_location": "L9"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels_paymentmethod_cash",
-      "label": "CASH",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "Invoice Domain Models & State",
-      "file_type": "code",
-      "norm_label": "cash",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/InvoiceModels.kt",
-      "source_location": "L6"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels_paymentmethod_cheque",
-      "label": "CHEQUE",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "Invoice Domain Models & State",
-      "file_type": "code",
-      "norm_label": "cheque",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/InvoiceModels.kt",
-      "source_location": "L8"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels_paymentmethod_neft",
-      "label": "NEFT",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "Invoice Domain Models & State",
-      "file_type": "code",
-      "norm_label": "neft",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/InvoiceModels.kt",
-      "source_location": "L10"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels_paymentmethod_upi",
-      "label": "UPI",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "Invoice Domain Models & State",
-      "file_type": "code",
-      "norm_label": "upi",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/InvoiceModels.kt",
-      "source_location": "L7"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel",
-      "label": "InvoiceViewModel.kt",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "Invoice Domain Models & State",
-      "file_type": "code",
-      "norm_label": "invoiceviewmodel.kt",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/InvoiceViewModel.kt",
+      "norm_label": "boxgridbackground.kt",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/BoxGridBackground.kt",
       "source_location": "L1"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_preview_invoicepreviewscreen",
-      "label": "InvoicePreviewScreen.kt",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "Invoice Domain Models & State",
-      "file_type": "code",
-      "norm_label": "invoicepreviewscreen.kt",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/preview/InvoicePreviewScreen.kt",
-      "source_location": "L1"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_preview_invoicepreviewscreen_kt_invoicedata",
-      "label": "InvoiceData",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "Invoice Domain Models & State",
-      "file_type": "code",
-      "norm_label": "invoicedata",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_preview_invoicepreviewscreen_kt_modifier",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_boxgridbackground_kt_modifier",
       "label": "Modifier",
       "_origin": "ast",
       "community": 2,
@@ -2561,29 +2601,18 @@
       "source_location": ""
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_util_numbertowordsindian",
-      "label": "NumberToWordsIndian.kt",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen",
+      "label": "LoginScreen.kt",
       "_origin": "ast",
       "community": 2,
       "community_name": "Invoice Domain Models & State",
       "file_type": "code",
-      "norm_label": "numbertowordsindian.kt",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/util/NumberToWordsIndian.kt",
+      "norm_label": "loginscreen.kt",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
       "source_location": "L1"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_util_pdfgenerator",
-      "label": "PdfGenerator.kt",
-      "_origin": "ast",
-      "community": 2,
-      "community_name": "Invoice Domain Models & State",
-      "file_type": "code",
-      "norm_label": "pdfgenerator.kt",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/util/PdfGenerator.kt",
-      "source_location": "L1"
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_util_pdfgenerator_kt_context",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_kt_context",
       "label": "Context",
       "_origin": "ast",
       "community": 2,
@@ -2594,46 +2623,101 @@
       "source_location": ""
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_util_pdfgenerator_kt_invoicedata",
-      "label": "InvoiceData",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_loginauthmode_fingerprint",
+      "label": "FINGERPRINT",
       "_origin": "ast",
       "community": 2,
       "community_name": "Invoice Domain Models & State",
       "file_type": "code",
-      "norm_label": "invoicedata",
+      "norm_label": "fingerprint",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
+      "source_location": "L54"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_loginscreen_loginauthmode_password",
+      "label": "PASSWORD",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Invoice Domain Models & State",
+      "file_type": "code",
+      "norm_label": "password",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
+      "source_location": "L55"
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_theme_theme",
+      "label": "Theme.kt",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Invoice Domain Models & State",
+      "file_type": "code",
+      "norm_label": "theme.kt",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/theme/Theme.kt",
+      "source_location": "L1"
+    },
+    {
+      "id": "bundle",
+      "label": "Bundle",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Invoice Domain Models & State",
+      "file_type": "code",
+      "norm_label": "bundle",
       "source_file": "",
       "source_location": ""
     },
     {
-      "id": "invoicepageslice",
-      "label": "InvoicePageSlice",
+      "id": "color",
+      "label": "Color",
       "_origin": "ast",
       "community": 2,
       "community_name": "Invoice Domain Models & State",
       "file_type": "code",
-      "norm_label": "invoicepageslice",
+      "norm_label": "color",
       "source_file": "",
       "source_location": ""
     },
     {
-      "id": "stateflow",
-      "label": "StateFlow",
+      "id": "componentactivity",
+      "label": "ComponentActivity",
       "_origin": "ast",
       "community": 2,
       "community_name": "Invoice Domain Models & State",
       "file_type": "code",
-      "norm_label": "stateflow",
+      "norm_label": "componentactivity",
       "source_file": "",
       "source_location": ""
     },
     {
-      "id": "viewmodel",
-      "label": "ViewModel",
+      "id": "fragmentactivity",
+      "label": "FragmentActivity",
       "_origin": "ast",
       "community": 2,
       "community_name": "Invoice Domain Models & State",
       "file_type": "code",
-      "norm_label": "viewmodel",
+      "norm_label": "fragmentactivity",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "invoiceviewmodel",
+      "label": "InvoiceViewModel",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Invoice Domain Models & State",
+      "file_type": "code",
+      "norm_label": "invoiceviewmodel",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "modifier",
+      "label": "Modifier",
+      "_origin": "ast",
+      "community": 2,
+      "community_name": "Invoice Domain Models & State",
+      "file_type": "code",
+      "norm_label": "modifier",
       "source_file": "",
       "source_location": ""
     },
@@ -2671,11 +2755,22 @@
       "source_location": "L1"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_mainactivity_kt_color",
-      "label": "Color",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_kt_invoicedata",
+      "label": "InvoiceData",
       "_origin": "ast",
       "community": 22,
       "community_name": "Compose Color Definitions",
+      "file_type": "code",
+      "norm_label": "invoicedata",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_mainactivity_kt_color",
+      "label": "Color",
+      "_origin": "ast",
+      "community": 23,
+      "community_name": "Neo-Brutal Modifiers",
       "file_type": "code",
       "norm_label": "color",
       "source_file": "",
@@ -2685,8 +2780,8 @@
       "id": "android_app_src_main_java_com_robogyaan_invoice_mainactivity_kt_modifier",
       "label": "Modifier",
       "_origin": "ast",
-      "community": 23,
-      "community_name": "Neo-Brutal Modifiers",
+      "community": 24,
+      "community_name": "Compose Typography System",
       "file_type": "code",
       "norm_label": "modifier",
       "source_file": "",
@@ -2696,8 +2791,8 @@
       "id": "android_app_src_main_java_com_robogyaan_invoice_ui_theme_type",
       "label": "Type.kt",
       "_origin": "ast",
-      "community": 24,
-      "community_name": "Compose Typography System",
+      "community": 25,
+      "community_name": "Root Android Gradle Setup",
       "file_type": "code",
       "norm_label": "type.kt",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/theme/Type.kt",
@@ -2707,8 +2802,8 @@
       "id": "android_build_gradle",
       "label": "android/build.gradle.kts",
       "_origin": "ast",
-      "community": 25,
-      "community_name": "Root Android Gradle Setup",
+      "community": 26,
+      "community_name": "Gradle Project Settings",
       "file_type": "code",
       "norm_label": "android/build.gradle.kts",
       "source_file": "android/build.gradle.kts",
@@ -2718,8 +2813,8 @@
       "id": "android_settings_gradle",
       "label": "settings.gradle.kts",
       "_origin": "ast",
-      "community": 26,
-      "community_name": "Gradle Project Settings",
+      "community": 27,
+      "community_name": "Browser Biometric Vault Route",
       "file_type": "code",
       "norm_label": "settings.gradle.kts",
       "source_file": "android/settings.gradle.kts",
@@ -3045,191 +3140,114 @@
       "source_location": "L25"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_historysidebarsheet_kt_invoicedata",
-      "label": "InvoiceData",
+      "id": "web_app_biometrics_page",
+      "label": "biometrics/page.tsx",
       "_origin": "ast",
       "community": 4,
       "community_name": "Android Compose Editor UI",
       "file_type": "code",
-      "norm_label": "invoicedata",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_invoiceeditorscreen",
-      "label": "InvoiceEditorScreen.kt",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "Android Compose Editor UI",
-      "file_type": "code",
-      "norm_label": "invoiceeditorscreen.kt",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/InvoiceEditorScreen.kt",
+      "norm_label": "biometrics/page.tsx",
+      "source_file": "web/app/biometrics/page.tsx",
       "source_location": "L1"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_invoiceeditorscreen_kt_invoicedata",
-      "label": "InvoiceData",
+      "id": "web_components_authgate",
+      "label": "AuthGate.tsx",
       "_origin": "ast",
       "community": 4,
       "community_name": "Android Compose Editor UI",
       "file_type": "code",
-      "norm_label": "invoicedata",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_invoiceeditorscreen_kt_modifier",
-      "label": "Modifier",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "Android Compose Editor UI",
-      "file_type": "code",
-      "norm_label": "modifier",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_neobrutalcomponents",
-      "label": "NeoBrutalComponents.kt",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "Android Compose Editor UI",
-      "file_type": "code",
-      "norm_label": "neobrutalcomponents.kt",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/NeoBrutalComponents.kt",
+      "norm_label": "authgate.tsx",
+      "source_file": "web/components/AuthGate.tsx",
       "source_location": "L1"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_neobrutalcomponents_kt_color",
-      "label": "Color",
+      "id": "web_components_interactivegridbackground",
+      "label": "InteractiveGridBackground.tsx",
       "_origin": "ast",
       "community": 4,
       "community_name": "Android Compose Editor UI",
       "file_type": "code",
-      "norm_label": "color",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_neobrutalcomponents_kt_dp",
-      "label": "Dp",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "Android Compose Editor UI",
-      "file_type": "code",
-      "norm_label": "dp",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_neobrutalcomponents_kt_modifier",
-      "label": "Modifier",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "Android Compose Editor UI",
-      "file_type": "code",
-      "norm_label": "modifier",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_settingsdialog",
-      "label": "SettingsDialog.kt",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "Android Compose Editor UI",
-      "file_type": "code",
-      "norm_label": "settingsdialog.kt",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/SettingsDialog.kt",
+      "norm_label": "interactivegridbackground.tsx",
+      "source_file": "web/components/InteractiveGridBackground.tsx",
       "source_location": "L1"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_neobrutalmodifiers",
-      "label": "NeoBrutalModifiers.kt",
+      "id": "web_lib_crypto",
+      "label": "crypto.ts",
       "_origin": "ast",
       "community": 4,
       "community_name": "Android Compose Editor UI",
       "file_type": "code",
-      "norm_label": "neobrutalmodifiers.kt",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/NeoBrutalModifiers.kt",
+      "norm_label": "crypto.ts",
+      "source_file": "web/lib/crypto.ts",
       "source_location": "L1"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_neobrutalmodifiers_kt_color",
-      "label": "Color",
+      "id": "web_lib_crypto_auth_salt",
+      "label": "AUTH_SALT",
       "_origin": "ast",
       "community": 4,
       "community_name": "Android Compose Editor UI",
       "file_type": "code",
-      "norm_label": "color",
-      "source_file": "",
-      "source_location": ""
+      "norm_label": "auth_salt",
+      "source_file": "web/lib/crypto.ts",
+      "source_location": "L3"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_neobrutalmodifiers_kt_dp",
-      "label": "Dp",
+      "id": "web_lib_webauthn",
+      "label": "webauthn.ts",
       "_origin": "ast",
       "community": 4,
       "community_name": "Android Compose Editor UI",
       "file_type": "code",
-      "norm_label": "dp",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_neobrutalmodifiers_kt_modifier",
-      "label": "Modifier",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "Android Compose Editor UI",
-      "file_type": "code",
-      "norm_label": "modifier",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_theme_color",
-      "label": "Color.kt",
-      "_origin": "ast",
-      "community": 4,
-      "community_name": "Android Compose Editor UI",
-      "file_type": "code",
-      "norm_label": "color.kt",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/theme/Color.kt",
+      "norm_label": "webauthn.ts",
+      "source_file": "web/lib/webauthn.ts",
       "source_location": "L1"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_theme_theme",
-      "label": "Theme.kt",
+      "id": "web_lib_webauthn_max_biometric_attempts",
+      "label": "MAX_BIOMETRIC_ATTEMPTS",
       "_origin": "ast",
       "community": 4,
       "community_name": "Android Compose Editor UI",
       "file_type": "code",
-      "norm_label": "theme.kt",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/theme/Theme.kt",
-      "source_location": "L1"
+      "norm_label": "max_biometric_attempts",
+      "source_file": "web/lib/webauthn.ts",
+      "source_location": "L10"
     },
     {
-      "id": "composable",
-      "label": "Composable",
+      "id": "web_lib_webauthn_robogyaan_biometric_fail_count",
+      "label": "ROBOGYAAN_BIOMETRIC_FAIL_COUNT",
       "_origin": "ast",
       "community": 4,
       "community_name": "Android Compose Editor UI",
       "file_type": "code",
-      "norm_label": "composable",
-      "source_file": "",
-      "source_location": ""
+      "norm_label": "robogyaan_biometric_fail_count",
+      "source_file": "web/lib/webauthn.ts",
+      "source_location": "L8"
     },
     {
-      "id": "keyboardtype",
-      "label": "KeyboardType",
+      "id": "web_lib_webauthn_robogyaan_biometric_locked",
+      "label": "ROBOGYAAN_BIOMETRIC_LOCKED",
       "_origin": "ast",
       "community": 4,
       "community_name": "Android Compose Editor UI",
       "file_type": "code",
-      "norm_label": "keyboardtype",
-      "source_file": "",
-      "source_location": ""
+      "norm_label": "robogyaan_biometric_locked",
+      "source_file": "web/lib/webauthn.ts",
+      "source_location": "L9"
+    },
+    {
+      "id": "web_lib_webauthn_robogyaan_webauthn_cred_key",
+      "label": "ROBOGYAAN_WEBAUTHN_CRED_KEY",
+      "_origin": "ast",
+      "community": 4,
+      "community_name": "Android Compose Editor UI",
+      "file_type": "code",
+      "norm_label": "robogyaan_webauthn_cred_key",
+      "source_file": "web/lib/webauthn.ts",
+      "source_location": "L7"
     },
     {
       "id": "web_package",
@@ -3518,103 +3536,180 @@
       "source_location": "L30"
     },
     {
-      "id": "web_components_authgate",
-      "label": "AuthGate.tsx",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_historysidebarsheet_kt_invoicedata",
+      "label": "InvoiceData",
       "_origin": "ast",
       "community": 6,
       "community_name": "Authentication & Biometrics UI",
       "file_type": "code",
-      "norm_label": "authgate.tsx",
-      "source_file": "web/components/AuthGate.tsx",
+      "norm_label": "invoicedata",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_invoiceeditorscreen",
+      "label": "InvoiceEditorScreen.kt",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "Authentication & Biometrics UI",
+      "file_type": "code",
+      "norm_label": "invoiceeditorscreen.kt",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/InvoiceEditorScreen.kt",
       "source_location": "L1"
     },
     {
-      "id": "web_components_interactivegridbackground",
-      "label": "InteractiveGridBackground.tsx",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_invoiceeditorscreen_kt_invoicedata",
+      "label": "InvoiceData",
       "_origin": "ast",
       "community": 6,
       "community_name": "Authentication & Biometrics UI",
       "file_type": "code",
-      "norm_label": "interactivegridbackground.tsx",
-      "source_file": "web/components/InteractiveGridBackground.tsx",
+      "norm_label": "invoicedata",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_invoiceeditorscreen_kt_modifier",
+      "label": "Modifier",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "Authentication & Biometrics UI",
+      "file_type": "code",
+      "norm_label": "modifier",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_neobrutalcomponents",
+      "label": "NeoBrutalComponents.kt",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "Authentication & Biometrics UI",
+      "file_type": "code",
+      "norm_label": "neobrutalcomponents.kt",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/NeoBrutalComponents.kt",
       "source_location": "L1"
     },
     {
-      "id": "web_lib_crypto",
-      "label": "crypto.ts",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_neobrutalcomponents_kt_color",
+      "label": "Color",
       "_origin": "ast",
       "community": 6,
       "community_name": "Authentication & Biometrics UI",
       "file_type": "code",
-      "norm_label": "crypto.ts",
-      "source_file": "web/lib/crypto.ts",
+      "norm_label": "color",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_neobrutalcomponents_kt_dp",
+      "label": "Dp",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "Authentication & Biometrics UI",
+      "file_type": "code",
+      "norm_label": "dp",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_neobrutalcomponents_kt_modifier",
+      "label": "Modifier",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "Authentication & Biometrics UI",
+      "file_type": "code",
+      "norm_label": "modifier",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_settingsdialog",
+      "label": "SettingsDialog.kt",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "Authentication & Biometrics UI",
+      "file_type": "code",
+      "norm_label": "settingsdialog.kt",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/SettingsDialog.kt",
       "source_location": "L1"
     },
     {
-      "id": "web_lib_crypto_auth_salt",
-      "label": "AUTH_SALT",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_neobrutalmodifiers",
+      "label": "NeoBrutalModifiers.kt",
       "_origin": "ast",
       "community": 6,
       "community_name": "Authentication & Biometrics UI",
       "file_type": "code",
-      "norm_label": "auth_salt",
-      "source_file": "web/lib/crypto.ts",
-      "source_location": "L3"
-    },
-    {
-      "id": "web_lib_webauthn",
-      "label": "webauthn.ts",
-      "_origin": "ast",
-      "community": 6,
-      "community_name": "Authentication & Biometrics UI",
-      "file_type": "code",
-      "norm_label": "webauthn.ts",
-      "source_file": "web/lib/webauthn.ts",
+      "norm_label": "neobrutalmodifiers.kt",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/NeoBrutalModifiers.kt",
       "source_location": "L1"
     },
     {
-      "id": "web_lib_webauthn_max_biometric_attempts",
-      "label": "MAX_BIOMETRIC_ATTEMPTS",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_neobrutalmodifiers_kt_color",
+      "label": "Color",
       "_origin": "ast",
       "community": 6,
       "community_name": "Authentication & Biometrics UI",
       "file_type": "code",
-      "norm_label": "max_biometric_attempts",
-      "source_file": "web/lib/webauthn.ts",
-      "source_location": "L10"
+      "norm_label": "color",
+      "source_file": "",
+      "source_location": ""
     },
     {
-      "id": "web_lib_webauthn_robogyaan_biometric_fail_count",
-      "label": "ROBOGYAAN_BIOMETRIC_FAIL_COUNT",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_neobrutalmodifiers_kt_dp",
+      "label": "Dp",
       "_origin": "ast",
       "community": 6,
       "community_name": "Authentication & Biometrics UI",
       "file_type": "code",
-      "norm_label": "robogyaan_biometric_fail_count",
-      "source_file": "web/lib/webauthn.ts",
-      "source_location": "L8"
+      "norm_label": "dp",
+      "source_file": "",
+      "source_location": ""
     },
     {
-      "id": "web_lib_webauthn_robogyaan_biometric_locked",
-      "label": "ROBOGYAAN_BIOMETRIC_LOCKED",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_neobrutalmodifiers_kt_modifier",
+      "label": "Modifier",
       "_origin": "ast",
       "community": 6,
       "community_name": "Authentication & Biometrics UI",
       "file_type": "code",
-      "norm_label": "robogyaan_biometric_locked",
-      "source_file": "web/lib/webauthn.ts",
-      "source_location": "L9"
+      "norm_label": "modifier",
+      "source_file": "",
+      "source_location": ""
     },
     {
-      "id": "web_lib_webauthn_robogyaan_webauthn_cred_key",
-      "label": "ROBOGYAAN_WEBAUTHN_CRED_KEY",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_theme_color",
+      "label": "Color.kt",
       "_origin": "ast",
       "community": 6,
       "community_name": "Authentication & Biometrics UI",
       "file_type": "code",
-      "norm_label": "robogyaan_webauthn_cred_key",
-      "source_file": "web/lib/webauthn.ts",
-      "source_location": "L7"
+      "norm_label": "color.kt",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/theme/Color.kt",
+      "source_location": "L1"
+    },
+    {
+      "id": "composable",
+      "label": "Composable",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "Authentication & Biometrics UI",
+      "file_type": "code",
+      "norm_label": "composable",
+      "source_file": "",
+      "source_location": ""
+    },
+    {
+      "id": "keyboardtype",
+      "label": "KeyboardType",
+      "_origin": "ast",
+      "community": 6,
+      "community_name": "Authentication & Biometrics UI",
+      "file_type": "code",
+      "norm_label": "keyboardtype",
+      "source_file": "",
+      "source_location": ""
     },
     {
       "id": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice",
@@ -3639,17 +3734,6 @@
       "source_location": ""
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_kt_invoicedata",
-      "label": "InvoiceData",
-      "_origin": "ast",
-      "community": 7,
-      "community_name": "Android Firebase Sync Service",
-      "file_type": "code",
-      "norm_label": "invoicedata",
-      "source_file": "",
-      "source_location": ""
-    },
-    {
       "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_historysidebarsheet",
       "label": "HistorySidebarSheet.kt",
       "_origin": "ast",
@@ -3659,6 +3743,17 @@
       "norm_label": "historysidebarsheet.kt",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/HistorySidebarSheet.kt",
       "source_location": "L1"
+    },
+    {
+      "id": "invoicedata",
+      "label": "InvoiceData",
+      "_origin": "ast",
+      "community": 7,
+      "community_name": "Android Firebase Sync Service",
+      "file_type": "code",
+      "norm_label": "invoicedata",
+      "source_file": "",
+      "source_location": ""
     },
     {
       "id": "jsonobject",
@@ -3881,24 +3976,24 @@
       "source_location": "L20"
     },
     {
-      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_invoiceviewmodel_kt_invoicedata",
-      "label": "InvoiceData",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager",
+      "label": "AppUpdateManager.kt",
       "_origin": "ast",
       "community": 9,
       "community_name": "Android Invoice ViewModel",
       "file_type": "code",
-      "norm_label": "invoicedata",
-      "source_file": "",
-      "source_location": ""
+      "norm_label": "appupdatemanager.kt",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/AppUpdateManager.kt",
+      "source_location": "L1"
     },
     {
-      "id": "paymentmethod",
-      "label": "PaymentMethod",
+      "id": "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_kt_context",
+      "label": "Context",
       "_origin": "ast",
       "community": 9,
       "community_name": "Android Invoice ViewModel",
       "file_type": "code",
-      "norm_label": "paymentmethod",
+      "norm_label": "context",
       "source_file": "",
       "source_location": ""
     }
@@ -3913,7 +4008,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L249",
+      "source_location": "L290",
       "weight": 1.0
     },
     {
@@ -3925,7 +4020,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L257",
+      "source_location": "L298",
       "weight": 1.0
     },
     {
@@ -3937,7 +4032,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L272",
+      "source_location": "L313",
       "weight": 1.0
     },
     {
@@ -3949,7 +4044,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L274",
+      "source_location": "L315",
       "weight": 1.0
     },
     {
@@ -3961,7 +4056,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L292",
+      "source_location": "L333",
       "weight": 1.0
     },
     {
@@ -3973,7 +4068,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L406",
+      "source_location": "L447",
       "weight": 1.0
     },
     {
@@ -3985,7 +4080,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L413",
+      "source_location": "L454",
+      "weight": 1.0
+    },
+    {
+      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_checkcloudbiometricstatus",
+      "target": "jsonobject",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
+      "source_location": "L48",
       "weight": 1.0
     },
     {
@@ -3997,19 +4104,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L565",
+      "source_location": "L606",
       "weight": 1.0
     },
     {
       "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_defaulthistory",
-      "target": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_kt_invoicedata",
+      "target": "invoicedata",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L571",
+      "source_location": "L612",
       "weight": 1.0
     },
     {
@@ -4021,7 +4128,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L170",
+      "source_location": "L211",
       "weight": 1.0
     },
     {
@@ -4033,31 +4140,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L171",
-      "weight": 1.0
-    },
-    {
-      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_fetchhistory",
-      "target": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_getcachedhistory",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L100",
-      "weight": 1.0
-    },
-    {
-      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_fetchhistory",
-      "target": "jsonobject",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L50",
+      "source_location": "L212",
       "weight": 1.0
     },
     {
@@ -4069,19 +4152,19 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L69",
+      "source_location": "L110",
       "weight": 1.0
     },
     {
       "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_fetchhistory",
-      "target": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_kt_invoicedata",
+      "target": "invoicedata",
       "relation": "calls",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L71",
+      "source_location": "L112",
       "weight": 1.0
     },
     {
@@ -4093,7 +4176,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L78",
+      "source_location": "L119",
       "weight": 1.0
     },
     {
@@ -4105,131 +4188,11 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L96",
+      "source_location": "L137",
       "weight": 1.0
     },
     {
-      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_getcachedhistory",
-      "target": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_defaulthistory",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L427",
-      "weight": 1.0
-    },
-    {
-      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_getcachedhistory",
-      "target": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_jsontoinvoice",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L439",
-      "weight": 1.0
-    },
-    {
-      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_getcachedhistory",
-      "target": "jsonobject",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L439",
-      "weight": 1.0
-    },
-    {
-      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_getcachedhistory",
-      "target": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_kt_invoicedata",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L441",
-      "weight": 1.0
-    },
-    {
-      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_getcachedhistory",
-      "target": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_invoicehistoryitem",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L445",
-      "weight": 1.0
-    },
-    {
-      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_invoicetojson",
-      "target": "jsonobject",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L463",
-      "weight": 1.0
-    },
-    {
-      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_jsontoinvoice",
-      "target": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_kt_invoicedata",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L550",
-      "weight": 1.0
-    },
-    {
-      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_parseinvoicefromfirestorefields",
-      "target": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_kt_invoicedata",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L387",
-      "weight": 1.0
-    },
-    {
-      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_saveprompt",
-      "target": "jsonobject",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L120",
-      "weight": 1.0
-    },
-    {
-      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_saveprompt",
-      "target": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_serializeinvoicetofirestorefields",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "context": "call",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L126",
-      "weight": 1.0
-    },
-    {
-      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_saveprompt",
+      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_fetchhistory",
       "target": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_getcachedhistory",
       "relation": "calls",
       "_origin": "ast",
@@ -4241,6 +4204,150 @@
       "weight": 1.0
     },
     {
+      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_fetchhistory",
+      "target": "jsonobject",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
+      "source_location": "L91",
+      "weight": 1.0
+    },
+    {
+      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_getcachedhistory",
+      "target": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_defaulthistory",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
+      "source_location": "L468",
+      "weight": 1.0
+    },
+    {
+      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_getcachedhistory",
+      "target": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_jsontoinvoice",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
+      "source_location": "L480",
+      "weight": 1.0
+    },
+    {
+      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_getcachedhistory",
+      "target": "jsonobject",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
+      "source_location": "L480",
+      "weight": 1.0
+    },
+    {
+      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_getcachedhistory",
+      "target": "invoicedata",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
+      "source_location": "L482",
+      "weight": 1.0
+    },
+    {
+      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_getcachedhistory",
+      "target": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_invoicehistoryitem",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
+      "source_location": "L486",
+      "weight": 1.0
+    },
+    {
+      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_invoicetojson",
+      "target": "jsonobject",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
+      "source_location": "L504",
+      "weight": 1.0
+    },
+    {
+      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_jsontoinvoice",
+      "target": "invoicedata",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
+      "source_location": "L591",
+      "weight": 1.0
+    },
+    {
+      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_parseinvoicefromfirestorefields",
+      "target": "invoicedata",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
+      "source_location": "L428",
+      "weight": 1.0
+    },
+    {
+      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_saveprompt",
+      "target": "jsonobject",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
+      "source_location": "L161",
+      "weight": 1.0
+    },
+    {
+      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_saveprompt",
+      "target": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_serializeinvoicetofirestorefields",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
+      "source_location": "L167",
+      "weight": 1.0
+    },
+    {
+      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_saveprompt",
+      "target": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_getcachedhistory",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
+      "source_location": "L182",
+      "weight": 1.0
+    },
+    {
       "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_saveprompt",
       "target": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_invoicehistoryitem",
       "relation": "calls",
@@ -4249,7 +4356,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L142",
+      "source_location": "L183",
       "weight": 1.0
     },
     {
@@ -4261,7 +4368,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L152",
+      "source_location": "L193",
       "weight": 1.0
     },
     {
@@ -4273,7 +4380,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L298",
+      "source_location": "L339",
       "weight": 1.0
     },
     {
@@ -4285,7 +4392,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L191",
+      "source_location": "L232",
       "weight": 1.0
     },
     {
@@ -4297,7 +4404,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L197",
+      "source_location": "L238",
       "weight": 1.0
     },
     {
@@ -4309,7 +4416,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L212",
+      "source_location": "L253",
       "weight": 1.0
     },
     {
@@ -4321,7 +4428,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L214",
+      "source_location": "L255",
       "weight": 1.0
     },
     {
@@ -4333,7 +4440,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L228",
+      "source_location": "L269",
       "weight": 1.0
     },
     {
@@ -4386,6 +4493,18 @@
     },
     {
       "source": "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_appupdatemanager_checkforupdates",
+      "target": "jsonobject",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/AppUpdateManager.kt",
+      "source_location": "L51",
+      "weight": 1.0
+    },
+    {
+      "source": "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_appupdatemanager_checkforupdates",
       "target": "android_app_src_main_java_com_robogyaan_invoice_ui_components_appupdatemanager_appupdatemanager_compareversions",
       "relation": "calls",
       "_origin": "ast",
@@ -4417,7 +4536,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L77",
+      "source_location": "L78",
       "weight": 1.0
     },
     {
@@ -4429,7 +4548,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L169",
+      "source_location": "L170",
       "weight": 1.0
     },
     {
@@ -4441,7 +4560,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L170",
+      "source_location": "L171",
       "weight": 1.0
     },
     {
@@ -4613,6 +4732,78 @@
       "weight": 1.0
     },
     {
+      "source": "web_app_api_auth_biometric_route_get",
+      "target": "web_app_api_auth_biometric_route_getcloudbiometriccredentials",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "web/app/api/auth/biometric/route.ts",
+      "source_location": "L57",
+      "weight": 1.0
+    },
+    {
+      "source": "web_app_api_auth_biometric_route_post",
+      "target": "web_app_api_auth_biometric_route_sanitizedocid",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "web/app/api/auth/biometric/route.ts",
+      "source_location": "L104",
+      "weight": 1.0
+    },
+    {
+      "source": "web_app_api_auth_biometric_route_post",
+      "target": "web_app_api_auth_biometric_route_getcloudbiometriccredentials",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "web/app/api/auth/biometric/route.ts",
+      "source_location": "L210",
+      "weight": 1.0
+    },
+    {
+      "source": "web_app_biometrics_page_biometricsmanagementpage",
+      "target": "web_lib_webauthn_registerplatformcredential",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "web/app/biometrics/page.tsx",
+      "source_location": "L210",
+      "weight": 1.0
+    },
+    {
+      "source": "web_app_biometrics_page_biometricsmanagementpage",
+      "target": "web_lib_webauthn_savecredentialid",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "web/app/biometrics/page.tsx",
+      "source_location": "L245",
+      "weight": 1.0
+    },
+    {
+      "source": "web_app_biometrics_page_biometricsmanagementpage",
+      "target": "web_lib_webauthn_isplatformbiometricavailable",
+      "relation": "calls",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "call",
+      "source_file": "web/app/biometrics/page.tsx",
+      "source_location": "L89",
+      "weight": 1.0
+    },
+    {
       "source": "web_app_page_invoicepage",
       "target": "web_lib_firebase_autosaveinvoice",
       "relation": "calls",
@@ -4669,7 +4860,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "web/components/AuthGate.tsx",
-      "source_location": "L230",
+      "source_location": "L234",
       "weight": 1.0
     },
     {
@@ -4681,7 +4872,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "web/components/AuthGate.tsx",
-      "source_location": "L274",
+      "source_location": "L278",
       "weight": 1.0
     },
     {
@@ -4693,7 +4884,7 @@
       "confidence_score": 1.0,
       "context": "call",
       "source_file": "web/components/AuthGate.tsx",
-      "source_location": "L289",
+      "source_location": "L293",
       "weight": 1.0
     },
     {
@@ -5089,7 +5280,7 @@
       "confidence_score": 1.0,
       "context": "generic_arg",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L401",
+      "source_location": "L442",
       "weight": 1.0
     },
     {
@@ -5296,7 +5487,7 @@
         "target_fqn": "androidx.compose.ui.Modifier"
       },
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L32",
+      "source_location": "L33",
       "weight": 1.0
     },
     {
@@ -5416,7 +5607,7 @@
         "target_fqn": "androidx.compose.ui.graphics.Color"
       },
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L34",
+      "source_location": "L35",
       "weight": 1.0
     },
     {
@@ -5521,7 +5712,7 @@
         "target_fqn": "androidx.compose.ui.text.input.KeyboardType"
       },
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L39",
+      "source_location": "L40",
       "weight": 1.0
     },
     {
@@ -5596,7 +5787,7 @@
         "target_fqn": "androidx.fragment.app.FragmentActivity"
       },
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L45",
+      "source_location": "L46",
       "weight": 1.0
     },
     {
@@ -6317,6 +6508,66 @@
       "context": "import",
       "source_file": "web/tsconfig.json",
       "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "web_app_biometrics_page",
+      "target": "web_lib_crypto_hashpasswordwithargon2",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "web/app/biometrics/page.tsx",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "web_app_biometrics_page",
+      "target": "web_lib_webauthn_isplatformbiometricavailable",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "web/app/biometrics/page.tsx",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "web_app_biometrics_page",
+      "target": "web_lib_webauthn_registerplatformcredential",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "web/app/biometrics/page.tsx",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "web_app_biometrics_page",
+      "target": "web_lib_webauthn_savecredentialid",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "web/app/biometrics/page.tsx",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "web_app_biometrics_page",
+      "target": "web_components_interactivegridbackground_interactivegridbackground",
+      "relation": "imports",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "web/app/biometrics/page.tsx",
+      "source_location": "L29",
       "weight": 1.0
     },
     {
@@ -7124,6 +7375,42 @@
       "weight": 1.0
     },
     {
+      "source": "web_app_biometrics_page",
+      "target": "web_lib_crypto",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "web/app/biometrics/page.tsx",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "web_app_biometrics_page",
+      "target": "web_lib_webauthn",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "web/app/biometrics/page.tsx",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "web_app_biometrics_page",
+      "target": "web_components_interactivegridbackground",
+      "relation": "imports_from",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "context": "import",
+      "source_file": "web/app/biometrics/page.tsx",
+      "source_location": "L29",
+      "weight": 1.0
+    },
+    {
       "source": "web_app_page",
       "target": "web_components_historysidebar",
       "relation": "imports_from",
@@ -7504,19 +7791,19 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L233",
+      "source_location": "L274",
       "weight": 1.0
     },
     {
       "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_autosavedraft",
-      "target": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_kt_invoicedata",
+      "target": "invoicedata",
       "relation": "references",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L233",
+      "source_location": "L274",
       "weight": 1.0
     },
     {
@@ -7528,7 +7815,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L401",
+      "source_location": "L442",
       "weight": 1.0
     },
     {
@@ -7540,7 +7827,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L157",
+      "source_location": "L198",
       "weight": 1.0
     },
     {
@@ -7552,7 +7839,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L35",
+      "source_location": "L76",
       "weight": 1.0
     },
     {
@@ -7564,19 +7851,19 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L423",
+      "source_location": "L464",
       "weight": 1.0
     },
     {
       "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_invoicetojson",
-      "target": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_kt_invoicedata",
+      "target": "invoicedata",
       "relation": "references",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L462",
+      "source_location": "L503",
       "weight": 1.0
     },
     {
@@ -7588,7 +7875,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L500",
+      "source_location": "L541",
       "weight": 1.0
     },
     {
@@ -7600,7 +7887,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L335",
+      "source_location": "L376",
       "weight": 1.0
     },
     {
@@ -7612,31 +7899,31 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L103",
+      "source_location": "L144",
       "weight": 1.0
     },
     {
       "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_saveprompt",
-      "target": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_kt_invoicedata",
+      "target": "invoicedata",
       "relation": "references",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L103",
+      "source_location": "L144",
       "weight": 1.0
     },
     {
       "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_serializeinvoicetofirestorefields",
-      "target": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_kt_invoicedata",
+      "target": "invoicedata",
       "relation": "references",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L297",
+      "source_location": "L338",
       "weight": 1.0
     },
     {
@@ -7648,19 +7935,19 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L175",
+      "source_location": "L216",
       "weight": 1.0
     },
     {
       "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_updateprompt",
-      "target": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_kt_invoicedata",
+      "target": "invoicedata",
       "relation": "references",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L175",
+      "source_location": "L216",
       "weight": 1.0
     },
     {
@@ -7840,7 +8127,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L128",
+      "source_location": "L129",
       "weight": 1.0
     },
     {
@@ -7852,7 +8139,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L93",
+      "source_location": "L94",
       "weight": 1.0
     },
     {
@@ -7864,7 +8151,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L109",
+      "source_location": "L110",
       "weight": 1.0
     },
     {
@@ -7876,7 +8163,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L138",
+      "source_location": "L139",
       "weight": 1.0
     },
     {
@@ -7888,7 +8175,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L148",
+      "source_location": "L149",
       "weight": 1.0
     },
     {
@@ -7900,7 +8187,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L80",
+      "source_location": "L81",
       "weight": 1.0
     },
     {
@@ -7912,7 +8199,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L98",
+      "source_location": "L99",
       "weight": 1.0
     },
     {
@@ -7924,7 +8211,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L120",
+      "source_location": "L121",
       "weight": 1.0
     },
     {
@@ -7936,7 +8223,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L115",
+      "source_location": "L116",
       "weight": 1.0
     },
     {
@@ -7948,7 +8235,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L143",
+      "source_location": "L144",
       "weight": 1.0
     },
     {
@@ -7960,7 +8247,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L153",
+      "source_location": "L154",
       "weight": 1.0
     },
     {
@@ -7972,7 +8259,7 @@
       "confidence_score": 1.0,
       "context": "parameter_type",
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L85",
+      "source_location": "L86",
       "weight": 1.0
     },
     {
@@ -8314,7 +8601,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L53",
+      "source_location": "L54",
       "weight": 1.0
     },
     {
@@ -8325,7 +8612,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L54",
+      "source_location": "L55",
       "weight": 1.0
     },
     {
@@ -8523,7 +8810,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L159",
+      "source_location": "L160",
       "weight": 1.0
     },
     {
@@ -8534,7 +8821,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L52",
+      "source_location": "L53",
       "weight": 1.0
     },
     {
@@ -8545,7 +8832,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L57",
+      "source_location": "L58",
       "weight": 1.0
     },
     {
@@ -8704,6 +8991,17 @@
     },
     {
       "source": "web_app_api_auth_biometric_route",
+      "target": "web_app_api_auth_biometric_route_getcloudbiometriccredentials",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "web/app/api/auth/biometric/route.ts",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "web_app_api_auth_biometric_route",
       "target": "web_app_api_auth_biometric_route_expected_email",
       "relation": "contains",
       "_origin": "ast",
@@ -8726,13 +9024,35 @@
     },
     {
       "source": "web_app_api_auth_biometric_route",
+      "target": "web_app_api_auth_biometric_route_get",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "web/app/api/auth/biometric/route.ts",
+      "source_location": "L55",
+      "weight": 1.0
+    },
+    {
+      "source": "web_app_api_auth_biometric_route",
       "target": "web_app_api_auth_biometric_route_post",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "web/app/api/auth/biometric/route.ts",
-      "source_location": "L7",
+      "source_location": "L71",
+      "weight": 1.0
+    },
+    {
+      "source": "web_app_api_auth_biometric_route",
+      "target": "web_app_api_auth_biometric_route_sanitizedocid",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "web/app/api/auth/biometric/route.ts",
+      "source_location": "L9",
       "weight": 1.0
     },
     {
@@ -8821,6 +9141,28 @@
       "confidence_score": 1.0,
       "source_file": "web/app/api/version/route.ts",
       "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "web_app_biometrics_page",
+      "target": "web_app_biometrics_page_cloudbiometriccred",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "web/app/biometrics/page.tsx",
+      "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "web_app_biometrics_page",
+      "target": "web_app_biometrics_page_biometricsmanagementpage",
+      "relation": "contains",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "web/app/biometrics/page.tsx",
+      "source_location": "L42",
       "weight": 1.0
     },
     {
@@ -10162,7 +10504,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L103",
+      "source_location": "L144",
       "weight": 1.0
     },
     {
@@ -10173,7 +10515,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L157",
+      "source_location": "L198",
       "weight": 1.0
     },
     {
@@ -10184,7 +10526,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L175",
+      "source_location": "L216",
       "weight": 1.0
     },
     {
@@ -10195,7 +10537,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L233",
+      "source_location": "L274",
       "weight": 1.0
     },
     {
@@ -10206,23 +10548,12 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L297",
+      "source_location": "L338",
       "weight": 1.0
     },
     {
       "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice",
-      "target": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_parseinvoicefromfirestorefields",
-      "relation": "method",
-      "_origin": "ast",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L335",
-      "weight": 1.0
-    },
-    {
-      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice",
-      "target": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_fetchhistory",
+      "target": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_checkcloudbiometricstatus",
       "relation": "method",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -10233,13 +10564,24 @@
     },
     {
       "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice",
+      "target": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_parseinvoicefromfirestorefields",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
+      "source_location": "L376",
+      "weight": 1.0
+    },
+    {
+      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice",
       "target": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_cachehistory",
       "relation": "method",
       "_origin": "ast",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L401",
+      "source_location": "L442",
       "weight": 1.0
     },
     {
@@ -10250,7 +10592,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L423",
+      "source_location": "L464",
       "weight": 1.0
     },
     {
@@ -10261,7 +10603,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L462",
+      "source_location": "L503",
       "weight": 1.0
     },
     {
@@ -10272,7 +10614,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L500",
+      "source_location": "L541",
       "weight": 1.0
     },
     {
@@ -10283,7 +10625,18 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L564",
+      "source_location": "L605",
+      "weight": 1.0
+    },
+    {
+      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice",
+      "target": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_fetchhistory",
+      "relation": "method",
+      "_origin": "ast",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
+      "source_location": "L76",
       "weight": 1.0
     },
     {
@@ -10371,7 +10724,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L109",
+      "source_location": "L110",
       "weight": 1.0
     },
     {
@@ -10382,7 +10735,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L115",
+      "source_location": "L116",
       "weight": 1.0
     },
     {
@@ -10393,7 +10746,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L120",
+      "source_location": "L121",
       "weight": 1.0
     },
     {
@@ -10404,7 +10757,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L128",
+      "source_location": "L129",
       "weight": 1.0
     },
     {
@@ -10415,7 +10768,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L138",
+      "source_location": "L139",
       "weight": 1.0
     },
     {
@@ -10426,7 +10779,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L143",
+      "source_location": "L144",
       "weight": 1.0
     },
     {
@@ -10437,7 +10790,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L148",
+      "source_location": "L149",
       "weight": 1.0
     },
     {
@@ -10448,7 +10801,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L153",
+      "source_location": "L154",
       "weight": 1.0
     },
     {
@@ -10459,7 +10812,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L69",
+      "source_location": "L70",
       "weight": 1.0
     },
     {
@@ -10470,7 +10823,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L75",
+      "source_location": "L76",
       "weight": 1.0
     },
     {
@@ -10481,7 +10834,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L80",
+      "source_location": "L81",
       "weight": 1.0
     },
     {
@@ -10492,7 +10845,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L85",
+      "source_location": "L86",
       "weight": 1.0
     },
     {
@@ -10503,7 +10856,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L93",
+      "source_location": "L94",
       "weight": 1.0
     },
     {
@@ -10514,7 +10867,7 @@
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
       "source_file": "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt",
-      "source_location": "L98",
+      "source_location": "L99",
       "weight": 1.0
     },
     {
@@ -10727,102 +11080,6 @@
       "weight": 1.0
     },
     {
-      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_fetchhistory",
-      "target": "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels_billedparty",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "context": "call",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L73",
-      "weight": 1.0
-    },
-    {
-      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_getcachedhistory",
-      "target": "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels_billedparty",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "context": "call",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L441",
-      "weight": 1.0
-    },
-    {
-      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_jsontoinvoice",
-      "target": "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels_billedparty",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "context": "call",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L518",
-      "weight": 1.0
-    },
-    {
-      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_jsontoinvoice",
-      "target": "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels_senderparty",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "context": "call",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L525",
-      "weight": 1.0
-    },
-    {
-      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_jsontoinvoice",
-      "target": "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels_invoiceitem",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "context": "call",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L537",
-      "weight": 1.0
-    },
-    {
-      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_parseinvoicefromfirestorefields",
-      "target": "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels_billedparty",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "context": "call",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L342",
-      "weight": 1.0
-    },
-    {
-      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_parseinvoicefromfirestorefields",
-      "target": "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels_senderparty",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "context": "call",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L349",
-      "weight": 1.0
-    },
-    {
-      "source": "android_app_src_main_java_com_robogyaan_invoice_data_firebasefirestoreservice_firebasefirestoreservice_parseinvoicefromfirestorefields",
-      "target": "android_app_src_main_java_com_robogyaan_invoice_data_invoicemodels_invoiceitem",
-      "relation": "calls",
-      "_origin": "ast",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "context": "call",
-      "source_file": "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt",
-      "source_location": "L369",
-      "weight": 1.0
-    },
-    {
       "source": "android_app_src_main_java_com_robogyaan_invoice_ui_components_historysidebarsheet_historysidebarsheet",
       "target": "android_app_src_main_java_com_robogyaan_invoice_ui_components_neobrutalcomponents_neobrutalcard",
       "relation": "calls",
@@ -10920,5 +11177,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "744b5a36cc0932f0aca035e4f9b7b7aa90298aec"
+  "built_at_commit": "07ad04a4dd1bfeaa28e77bce5e1c76083b288d51"
 }

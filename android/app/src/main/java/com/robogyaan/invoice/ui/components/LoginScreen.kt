@@ -4,6 +4,7 @@ import android.content.Context
 import android.widget.Toast
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
+import kotlinx.coroutines.launch
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -274,11 +275,22 @@ fun LoginScreen(
             )
             .build()
 
-        try {
-            biometricPrompt.authenticate(promptInfo)
-        } catch (e: Exception) {
-            isAuthenticating = false
-            errorMessage = "Biometric prompt error: ${e.message}"
+        val coroutineScope = kotlinx.coroutines.CoroutineScope(kotlinx.coroutines.Dispatchers.Main)
+        coroutineScope.launch {
+            val (isAllowed, reason) = com.robogyaan.invoice.data.FirebaseFirestoreService.checkCloudBiometricStatus()
+            if (!isAllowed) {
+                isAuthenticating = false
+                activeAuthMode = LoginAuthMode.PASSWORD
+                errorMessage = reason ?: "Biometric login is currently turned OFF by Admin in Cloud Settings (/biometrics)."
+                return@launch
+            }
+
+            try {
+                biometricPrompt.authenticate(promptInfo)
+            } catch (e: Exception) {
+                isAuthenticating = false
+                errorMessage = "Biometric prompt error: ${e.message}"
+            }
         }
     }
 

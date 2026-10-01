@@ -44,7 +44,9 @@ fun RoboGyaanInvoiceTheme(
         SideEffect {
             val window = (view.context as Activity).window
             window.statusBarColor = if (darkTheme) Color.Black.toArgb() else NeoYellow.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = !darkTheme
+            val controller = WindowCompat.getInsetsController(window, view)
+            controller.isAppearanceLightStatusBars = !darkTheme
+            controller.isAppearanceLightNavigationBars = !darkTheme
         }
     }
 

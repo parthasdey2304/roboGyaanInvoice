@@ -244,6 +244,7 @@ fun MainScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(topBarBg)
+                    .statusBarsPadding()
                     .drawBehind {
                         val strokeWidth = 2.dp.toPx()
                         val shadowHeight = if (isDarkMode) 0.dp.toPx() else 3.dp.toPx()
@@ -261,7 +262,7 @@ fun MainScreen(
                             strokeWidth = strokeWidth
                         )
                     }
-                    .padding(horizontal = 12.dp, vertical = 8.dp)
+                    .padding(start = 12.dp, end = 12.dp, top = 6.dp, bottom = 8.dp)
             ) {
                 // Top Row: Heading on Top Left, Editor/Split/Preview & Theme Toggle on Top Right
                 Row(

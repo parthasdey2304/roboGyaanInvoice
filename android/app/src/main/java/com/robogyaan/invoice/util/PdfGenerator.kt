@@ -342,16 +342,19 @@ object PdfGenerator {
             if (pageSlice.showSummaryAndSignatures) {
                 // Column 1 (Item) divider ends at totalRowTop
                 canvas.drawLine(c1X, tableTop, c1X, totalRowTop, strokePaint)
-                // Column 2 divider (c2X) extends to tableBottom (left wall of Box 1)
-                canvas.drawLine(c2X, tableTop, c2X, tableBottom, strokePaint)
+                // Column 2 divider ends at totalRowTop
+                canvas.drawLine(c2X, tableTop, c2X, totalRowTop, strokePaint)
+                // Box 1 left wall starts slightly left of c2X for wider horizontal padding
+                val box1Left = c2X - 26f
+                canvas.drawLine(box1Left, totalRowTop, box1Left, tableBottom, strokePaint)
                 // Column 3 divider (c3X) extends to tableBottom (separates Box 1 and Box 2)
                 canvas.drawLine(c3X, tableTop, c3X, tableBottom, strokePaint)
 
-                // Box 1: In the column of "No. of Students" (c2X to c3X)
-                blackPaint.textAlign = Paint.Align.RIGHT
-                blackPaint.textSize = 9.5f
+                // Box 1: Horizontally expanded box with Total Amount on 1 line (no colon)
+                blackPaint.textAlign = Paint.Align.CENTER
+                blackPaint.textSize = 9f
                 blackPaint.isFakeBoldText = true
-                canvas.drawText("Total Amount :", c3X - 6f, tableBottom - 9f, blackPaint)
+                canvas.drawText("Total Amount", (box1Left + c3X) / 2f, tableBottom - 9f, blackPaint)
 
                 // Box 2: In the column of "Total Amount" (c3X to rightX)
                 blackPaint.textAlign = Paint.Align.RIGHT

@@ -118,6 +118,7 @@ fun NeoBrutalButton(
     modifier: Modifier = Modifier,
     backgroundColor: Color = NeoYellow,
     contentColor: Color = Color.Black,
+    borderColor: Color = Color.Black,
     enabled: Boolean = true,
     icon: (@Composable () -> Unit)? = null
 ) {
@@ -125,6 +126,7 @@ fun NeoBrutalButton(
         modifier = modifier
             .neoBrutalClickable(
                 backgroundColor = backgroundColor,
+                borderColor = borderColor,
                 enabled = enabled,
                 onClick = onClick
             )
@@ -211,7 +213,8 @@ fun NeoBrutalAlertDialog(
     message: String,
     confirmText: String = "Confirm",
     cancelText: String = "Cancel",
-    isDanger: Boolean = false
+    isDanger: Boolean = false,
+    isDarkMode: Boolean = false
 ) {
     if (!isOpen) return
 
@@ -223,18 +226,21 @@ fun NeoBrutalAlertDialog(
             dismissOnClickOutside = true
         )
     ) {
-        // Fullscreen light-white translucent overlay covering the entire screen
+        // Translucent overlay covering the entire screen (Dark in dark mode, light in light mode)
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color.White.copy(alpha = 0.78f))
+                .background(
+                    if (isDarkMode) Color.Black.copy(alpha = 0.75f)
+                    else Color.White.copy(alpha = 0.78f)
+                )
                 .clickable(
                     interactionSource = remember { MutableInteractionSource() },
                     indication = null
                 ) { onDismiss() },
             contentAlignment = Alignment.Center
         ) {
-            // Centered Neo-Brutalist Alert Card
+            // Centered Neo-Brutalist Alert Card (Dark card in dark mode, off-white in light mode)
             Box(
                 modifier = Modifier
                     .padding(horizontal = 24.dp)
@@ -244,15 +250,15 @@ fun NeoBrutalAlertDialog(
                         indication = null
                     ) { /* Absorb clicks on dialog surface */ }
                     .neoBrutal(
-                        backgroundColor = Color(0xFFFDFBF7),
-                        borderColor = Color.Black,
+                        backgroundColor = if (isDarkMode) Color(0xFF18181B) else Color(0xFFFDFBF7),
+                        borderColor = if (isDarkMode) Color(0xFF3F3F46) else Color.Black,
                         borderWidth = 3.dp,
-                        shadowOffset = 6.dp,
+                        shadowOffset = if (isDarkMode) 0.dp else 6.dp,
                         cornerRadius = 12.dp
                     )
             ) {
                 Column {
-                    // Header Bar (Yellow or Red)
+                    // Header Bar (Red if isDanger, else NeoYellow)
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -269,13 +275,20 @@ fun NeoBrutalAlertDialog(
                             fontFamily = VirgilFontFamily,
                             fontWeight = FontWeight.Black,
                             fontSize = 15.sp,
-                            color = Color.Black
+                            color = if (isDanger && isDarkMode) Color.White else Color.Black
                         )
                         Box(
                             modifier = Modifier
                                 .size(24.dp)
-                                .background(Color.White, RoundedCornerShape(4.dp))
-                                .border(1.5.dp, Color.Black, RoundedCornerShape(4.dp))
+                                .background(
+                                    if (isDarkMode) Color(0xFF27272A) else Color.White,
+                                    RoundedCornerShape(4.dp)
+                                )
+                                .border(
+                                    1.5.dp,
+                                    if (isDarkMode) Color(0xFF52525B) else Color.Black,
+                                    RoundedCornerShape(4.dp)
+                                )
                                 .clickable { onDismiss() },
                             contentAlignment = Alignment.Center
                         ) {
@@ -283,7 +296,7 @@ fun NeoBrutalAlertDialog(
                                 text = "✕",
                                 fontWeight = FontWeight.Black,
                                 fontSize = 12.sp,
-                                color = Color.Black
+                                color = if (isDarkMode) Color.White else Color.Black
                             )
                         }
                     }
@@ -293,16 +306,16 @@ fun NeoBrutalAlertDialog(
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(2.5.dp)
-                            .background(Color.Black)
+                            .background(if (isDarkMode) Color(0xFF3F3F46) else Color.Black)
                     )
 
-                    // Message Body in Virgil Font
+                    // Message Body in Virgil Font (White text in dark mode, black in light mode)
                     Text(
                         text = message,
                         fontFamily = VirgilFontFamily,
                         fontWeight = FontWeight.Bold,
                         fontSize = 15.sp,
-                        color = Color.Black,
+                        color = if (isDarkMode) Color.White else Color.Black,
                         lineHeight = 22.sp,
                         modifier = Modifier.padding(20.dp)
                     )
@@ -312,7 +325,7 @@ fun NeoBrutalAlertDialog(
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(2.5.dp)
-                            .background(Color.Black)
+                            .background(if (isDarkMode) Color(0xFF3F3F46) else Color.Black)
                     )
 
                     // Actions Row with Neo-Brutalist Buttons
@@ -320,7 +333,7 @@ fun NeoBrutalAlertDialog(
                         modifier = Modifier
                             .fillMaxWidth()
                             .background(
-                                Color(0xFFF5F5F5),
+                                if (isDarkMode) Color(0xFF1E1E22) else Color(0xFFF5F5F5),
                                 RoundedCornerShape(bottomStart = 9.dp, bottomEnd = 9.dp)
                             )
                             .padding(horizontal = 16.dp, vertical = 12.dp),
@@ -330,8 +343,9 @@ fun NeoBrutalAlertDialog(
                         NeoBrutalButton(
                             text = cancelText,
                             onClick = onDismiss,
-                            backgroundColor = Color.White,
-                            contentColor = Color.Black
+                            backgroundColor = if (isDarkMode) Color(0xFF27272A) else Color.White,
+                            contentColor = if (isDarkMode) Color.White else Color.Black,
+                            borderColor = if (isDarkMode) Color(0xFF52525B) else Color.Black
                         )
                         Spacer(modifier = Modifier.width(10.dp))
                         NeoBrutalButton(
@@ -341,7 +355,8 @@ fun NeoBrutalAlertDialog(
                                 onDismiss()
                             },
                             backgroundColor = if (isDanger) Color(0xFFFF4D4D) else NeoYellow,
-                            contentColor = Color.Black
+                            contentColor = if (isDanger) Color.White else Color.Black,
+                            borderColor = if (isDarkMode) Color(0xFF7F1D1D) else Color.Black
                         )
                     }
                 }

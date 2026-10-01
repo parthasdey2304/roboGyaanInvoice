@@ -791,7 +791,8 @@ fun MainScreen(
                 message = "Are you sure you want to log out of the admin session?",
                 confirmText = "Log Out",
                 cancelText = "Stay Logged In",
-                isDanger = true
+                isDanger = true,
+                isDarkMode = isDarkMode
             )
 
             // APP SETTINGS & IN-APP UPDATER DIALOG (Image 2)
@@ -816,7 +817,8 @@ fun MainScreen(
                 message = "This will clear all current invoice data and reset it back to the default template. Are you sure?",
                 confirmText = "Reset",
                 cancelText = "Cancel",
-                isDanger = true
+                isDanger = true,
+                isDarkMode = isDarkMode
             )
         }
     }

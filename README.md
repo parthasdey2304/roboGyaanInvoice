@@ -12,8 +12,8 @@
 <div align="center">
 
 [![Vercel Deployment](https://img.shields.io/badge/Vercel-https://invoice.robogyaan.in/-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://invoice.robogyaan.in)
-[![Android APK Release](https://img.shields.io/badge/Android_APK-v1.5.7_Download-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/parthasdey2304/roboGyaanInvoice/releases/download/v1.5.7/robogyaan-invoice-v1.5.7.apk)
-[![GitHub Release](https://img.shields.io/badge/GitHub-v1.5.7_Release-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/parthasdey2304/roboGyaanInvoice/releases/tag/v1.5.7)
+[![Android APK Release](https://img.shields.io/badge/Android_APK-v1.5.8_Download-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://github.com/parthasdey2304/roboGyaanInvoice/releases/download/v1.5.8/robogyaan-invoice-v1.5.8.apk)
+[![GitHub Release](https://img.shields.io/badge/GitHub-v1.5.8_Release-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/parthasdey2304/roboGyaanInvoice/releases/tag/v1.5.8)
 [![Font Virgil](https://img.shields.io/badge/Typography-Virgil_(Excalidraw)-FF6B6B?style=for-the-badge&logo=penpot&logoColor=white)](https://plus.excalidraw.com/virgil)
 [![Next.js 16](https://img.shields.io/badge/Next.js-16.3.7_Turbopack-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
 [![Jetpack Compose](https://img.shields.io/badge/Jetpack_Compose-Material_3-4285F4?style=for-the-badge&logo=jetpackcompose&logoColor=white)](https://developer.android.com/jetpack/compose)
@@ -22,11 +22,11 @@
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg?style=for-the-badge)](https://opensource.org/licenses/Apache-2.0)
 
 **The ultimate dual-platform billing powerhouse engineered for RoboGyaan.**  
-*Hand-crafted Neo-Brutalist architecture, high-contrast asymmetric shadows, 60 FPS interactive grid physics, and authentic Excalidraw hand-drawn aesthetics.*
+*Hand-crafted Neo-Brutalist architecture, high-contrast asymmetric shadows, 60 FPS interactive grid physics, authentic Excalidraw hand-drawn aesthetics, and dual-mode biometric authentication.*
 
 ---
 
-[🌐 **Live Web Application**](https://invoice.robogyaan.in) • [📱 **Download Android APK (v1.5.7)**](https://github.com/parthasdey2304/roboGyaanInvoice/releases/download/v1.5.7/robogyaan-invoice-v1.5.7.apk) • [📦 **GitHub Release Notes**](https://github.com/parthasdey2304/roboGyaanInvoice/releases/tag/v1.5.7) • [✨ **Excalidraw Virgil Font**](https://plus.excalidraw.com/virgil)
+[🌐 **Live Web Application**](https://invoice.robogyaan.in) • [📱 **Download Android APK (v1.5.8)**](https://github.com/parthasdey2304/roboGyaanInvoice/releases/download/v1.5.8/robogyaan-invoice-v1.5.8.apk) • [📦 **GitHub Release Notes**](https://github.com/parthasdey2304/roboGyaanInvoice/releases/tag/v1.5.8) • [✨ **Excalidraw Virgil Font**](https://plus.excalidraw.com/virgil)
 
 </div>
 

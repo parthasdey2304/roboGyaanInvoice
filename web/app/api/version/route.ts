@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
-  const currentVersion = '1.5.7';
+  const currentVersion = '1.5.8';
   const repo = 'parthasdey2304/roboGyaanInvoice';
 
   try {

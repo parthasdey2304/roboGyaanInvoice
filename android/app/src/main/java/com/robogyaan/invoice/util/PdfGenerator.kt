@@ -307,10 +307,6 @@ object PdfGenerator {
             val c2X = c1X + col2Width
             val c3X = c2X + col3Width
 
-            canvas.drawLine(c1X, tableTop, c1X, tableBottom, strokePaint)
-            canvas.drawLine(c2X, tableTop, c2X, tableBottom, strokePaint)
-            canvas.drawLine(c3X, tableTop, c3X, tableBottom, strokePaint)
-
             blackPaint.textSize = 9.5f
             blackPaint.isFakeBoldText = true
             blackPaint.textAlign = Paint.Align.CENTER
@@ -344,11 +340,30 @@ object PdfGenerator {
             canvas.drawLine(margin, totalRowTop, rightX, totalRowTop, strokePaint)
 
             if (pageSlice.showSummaryAndSignatures) {
+                // Column 1 (Item) divider ends at totalRowTop
+                canvas.drawLine(c1X, tableTop, c1X, totalRowTop, strokePaint)
+                // Column 2 divider (c2X) extends to tableBottom (left wall of Box 1)
+                canvas.drawLine(c2X, tableTop, c2X, tableBottom, strokePaint)
+                // Column 3 divider (c3X) extends to tableBottom (separates Box 1 and Box 2)
+                canvas.drawLine(c3X, tableTop, c3X, tableBottom, strokePaint)
+
+                // Box 1: In the column of "No. of Students" (c2X to c3X)
                 blackPaint.textAlign = Paint.Align.RIGHT
-                blackPaint.textSize = 10.5f
+                blackPaint.textSize = 9.5f
                 blackPaint.isFakeBoldText = true
-                canvas.drawText("Total Amount : ₹${NumberToWordsIndian.formatINR(totalAmount)}", rightX - 10f, tableBottom - 8f, blackPaint)
+                canvas.drawText("Total Amount :", c3X - 6f, tableBottom - 9f, blackPaint)
+
+                // Box 2: In the column of "Total Amount" (c3X to rightX)
+                blackPaint.textAlign = Paint.Align.RIGHT
+                blackPaint.textSize = 10f
+                blackPaint.isFakeBoldText = true
+                canvas.drawText("₹${NumberToWordsIndian.formatINR(totalAmount)}", rightX - 8f, tableBottom - 9f, blackPaint)
             } else {
+                // Continued page banner: column dividers stop at totalRowTop
+                canvas.drawLine(c1X, tableTop, c1X, totalRowTop, strokePaint)
+                canvas.drawLine(c2X, tableTop, c2X, totalRowTop, strokePaint)
+                canvas.drawLine(c3X, tableTop, c3X, totalRowTop, strokePaint)
+
                 blackPaint.textAlign = Paint.Align.LEFT
                 blackPaint.textSize = 8.5f
                 blackPaint.isFakeBoldText = false

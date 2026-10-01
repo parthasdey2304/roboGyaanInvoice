@@ -170,4 +170,45 @@ flowchart LR
 - **Container Differentiation:** Toggle background uses `#18181B` with subtle `#3F3F46` border in dark mode to clearly distinguish interactive buttons from the dialog background.
 - **Version Parity:** Web API (`/api/version`), Web Settings Modal, Android Native `AppUpdateManager`, and Gradle configuration synchronized to `v1.6.1` (versionCode 20).
 
+---
+
+## 8. PDF & Invoice Preview Table Dual-Box Footer Architecture (v1.6.2)
+
+In v1.6.2, both Web and Android native PDF/Preview engines implement structured 2-box summary alignment across the invoice table:
+
+```mermaid
+flowchart TD
+    subgraph TableColumns["Invoice Table Columns"]
+        Col1["Col 1: Item (5 spans / 44%)"]
+        Col2["Col 2: Amount / Student head (3 spans / 20%)"]
+        Col3["Col 3: No. of Students (2 spans / 16%)"]
+        Col4["Col 4: Total Amount (2 spans / 20%)"]
+    end
+
+    subgraph TableFooter["Dual-Box Table Footer"]
+        EmptyLeft["Col 1-2: Open Span (8 cols / 64%)"]
+        Box1["Box 1 (Col 3): Total Amount : (Right-Aligned)"]
+        Box2["Box 2 (Col 4): ₹27,200.00 (Right-Aligned)"]
+    end
+
+    Col1 -.-> EmptyLeft
+    Col2 -.-> EmptyLeft
+    Col3 ==>|Direct Vertical Line c2X & c3X| Box1
+    Col4 ==>|Direct Vertical Line c3X & Right Border| Box2
+```
+
+### Architecture Specifications:
+1. **Column Alignment Guarantee:**
+   - **Box 1:** Positioned strictly within the horizontal bounds of the **No. of Students** column (`col-span-2` in CSS Grid / `c2X` to `c3X` in Android PDF). Displays `Total Amount :` right-aligned at the end of the cell.
+   - **Box 2:** Positioned strictly within the horizontal bounds of the **Total Amount** column (`col-span-2` in CSS Grid / `c3X` to `rightX` in Android PDF). Displays the formatted currency value (e.g. `₹27,200.00`) right-aligned to match the numbers in the table rows above.
+2. **Vertical Divider Continuity:**
+   - The vertical line separating Column 3 and Column 4 (`c3X`) continues uninterrupted through the footer to the bottom border, physically separating Box 1 from Box 2.
+   - The vertical line separating Column 2 and Column 3 (`c2X`) extends to the bottom border, forming the left wall of Box 1.
+   - Column 1 divider (`c1X`) terminates cleanly at `totalRowTop`, keeping the left span open and uncluttered.
+3. **Cross-Platform Uniformity:**
+   - **Web HTML/Canvas/PDF (`InvoicePreview.tsx`):** 12-column CSS Grid with `col-span-8` blank, `col-span-2` with `border-l-[2px] border-r-[2px]`, and `col-span-2` for currency.
+   - **Android Native Canvas PDF (`PdfGenerator.kt`):** Precise coordinate lines `c2X` and `c3X` drawn to `tableBottom` with segmented text drawing.
+   - **Android Compose Preview (`InvoicePreviewScreen.kt`):** Intrinsic row height with proportional weight boxes (`1.1f` and `1.4f`) separated by 1.5dp black dividers.
+
+
 

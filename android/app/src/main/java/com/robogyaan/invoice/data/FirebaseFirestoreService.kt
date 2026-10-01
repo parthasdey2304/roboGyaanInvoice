@@ -32,6 +32,47 @@ object FirebaseFirestoreService {
     private const val BASE_URL =
         "https://firestore.googleapis.com/v1/projects/$PROJECT_ID/databases/(default)/documents/$COLLECTION"
 
+    suspend fun checkCloudBiometricStatus(): Pair<Boolean, String?> = withContext(Dispatchers.IO) {
+        try {
+            val url = URL("$BASE_URL?key=$API_KEY&pageSize=50")
+            val conn = (url.openConnection() as HttpURLConnection).apply {
+                requestMethod = "GET"
+                connectTimeout = 6000
+                readTimeout = 6000
+            }
+            if (conn.responseCode == HttpURLConnection.HTTP_OK) {
+                val reader = BufferedReader(InputStreamReader(conn.inputStream))
+                val response = reader.readText()
+                reader.close()
+
+                val root = JSONObject(response)
+                val docs = root.optJSONArray("documents")
+                if (docs != null) {
+                    var foundAny = false
+                    var anyEnabled = false
+                    for (i in 0 until docs.length()) {
+                        val doc = docs.getJSONObject(i)
+                        val name = doc.optString("name")
+                        val docId = name.substringAfterLast("/")
+                        if (docId.startsWith("biometric_cred_")) {
+                            foundAny = true
+                            val fields = doc.optJSONObject("fields")
+                            val isEnabled = fields?.optJSONObject("enabled")?.optBoolean("booleanValue", true) ?: true
+                            if (isEnabled) {
+                                anyEnabled = true
+                                break
+                            }
+                        }
+                    }
+                    if (foundAny && !anyEnabled) {
+                        return@withContext Pair(false, "Biometric login is turned OFF in Cloud Settings (/biometrics).")
+                    }
+                }
+            }
+        } catch (_: Exception) {}
+        return@withContext Pair(true, null)
+    }
+
     suspend fun fetchHistory(context: Context): List<InvoiceHistoryItem> = withContext(Dispatchers.IO) {
         val cloudList = mutableListOf<InvoiceHistoryItem>()
         try {

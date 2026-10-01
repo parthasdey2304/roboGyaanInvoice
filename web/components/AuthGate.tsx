@@ -223,6 +223,10 @@ export const AuthGate: React.FC<AuthGateProps> = ({ children }) => {
         setUserEmail(loginData.user?.email || 'invoiceadmin@robogyaan.in');
         setIsAuthenticated(true);
       } else {
+        if (loginData.disabled) {
+          setError(loginData.error || 'This biometric credential has been disabled by Admin in /biometrics.');
+          return;
+        }
         throw new Error(loginData.error || 'Biometric verification failed.');
       }
     } catch (err: any) {
@@ -691,8 +695,17 @@ export const AuthGate: React.FC<AuthGateProps> = ({ children }) => {
           </form>
         )}
 
-        {/* Footer info */}
-        <div className="mt-6 pt-4 border-t border-neutral-200 dark:border-neutral-800 text-center">
+        {/* Footer info & Biometrics Vault link */}
+        <div className="mt-6 pt-4 border-t border-neutral-200 dark:border-neutral-800 text-center space-y-2">
+          <div>
+            <a
+              href="/biometrics"
+              className="inline-flex items-center gap-1.5 text-[11px] font-black uppercase text-[#D4AF37] hover:underline"
+            >
+              <Fingerprint className="w-3.5 h-3.5" />
+              <span>Biometric Vault &amp; Sensor Setup &rarr;</span>
+            </a>
+          </div>
           <p className="text-[10px] font-bold text-neutral-500 dark:text-neutral-400">
             RoboGyaan Invoice Suite &bull; Official Management System
           </p>

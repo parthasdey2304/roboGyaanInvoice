@@ -84,14 +84,35 @@ stateDiagram-v2
 
 ---
 
-## 4. Cryptographic Security Standards
+## 5. Central Cloud Storage & Browser Enrollment Architecture (`/biometrics`)
 
-1. **Zero Plaintext Transmission**:
-   - Plaintext passwords are never sent over the wire or stored in memory.
-   - Client-side derivation uses **Argon2id** (`salt: robogyaan_invoice_auth_salt_2026`, iterations: 3, memory: 4096 KB, parallelism: 1).
-2. **Hardware-Backed Key Storage**:
-   - On Android: Private biometric credentials and cryptographic materials are bound to the Android Keystore / TEE (Trusted Execution Environment).
-   - On Web: WebAuthn private keys are held securely inside the OS Secure Enclave (Apple) or TPM 2.0 / Windows Hello Credential Guard (Microsoft).
-3. **Session Persistence**:
-   - Web: Secure, HTTP-only, SameSite=Lax cookie (`robogyaan_auth_session`) valid for 30 days.
-   - Android: Encrypted persistent authentication preferences in app private sandbox.
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Admin as Admin User (Browser / Device)
+    participant Route as /biometrics Page
+    participant WebAuthn as Platform Sensor (Windows Hello / Touch ID / Android)
+    participant API as /api/auth/biometric
+    participant Cloud as Cloud Firestore
+
+    Admin->>Route: Enter Fingerprint Label & Admin Password
+    Route->>API: POST { action: "challenge" }
+    API-->>Route: Return Cryptographic Challenge
+    Route->>WebAuthn: navigator.credentials.create() (Phase 1: Place Finger)
+    WebAuthn-->>Route: First Contact Captured (35%)
+    Route->>Admin: UI: "Lift your finger..."
+    Route->>Admin: UI: "Place same finger again at different angle..." (Phase 2: 85%)
+    Route->>API: POST { action: "register", credentialId, name, platform, passwordHash }
+    API->>Cloud: PATCH /invoice_prompts/biometric_cred_{id} (enabled: true)
+    Cloud-->>API: 200 OK
+    API-->>Route: 200 Success & Stored
+    Route->>Admin: Display in Authorized Fingerprints List with Power Toggle Switch
+
+    Note over Admin, Cloud: Real-Time Deactivation Flow
+    Admin->>Route: Click "Turn OFF" on Fingerprint
+    Route->>API: POST { action: "toggle", credentialId, enabled: false }
+    API->>Cloud: Update enabled=false
+    Cloud-->>API: 200 OK
+    Note over Admin, Cloud: Subsequent Logins with that Finger are Immediately Blocked on Web & Android
+```
+

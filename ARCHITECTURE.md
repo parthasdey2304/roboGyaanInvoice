@@ -210,5 +210,47 @@ flowchart TD
    - **Android Native Canvas PDF (`PdfGenerator.kt`):** Precise coordinate lines `c2X` and `c3X` drawn to `tableBottom` with segmented text drawing.
    - **Android Compose Preview (`InvoicePreviewScreen.kt`):** Intrinsic row height with proportional weight boxes (`1.1f` and `1.4f`) separated by 1.5dp black dividers.
 
+---
+
+## 9. Official Brand Assets, Single-Line Footer & Dark Mode Alert Architecture (v1.6.3)
+
+```mermaid
+flowchart TD
+    subgraph BrandIdentity["Official RoboGyaan Brand System"]
+        Logo["Logo (robogyaan_logo.png)\nEmblem + 'ROBOGYAAN' + 'IGNITING CURIOSITY, BUILDING FUTURE'"]
+        Symbol["Symbol (robogyaan_symbol.png)\nAuthentic connected dumbbell-nodes"]
+        LauncherIcon["Android Launcher Icon (@mipmap/ic_launcher)\nHigh-DPI 512x512 with 18% safe padding"]
+        Logo --> HeaderWeb["Web & PDF Headers"]
+        Symbol --> Watermark["Invoice Table Watermark (-20° rotation, 10% opacity)"]
+        Symbol --> LauncherIcon
+    end
+
+    subgraph TableFooter["Expanded 1-Line Table Footer"]
+        LeftSpan["Left Span: 7 columns (58.3%)"]
+        Box1Expanded["Box 1: 3 columns (25%)\nHorizontally expanded with padding\n'Total Amount' strictly on 1 line (NO colon)"]
+        Box2Val["Box 2: 2 columns (16.7%)\n'₹XX,XXX.00' Right-aligned currency"]
+        LeftSpan --- Box1Expanded --- Box2Val
+    end
+
+    subgraph DialogDarkTheme["NeoBrutalAlertDialog Dark Mode Engine"]
+        ThemeDetect{"isDarkMode?"}
+        ThemeDetect -->|Light| LightDialog["#FDFBF7 Card + Black Border\nWhite Translucent Backdrop (78%)\nBlack Message Text\nWhite Close & Cancel Buttons"]
+        ThemeDetect -->|Dark| DarkDialog["#18181B Dark Card + #3F3F46 Border\nDark Translucent Backdrop (75%)\nWhite Message Text\nPreserved #FF4D4D Header Bar\n#27272A Dark Action Buttons"]
+    end
+```
+
+### 1. Authentic RoboGyaan Brand & Icon Overhaul:
+- **Elimination of Legacy Pentagon SVG:** All obsolete 5-dot pentagon geometric SVGs previously used in headers and watermarks were eliminated.
+- **Clean Alpha Transparency:** Python-processed alpha masks convert white backgrounds to smooth alpha transparency without fringing or halo artifacts, ensuring perfect rendering on both light paper previews and dark app backgrounds.
+- **Adaptive Launcher Icon Density:** Android manifest points to `@mipmap/ic_launcher` and `@mipmap/ic_launcher_round`, generated from high-resolution 512x512 vector-equivalent art across `mdpi`, `hdpi`, `xhdpi`, `xxhdpi`, and `xxxhdpi` folders.
+
+### 2. Single-Line Table Footer Typography:
+- **Width Expansion:** Box 1 was expanded horizontally (from 2 columns to 3 columns in Web CSS Grid, and with `box1Left = c2X - 26f` in Android native PDF canvas) to prevent any two-line word wrap.
+- **Punctuation Cleanliness:** Colons (`:`) were eliminated from the total amount label (`"Total Amount"`), with balanced padding providing a clean look.
+
+### 3. NeoBrutalAlertDialog Dark Mode Polish:
+- **Full Palette Adaptation:** `NeoBrutalAlertDialog` accepts `isDarkMode: Boolean`, toggling the card surface from `#FDFBF7` to `#18181B`, the fullscreen backdrop to 75% dark translucent black, and the message text from `Color.Black` to `Color.White`.
+- **Preserved Alert Intent:** The bright red header bar (`#FF4D4D`) and danger confirm button (`#FF4D4D`) are preserved for instant visual recognition of session termination and destructive actions.
+
 
 

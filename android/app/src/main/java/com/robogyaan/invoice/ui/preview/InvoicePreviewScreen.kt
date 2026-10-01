@@ -588,25 +588,25 @@ private fun InvoiceSheetCard(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         // Left empty space spanning Item + Amount/Student head
-                        Box(modifier = Modifier.weight(2f))
-                        Box(modifier = Modifier.width(1.5.dp))
-                        Box(modifier = Modifier.weight(1.3f))
+                        Box(modifier = Modifier.weight(2.9f))
 
-                        // Box 1: In the column of "No. of Students"
+                        // Box 1: In the column area of "No. of Students" (horizontally expanded, 1 line, no colon)
                         Box(modifier = Modifier.width(1.5.dp).fillMaxHeight().background(Color.Black))
                         Box(
                             modifier = Modifier
-                                .weight(1.1f)
+                                .weight(1.5f)
                                 .fillMaxHeight()
                                 .padding(vertical = 6.dp, horizontal = 4.dp),
-                            contentAlignment = Alignment.CenterEnd
+                            contentAlignment = Alignment.Center
                         ) {
                             Text(
-                                text = "Total Amount :",
+                                text = "Total Amount",
                                 fontSize = 10.sp,
                                 fontWeight = FontWeight.Black,
                                 fontFamily = PoppinsFontFamily,
-                                textAlign = TextAlign.End
+                                textAlign = TextAlign.Center,
+                                maxLines = 1,
+                                softWrap = false
                             )
                         }
 

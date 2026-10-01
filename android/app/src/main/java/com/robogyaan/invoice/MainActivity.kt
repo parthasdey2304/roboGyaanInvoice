@@ -57,11 +57,12 @@ import com.robogyaan.invoice.ui.theme.RoboGyaanInvoiceTheme
 import com.robogyaan.invoice.ui.theme.VirgilFontFamily
 import com.robogyaan.invoice.util.PdfGenerator
 import kotlinx.coroutines.Dispatchers
+import androidx.fragment.app.FragmentActivity
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.File
 
-class MainActivity : ComponentActivity() {
+class MainActivity : FragmentActivity() {
 
     private val invoiceViewModel: InvoiceViewModel by viewModels()
 

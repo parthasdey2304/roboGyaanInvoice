@@ -1,15 +1,15 @@
 {
   "android/app/build.gradle.kts": {
-    "mtime": 1790836427.8079875,
-    "seen": 1790836688.9152133,
-    "ast_hash": "c91753ac92595075e3cce17b77961e9c",
-    "semantic_hash": "c91753ac92595075e3cce17b77961e9c"
+    "mtime": 1790838539.4241064,
+    "seen": 1790838893.2024107,
+    "ast_hash": "4ba4fed2f88216e834259b6a960d7fe8",
+    "semantic_hash": "4ba4fed2f88216e834259b6a960d7fe8"
   },
   "android/app/src/main/java/com/robogyaan/invoice/MainActivity.kt": {
-    "mtime": 1790836346.7679288,
-    "seen": 1790836688.9152188,
-    "ast_hash": "cb4900c532fa7f5ce850b5a1372be4f5",
-    "semantic_hash": "cb4900c532fa7f5ce850b5a1372be4f5"
+    "mtime": 1790838587.5450134,
+    "seen": 1790838893.2024167,
+    "ast_hash": "2fd85fb0dd4b9e1a9058ebbcf1443b69",
+    "semantic_hash": "2fd85fb0dd4b9e1a9058ebbcf1443b69"
   },
   "android/app/src/main/java/com/robogyaan/invoice/data/FirebaseFirestoreService.kt": {
     "mtime": 1790761192.9987109,
@@ -48,10 +48,10 @@
     "semantic_hash": "bf7b10543e22081aff6eff013a52a24b"
   },
   "android/app/src/main/java/com/robogyaan/invoice/ui/components/LoginScreen.kt": {
-    "mtime": 1790836396.7593646,
-    "seen": 1790836688.9161384,
-    "ast_hash": "2c9c388a6468465d04fa825da9084513",
-    "semantic_hash": "2c9c388a6468465d04fa825da9084513"
+    "mtime": 1790838612.9796164,
+    "seen": 1790838893.2038016,
+    "ast_hash": "759292f215ac69e7a08a1b5ecd4148f5",
+    "semantic_hash": "759292f215ac69e7a08a1b5ecd4148f5"
   },
   "android/app/src/main/java/com/robogyaan/invoice/ui/components/NeoBrutalComponents.kt": {
     "mtime": 1790758573.1784482,
@@ -72,8 +72,8 @@
     "semantic_hash": "eea41d877443dcf65503045b200d145c"
   },
   "android/app/src/main/java/com/robogyaan/invoice/ui/theme/Theme.kt": {
-    "mtime": 1790836411.269748,
-    "seen": 1790836688.916629,
+    "mtime": 1790836941.085228,
+    "seen": 1790838893.20418,
     "ast_hash": "59a53059dab39fef39107c9929911e6a",
     "semantic_hash": "59a53059dab39fef39107c9929911e6a"
   },
@@ -150,10 +150,10 @@
     "semantic_hash": "4ba289433a7a89a118d412f18f94bd6a"
   },
   "web/components/AuthGate.tsx": {
-    "mtime": 1790760300.8894346,
-    "seen": 1790761084.511015,
-    "ast_hash": "4793950362928e75f6d54355267b20d7",
-    "semantic_hash": "4793950362928e75f6d54355267b20d7"
+    "mtime": 1790838729.488081,
+    "seen": 1790838893.2052124,
+    "ast_hash": "911473a84ef063f8caa0253353d93561",
+    "semantic_hash": "911473a84ef063f8caa0253353d93561"
   },
   "web/components/HistorySidebar.tsx": {
     "mtime": 1790760300.8894346,
@@ -390,10 +390,10 @@
     "semantic_hash": ""
   },
   "android/app/src/main/java/com/robogyaan/invoice/ui/components/AppUpdateManager.kt": {
-    "mtime": 1790836441.626326,
-    "seen": 1790836688.9157443,
-    "ast_hash": "282ee87962c7ac5775023c787e7839b1",
-    "semantic_hash": "282ee87962c7ac5775023c787e7839b1"
+    "mtime": 1790838619.1729505,
+    "seen": 1790838893.203486,
+    "ast_hash": "51c02c793600d7a82cca6a89a5ba6cba",
+    "semantic_hash": "51c02c793600d7a82cca6a89a5ba6cba"
   },
   "android/app/src/main/java/com/robogyaan/invoice/ui/components/BoxGridBackground.kt": {
     "mtime": 1790765167.3175855,
@@ -414,15 +414,27 @@
     "semantic_hash": "349e0eb0f0a520d5feeef10c700973cc"
   },
   "web/components/SettingsModal.tsx": {
-    "mtime": 1790836472.5198596,
-    "seen": 1790836688.9183006,
-    "ast_hash": "aa5ed62a2f6261158d562d4e571d6291",
-    "semantic_hash": "aa5ed62a2f6261158d562d4e571d6291"
+    "mtime": 1790838748.794124,
+    "seen": 1790838893.2058685,
+    "ast_hash": "f72dd6a7244d3106b21939c78ce1cb43",
+    "semantic_hash": "f72dd6a7244d3106b21939c78ce1cb43"
   },
   "web/app/api/version/route.ts": {
-    "mtime": 1790836454.9469242,
-    "seen": 1790836688.9175124,
-    "ast_hash": "b302cb8a0e42c9e0389ae60b46f1bd0f",
-    "semantic_hash": "b302cb8a0e42c9e0389ae60b46f1bd0f"
+    "mtime": 1790838744.9782846,
+    "seen": 1790838893.2050507,
+    "ast_hash": "2ab13a3f3e5351f51ac3ff5bf554dbff",
+    "semantic_hash": "2ab13a3f3e5351f51ac3ff5bf554dbff"
+  },
+  "web/app/api/auth/biometric/route.ts": {
+    "mtime": 1790838683.9110663,
+    "seen": 1790838893.204779,
+    "ast_hash": "d7de1981289b34a00386a695e1107ddd",
+    "semantic_hash": "d7de1981289b34a00386a695e1107ddd"
+  },
+  "web/lib/webauthn.ts": {
+    "mtime": 1790838805.1089354,
+    "seen": 1790838893.2064488,
+    "ast_hash": "818dc785d35546b12c4acc51623adb02",
+    "semantic_hash": "818dc785d35546b12c4acc51623adb02"
   }
 }

@@ -584,16 +584,49 @@ private fun InvoiceSheetCard(
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(vertical = 5.dp, horizontal = 8.dp),
-                        horizontalArrangement = Arrangement.End,
+                            .height(IntrinsicSize.Min),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text(
-                            text = "Total Amount : ₹${NumberToWordsIndian.formatINR(totalAmount)}",
-                            fontSize = 11.sp,
-                            fontWeight = FontWeight.Black,
-                            fontFamily = PoppinsFontFamily
-                        )
+                        // Left empty space spanning Item + Amount/Student head
+                        Box(modifier = Modifier.weight(2f))
+                        Box(modifier = Modifier.width(1.5.dp))
+                        Box(modifier = Modifier.weight(1.3f))
+
+                        // Box 1: In the column of "No. of Students"
+                        Box(modifier = Modifier.width(1.5.dp).fillMaxHeight().background(Color.Black))
+                        Box(
+                            modifier = Modifier
+                                .weight(1.1f)
+                                .fillMaxHeight()
+                                .padding(vertical = 6.dp, horizontal = 4.dp),
+                            contentAlignment = Alignment.CenterEnd
+                        ) {
+                            Text(
+                                text = "Total Amount :",
+                                fontSize = 10.sp,
+                                fontWeight = FontWeight.Black,
+                                fontFamily = PoppinsFontFamily,
+                                textAlign = TextAlign.End
+                            )
+                        }
+
+                        // Box 2: In the column of "Total Amount"
+                        Box(modifier = Modifier.width(1.5.dp).fillMaxHeight().background(Color.Black))
+                        Box(
+                            modifier = Modifier
+                                .weight(1.4f)
+                                .fillMaxHeight()
+                                .padding(vertical = 6.dp, horizontal = 6.dp),
+                            contentAlignment = Alignment.CenterEnd
+                        ) {
+                            Text(
+                                text = "₹${NumberToWordsIndian.formatINR(totalAmount)}",
+                                fontSize = 10.5.sp,
+                                fontWeight = FontWeight.Black,
+                                fontFamily = PoppinsFontFamily,
+                                textAlign = TextAlign.End
+                            )
+                        }
                     }
                 } else {
                     Row(

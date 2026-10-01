@@ -263,10 +263,15 @@ export const InvoicePreview = forwardRef<HTMLDivElement, InvoicePreviewProps>(
 
                   {/* Table Footer: Subtotal on Last Page OR Continued Indicator */}
                   {pageSlice.showSummaryAndSignatures ? (
-                    <div className="border-t-[2px] border-black flex justify-end z-10 relative bg-white">
-                      <div className="border-l-[2px] border-black px-4 py-2 text-xs sm:text-sm font-bold flex items-center gap-2">
-                        <span className="font-black">Total Amount :</span>
-                        <span className="text-sm sm:text-base font-black">
+                    <div className="border-t-[2px] border-black grid grid-cols-12 z-10 relative bg-white text-xs sm:text-sm font-bold">
+                      <div className="col-span-8" />
+                      {/* Box 1: In the column of 'No. of Students' */}
+                      <div className="col-span-2 border-l-[2px] border-r-[2px] border-black p-2 flex items-center justify-end pr-2 text-right">
+                        <span className="font-black text-black">Total Amount :</span>
+                      </div>
+                      {/* Box 2: In the column of 'Total Amount' */}
+                      <div className="col-span-2 p-2 sm:p-2.5 flex items-center justify-end pr-3 text-right">
+                        <span className="text-sm sm:text-base font-black text-black">
                           ₹{formatINR(totalAmount)}
                         </span>
                       </div>

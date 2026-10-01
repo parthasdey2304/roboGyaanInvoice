@@ -11,8 +11,8 @@ android {
         applicationId = "com.robogyaan.invoice"
         minSdk = 24
         targetSdk = 34
-        versionCode = 20
-        versionName = "1.6.1"
+        versionCode = 21
+        versionName = "1.6.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
